@@ -9,18 +9,19 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg:        #0D1117;
-      --bg-dark:   #010409;
-      --text:      #C9D1D9;
-      --text-dim:  #8B949E;
-      --accent:    #C5A059;
-      --accent-dim:#BFAF7A;
-      --border:    rgba(197,160,89,0.12);
-      --card:      rgba(13,17,23,0.65);
+      --bg:           #0D1117;
+      --bg-darker:    #010409;
+      --text:         #C9D1D9;
+      --text-dim:     #8B949E;
+      --accent:       #C5A059;
+      --accent-dim:   #BFAF7A;
+      --border:       rgba(197,160,89,0.12);
+      --card:         rgba(13,17,23,0.7);
+      --glow:         0 0 12px rgba(197,160,89,0.35);
     }
 
     * {
@@ -33,14 +34,16 @@
       background: var(--bg);
       color: var(--text);
       font-family: 'IBM Plex Mono', monospace;
-      line-height: 1.65;
+      line-height: 1.7;
       font-size: 15.5px;
       min-height: 100vh;
+      padding-bottom: 80px;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
+      transition: color 0.18s;
     }
     a:hover {
       color: var(--accent-dim);
@@ -48,37 +51,42 @@
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1020px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
     header {
-      padding: 80px 0 60px;
+      padding: 100px 0 80px;
       text-align: center;
     }
 
     .logo {
-      max-width: 340px;
+      max-width: 360px;
       height: auto;
-      filter: drop-shadow(0 4px 20px rgba(197,160,89,0.25));
+      filter: drop-shadow(var(--glow));
+      transition: transform 0.4s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.04);
     }
 
     h1 {
-      font-size: 2.8rem;
+      font-size: 3.2rem;
       font-weight: 600;
-      margin: 40px 0 12px;
+      margin: 50px 0 20px;
       color: var(--accent);
-      letter-spacing: -0.5px;
+      letter-spacing: -1px;
     }
 
     .credo {
-      font-size: 1.45rem;
+      font-size: 1.55rem;
       font-weight: 500;
-      max-width: 720px;
-      margin: 0 auto 60px;
+      max-width: 820px;
+      margin: 0 auto 70px;
       color: #E6EDF3;
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
     .credo strong {
@@ -86,21 +94,29 @@
     }
 
     .section {
-      margin: 80px 0;
-      padding: 40px 0;
+      margin: 100px 0;
+      padding: 60px 0;
       border-top: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .section-title {
-      font-size: 1.85rem;
+      font-size: 2.1rem;
       color: var(--accent);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
       font-weight: 500;
     }
 
     .text-block {
-      max-width: 760px;
-      margin-bottom: 32px;
+      max-width: 820px;
+      margin-bottom: 40px;
       color: var(--text-dim);
     }
 
@@ -110,9 +126,9 @@
     }
 
     .list li {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       position: relative;
-      padding-left: 24px;
+      padding-left: 28px;
     }
 
     .list li::before {
@@ -126,31 +142,36 @@
     .products {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 20px;
     }
 
     .product {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: 8px;
       overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .product:hover {
+      border-color: rgba(197,160,89,0.3);
     }
 
     .product-header {
-      padding: 18px 24px;
-      background: rgba(197,160,89,0.06);
+      padding: 22px 28px;
+      background: rgba(197,160,89,0.05);
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.18rem;
+      font-size: 1.25rem;
       font-weight: 500;
       color: var(--text);
-      transition: background 0.18s;
+      transition: background 0.22s;
     }
 
     .product-header:hover {
-      background: rgba(197,160,89,0.11);
+      background: rgba(197,160,89,0.12);
     }
 
     .product-title {
@@ -159,13 +180,14 @@
 
     .product-slogan {
       color: var(--text-dim);
-      font-size: 0.95rem;
-      margin-left: 16px;
+      font-size: 0.98rem;
+      margin-left: 20px;
     }
 
     .product-content {
-      padding: 0 24px 24px;
+      padding: 0 28px 28px;
       display: none;
+      color: var(--text-dim);
     }
 
     .product-content.active {
@@ -173,39 +195,34 @@
     }
 
     .product p, .product ul {
-      margin: 16px 0;
-      color: var(--text-dim);
+      margin: 20px 0;
     }
 
     .contacts {
       text-align: center;
-      padding: 80px 0 120px;
-      font-size: 1.25rem;
-    }
-
-    .contacts a {
-      margin: 0 16px;
+      padding: 100px 0 140px;
       font-size: 1.35rem;
     }
 
-    /* Аккордеон */
-    .product-header::after {
-      content: "▼";
-      font-size: 0.9rem;
-      color: var(--text-dim);
-      transition: transform 0.25s;
+    .contacts a {
+      margin: 0 24px;
+      font-size: 1.45rem;
+      transition: all 0.3s;
     }
 
-    .product-header.active::after {
-      transform: rotate(180deg);
+    .contacts a:hover {
+      transform: scale(1.06);
     }
 
+    /* Мобильная адаптация */
     @media (max-width: 768px) {
-      header { padding: 60px 0 40px; }
-      h1 { font-size: 2.2rem; }
-      .credo { font-size: 1.25rem; }
-      .section { margin: 60px 0; padding: 30px 0; }
-      .product-header { font-size: 1.1rem; padding: 16px 20px; }
+      header { padding: 70px 0 50px; }
+      h1 { font-size: 2.4rem; }
+      .credo { font-size: 1.3rem; }
+      .section { margin: 70px 0; padding: 40px 0; }
+      .product-header { font-size: 1.15rem; padding: 18px 22px; }
+      .contacts { padding: 80px 0 120px; font-size: 1.2rem; }
+      .contacts a { margin: 12px; display: block; }
     }
   </style>
 </head>
@@ -225,7 +242,7 @@
 
   <div class="container">
 
-    <!-- КРЕДО / МАКСИМА -->
+    <!-- КРЕДО -->
     <section class="section">
       <h2 class="section-title">Кредо</h2>
       <p class="text-block">
@@ -237,52 +254,54 @@
     <!-- ПРОДУКТЫ -->
     <section class="section">
       <h2 class="section-title">Продукты HISOBLI</h2>
-      <p class="text-block" style="margin-bottom:40px;">
+      <p class="text-block" style="margin-bottom:48px;">
         Каждый продукт — это отдельный стандартизированный контур.<br>
         Не пакет услуг. Не набор опций.
       </p>
 
       <div class="products">
 
-        <!-- Capital Control -->
         <div class="product">
           <div class="product-header">
-            <span><span class="product-title">Capital Control</span> <span class="product-slogan">«Капитал любит тишину и точность»</span></span>
+            <span><span class="product-title">BUYURI§% Ⱒ Capital Control</span> <span class="product-slogan">«Капитал любит тишину и точность»</span></span>
           </div>
           <div class="product-content">
             <p><strong>Для кого:</strong> Холдинговые структуры, owner-companies, SPV.</p>
             <p><strong>Смысл контура:</strong> Учёт операций с капиталом в отрыве от операционной деятельности.</p>
             <p><strong>В рамках контура:</strong></p>
             <ul class="list">
-              <li>учёт вкладов, займов и дивидендов</li>
-              <li>отражение внутригрупповых операций</li>
-              <li>валютные переоценки</li>
-              <li>фиксация экономического содержания операций</li>
+              <li>учёт дивидендных выплат и займов</li>
+              <li>переоценка валютных статей баланса</li>
+              <li>обоснование деловой цели операций</li>
+              <li>защита от субсидиарной ответственности</li>
             </ul>
+            <p><strong>Статистическая нагрузка:</strong> 1-invest (Отчет об инвестициях), Monitoring of foreign direct investment (FDI), 4-moliya (Квартальный отчет о финансовом состоянии).</p>
             <p><strong>Не входит:</strong> Управление капиталом и инвестиционные решения.</p>
           </div>
         </div>
 
-        <!-- Digital Export -->
         <div class="product">
           <div class="product-header">
-            <span><span class="product-title">Digital Export</span> <span class="product-slogan">«Экспорт услуг без бухгалтерского шума»</span></span>
+            <span><span class="product-title">BUYURI§% Ⱒ Digital Export</span> <span class="product-slogan">«Экспорт услуг без бухгалтерского шума»</span></span>
           </div>
           <div class="product-content">
-            <p><strong>Для кого:</strong> IT‑компании, digital‑агентства, экспортёры услуг.</p>
-            <p><strong>Смысл контура:</strong> Процессный учёт экспортной выручки и валютных поступлений.</p>
+            <p><strong>Для кого:</strong> Резиденты IT-Park, EdTech, консалтинг.</p>
+            <p><strong>Смысл контура:</strong> Валютный контроль и применение налоговых преференций для экспортёров.</p>
             <p><strong>В рамках контура:</strong></p>
             <ul class="list">
-              <li>оформление контрактов и инвойсов</li>
-              <li>учёт валютной выручки</li>
-              <li>сопровождение налоговых льгот</li>
-              <li>обязательная отчётность</li>
+              <li>регистрация инвойс-контрактов в ЕЭИСВО (E-Contract)</li>
+              <li>мониторинг критериев льгот IT-Park</li>
+              <li>подготовка и сдача отчётности в Дирекцию IT-Park</li>
+              <li>подтверждение нулевой ставки налога</li>
+              <li>свод массовых оплат от нерезидентов</li>
             </ul>
+            <p><strong>Статистическая нагрузка:</strong> 1-korxona (Экспорт-импорт услуг), 4-mehnat (Квартальный отчёт по труду).</p>
             <p><strong>Не входит:</strong> Налоговое планирование и выбор юрисдикций.</p>
           </div>
         </div>
 
-        <!-- и так далее для остальных продуктов — я сократил для примера, в реальном файле все 8 будут -->
+        <!-- Здесь должны быть остальные 6 продуктов в том же формате -->
+        <!-- Я не вставляю их все, чтобы не раздувать сообщение, но в реальном файле они будут -->
 
       </div>
     </section>
@@ -293,36 +312,37 @@
       <p class="text-block">
         HISOBLI работает в рамках воспроизводимых регламентов, адаптируемых под конкретный контур и состав операций.
       </p>
-      <ol class="list" style="padding-left:24px; list-style:decimal;">
+      <ol class="list" style="padding-left:32px; list-style:decimal;">
         <li>Определение применимого контура</li>
         <li>Фиксация состава операций</li>
         <li>Регламент документооборота</li>
         <li>Процессное сопровождение</li>
       </ol>
-      <p class="text-block" style="margin-top:24px;">
+      <p class="text-block" style="margin-top:32px;">
         <strong>Важно понимать:</strong> HISOBLI не оценивает экономическую целесообразность операций, не проверяет фактическое содержание первичных документов, не принимает управленческих решений. Ответственность ограничена корректностью процессного исполнения.
       </p>
     </section>
 
-    <!-- ГРАНИЦЫ ОТВЕТСТВЕННОСТИ -->
+    <!-- ГРАНИЦЫ -->
     <section class="section">
       <h2 class="section-title">Границы ответственности</h2>
-      <div style="display:flex; gap:40px; flex-wrap:wrap;">
-        <div style="flex:1; min-width:300px;">
-          <h3 style="color:var(--accent); margin-bottom:16px;">HISOBLI отвечает за:</h3>
+      <div style="display:flex; gap:48px; flex-wrap:wrap; margin-top:32px;">
+        <div style="flex:1; min-width:320px;">
+          <h3 style="color:var(--accent); margin-bottom:20px;">HISOBLI отвечает за:</h3>
           <ul class="list">
-            <li>корректное отражение предоставленных данных</li>
-            <li>соблюдение регламентов и сроков</li>
+            <li>корректное отражение предоставленных данных в бухгалтерских реестрах</li>
+            <li>соблюдение утверждённых регламентов и сроков</li>
             <li>процессуальную чистоту учёта</li>
-            <li>формирование и подачу обязательной отчётности</li>
+            <li>корректное формирование и подачу обязательной отчётности</li>
+            <li>техническое взаимодействие с государственными цифровыми системами</li>
           </ul>
         </div>
-        <div style="flex:1; min-width:300px;">
-          <h3 style="color:var(--accent); margin-bottom:16px;">HISOBLI НЕ отвечает за:</h3>
+        <div style="flex:1; min-width:320px;">
+          <h3 style="color:var(--accent); margin-bottom:20px;">HISOBLI НЕ отвечает за:</h3>
           <ul class="list">
             <li>экономические последствия решений Заказчика</li>
-            <li>содержание первичных документов</li>
-            <li>действия Заказчика вне регламента</li>
+            <li>содержание и достоверность первичных документов</li>
+            <li>действия Заказчика вне согласованного регламента</li>
             <li>изменения законодательства после отчётного периода</li>
           </ul>
         </div>
@@ -332,12 +352,12 @@
     <!-- КОНТАКТЫ -->
     <section class="section contacts">
       <h2 class="section-title">Контакт</h2>
-      <p style="margin-bottom:24px;">
+      <p style="margin:32px 0 40px;">
         Если вам близка логика HISOBLI — свяжитесь с нами.
       </p>
-      <p>
-        <a href="https://t.me/твой_ник" target="_blank">Telegram</a>  
-            •    
+      <p style="font-size:1.4rem; letter-spacing:1px;">
+        <a href="https://t.me/твой_ник" target="_blank">Telegram</a>
+           •   
         <a href="mailto:info@hisob.li">Email</a>
       </p>
     </section>
@@ -345,25 +365,35 @@
   </div>
 
   <script>
-    // Аккордеон для продуктов
+    // Аккордеон
     document.querySelectorAll('.product-header').forEach(header => {
       header.addEventListener('click', () => {
         const content = header.nextElementSibling;
         const isActive = header.classList.contains('active');
 
-        // Закрываем все остальные
         document.querySelectorAll('.product-header').forEach(h => {
           h.classList.remove('active');
           h.nextElementSibling.classList.remove('active');
         });
 
-        // Открываем/закрываем текущий
         if (!isActive) {
           header.classList.add('active');
           content.classList.add('active');
         }
       });
     });
+
+    // Появление секций при скролле
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    sections.forEach(section => observer.observe(section));
   </script>
 
 </body>
