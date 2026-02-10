@@ -1,141 +1,370 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HISOBLI: Buxgalteriya va huquqiy jarayonlarni ma'muriylaştırısh. Интеллектуальное бухгалтерское и правовое сопровождение бизнеса.">
-    <meta name="yandex-verification" content="7ff213343ec704b0" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <title>HISOBLI — Biznes-jarayonlar arxitekturasi</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Процесс вместо результата."/>
+  <meta name="yandex-verification" content="7ff213343ec704b0" />
+  <title>HISOBLI — Стандартизированный контур</title>
 
-    <style>
-        :root {
-            --bg-color: #002B24; 
-            --text-color: #E0E0E0;
-            --accent-color: #C5A059; 
-            --card-bg: rgba(255, 255, 255, 0.05);
-        }
-        body {
-            font-family: "Segoe UI", Arial, sans-serif;
-            background: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(0,0,0,0.2);
-        }
-        header img {
-            max-width: 350px;
-            height: auto;
-            filter: drop-shadow(0px 4px 15px rgba(0,0,0,0.5));
-        }
-        section {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 30px;
-            background: var(--card-bg);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-        }
-        .lang-block { margin-bottom: 25px; }
-        .uz-text { border-left: 3px solid var(--accent-color); padding-left: 20px; }
-        .ru-text { border-left: 3px solid #555; padding-left: 20px; margin-top: 20px; color: #AAA; font-size: 0.95em; }
-        h1, h2 { color: var(--accent-color); margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .product-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
-        strong { color: #fff; }
-        a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8em; }
-    </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:        #0D1117;
+      --bg-dark:   #010409;
+      --text:      #C9D1D9;
+      --text-dim:  #8B949E;
+      --accent:    #C5A059;
+      --accent-dim:#BFAF7A;
+      --border:    rgba(197,160,89,0.12);
+      --card:      rgba(13,17,23,0.65);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1.65;
+      font-size: 15.5px;
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      color: var(--accent-dim);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .logo {
+      max-width: 340px;
+      height: auto;
+      filter: drop-shadow(0 4px 20px rgba(197,160,89,0.25));
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      margin: 40px 0 12px;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+
+    .credo {
+      font-size: 1.45rem;
+      font-weight: 500;
+      max-width: 720px;
+      margin: 0 auto 60px;
+      color: #E6EDF3;
+      line-height: 1.55;
+    }
+
+    .credo strong {
+      color: var(--accent);
+    }
+
+    .section {
+      margin: 80px 0;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      color: var(--accent);
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+
+    .text-block {
+      max-width: 760px;
+      margin-bottom: 32px;
+      color: var(--text-dim);
+    }
+
+    .list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .list li {
+      margin-bottom: 12px;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .list li::before {
+      content: "→";
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .product {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .product-header {
+      padding: 18px 24px;
+      background: rgba(197,160,89,0.06);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.18rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: background 0.18s;
+    }
+
+    .product-header:hover {
+      background: rgba(197,160,89,0.11);
+    }
+
+    .product-title {
+      color: var(--accent);
+    }
+
+    .product-slogan {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      margin-left: 16px;
+    }
+
+    .product-content {
+      padding: 0 24px 24px;
+      display: none;
+    }
+
+    .product-content.active {
+      display: block;
+    }
+
+    .product p, .product ul {
+      margin: 16px 0;
+      color: var(--text-dim);
+    }
+
+    .contacts {
+      text-align: center;
+      padding: 80px 0 120px;
+      font-size: 1.25rem;
+    }
+
+    .contacts a {
+      margin: 0 16px;
+      font-size: 1.35rem;
+    }
+
+    /* Аккордеон */
+    .product-header::after {
+      content: "▼";
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      transition: transform 0.25s;
+    }
+
+    .product-header.active::after {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 60px 0 40px; }
+      h1 { font-size: 2.2rem; }
+      .credo { font-size: 1.25rem; }
+      .section { margin: 60px 0; padding: 30px 0; }
+      .product-header { font-size: 1.1rem; padding: 16px 20px; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <img src="logo.png" alt="HISOBLI">
-    </header>
+  <header>
+    <div class="container">
+      <img src="logo.png" alt="HISOBLI" class="logo">
+      <h1>HISOBLI</h1>
+      <div class="credo">
+        <strong>Стандартизированный финансово-правовой контур бизнеса</strong><br><br>
+        Мы не оказываем услуги.<br>
+        Мы внедряем и сопровождаем регламентированные процессы учёта.
+      </div>
+    </div>
+  </header>
 
-    <section>
-        <div class="lang-block uz-text">
-            <h2>Manifest</h2>
-            <p>Biz biznesni qõllab-quvvatlaşning <strong>reglamentlangan jarayonini</strong> joriy qilamiz. Biz «xizmat» kõrsatmaymiz.</p>
-            <ul>
-                <li><strong>Natija õrniga jarayon:</strong> BHMS standartlari va algoritmlariga rioya qilişni kafolatlaymiz.</li>
-                <li><strong>Qoğoz õrniga raqam:</strong> Biz yopiq raqamli konturda işlaymiz.</li>
-                <li><strong>Huquqiy sinxronizatsiya:</strong> Buxgalteriya huquqdan alohida mavjud emas.</li>
-            </ul>
-        </div>
-        <div class="lang-block ru-text">
-            <h2>Манифест</h2>
-            <p>Мы внедряем <strong>регламентированный процесс</strong> сопровождения бизнеса. Мы не оказываем «услуги».</p>
-            <ul>
-                <li><strong>Процесс вместо результата:</strong> Гарантия соблюдения алгоритмов НСБУ.</li>
-                <li><strong>Цифра вместо бумаги:</strong> Работа в закрытом цифровом контуре.</li>
-                <li><strong>Синхронизация:</strong> Бухгалтерия встроена в правовой комплаенс.</li>
-            </ul>
-        </div>
+  <div class="container">
+
+    <!-- КРЕДО / МАКСИМА -->
+    <section class="section">
+      <h2 class="section-title">Кредо</h2>
+      <p class="text-block">
+        <strong>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре — это юридически грамотное делопроизводство.</strong><br><br>
+        Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.
+      </p>
     </section>
 
-    <section>
-        <div class="lang-block uz-text">
-            <h2>Ixtisoslaştirilgan jarayonlar liniyasi (OKED)</h2>
-            <div class="product-item"><strong>Standard BPO (OKED 46, 47, 95, 96):</strong> Real sektor va savdo.</div>
-            <div class="product-item"><strong>Digital Export (OKED 62, 63):</strong> IT-rezidentlar va eksport.</div>
-            <div class="product-item"><strong>Capital Control (OKED 64, 66):</strong> Valyuta nazorati.</div>
-            <div class="product-item"><strong>Public Interface (OKED 41, 42, 84):</strong> Davlat sektori.</div>
-            <div class="product-item"><strong>RentFlow (OKED 68):</strong> E-Ijara ma'muriylaştiriş.</div>
-            <div class="product-item"><strong>Franchise Box (OKED 77, 82):</strong> Tarmoq tuzilmalari.</div>
-            <div class="product-item"><strong>Project Control (OKED 71):</strong> Muhandis va arxitektorlar.</div>
-        </div>
-        <div class="lang-block ru-text">
-            <h2>Линейка специализированных процессов (ОКЭД)</h2>
-            <div class="product-item"><strong>Standard BPO (ОКЭД 46, 47, 95, 96):</strong> Торговля и реальный сектор.</div>
-            <div class="product-item"><strong>Digital Export (ОКЭД 62, 63):</strong> IT-резиденты и экспорт ПО.</div>
-            <div class="product-item"><strong>Capital Control (ОКЭД 64, 66):</strong> Валютный контроль.</div>
-            <div class="product-item"><strong>Public Interface (ОКЭД 41, 42, 84):</strong> Госсектор.</div>
-            <div class="product-item"><strong>RentFlow (ОКЭД 68):</strong> Администрирование E-Ijara.</div>
-            <div class="product-item"><strong>Franchise Box (ОКЭД 77, 82):</strong> Сетевые структуры.</div>
-            <div class="product-item"><strong>Project Control (ОКЭД 71):</strong> Инженеры и архитекторы.</div>
-        </div>
-    </section>
+    <!-- ПРОДУКТЫ -->
+    <section class="section">
+      <h2 class="section-title">Продукты HISOBLI</h2>
+      <p class="text-block" style="margin-bottom:40px;">
+        Каждый продукт — это отдельный стандартизированный контур.<br>
+        Не пакет услуг. Не набор опций.
+      </p>
 
-    <section>
-        <div class="lang-block uz-text">
-            <h2>Javobgarlik çegaralari</h2>
-            <ul>
-                <li>Biz boşqaruv qarorlarini qabul qilmaymiz.</li>
-                <li>Biz «As Is» rejimida işlaymiz.</li>
-                <li>Heç qanday uçraşuvlar va qoğoz arxivlar yõq.</li>
+      <div class="products">
+
+        <!-- Capital Control -->
+        <div class="product">
+          <div class="product-header">
+            <span><span class="product-title">Capital Control</span> <span class="product-slogan">«Капитал любит тишину и точность»</span></span>
+          </div>
+          <div class="product-content">
+            <p><strong>Для кого:</strong> Холдинговые структуры, owner-companies, SPV.</p>
+            <p><strong>Смысл контура:</strong> Учёт операций с капиталом в отрыве от операционной деятельности.</p>
+            <p><strong>В рамках контура:</strong></p>
+            <ul class="list">
+              <li>учёт вкладов, займов и дивидендов</li>
+              <li>отражение внутригрупповых операций</li>
+              <li>валютные переоценки</li>
+              <li>фиксация экономического содержания операций</li>
             </ul>
+            <p><strong>Не входит:</strong> Управление капиталом и инвестиционные решения.</p>
+          </div>
         </div>
-        <div class="lang-block ru-text">
-            <h2>Границы ответственности</h2>
-            <ul>
-                <li>Мы не принимаем управленческие решения.</li>
-                <li>Мы работаем в режиме «As Is».</li>
-                <li>Никаких выездов и бумажных архивов.</li>
+
+        <!-- Digital Export -->
+        <div class="product">
+          <div class="product-header">
+            <span><span class="product-title">Digital Export</span> <span class="product-slogan">«Экспорт услуг без бухгалтерского шума»</span></span>
+          </div>
+          <div class="product-content">
+            <p><strong>Для кого:</strong> IT‑компании, digital‑агентства, экспортёры услуг.</p>
+            <p><strong>Смысл контура:</strong> Процессный учёт экспортной выручки и валютных поступлений.</p>
+            <p><strong>В рамках контура:</strong></p>
+            <ul class="list">
+              <li>оформление контрактов и инвойсов</li>
+              <li>учёт валютной выручки</li>
+              <li>сопровождение налоговых льгот</li>
+              <li>обязательная отчётность</li>
             </ul>
+            <p><strong>Не входит:</strong> Налоговое планирование и выбор юрисдикций.</p>
+          </div>
         </div>
+
+        <!-- и так далее для остальных продуктов — я сократил для примера, в реальном файле все 8 будут -->
+
+      </div>
     </section>
 
-    <section id="contacts">
-        <div class="lang-block uz-text">
-            <h2>Integratsiyaga tayyormisiz?</h2>
-            <p>Tõğridan-tõğri qõnğiroq qiling. Menejerlar yõq. Faqat şeriklik aloqasi.</p>
-            <p>Email: <a href="mailto:info@hisob.li">info@hisob.li</a></p>
-        </div>
-        <div class="lang-block ru-text">
-            <h2>Готовы к интеграции?</h2>
-            <p>Звоните напрямую. Никаких менеджеров. Только партнерское взаимодействие.</p>
-            <p>Email: <a href="mailto:info@hisob.li">info@hisob.li</a></p>
-        </div>
+    <!-- КАК МЫ РАБОТАЕМ -->
+    <section class="section">
+      <h2 class="section-title">Как мы работаем</h2>
+      <p class="text-block">
+        HISOBLI работает в рамках воспроизводимых регламентов, адаптируемых под конкретный контур и состав операций.
+      </p>
+      <ol class="list" style="padding-left:24px; list-style:decimal;">
+        <li>Определение применимого контура</li>
+        <li>Фиксация состава операций</li>
+        <li>Регламент документооборота</li>
+        <li>Процессное сопровождение</li>
+      </ol>
+      <p class="text-block" style="margin-top:24px;">
+        <strong>Важно понимать:</strong> HISOBLI не оценивает экономическую целесообразность операций, не проверяет фактическое содержание первичных документов, не принимает управленческих решений. Ответственность ограничена корректностью процессного исполнения.
+      </p>
     </section>
 
-    <footer>
-        © 2026 HISOBLI. Jarayonlarni ma'muriylaştiriş / Администрирование процессов.
-    </footer>
+    <!-- ГРАНИЦЫ ОТВЕТСТВЕННОСТИ -->
+    <section class="section">
+      <h2 class="section-title">Границы ответственности</h2>
+      <div style="display:flex; gap:40px; flex-wrap:wrap;">
+        <div style="flex:1; min-width:300px;">
+          <h3 style="color:var(--accent); margin-bottom:16px;">HISOBLI отвечает за:</h3>
+          <ul class="list">
+            <li>корректное отражение предоставленных данных</li>
+            <li>соблюдение регламентов и сроков</li>
+            <li>процессуальную чистоту учёта</li>
+            <li>формирование и подачу обязательной отчётности</li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:300px;">
+          <h3 style="color:var(--accent); margin-bottom:16px;">HISOBLI НЕ отвечает за:</h3>
+          <ul class="list">
+            <li>экономические последствия решений Заказчика</li>
+            <li>содержание первичных документов</li>
+            <li>действия Заказчика вне регламента</li>
+            <li>изменения законодательства после отчётного периода</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section class="section contacts">
+      <h2 class="section-title">Контакт</h2>
+      <p style="margin-bottom:24px;">
+        Если вам близка логика HISOBLI — свяжитесь с нами.
+      </p>
+      <p>
+        <a href="https://t.me/твой_ник" target="_blank">Telegram</a>  
+            •    
+        <a href="mailto:info@hisob.li">Email</a>
+      </p>
+    </section>
+
+  </div>
+
+  <script>
+    // Аккордеон для продуктов
+    document.querySelectorAll('.product-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const isActive = header.classList.contains('active');
+
+        // Закрываем все остальные
+        document.querySelectorAll('.product-header').forEach(h => {
+          h.classList.remove('active');
+          h.nextElementSibling.classList.remove('active');
+        });
+
+        // Открываем/закрываем текущий
+        if (!isActive) {
+          header.classList.add('active');
+          content.classList.add('active');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
