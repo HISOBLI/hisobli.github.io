@@ -10,9 +10,9 @@
 
     <style>
         :root {
-            --bg-color: #002B24; /* Темно-нефритовый */
+            --bg-color: #002B24; 
             --text-color: #E0E0E0;
-            --accent-color: #C5A059; /* Золото */
+            --accent-color: #C5A059; 
             --card-bg: rgba(255, 255, 255, 0.05);
         }
         body {
@@ -40,33 +40,15 @@
             background: var(--card-bg);
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .lang-block {
-            margin-bottom: 25px;
-        }
-        .uz-text {
-            border-left: 3px solid var(--accent-color);
-            padding-left: 20px;
-        }
-        .ru-text {
-            border-left: 3px solid #555;
-            padding-left: 20px;
-            margin-top: 20px;
-            color: #AAA; /* Русский чуть приглушен, так как УЗ приоритет */
-            font-size: 0.95em;
-        }
+        .lang-block { margin-bottom: 25px; }
+        .uz-text { border-left: 3px solid var(--accent-color); padding-left: 20px; }
+        .ru-text { border-left: 3px solid #555; padding-left: 20px; margin-top: 20px; color: #AAA; font-size: 0.95em; }
         h1, h2 { color: var(--accent-color); margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .product-item {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
-        }
+        .product-item { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(197, 160, 89, 0.1); }
         strong { color: #fff; }
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 0.8em;
-        }
+        a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8em; }
     </style>
 </head>
 <body>
@@ -80,17 +62,17 @@
             <h2>Manifest</h2>
             <p>Biz biznesni qõllab-quvvatlaşning <strong>reglamentlangan jarayonini</strong> joriy qilamiz. Biz «xizmat» kõrsatmaymiz.</p>
             <ul>
-                <li><strong>Natija õrniga jarayon:</strong> BHMS standartlari va algoritmlariga rioya qilişni kafolatlaymiz. Natija (foyda yoki zarar) — sizning javobgarlik zonangiz.</li>
-                <li><strong>Qoğoz õrniga raqam:</strong> Biz yopiq raqamli konturda işlaymiz. Heç qanday uçraşuvlar va «çoy ustida suhbatlar» yõq.</li>
-                <li><strong>Huquqiy sinxronizatsiya:</strong> Buxgalteriya huquqdan alohida mavjud emas. Har bir qadam regulyatorlik komplaensi nuqtai nazaridan tekşirilgan.</li>
+                <li><strong>Natija õrniga jarayon:</strong> BHMS standartlari va algoritmlariga rioya qilişni kafolatlaymiz.</li>
+                <li><strong>Qoğoz õrniga raqam:</strong> Biz yopiq raqamli konturda işlaymiz.</li>
+                <li><strong>Huquqiy sinxronizatsiya:</strong> Buxgalteriya huquqdan alohida mavjud emas.</li>
             </ul>
         </div>
         <div class="lang-block ru-text">
             <h2>Манифест</h2>
             <p>Мы внедряем <strong>регламентированный процесс</strong> сопровождения бизнеса. Мы не оказываем «услуги».</p>
             <ul>
-                <li><strong>Процесс вместо результата:</strong> Гарантия соблюдения алгоритмов НСБУ. Результат — зона вашей ответственности.</li>
-                <li><strong>Цифра вместо бумаги:</strong> Работа в закрытом цифровом контуре. Никаких «встреч за чаем».</li>
+                <li><strong>Процесс вместо результата:</strong> Гарантия соблюдения алгоритмов НСБУ.</li>
+                <li><strong>Цифра вместо бумаги:</strong> Работа в закрытом цифровом контуре.</li>
                 <li><strong>Синхронизация:</strong> Бухгалтерия встроена в правовой комплаенс.</li>
             </ul>
         </div>
@@ -99,20 +81,20 @@
     <section>
         <div class="lang-block uz-text">
             <h2>Ixtisoslaştirilgan jarayonlar liniyasi (OKED)</h2>
-            <div class="product-item"><strong>Standard BPO (OKED 46, 47, 95, 96):</strong> Real sektorda savdo qiluvçilar va yaratuvçilar uçun.</div>
-            <div class="product-item"><strong>Digital Export (OKED 62, 63):</strong> IT-rezidentlar va intellektual mehnat eksportyorlari uçun protsessing.</div>
-            <div class="product-item"><strong>Capital Control (OKED 64, 66):</strong> Murakkab moliyaviy oqimlar va valyutani boşqariş.</div>
-            <div class="product-item"><strong>Public Interface (OKED 41, 42, 84):</strong> Davlat sektori va ğaznaçilik bilan aloqalarni qõllab-quvvatlaş.</div>
-            <div class="product-item"><strong>RentFlow (OKED 68):</strong> Ijara hisobini avtomatlaştiriş va E-Ijara ma'muriylaştiriş.</div>
-            <div class="product-item"><strong>Franchise Box (OKED 77, 82):</strong> Taqsimlangan nuqtalarga ega tarmoq tuzilmalari uçun unifikatsiyalaştirilgan hisob.</div>
-            <div class="product-item"><strong>Project Control (OKED 71):</strong> Muhandis va arxitektorlar uçun har bir ob'ekt bõyiça xarajatlar yustirovkasi.</div>
+            <div class="product-item"><strong>Standard BPO (OKED 46, 47, 95, 96):</strong> Real sektor va savdo.</div>
+            <div class="product-item"><strong>Digital Export (OKED 62, 63):</strong> IT-rezidentlar va eksport.</div>
+            <div class="product-item"><strong>Capital Control (OKED 64, 66):</strong> Valyuta nazorati.</div>
+            <div class="product-item"><strong>Public Interface (OKED 41, 42, 84):</strong> Davlat sektori.</div>
+            <div class="product-item"><strong>RentFlow (OKED 68):</strong> E-Ijara ma'muriylaştiriş.</div>
+            <div class="product-item"><strong>Franchise Box (OKED 77, 82):</strong> Tarmoq tuzilmalari.</div>
+            <div class="product-item"><strong>Project Control (OKED 71):</strong> Muhandis va arxitektorlar.</div>
         </div>
         <div class="lang-block ru-text">
             <h2>Линейка специализированных процессов (ОКЭД)</h2>
             <div class="product-item"><strong>Standard BPO (ОКЭД 46, 47, 95, 96):</strong> Торговля и реальный сектор.</div>
             <div class="product-item"><strong>Digital Export (ОКЭД 62, 63):</strong> IT-резиденты и экспорт ПО.</div>
             <div class="product-item"><strong>Capital Control (ОКЭД 64, 66):</strong> Валютный контроль.</div>
-            <div class="product-item"><strong>Public Interface (ОКЭД 41, 42, 84):</strong> Госсектор и казначейство.</div>
+            <div class="product-item"><strong>Public Interface (ОКЭД 41, 42, 84):</strong> Госсектор.</div>
             <div class="product-item"><strong>RentFlow (ОКЭД 68):</strong> Администрирование E-Ijara.</div>
             <div class="product-item"><strong>Franchise Box (ОКЭД 77, 82):</strong> Сетевые структуры.</div>
             <div class="product-item"><strong>Project Control (ОКЭД 71):</strong> Инженеры и архитекторы.</div>
@@ -121,48 +103,33 @@
 
     <section>
         <div class="lang-block uz-text">
-            <h2>Regulyatorlik monitoringi</h2>
-            <p>Biz şunçaki qonunlarni qayta aytib bermaymiz. Biz Moliya vazirligi va DSQ buyruqlaridagi õzgarişlar sizning <strong>iş algoritmingizni</strong> qanday õzgartirişini tahlil qilamiz.</p>
-            <p><em>Tizimlarning (Didox, Soliq, UzASBO) har bir yangilanişi — bu bizning jarayon Şartnomamizdagi õzgarişdir.</em></p>
-        </div>
-        <div class="lang-block ru-text">
-            <h2>Регуляторный мониторинг</h2>
-            <p>Мы анализируем, как изменения в приказах МФ и ГНК меняют ваш <strong>алгоритм работы</strong>.</p>
-            <p><em>Любое обновление систем (Didox, Soliq, UzASBO) — это автоматическое изменение в нашем процессе.</em></p>
-        </div>
-    </section>
-
-    <section>
-        <div class="lang-block uz-text">
             <h2>Javobgarlik çegaralari</h2>
             <ul>
-                <li>Biz boşqaruv qarorlarini qabul qilmaymiz (Şartnomaning 4-bandi).</li>
-                <li>Biz bitimlarning iqtisodiy maqsadga muvofiqligini baholamaymiz.</li>
-                <li>Biz raqamli kanallardan taşqaridagi «birlamçi hujjatlar» bilan işlamaymiz.</li>
-                <li>Biz «As Is» rejimida işlaymiz — tarixiy xatolar uçun javobgarlik Buyurtmaçi zimmasida.</li>
+                <li>Biz boşqaruv qarorlarini qabul qilmaymiz.</li>
+                <li>Biz «As Is» rejimida işlaymiz.</li>
+                <li>Heç qanday uçraşuvlar va qoğoz arxivlar yõq.</li>
             </ul>
         </div>
         <div class="lang-block ru-text">
             <h2>Границы ответственности</h2>
             <ul>
-                <li>Мы не принимаем управленческие решения (п. 4 Договора).</li>
-                <li>Мы не оцениваем экономическую целесообразность сделок.</li>
-                <li>Работа только в цифровом контуре.</li>
-                <li>Режим «As Is»: ответственность за ошибки прошлых периодов лежит на Заказчике.</li>
+                <li>Мы не принимаем управленческие решения.</li>
+                <li>Мы работаем в режиме «As Is».</li>
+                <li>Никаких выездов и бумажных архивов.</li>
             </ul>
         </div>
     </section>
 
-    <section>
+    <section id="contacts">
         <div class="lang-block uz-text">
             <h2>Integratsiyaga tayyormisiz?</h2>
-            <p>Tõğridan-tõğri qõnğiroq qiling. "Menejerlar" yõq. Faqat şeriklik aloqasi.</p>
-            <p>Email: <a href="mailto:info@hisob.li" style="color:var(--accent-color)">info@hisob.li</a></p>
+            <p>Tõğridan-tõğri qõnğiroq qiling. Menejerlar yõq. Faqat şeriklik aloqasi.</p>
+            <p>Email: <a href="mailto:info@hisob.li">info@hisob.li</a></p>
         </div>
         <div class="lang-block ru-text">
             <h2>Готовы к интеграции?</h2>
-            <p>Звоните напрямую. Никаких "менеджеров". Только партнерское взаимодействие.</p>
-            <p>Email: <a href="mailto:info@hisob.li" style="color:var(--accent-color)">info@hisob.li</a></p>
+            <p>Звоните напрямую. Никаких менеджеров. Только партнерское взаимодействие.</p>
+            <p>Email: <a href="mailto:info@hisob.li">info@hisob.li</a></p>
         </div>
     </section>
 
