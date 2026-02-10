@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="lang-ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -37,7 +37,6 @@
       line-height: 1.7;
       font-size: 15.5px;
       min-height: 100vh;
-      padding-bottom: 80px;
     }
 
     a {
@@ -56,8 +55,77 @@
       padding: 0 20px;
     }
 
+    /* Боковая панель */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      background: rgba(13,17,23,0.85);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 0;
+      z-index: 1000;
+    }
+
+    .lang-switch {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 60px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      cursor: pointer;
+    }
+
+    .lang-switch span.active {
+      color: var(--accent);
+    }
+
+    .logo-vertical {
+      width: 32px;
+      height: auto;
+      margin-bottom: 80px;
+      filter: drop-shadow(var(--glow));
+      transform: rotate(-90deg);
+    }
+
+    .social-icons {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-bottom: auto;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      fill: var(--text-dim);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .social-icon:hover {
+      fill: var(--accent);
+      filter: drop-shadow(var(--glow));
+      transform: scale(1.15);
+    }
+
+    .footer-text {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      transform: rotate(180deg);
+      margin-top: auto;
+      padding-bottom: 40px;
+    }
+
+    /* Основной контент */
     header {
-      padding: 100px 0 80px;
+      padding: 120px 0 80px;
       text-align: center;
     }
 
@@ -65,11 +133,6 @@
       max-width: 360px;
       height: auto;
       filter: drop-shadow(var(--glow));
-      transition: transform 0.4s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.04);
     }
 
     h1 {
@@ -77,7 +140,6 @@
       font-weight: 600;
       margin: 50px 0 20px;
       color: var(--accent);
-      letter-spacing: -1px;
     }
 
     .credo {
@@ -97,14 +159,6 @@
       margin: 100px 0;
       padding: 60px 0;
       border-top: 1px solid var(--border);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .section-title {
@@ -120,23 +174,8 @@
       color: var(--text-dim);
     }
 
-    .list {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    .list li {
-      margin-bottom: 14px;
-      position: relative;
-      padding-left: 28px;
-    }
-
-    .list li::before {
-      content: "→";
-      color: var(--accent);
-      position: absolute;
-      left: 0;
-      font-weight: bold;
+    .text-block strong {
+      color: var(--text);
     }
 
     .products {
@@ -150,11 +189,6 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
-      transition: border-color 0.3s;
-    }
-
-    .product:hover {
-      border-color: rgba(197,160,89,0.3);
     }
 
     .product-header {
@@ -167,11 +201,6 @@
       font-size: 1.25rem;
       font-weight: 500;
       color: var(--text);
-      transition: background 0.22s;
-    }
-
-    .product-header:hover {
-      background: rgba(197,160,89,0.12);
     }
 
     .product-title {
@@ -207,60 +236,122 @@
     .contacts a {
       margin: 0 24px;
       font-size: 1.45rem;
-      transition: all 0.3s;
     }
 
-    .contacts a:hover {
-      transform: scale(1.06);
+    @media (max-width: 1024px) {
+      .sidebar { width: 60px; }
+      .social-icon { width: 28px; height: 28px; }
+      .lang-switch { font-size: 0.85rem; }
     }
 
-    /* Мобильная адаптация */
     @media (max-width: 768px) {
-      header { padding: 70px 0 50px; }
+      .sidebar {
+        width: 100%;
+        height: auto;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 16px 0;
+        border-right: none;
+        border-top: 1px solid var(--border);
+      }
+
+      .lang-switch, .logo-vertical, .footer-text {
+        display: none;
+      }
+
+      .social-icons {
+        flex-direction: row;
+        gap: 24px;
+        margin: 0;
+      }
+
+      header { padding: 80px 0 60px; }
       h1 { font-size: 2.4rem; }
-      .credo { font-size: 1.3rem; }
-      .section { margin: 70px 0; padding: 40px 0; }
-      .product-header { font-size: 1.15rem; padding: 18px 22px; }
-      .contacts { padding: 80px 0 120px; font-size: 1.2rem; }
-      .contacts a { margin: 12px; display: block; }
+      .contacts { padding: 80px 0 120px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
+  <!-- Боковая панель -->
+  <div class="sidebar">
+    <div class="lang-switch">
+      <span class="active">РУ</span> / <span>Öz</span>
+    </div>
+
+    <img src="logo-vertical.png" alt="HISOBLI" class="logo-vertical">
+
+    <div class="social-icons">
+      <a href="https://t.me/твой_ник" target="_blank">
+        <img src="telegram.svg" class="social-icon" alt="Telegram">
+      </a>
+      <a href="mailto:info@hisob.li">
+        <img src="email.svg" class="social-icon" alt="Email">
+      </a>
+      <a href="https://instagram.com/hisobli" target="_blank">
+        <img src="instagram.svg" class="social-icon" alt="Instagram">
+      </a>
+      <a href="https://facebook.com/hisobli" target="_blank">
+        <img src="facebook.svg" class="social-icon" alt="Facebook">
+      </a>
+      <a href="https://youtube.com/@hisobli" target="_blank">
+        <img src="youtube.svg" class="social-icon" alt="YouTube">
+      </a>
+    </div>
+
+    <div class="footer-text">
+      2026 HISOBLI© BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR
+    </div>
+  </div>
+
+  <div class="container">
+
+    <header>
       <img src="logo.png" alt="HISOBLI" class="logo">
       <h1>HISOBLI</h1>
       <div class="credo">
         <strong>Стандартизированный финансово-правовой контур бизнеса</strong><br><br>
-        Мы не оказываем услуги.<br>
-        Мы внедряем и сопровождаем регламентированные процессы учёта.
+        Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта.
       </div>
-    </div>
-  </header>
-
-  <div class="container">
+    </header>
 
     <!-- КРЕДО -->
     <section class="section">
       <h2 class="section-title">Кредо</h2>
       <p class="text-block">
-        <strong>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре — это юридически грамотное делопроизводство.</strong><br><br>
+        <strong>Бухгалтерия — это юриспруденция, выраженная на языке чисел.</strong><br>
+        <strong>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре, — это юридически грамотное делопроизводство.</strong><br><br>
         Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.
       </p>
+    </section>
+
+    <!-- ЧТО ТАКОЕ "КОНТУР" -->
+    <section class="section">
+      <h2 class="section-title">Что такое "Контур"</h2>
+      <div class="text-block">
+        В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жёсткие правила, и куда нельзя просто так попасть снаружи.<br><br>
+        Что для HISOBLI означает слово «Контур»?<br>
+        <strong>Замкнутость:</strong> Контур — это закрытая система. Это закрытый механизм.<br>
+        <strong>Чёткие границы:</strong> У контура всегда есть граница.<br>
+        <strong>Автоматизм:</strong> Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь).<br><br>
+        Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с чёткими границами ответственности и воспроизводимыми алгоритмами».
+      </div>
     </section>
 
     <!-- ПРОДУКТЫ -->
     <section class="section">
       <h2 class="section-title">Продукты HISOBLI</h2>
-      <p class="text-block" style="margin-bottom:48px;">
-        Каждый продукт — это отдельный стандартизированный контур.<br>
-        Не пакет услуг. Не набор опций.
+      <p class="text-block">
+        Каждый продукт — это отдельный стандартизированный контур. Не пакет услуг. Не набор опций.
       </p>
 
       <div class="products">
-
+        <!-- Здесь будут все 8 продуктов с аккордеонами -->
+        <!-- Для примера показываю один — остальные вставляются аналогично -->
         <div class="product">
           <div class="product-header">
             <span><span class="product-title">BUYURI§% Ⱒ Capital Control</span> <span class="product-slogan">«Капитал любит тишину и точность»</span></span>
@@ -275,87 +366,21 @@
               <li>обоснование деловой цели операций</li>
               <li>защита от субсидиарной ответственности</li>
             </ul>
-            <p><strong>Статистическая нагрузка:</strong> 1-invest (Отчет об инвестициях), Monitoring of foreign direct investment (FDI), 4-moliya (Квартальный отчет о финансовом состоянии).</p>
             <p><strong>Не входит:</strong> Управление капиталом и инвестиционные решения.</p>
           </div>
         </div>
-
-        <div class="product">
-          <div class="product-header">
-            <span><span class="product-title">BUYURI§% Ⱒ Digital Export</span> <span class="product-slogan">«Экспорт услуг без бухгалтерского шума»</span></span>
-          </div>
-          <div class="product-content">
-            <p><strong>Для кого:</strong> Резиденты IT-Park, EdTech, консалтинг.</p>
-            <p><strong>Смысл контура:</strong> Валютный контроль и применение налоговых преференций для экспортёров.</p>
-            <p><strong>В рамках контура:</strong></p>
-            <ul class="list">
-              <li>регистрация инвойс-контрактов в ЕЭИСВО (E-Contract)</li>
-              <li>мониторинг критериев льгот IT-Park</li>
-              <li>подготовка и сдача отчётности в Дирекцию IT-Park</li>
-              <li>подтверждение нулевой ставки налога</li>
-              <li>свод массовых оплат от нерезидентов</li>
-            </ul>
-            <p><strong>Статистическая нагрузка:</strong> 1-korxona (Экспорт-импорт услуг), 4-mehnat (Квартальный отчёт по труду).</p>
-            <p><strong>Не входит:</strong> Налоговое планирование и выбор юрисдикций.</p>
-          </div>
-        </div>
-
-        <!-- Здесь должны быть остальные 6 продуктов в том же формате -->
-        <!-- Я не вставляю их все, чтобы не раздувать сообщение, но в реальном файле они будут -->
-
+        <!-- Остальные продукты здесь -->
       </div>
     </section>
 
-    <!-- КАК МЫ РАБОТАЕМ -->
-    <section class="section">
-      <h2 class="section-title">Как мы работаем</h2>
-      <p class="text-block">
-        HISOBLI работает в рамках воспроизводимых регламентов, адаптируемых под конкретный контур и состав операций.
-      </p>
-      <ol class="list" style="padding-left:32px; list-style:decimal;">
-        <li>Определение применимого контура</li>
-        <li>Фиксация состава операций</li>
-        <li>Регламент документооборота</li>
-        <li>Процессное сопровождение</li>
-      </ol>
-      <p class="text-block" style="margin-top:32px;">
-        <strong>Важно понимать:</strong> HISOBLI не оценивает экономическую целесообразность операций, не проверяет фактическое содержание первичных документов, не принимает управленческих решений. Ответственность ограничена корректностью процессного исполнения.
-      </p>
-    </section>
-
-    <!-- ГРАНИЦЫ -->
-    <section class="section">
-      <h2 class="section-title">Границы ответственности</h2>
-      <div style="display:flex; gap:48px; flex-wrap:wrap; margin-top:32px;">
-        <div style="flex:1; min-width:320px;">
-          <h3 style="color:var(--accent); margin-bottom:20px;">HISOBLI отвечает за:</h3>
-          <ul class="list">
-            <li>корректное отражение предоставленных данных в бухгалтерских реестрах</li>
-            <li>соблюдение утверждённых регламентов и сроков</li>
-            <li>процессуальную чистоту учёта</li>
-            <li>корректное формирование и подачу обязательной отчётности</li>
-            <li>техническое взаимодействие с государственными цифровыми системами</li>
-          </ul>
-        </div>
-        <div style="flex:1; min-width:320px;">
-          <h3 style="color:var(--accent); margin-bottom:20px;">HISOBLI НЕ отвечает за:</h3>
-          <ul class="list">
-            <li>экономические последствия решений Заказчика</li>
-            <li>содержание и достоверность первичных документов</li>
-            <li>действия Заказчика вне согласованного регламента</li>
-            <li>изменения законодательства после отчётного периода</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- КОНТАКТЫ -->
+    <!-- КОНТАКТЫ (завершающий блок) -->
     <section class="section contacts">
       <h2 class="section-title">Контакт</h2>
       <p style="margin:32px 0 40px;">
-        Если вам близка логика HISOBLI — свяжитесь с нами.
+        Если вам близка логика HISOBLI — свяжитесь с нами.<br>
+        <strong>Без форм. Без воронок. Без обещаний.</strong>
       </p>
-      <p style="font-size:1.4rem; letter-spacing:1px;">
+      <p style="font-size:1.4rem;">
         <a href="https://t.me/твой_ник" target="_blank">Telegram</a>
            •   
         <a href="mailto:info@hisob.li">Email</a>
@@ -365,7 +390,7 @@
   </div>
 
   <script>
-    // Аккордеон
+    // Аккордеон для продуктов
     document.querySelectorAll('.product-header').forEach(header => {
       header.addEventListener('click', () => {
         const content = header.nextElementSibling;
@@ -382,18 +407,6 @@
         }
       });
     });
-
-    // Появление секций при скролле
-    const sections = document.querySelectorAll('.section');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => observer.observe(section));
   </script>
 
 </body>
