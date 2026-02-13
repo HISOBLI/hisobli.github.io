@@ -1,294 +1,591 @@
 <!DOCTYPE html>
-<html lang="ru" class="lang-ru">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса."/>
-  <meta name="yandex-verification" content="7ff213343ec704b0" />
-  <title>HISOBLI — Стандартизированный контур</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса</title>
+  <meta name="description" content="HISOBLI — комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса в Ташкенте. Стандартизированный финансово-правовой контур. Только регламентированные процессы без гарантий и обещаний.">
+  <meta name="keywords" content="бухгалтерский аутсорсинг Ташкент, юридическое сопровождение бизнеса Узбекистан, стандартизированный учёт, контур учёта, аутсорсинг бухгалтерии без суда">
+  <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
+  <!-- Open Graph -->
+  <meta property="og:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
+  <meta property="og:description" content="Мы внедряем и сопровождаем регламентированные процессы учёта. Без обещаний результата. Только границы ответственности.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hisob.li">
+  <meta property="og:image" content="https://hisobli.github.io/logo.png">
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
+  <meta name="twitter:description" content="Комплексное аутсорсинговое сопровождение без гарантий и индивидуальных решений.">
+  <meta name="twitter:image" content="https://hisobli.github.io/logo.png">
   <style>
     :root {
-      --bg:           #0D1117;
-      --text:         #C9D1D9;
-      --text-dim:     #8B949E;
-      --accent:       #C5A059;
-      --border:       rgba(197,160,89,0.12);
-      --card:         rgba(13,17,23,0.7);
-      --glow:         0 0 12px rgba(197,160,89,0.35);
+      --bg: #111111;
+      --text: #d4d4d4;
+      --gold: #D4AF37;
+      --gold-dark: #B8860B;
     }
-
-    * { margin:0; padding:0; box-sizing:border-box; }
-
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
+      font-family: 'Segoe UI', Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      font-family: 'IBM Plex Mono', monospace;
-      line-height: 1.7;
-      font-size: 15.5px;
+      line-height: 1.6;
       min-height: 100vh;
     }
-
-    .container {
-      max-width: 1020px;
-      margin: 0 auto;
-      padding: 0 20px 0 120px;
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: var(--bg);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.8);
+      backdrop-filter: blur(4px);
     }
-
-    /* Боковая панель */
+    .logo {
+      max-width: 320px;
+      height: auto;
+    }
+    .header-text {
+      position: absolute;
+      top: 10px;
+      font-weight: 900;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 1.1rem;
+      text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+    }
+    .left-text { left: 20px; text-align: left; }
+    .right-text { right: 20px; text-align: right; }
     .sidebar {
       position: fixed;
-      left: 0;
       top: 0;
-      bottom: 0;
+      left: 0;
+      height: 100%;
       width: 80px;
-      background: rgba(13,17,23,0.95);
-      border-right: 1px solid var(--border);
+      background: var(--bg);
+      z-index: 999;
+      border-radius: 0 20px 20px 0;
+      box-shadow: 4px 0 12px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 40px 0;
-      z-index: 1000;
+      align-items: flex-end;
+      padding-top: 120px;
+      padding-right: 10px;
     }
-
     .lang-switch {
-      font-size: 1rem;
-      color: var(--text-dim);
-      margin-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 40px;
+    }
+    .lang {
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--text);
       cursor: pointer;
-      text-align: center;
+      margin: 8px 0;
+      text-transform: uppercase;
     }
-
-    .lang-switch span.active {
-      color: var(--accent);
-      font-weight: 600;
+    .lang.active {
+      color: var(--gold);
     }
-
-    .logo-vertical {
-      width: 32px;
-      height: auto;
-      margin-bottom: 80px;
-      filter: drop-shadow(var(--glow));
-      transform: rotate(-90deg);
-    }
-
     .social-icons {
       display: flex;
       flex-direction: column;
-      gap: 36px;
-      margin-bottom: auto;
-    }
-
-    .social-icon {
-      width: 32px;
-      height: 32px;
-      fill: var(--text-dim);
-      transition: all 0.3s;
-      cursor: pointer;
-    }
-
-    .social-icon:hover {
-      fill: var(--accent);
-      filter: drop-shadow(var(--glow));
-      transform: scale(1.15);
-    }
-
-    .footer-text {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      transform: rotate(180deg);
-      margin-top: auto;
-      padding-bottom: 40px;
-      letter-spacing: 1px;
-    }
-
-    /* Основной контент */
-    header {
-      padding: 120px 0 80px;
-      text-align: center;
-    }
-
-    .logo {
-      max-width: 360px;
-      height: auto;
-      filter: drop-shadow(var(--glow));
-    }
-
-    h1 {
-      font-size: 3.2rem;
-      font-weight: 600;
-      margin: 50px 0 20px;
-      color: var(--accent);
-    }
-
-    .section {
-      margin: 100px 0;
-      padding: 60px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-title {
-      font-size: 2.1rem;
-      color: var(--accent);
-      margin-bottom: 40px;
-      font-weight: 500;
-    }
-
-    .text-block {
-      max-width: 820px;
-      margin-bottom: 40px;
-      color: var(--text-dim);
-    }
-
-    .text-block strong {
-      color: var(--text);
-    }
-
-    .products {
-      display: flex;
-      flex-direction: column;
+      align-items: center;
       gap: 20px;
     }
-
+    .social-icons a {
+      display: block;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border-radius: 50%;
+      animation: glow-pulse 6s infinite ease-in-out;
+      animation-delay: calc(var(--delay) * 1s);
+      transition: all 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px var(--gold);
+    }
+    .social-icons img {
+      width: 100%;
+      height: 100%;
+      filter: brightness(0) saturate(100%) invert(70%) sepia(80%) saturate(500%) hue-rotate(20deg) brightness(95%);
+    }
+    .copyright-rotated {
+      position: absolute;
+      bottom: 50%;
+      right: -30px;
+      transform: rotate(-90deg);
+      transform-origin: right bottom;
+      font-size: 0.8rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .main-content {
+      padding-top: 140px;
+      padding-left: 100px;
+      padding-right: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 900;
+      margin: 40px 0 20px;
+    }
+    .key-maxim {
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 1.3rem;
+      margin: 20px 0;
+    }
     .product {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: #1a1a1a;
+      border: 1px solid #333;
+      margin: 20px 0;
       border-radius: 8px;
       overflow: hidden;
     }
-
     .product-header {
-      padding: 22px 28px;
-      background: rgba(197,160,89,0.05);
+      padding: 20px;
       cursor: pointer;
+      background: #222;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: var(--text);
     }
-
-    .product-title {
-      color: var(--accent);
+    .product-header h3 {
+      margin: 0;
     }
-
-    .product-slogan {
-      color: var(--text-dim);
-      font-size: 0.98rem;
-      margin-left: 20px;
-    }
-
     .product-content {
-      padding: 0 28px 28px;
       display: none;
-      color: var(--text-dim);
+      padding: 20px;
     }
-
-    .product-content.active {
+    .product.active .product-content {
       display: block;
     }
-
-    .product p, .product ul {
-      margin: 20px 0;
-    }
-
     .contacts {
+      margin-top: 60px;
       text-align: center;
-      padding: 100px 0 140px;
-      font-size: 1.35rem;
     }
-
     .contacts a {
-      margin: 0 24px;
-      font-size: 1.45rem;
+      color: var(--gold);
+      font-weight: bold;
+      text-decoration: none;
     }
-
-    /* Мобильная адаптация */
+    .ru-content, .uz-content {
+      display: none;
+    }
+    .ru-content.active, .uz-content.active {
+      display: block;
+    }
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 8px rgba(212,175,55,0.3); }
+      50% { box-shadow: 0 0 16px rgba(212,175,55,0.6); }
+    }
     @media (max-width: 768px) {
-      .sidebar { transform: translateX(-100%); }
-      .container { padding: 0 20px; }
-      .bottom-bar {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: rgba(13,17,23,0.95);
-        border-top: 1px solid var(--border);
-        display: flex;
-        justify-content: space-around;
-        padding: 12px 0;
-        z-index: 999;
-      }
-      .bottom-icon { width: 28px; height: 28px; fill: var(--text-dim); }
-      .bottom-icon:hover { fill: var(--accent); }
-      .lang-switch { position: fixed; left: 12px; top: 12px; z-index: 1001; }
+      .header { height: 70px; }
+      .logo { max-width: 220px; }
+      .header-text { font-size: 0.9rem; }
+      .sidebar { width: 60px; transform: translateX(-70%); transition: transform 0.3s; }
+      .sidebar.visible { transform: translateX(0); }
+      .main-content { padding-left: 20px; padding-top: 100px; }
+      .lang { font-size: 1rem; }
+      .social-icons a { width: 36px; height: 36px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Боковая панель -->
+  <div class="header">
+    <img src="logo.png" alt="HISOBLI" class="logo">
+    <div class="header-text left-text">
+      <div>HISOBLI</div>
+      <div>MAS'ULIYATI ÇEKLANGAN JAMIYATI</div>
+    </div>
+    <div class="header-text right-text">
+      <div>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ</div>
+      <div>HISOBLI</div>
+    </div>
+  </div>
+
   <div class="sidebar">
     <div class="lang-switch">
-      <span class="active">РУ</span> / <span>Öz</span>
+      <div class="lang active" data-lang="ru">РУ</div>
+      <div class="lang" data-lang="uz">ÖZ</div>
     </div>
-
-    <img src="logo-vertical.png" alt="HISOBLI" class="logo-vertical">
-
     <div class="social-icons">
-      <a href="https://t.me/твой_ник" target="_blank">
-        <img src="telegram.svg" class="social-icon" alt="Telegram">
-      </a>
-      <a href="mailto:info@hisob.li">
-        <img src="email.svg" class="social-icon" alt="Email">
-      </a>
-      <a href="https://instagram.com/hisobli" target="_blank">
-        <img src="instagram.svg" class="social-icon" alt="Instagram">
-      </a>
-      <a href="https://facebook.com/hisobli" target="_blank">
-        <img src="facebook.svg" class="social-icon" alt="Facebook">
-      </a>
-      <a href="https://youtube.com/@hisobli" target="_blank">
-        <img src="youtube.svg" class="social-icon" alt="YouTube">
-      </a>
+      <a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank" style="--delay:0"><img src="telegram.svg" alt="Telegram"></a>
+      <a href="mailto:info@hisob.li" style="--delay:1"><img src="email.svg" alt="Email"></a>
+      <a href="https://www.youtube.com/@HISOBLI" target="_blank" style="--delay:2"><img src="youtube.svg" alt="YouTube"></a>
+      <a href="https://www.instagram.com/hisobli/" target="_blank" style="--delay:3"><img src="instagram.svg" alt="Instagram"></a>
+      <a href="https://www.linkedin.com/services/page/0546653421352a1322/" target="_blank" style="--delay:4"><img src="linkedin.svg" alt="LinkedIn"></a>
+    </div>
+    <div class="copyright-rotated">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+  </div>
+
+  <div class="main-content">
+    <div class="ru-content active">
+      <h1>HISOBLI</h1>
+      <h2>Стандартизированный финансово‑правовой контур бизнеса</h2>
+      <p>Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта.</p>
+
+      <h2>КРЕДО</h2>
+      <p class="key-maxim">Бухгалтерия — это юриспруденция, выраженная на языке чисел.</p>
+      <p>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре, — это юридически грамотное делопроизводство. Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.</p>
+
+      <!-- Вставляю весь русский текст дальше как есть -->
+
+      <h2>ЧТО ТАКОЕ "КОНТУР"</h2>
+      <p>В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жесткие правила, и куда нельзя просто так попасть снаружи. 
+Что для HISOBLI означает слово «Контур»?
+Замкнутость: Контур — это закрытая система. Это закрытый механизм.
+Четкие границы: У контура всегда есть граница. 
+Автоматизм: Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь). 
+Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с четкими границами ответственности, работающий как отлаженный механизм».</p>
+
+      <h2>ЧТО ТАКОЕ HISOBLI</h2>
+      <p>Мы, Общество с ограниченной ответственностью «HISOBLI», зарегистрированное в городе Ташкенте, осуществляем комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса.
+HISOBLI — это не аутсорсинг в классическом понимании. И не «бухгалтерия под ключ».
+HISOBLI — это: - стандартизированный финансово‑правовой контур; - набор чётких алгоритмов учёта и отчётности; - процессная инфраструктура для бизнеса; - разделение бухгалтерского учёта, юридической формы и управленческих решений.
+Бухучёт — это не математика, а формализованное право, где цифры служат символами для закрепления прав, обязанностей и воли сторон.
+Мы работаем с процессами, а не с ожиданиями.</p>
+
+      HISOBLI
+Стандартизированный финансово‑правовой контур бизнеса
+Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта.
+
+КРЕДО
+Бухгалтерия — это юриспруденция, выраженная на языке чисел.
+Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре, — это юридически грамотное делопроизводство.
+Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.
+
+
+ЧТО ТАКОЕ "КОНТУР"
+
+В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жесткие правила, и куда нельзя просто так попасть снаружи. 
+Что для HISOBLI означает слово «Контур»?
+Замкнутость: Контур — это закрытая система. Это закрытый механизм.
+Четкие границы: У контура всегда есть граница. 
+Автоматизм: Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь). 
+Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с четкими границами ответственности, работающий как отлаженный механизм».
+ЧТО ТАКОЕ HISOBLI
+Мы, Общество с ограниченной ответственностью «HISOBLI», зарегистрированное в городе Ташкенте, осуществляем комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса.
+HISOBLI — это не аутсорсинг в классическом понимании. И не «бухгалтерия под ключ».
+HISOBLI — это: - стандартизированный финансово‑правовой контур; - набор чётких алгоритмов учёта и отчётности; - процессная инфраструктура для бизнеса; - разделение бухгалтерского учёта, юридической формы и управленческих решений.
+Бухучёт — это не математика, а формализованное право, где цифры служат символами для закрепления прав, обязанностей и воли сторон.
+Мы работаем с процессами, а не с ожиданиями.
+
+КАК МЫ РАБОТАЕМ
+HISOBLI функционирует исключительно в рамках утверждённых регламентов.
+Рабочая модель строится по воспроизводимой логике: 1. Определение применимого контура (продукта) 2. Фиксация состава операций 3. Регламент документооборота 4. Регулярное процессное сопровождение
+Любая операция вне утверждённого алгоритма не является частью сопровождения и рассматривается отдельно.
+
+ЧТО МЫ ДЕЛАЕМ
+В рамках контуров HISOBLI осуществляется: 
+- техническое ведение бухгалтерского учёта; - отражение операций в бухгалтерских реестрах; 
+- формирование и подача обязательной отчётности; 
+- работа с государственными цифровыми системами; 
+- юридически корректное делопроизводство, связанное с учётными процессами.
+Мы работаем строго на основании предоставленных данных и в пределах согласованного алгоритма.
+
+ЧТО МЫ ПРИНЦИПИАЛЬНО НЕ ДЕЛАЕМ
+HISOBLI: 
+- не управляет бизнесом; 
+- не принимает управленческие решения; 
+- не даёт налоговых или экономических гарантий; 
+- не проверяет достоверность первичных документов; 
+- не заменяет сотрудников Клиента; 
+- не участвует в переговорах и спорах; 
+- не обещает результат.
+Мы отвечаем только за корректность процесса.
+
+ПРОДУКТЫ
+Каждый продукт — это отдельный стандартизированный контур. Не пакет услуг. Не набор опций.
+Контур — это: 
+- заранее определённый состав операций; 
+- фиксированные алгоритмы учёта; 
+- понятные границы ответственности; 
+- предсказуемая процессная нагрузка.
+BUYURI§% Ⱒ Capital Control
+«Капитал любит тишину и точность»
+Контур для учёта операций с уставным капиталом, вкладами участников, займами, распределением прибыли и иными формами движения капитала вне текущей операционной деятельности.
+В контур входит: - учёт вкладов и изменений долей; - отражение займов, возвратов и начислений; - фиксация решений о распределении прибыли; - процессное сопровождение корпоративных операций; - юридически корректное оформление учётных последствий.
+Процессная рамка: Контур функционирует строго на основании решений участников и предоставленных документов. Экономическая целесообразность решений не оценивается.
+Граница контура: Не включает корпоративные споры, оценку бизнеса и сопровождение сделок.
+Типовой профиль: Компании с аккумулированным капиталом, инвесторами или сложной структурой владения.
+BUYURI§% Ⱒ Digital Export
+«Экспорт услуг без бухгалтерского шума»
+Процессный контур для учёта экспортной выручки, валютных поступлений и связанных с ними регуляторных требований.
+В контур входит: - учёт валютных поступлений; - корректное отражение экспортной выручки; - сопровождение отчётности по валютным операциям; - взаимодействие с цифровыми государственными системами.
+Процессная рамка: Работа ведётся в пределах действующего валютного и налогового регулирования.
+Граница контура: Не включает поиск контрагентов, договорные переговоры и оптимизацию налоговой нагрузки.
+Типовой профиль: IT‑компании, консультанты, цифровые агентства, работающие с иностранными Клиентами.
+BUYURI§% Ⱒ Public Interface
+«Цифры на стыке бизнеса и государства»
+Контур учёта операций, находящихся под прямым регуляторным и публичным контролем со стороны государства.
+В контур входит: - учёт операций, подлежащих обязательному декларированию; - формирование и подача регламентированной отчётности; - процессное взаимодействие с государственными цифровыми системами; - корректное отражение требований регуляторов в учёте.
+Процессная рамка: Контур функционирует строго в пределах действующего законодательства и утверждённых регламентов.
+Граница контура: Не включает представительство в проверках, спорах и разбирательствах.
+Типовой профиль: Компании с повышенной регуляторной нагрузкой и публичной отчётностью.
+BUYURI§% Ⱒ RentFlow
+«Аренда, которая отчитается сама»
+Процессный контур для стандартизированного учёта арендных отношений, платежей и обязательств.
+В контур входит: - учёт арендных начислений и платежей; - отражение договорных условий в учёте; - контроль сроков и периодичности; - юридически корректное документирование учётных операций.
+Процессная рамка: Контур работает на основании действующих договоров аренды и предоставленных данных.
+Граница контура: Не включает согласование условий аренды и переговоры с контрагентами.
+Типовой профиль: Бизнес с регулярными арендными обязательствами.
+BUYURI§% Ⱒ Franchise Box
+«Один шаблон — несколько бизнес‑единиц»
+Контур стандартизации учёта для бизнеса с несколькими однотипными структурами.
+В контур входит: - единый шаблон учёта для всех единиц; - синхронизация регламентов и отчётности; - сопоставимость данных между подразделениями; - процессный контроль воспроизводимости.
+Процессная рамка: Контур ориентирован на идентичность процедур, а не на индивидуальные исключения.
+Граница контура: Не включает разработку бизнес‑модели и стратегическое управление.
+Типовой профиль: Франшизы (за исключением сетей общепита) и сетевые проекты.
+BUYURI§% Ⱒ Project Control
+«Минимум документов. Максимум смысла»
+Процессный контур для учёта проектной и этапной деятельности.
+В контур входит: - учёт затрат и результатов по проектам; - фиксация этапов и завершённых работ; - сопоставимость данных по объектам; - юридически корректное документирование проектных операций.
+Процессная рамка: Контур работает в пределах заранее определённой структуры проекта.
+Граница контура: Не включает управление проектами и контроль исполнения.
+Типовой профиль: Компании, работающие по проектной модели, в том числе, архитектурно-проектные бюро.
+BUYURI§% Ⱒ Base
+«Учёт как порядок. Порядок как защита»
+Базовый контур для бизнеса, не подпадающего под специализированные продукты HISOBLI.
+В контур входит: - стандартный бухгалтерский учёт; - обязательная отчётность; - юридически корректное делопроизводство, связанное с учётом; - взаимодействие с государственными системами.
+Процессная рамка: Контур функционирует по утверждённым регламентам без индивидуальной настройки.
+Граница контура: Не включает консультации, оптимизацию и нестандартные задачи.
+Типовой профиль: Малый и средний бизнес с типовой операционной деятельностью.
+
+ГРАНИЦЫ ОТВЕТСТВЕННОСТИ
+HISOBLI отвечает за корректность процессного исполнения в рамках согласованного контура и регламентов.
+HISOBLI не отвечает за последствия решений, принимаемых Клиентом на основе данных учёта.
+Процесс и решение — это разные уровни ответственности.
+
+КОМУ МЫ НЕ ПОДХОДИМ
+HISOBLI не подойдёт, если вы: 
+- ищете «решение проблем», а не процесс учёта; 
+- ожидаете индивидуальных советов вместо регламентов; 
+- хотите переложить ответственность за решения; 
+- рассчитываете на неформальные договорённости; 
+- воспринимаете бухгалтерию как сервис «по запросу»; 
+- ожидаете гарантий результата.
+
+КОНТАКТ
+Если вам близка логика HISOBLI — свяжитесь с нами.
+Telegram • Email
+Без форм. Без воронок. Без пустых обещаний.
+
+ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ
+Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика, алгоритмы сопровождения и иные материалы, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI».
+Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан.
+Любое копирование, воспроизведение, тиражирование или использование указанных материалов полностью или частично без письменного согласия правообладателя запрещено.
+
+      <div class="contacts">
+        <p>Если вам близка логика HISOBLI — свяжитесь с нами.</p>
+        <p><a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank">Telegram</a> • <a href="mailto:info@hisob.li">Email</a></p>
+        <p>Без форм. Без воронок. Без пустых обещаний.</p>
+      </div>
     </div>
 
-    <div class="footer-text">
-      2026 HISOBLI© BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR
+    <div class="uz-content">
+      <h1>HISOBLI</h1>
+      <h2>Biznesning standartlaştirilgan moliyaviy-yuridik konturi</h2>
+      <p>Biz xizmat kõrsatmaymiz. Biz reglamentlangan hisobga oliş jarayonlarini joriy qilamiz va yuritamiz.</p>
+
+HISOBLI
+Biznesning standartlaştirilgan moliyaviy-yuridik konturi
+Biz xizmat kõrsatmaymiz. Biz reglamentlangan hisobga oliş jarayonlarini joriy qilamiz va yuritamiz.
+KREDO
+Buxgalteriya — bu, bamisoli, raqamlar tilida ifodalangan yurisprudensiyadir, hisob. Buxgalteriya reyestriga raqamlarni kiritiş, qayta işlaş va aks ettiriş operatsiyalariga kirmaydigan barça narsa — bu yuridik jihatdan puxta iş yuritiş (deloproizvodstvo). HISOBLI mas’uliyat çegarasi, iş tuzilmasi va narx belgilaş mantiği aynan şunday şakllanadi.
+"KONTUR" NIMA?
+Ma’lumki, IT va xavfsizlik sohasida tez-tez «axborot xavfsizligi konturi» iborasi işlatiladi. Bu — içkarisida õz qat’iy qoidalari amal qiladigan va taşqaridan şunçaki kirib bõlmaydigan õziga xos yopiq hudud demakdir.
+HISOBLI uçun «Kontur» sõzi nimani anglatadi?
+Yopiqlik: Kontur — bu yopiq tizim. Bu yopiq mexanizm.
+Aniq çegaralar: Konturning doimo õz çegarasi mavjud.
+Avtomatizm: «Kontur» sõzi maşina yoki sxemaning (masalan, elektr zanjirining) işlaşi bilan boğliq tasavvurni uyğotadi.
+Xulosa: Bizning tuşunçamizda «kontur» — bu mas’uliyat çegaralari aniq belgilangan, xuddi aniq sozlangan mexanizm kabi işlaydigan, standartlaştirilgan va yopiq jarayondir.
+HISOBLI NIMA ÕZI?
+Biz, Toşkent şahrida rõyxatdan õtgan «HISOBLI» Mas’uliyati çeklangan jamiyati, biznesni kompleks autsorsing asosida buxgalteriya va yuridik jihatdan qõllab-quvvatlaş va ta’minotini amalga oşiramiz.
+HISOBLI — bu klassik tuşunçadagi autsorsing emas. Va «buxgalteriya pod klyuç» ham emas.
+HISOBLI — bu:
+•	standartlaştirilgan moliyaviy-yuridik kontur;
+•	hisob va hisobotlarning aniq algoritmlari tõplami;
+•	biznes uçun jarayonlar (protsessual) infratuzilmasi;
+•	buxgalteriya hisobi, yuridik şakl va boşqaruv qarorlarining õzaro ajratilişi.
+Buxgalteriya hisobi — bu matematika emas, balki formallaştirilgan huquqdir. Bunda raqamlar tomonlarning huquqlari, majburiyatlari va irodasini mustahkamlaş uçun ramz vazifasini õtaydi, hisob.
+Biz biznes-kutilmalar bilan emas, balki jarayonlar bilan işlaymiz.
+BIZ QANDAY IŞLAYMIZ?
+HISOBLI faqat tasdiqlangan reglamentlar doirasidagina faoliyat yuritadi. Iş modeli takrorlanuvçi mantiq asosida quriladi:
+1.	Qõllaniladigan kontur (mahsulot)ni aniqlaş.
+2.	Operatsiyalar tarkibini fiksatsiya qiliş.
+3.	Hujjat aylanişi reglamenti.
+4.	Doimiy ravişda jarayonda aks etadigan qõllab-quvvatlaş va ta’minot.
+Tasdiqlangan algoritmdan taşqaridagi har qanday operatsiya — ana şunday jarayoniy qõllab-quvvatlaş ta’minoti hisoblanmaydi va alohida kõrib çiqiladi.
+BIZ NIMA QILAMIZ?
+HISOBLI konturlari doirasida quyidagilar amalga oşiriladi:
+•	buxgalteriya hisobini texnik yuritiş;
+•	operatsiyalarni buxgalteriya reyestrlarida aks ettiriş;
+•	majburiy hisobotlarni şakllantiriş va topşiriş;
+•	davlat raqamli tizimlari bilan işlaş;
+•	hisob jarayonlari bilan boğliq yuridik jihatdan tõğri iş yuritiş.
+Biz qat’iy ravişda taqdim etilgan ma’lumotlar asosida va kelişilgan algoritm doirasida işlaymiz.
+BIZ PRINSIPIAL RAVIŞDA NIMA QILMAYMIZ?
+HISOBLI:
+•	biznesni boşqarmaydi;
+•	boşqaruv qarorlarini (upravlençeskiy qarorlarni) qabul qilmaydi;
+•	soliq yoki iqtisodiy kafolatlar bermaydi;
+•	birlamçi hujjatlarning haqqoniyligini tekşirmaydi;
+•	Mijozning xodimlari õrnini bosmaydi;
+•	muzokaralar va nizolarda qatnaşmaydi;
+•	natija va’da qilmaydi.
+
+Biz faqat jarayonning tõğriligi uçun javob beramiz.
+MAHSULOTLAR
+Har bir mahsulot — bu alohida standartlaştirilgan kontur. Bu xizmatlar paketi emas. Opsiyalar tõplami ham emas.
+Kontur — bu:
+•	oldindan belgilangan operatsiyalar tarkibi;
+•	fiksatsiyalangan hisob algoritmlari;
+•	tuşunarli mas’uliyat çegaralari;
+•	oldindan ma’lum bõlgan jarayon yuklamasi.
+BUYURI§% Ⱒ Capital Control «Kapital sukunat va aniqlikni yoqtiradi»
+Ustav kapitali, iştirokçilarning hissalari, qarzlar, foydani taqsimlaş va joriy operatsion faoliyatdan taşqari kapital harakatining boşqa şakllari bilan boğliq operatsiyalar hisobi uçun kontur.
+Konturga kiradi:
+•	hissalar va uluşlardagi õzgarişlar hisobi;
+•	qarzlar, qaytarişlar va hisoblaşlarni (naçisleniye) aks ettiriş;
+•	foydani taqsimlaş tõğrisidagi qarorlarni fiksatsiya qiliş;
+•	korporativ operatsiyalarni jarayoniy kuzatiş;
+•	hisob oqibatlarini yuridik jihatdan tõğri rasmiylaştiriş.
+Jarayon ramkasi: Kontur qat’iy ravişda iştirokçilarning qarorlari va taqdim etilgan hujjatlar asosida işlaydi. Qarorlarning iqtisodiy maqsadga muvofiqligi baholanmaydi.
+Kontur çegarasi: Korporativ nizolar, biznesni baholaş va bitimlarni (sdelkalarni) kuzatişni õz içiga olmaydi.
+Tipik profil: Akkumulyatsiyalaşgan kapitalga, investorlarga yoki murakkab egalik tuzilmasiga ega kompaniyalar.
+BUYURI§% Ⱒ Digital Export «Buxgalteriya şovqinisiz xizmatlar eksporti»
+Eksport tuşumi, valyuta tuşumlari va ular bilan boğliq regulyator talablarini hisobga oliş uçun jarayoniy kontur.
+Konturga kiradi:
+•	valyuta tuşumlari hisobi;
+•	eksport tuşumini tõğri aks ettiriş;
+•	valyuta operatsiyalari bõyiça hisobotlarni kuzatib boriş;
+•	raqamli davlat tizimlari bilan õzaro hamkorlik.
+Jarayon ramkasi: Iş amaldagi valyuta va soliq tartibga soliş qoidalari doirasida olib boriladi.
+Kontur çegarasi: Kontragentlarni qidiriş, şartnoma bõyiça muzokaralar va soliq yuklamasini optimallaştirişni õz içiga olmaydi.
+Tipik profil: Xorijiy mijozlar bilan işlaydigan IT-kompaniyalar, konsultantlar, raqamli agentliklar.
+BUYURI§% Ⱒ Public Interface «Biznes va davlat çorrahasidagi raqamlar»
+Davlat tomonidan tõğridan-tõğri regulyator va ommaviy nazorat ostida bõlgan operatsiyalar hisobi konturi.
+Konturga kiradi:
+•	majburiy deklaratsiyalanişi kerak bõlgan operatsiyalar hisobi;
+•	reglamentlangan hisobotlarni şakllantiriş va topşiriş;
+•	davlat raqamli tizimlari bilan jarayoniy hamkorlik;
+•	regulyator talablarini hisobda tõğri aks ettiriş.
+Jarayon ramkasi: Kontur qat’iy ravişda amaldagi qonunçilik va tasdiqlangan reglamentlar doirasida işlaydi.
+Kontur çegarasi: Tekşiruvlar, nizolar va sud muhokamalarida vakillik qilişni õz içiga olmaydi.
+Tipik profil: Yuqori regulyator yuklamasi va ommaviy hisobot talabi bor kompaniyalar.
+BUYURI§% Ⱒ RentFlow «Õzi hisobot beradigan ijara»
+Ijara munosabatlari, tõlovlar va majburiyatlarni standartlaştirilgan hisobi uçun jarayoniy kontur.
+Konturga kiradi:
+•	ijara hisoblanmalari va tõlovlari hisobi;
+•	şartnoma şartlarini hisobda aks ettiriş;
+•	muddatlar va davriylik nazorati;
+•	hisob operatsiyalarini yuridik jihatdan tõğri hujjatlaştiriş.
+Jarayon ramkasi: Kontur amaldagi ijara şartnomalari va taqdim etilgan ma’lumotlar asosida işlaydi.
+Kontur çegarasi: Ijara şartlarini kelişiş va kontragentlar bilan muzokaralarni õz içiga olmaydi.
+Tipik profil: Doimiy ijara majburiyatlariga ega biznes.
+BUYURI§% Ⱒ Franchise Box «Bir şablon — bir neçta biznes-birliklar»
+Bir neçta bir xil turdagi tuzilmalarga ega biznes uçun hisobni standartlaştiriş konturi.
+Konturga kiradi:
+•	barça biznes-birliklar uçun yagona hisob şabloni;
+•	reglamentlar va hisobotlar sinxronizatsiyasi;
+•	bõlimlar õrtasida ma’lumotlarning taqqoslanuvçanligi;
+•	takrorlanuvçanlik ustidan jarayoniy nazorat.
+Jarayon ramkasi: Kontur individual istisnolarga emas, balki protseduralarning bir xilligiga (identikligiga) qaratilgan.
+Kontur çegarasi: Biznes-modelni işlab çiqiş va strategik boşqaruvni õz içiga olmaydi.
+Tipik profil: Franşizalar (jamoat ovqatlaniş tarmoqlaridan taşqari) va tarmoqli loyihalar.
+BUYURI§% Ⱒ Project Control «Minimum hujjat. Maksimum ma’no»
+Loyiha va bosqiçli faoliyat hisobi uçun jarayoniy kontur.
+Konturga kiradi:
+•	loyihalar bõyiça xarajatlar va natijalar hisobi;
+•	bosqiçlar va yakunlangan işlarni fiksatsiya qiliş;
+•	obyektlar bõyiça ma’lumotlarning taqqoslanuvçanligi;
+•	loyiha operatsiyalarini yuridik jihatdan tõğri hujjatlaştiriş.
+Jarayon ramkasi: Kontur oldindan belgilangan loyiha tuzilmasi doirasida işlaydi.
+Kontur çegarasi: Loyihalarni boşqariş (Project management) va ijro nazoratini õz içiga olmaydi.
+Tipik profil: Loyihaviy (şu jumladan, arxitektura va şaharsozlik loyiha byurolari) model asosida işlaydigan kompaniyalar.
+BUYURI§% Ⱒ Base «Hisob — bu tartib. Tartib — bu himoya»
+HISOBLI ixtisoslaşgan mahsulotlariga mos tuşmaydigan biznes uçun bazaviy kontur.
+Konturga kiradi:
+•	standart buxgalteriya hisobi;
+•	majburiy hisobotlar;
+•	hisob bilan boğliq yuridik jihatdan tõğri iş yuritiş;
+•	davlat tizimlari bilan hamkorlik.
+Jarayon ramkasi: Kontur individual sozlamalarsiz (nastroykasiz), tasdiqlangan reglamentlar bõyiça işlaydi.
+Kontur çegarasi: Konsultatsiyalar, optimallaştiriş va nostandart vazifalarni õz içiga olmaydi.
+Tipik profil: Tipik operatsion faoliyatga ega kiçik va õrta biznes.
+JAVOBGARLIK ÇEGARALARI
+HISOBLI kelişilgan kontur va reglamentlar doirasida jarayon ijrosining tõğriligi uçun javob beradi.
+HISOBLI hisob ma’lumotlari asosida Mijoz qabul qilgan qarorlarning oqibatlari uçun javob bermaydi.
+Jarayon va qaror — bu mas’uliyatning turli darajalaridir.
+KIMLARGA TÕĞRI KELMAYMIZ
+• Agar siz quyidagilarni istasangiz, HISOBLI sizga tõğri kelmaydi:
+•	hisob jarayonini emas, balki "muammolar yeçimi"ni qidirayotgan bõlsangiz;
+•	reglamentlar õrniga individual maslahatlar kutayotgan bõlsangiz;
+•	qarorlar uçun mas’uliyatni boşqaga yuklamoqçi bõlsangiz;
+•	norasmiy kelişuvlarga tayanayotgan bõlsangiz;
+•	buxgalteriyani "kezi kelganda buyurtma beriladigan / zapros bõyiça" servis sifatida qabul qilsangiz;
+•	natija kafolatini kutayotgan bõlsangiz.
+ALOQA
+Agar HISOBLI olğa surayongan mantiği sizga yaqin bõlsa — biz bilan boğlaning.
+Telegram • Email
+Şaxsiy ma’lumotlarni yiğiş Formalarisiz. Voronkalarsiz. Quruq Va’dalarsiz.
+INTELLEKTUAL MULK
+Uşbu saytda joylaştirilgan barça matnli ifodalar, mahsulotlar arxitekturasi, metodologiya, biznes-mantiq, qõllab-quvvatlaş ta’minoti algoritmlari va boşqa materiallar «HISOBLI» MÇJning intellektual mulk obyektlari hisoblanadi.
+Kõrsatilgan obyektlar Õzbekiston Respublikasining «Mualliflik huquqi va turdoş huquqlar tõğrisida»gi Qonuni, şuningdek Õzbekiston Respublikasi Fuqarolik kodeksining 60 va 64-boblari bilan qõriqlanadi.
+Huquq egasining yozma roziligisiz kõrsatilgan materiallarni tõliq yoki qisman nusxalaş, kõpaytiriş, tirajlaş yoki ulardan foydalaniş taqiqlanadi.
+      <div class="contacts">
+        <p>Agar HISOBLI olğa surayongan mantiği sizga yaqin bõlsa — biz bilan boğlaning.</p>
+        <p><a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank">Telegram</a> • <a href="mailto:info@hisob.li">Email</a></p>
+        <p>Şaxsiy ma’lumotlarni yiğiş Formalarisiz. Voronkalarsiz. Quruq Va’dalarsiz.</p>
+      </div>
     </div>
   </div>
 
-  <!-- Нижняя панель на мобильных -->
-  <div class="bottom-bar">
-    <a href="https://t.me/твой_ник" target="_blank">
-      <img src="telegram.svg" class="bottom-icon" alt="Telegram">
-    </a>
-    <a href="mailto:info@hisob.li">
-      <img src="email.svg" class="bottom-icon" alt="Email">
-    </a>
-    <a href="https://instagram.com/hisobli" target="_blank">
-      <img src="instagram.svg" class="bottom-icon" alt="Instagram">
-    </a>
-    <a href="https://facebook.com/hisobli" target="_blank">
-      <img src="facebook.svg" class="bottom-icon" alt="Facebook">
-    </a>
-    <a href="https://youtube.com/@hisobli" target="_blank">
-      <img src="youtube.svg" class="bottom-icon" alt="YouTube">
-    </a>
-  </div>
+  <script>
+    // Языковой переключатель
+    document.querySelectorAll('.lang').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.lang').forEach(l => l.classList.remove('active'));
+        el.classList.add('active');
+        document.querySelector('.ru-content').classList.toggle('active', el.dataset.lang === 'ru');
+        document.querySelector('.uz-content').classList.toggle('active', el.dataset.lang === 'uz');
+      });
+    });
 
-  <div class="container">
-    <!-- Здесь весь твой текст из контент_русский.txt -->
-    <!-- Я не вставляю его сюда целиком, чтобы сообщение не раздулось -->
-    <!-- Но в реальном файле он будет полностью, без сокращений -->
-  </div>
+    // Аккордеон продуктов
+    document.querySelectorAll('.product-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const product = header.parentElement;
+        product.classList.toggle('active');
+      });
+    });
 
+    // Для мобильного — тап по боковой панели показывает полностью
+    if (window.innerWidth <= 768) {
+      document.querySelector('.sidebar').addEventListener('click', () => {
+        document.querySelector('.sidebar').classList.toggle('visible');
+      });
+    }
+  </script>
 </body>
 </html>
