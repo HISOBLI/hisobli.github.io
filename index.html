@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса</title>
-<meta name="description" content="HISOBLI — комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса в Ташкенте. Стандартизированный финансово-правовой контур.">
-<meta name="keywords" content="бухгалтерский аутсорсинг Ташкент, юридическое сопровождение бизнеса Узбекистан, стандартизированный учёт, финансово-правовой контур">
+<meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Комплексное бухгалтерское и юридическое сопровождение в Ташкенте.">
+<meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, юридическое сопровождение, финансово-правовой контур, бухгалтерский аутсорсинг Узбекистан">
 <meta name="robots" content="index, follow">
 <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
 
@@ -16,11 +16,12 @@
 <meta property="og:url" content="https://hisob.li">
 
 <style>
+
 :root{
 --bg:#121212;
+--panel:#171717;
 --text:#d0d0d0;
 --gold:#BFA46F;
---panel:#161616;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -30,7 +31,7 @@ background:var(--bg);
 color:var(--text);
 font-family:"Courier New", monospace;
 font-size:18px;
-line-height:1.7;
+line-height:1.75;
 }
 
 /* HEADER */
@@ -41,65 +42,56 @@ top:0;
 left:0;
 width:100%;
 background:var(--bg);
-z-index:1000;
 text-align:center;
-padding:25px 20px;
+padding:30px 20px;
+z-index:1000;
+box-shadow:0 8px 40px rgba(0,0,0,0.8);
 transition:all .4s ease;
-box-shadow:0 5px 30px rgba(0,0,0,0.7);
 }
 
 header.scrolled{
-padding:10px 20px;
+padding:15px 20px;
 }
 
 .logo{
-max-width:280px;
-transition:all .4s ease;
+max-width:300px;
+transition:.4s ease;
 }
 
 header.scrolled .logo{
 max-width:180px;
 }
 
-.header-side{
-position:absolute;
-top:20px;
-font-weight:bold;
-color:var(--gold);
-text-transform:uppercase;
-}
-
-.header-left{left:30px;text-align:left;}
-.header-right{right:30px;text-align:right;}
-
-.header-side div{
-text-shadow:0 1px 0 #000,0 -1px 0 #000;
-}
-
 /* SIDEBAR */
 
 .sidebar{
 position:fixed;
-top:180px;
+top:50%;
 left:0;
-width:95px;
+transform:translateY(-50%);
+width:100px;
 background:var(--panel);
-border-top-right-radius:25px;
-border-bottom-right-radius:25px;
-padding:20px 15px;
+border-top-right-radius:30px;
+border-bottom-right-radius:30px;
+padding:30px 15px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:space-between;
+height:70vh;
+box-shadow:6px 0 30px rgba(0,0,0,0.7);
 z-index:900;
-box-shadow:5px 0 20px rgba(0,0,0,0.6);
 }
 
 .lang-switch{
+width:100%;
 text-align:right;
-margin-bottom:40px;
 font-weight:bold;
 }
 
 .lang{
 cursor:pointer;
-margin-bottom:10px;
+margin-bottom:12px;
 }
 
 .lang.inactive{
@@ -109,15 +101,14 @@ color:var(--gold);
 .social{
 display:flex;
 flex-direction:column;
-gap:20px;
-align-items:center;
+gap:25px;
 }
 
 .social a{
 width:38px;
 height:38px;
 display:block;
-transition:.3s;
+transition:.3s ease;
 }
 
 .social a:hover{
@@ -127,31 +118,29 @@ filter:drop-shadow(0 0 8px var(--gold));
 .social img{
 width:100%;
 height:100%;
-filter:grayscale(100%) brightness(1.4);
+filter:grayscale(100%) brightness(1.3);
 }
 
 .vertical-copy{
-position:absolute;
-right:-60px;
-bottom:20px;
-transform:rotate(-90deg);
-transform-origin:right bottom;
+writing-mode:vertical-rl;
+transform:rotate(180deg);
 font-size:13px;
-white-space:nowrap;
+margin-top:20px;
+opacity:0.8;
 }
 
 /* MAIN */
 
 main{
-padding:240px 40px 60px 150px;
+padding:240px 60px 80px 160px;
 max-width:1000px;
 }
 
 h1,h2,h3{
 color:var(--gold);
-font-weight:bold;
 text-transform:uppercase;
-margin:50px 0 20px 0;
+font-weight:bold;
+margin:60px 0 25px;
 }
 
 strong{
@@ -160,13 +149,19 @@ color:var(--gold);
 
 .product{
 border-top:1px solid #333;
-padding:20px 0;
+padding:25px 0;
 cursor:pointer;
+}
+
+.product-title{
+color:var(--gold);
+font-weight:bold;
+text-transform:uppercase;
 }
 
 .product-content{
 display:none;
-padding-top:20px;
+margin-top:20px;
 }
 
 .product.active .product-content{
@@ -174,7 +169,7 @@ display:block;
 }
 
 .contacts{
-margin-top:80px;
+margin-top:100px;
 }
 
 .contacts a{
@@ -187,20 +182,15 @@ text-decoration:none;
 @media(max-width:900px){
 
 .sidebar{
-transform:translateX(-70%);
+transform:translate(-70%,-50%);
 }
 
 .sidebar:hover{
-transform:translateX(0);
+transform:translate(0,-50%);
 }
 
 main{
-padding:200px 20px 60px 20px;
-}
-
-.header-left,
-.header-right{
-display:none;
+padding:200px 25px 80px 25px;
 }
 
 }
@@ -211,43 +201,127 @@ display:none;
 <body>
 
 <header id="header">
-<div class="header-left header-side">
-<div>«HISOBLI»</div>
-<div>MAS'ULIYATI ÇEKLANGAN JAMIYATI</div>
-</div>
-
-<img src="logo.png" class="logo" alt="HISOBLI">
-
-<div class="header-right header-side">
-<div>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ</div>
-<div>«HISOBLI»</div>
-</div>
+<img src="logo.png" alt="HISOBLI" class="logo">
 </header>
 
 <div class="sidebar">
+
 <div class="lang-switch">
 <div class="lang">РУ</div>
 <div class="lang inactive">ÖZ</div>
 </div>
 
 <div class="social">
-<a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank"><img src="telegram.svg"></a>
-<a href="mailto:info@hisob.li"><img src="email.svg"></a>
-<a href="https://www.youtube.com/@HISOBLI" target="_blank"><img src="youtube.svg"></a>
-<a href="https://www.instagram.com/hisobli/" target="_blank"><img src="instagram.svg"></a>
-<a href="https://www.linkedin.com/services/page/0546653421352a1322/" target="_blank"><img src="linkedin.svg"></a>
+<a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank"><img src="telegram.svg" alt=""></a>
+<a href="mailto:info@hisob.li"><img src="email.svg" alt=""></a>
+<a href="https://www.youtube.com/@HISOBLI" target="_blank"><img src="youtube.svg" alt=""></a>
+<a href="https://www.instagram.com/hisobli/" target="_blank"><img src="instagram.svg" alt=""></a>
+<a href="https://www.linkedin.com/services/page/0546653421352a1322/" target="_blank"><img src="linkedin.svg" alt=""></a>
 </div>
 
 <div class="vertical-copy">
 2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR
 </div>
+
 </div>
 
 <main>
 
-<!-- ВЕСЬ ТВОЙ КОНТЕНТ ИДЁТ ЗДЕСЬ БЕЗ ИЗМЕНЕНИЙ -->
-<!-- Я НЕ СОКРАЩАЛ И НЕ МЕНЯЛ НИ ОДНОГО СИМВОЛА -->
-<!-- (чтобы ответ не превратился в 10 экранов — здесь вставь твой утвержденный текст полностью как есть) -->
+<div id="ru-content">
+
+<h1>HISOBLI</h1>
+<h2>Стандартизированный финансово-правовой контур бизнеса</h2>
+
+<p>Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта.</p>
+
+<h2>КРЕДО</h2>
+
+<p><strong>Бухгалтерия — это юриспруденция, выраженная на языке чисел.</strong></p>
+
+<p>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре, — это юридически грамотное делопроизводство. Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.</p>
+
+<h2>ЧТО ТАКОЕ "КОНТУР"</h2>
+
+<p>В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жесткие правила, и куда нельзя просто так попасть снаружи.</p>
+
+<p>Что для HISOBLI означает слово «Контур»?</p>
+
+<ul>
+<li>Замкнутость: Контур — это закрытая система. Это закрытый механизм.</li>
+<li>Четкие границы: У контура всегда есть граница.</li>
+<li>Автоматизм: Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь).</li>
+</ul>
+
+<p>Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с четкими границами ответственности, работающий как отлаженный механизм».</p>
+
+<h2>ЧТО ТАКОЕ HISOBLI</h2>
+
+<p>Мы, Общество с ограниченной ответственностью «HISOBLI», зарегистрированное в городе Ташкенте, осуществляем комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса.</p>
+
+<p>HISOBLI — это не аутсорсинг в классическом понимании. И не «бухгалтерия под ключ».</p>
+
+<p>HISOBLI — это:</p>
+
+<ul>
+<li>стандартизированный финансово-правовой контур;</li>
+<li>набор чётких алгоритмов учёта и отчётности;</li>
+<li>процессная инфраструктура для бизнеса;</li>
+<li>разделение бухгалтерского учёта, юридической формы и управленческих решений.</li>
+</ul>
+
+<p>Бухучёт — это не математика, а формализованное право, где цифры служат символами для закрепления прав, обязанностей и воли сторон.</p>
+
+<p><strong>Мы работаем с процессами, а не с ожиданиями.</strong></p>
+<hr style="margin:80px 0;border:0;border-top:1px solid #333;">
+
+<div id="uz-content">
+
+<h1>HISOBLI</h1>
+<h2>Biznesning standartlaştirilgan moliyaviy-yuridik konturi</h2>
+
+<p>Biz xizmat kõrsatmaymiz. Biz reglamentlangan hisobga oliş jarayonlarini joriy qilamiz va yuritamiz.</p>
+
+<h2>KREDO</h2>
+
+<p><strong>Buxgalteriya — bu, bamisoli, raqamlar tilida ifodalangan yurisprudensiyadir, hisob.</strong></p>
+
+<p>Buxgalteriya reyestriga raqamlarni kiritiş, qayta işlaş va aks ettiriş operatsiyalariga kirmaydigan barça narsa — bu yuridik jihatdan puxta iş yuritiş (deloproizvodstvo). HISOBLI mas’uliyat çegarasi, iş tuzilmasi va narx belgilaş mantiği aynan şunday şakllanadi.</p>
+
+<h2>"KONTUR" NIMA?</h2>
+
+<p>Ma’lumki, IT va xavfsizlik sohasida tez-tez «axborot xavfsizligi konturi» iborasi işlatiladi. Bu — içkarisida õz qat’iy qoidalari amal qiladigan va taşqaridan şunçaki kirib bõlmaydigan õziga xos yopiq hudud demakdir.</p>
+
+<p>HISOBLI uçun «Kontur» sõzi nimani anglatadi?</p>
+
+<ul>
+<li>Yopiqlik: Kontur — bu yopiq tizim. Bu yopiq mexanizm.</li>
+<li>Aniq çegaralar: Konturning doimo õz çegarasi mavjud.</li>
+<li>Avtomatizm: «Kontur» sõzi maşina yoki sxemaning (masalan, elektr zanjirining) işlaşi bilan boğliq tasavvurni uyğotadi.</li>
+</ul>
+
+<p>Xulosa: Bizning tuşunçamizda «kontur» — bu mas’uliyat çegaralari aniq belgilangan, xuddi aniq sozlangan mexanizm kabi işlaydigan, standartlaştirilgan va yopiq jarayondir.</p>
+
+<h2>HISOBLI NIMA ÕZI?</h2>
+
+<p>Biz, Toşkent şahrida rõyxatdan õtgan «HISOBLI» Mas’uliyati çeklangan jamiyati, biznesni kompleks autsorsing asosida buxgalteriya va yuridik jihatdan qõllab-quvvatlaş va ta’minotini amalga oşiramiz.</p>
+
+<p>HISOBLI — bu klassik tuşunçadagi autsorsing emas. Va «buxgalteriya pod klyuç» ham emas.</p>
+
+<p>HISOBLI — bu:</p>
+
+<ul>
+<li>standartlaştirilgan moliyaviy-yuridik kontur;</li>
+<li>hisob va hisobotlarning aniq algoritmlari tõplami;</li>
+<li>biznes uçun jarayonlar (protsessual) infratuzilmasi;</li>
+<li>buxgalteriya hisobi, yuridik şakl va boşqaruv qarorlarining õzaro ajratilişi.</li>
+</ul>
+
+<p>Buxgalteriya hisobi — bu matematika emas, balki formallaştirilgan huquqdir. Bunda raqamlar tomonlarning huquqlari, majburiyatlari va irodasini mustahkamlaş uçun ramz vazifasini õtaydi, hisob.</p>
+
+<p><strong>Biz biznes-kutilmalar bilan emas, balki jarayonlar bilan işlaymiz.</strong></p>
+
+</div>
+
 
 </main>
 
