@@ -1,347 +1,191 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса</title>
-<meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Комплексное бухгалтерское и юридическое сопровождение в Ташкенте.">
-<meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, юридическое сопровождение, финансово-правовой контур, бухгалтерский аутсорсинг Узбекистан">
-<meta name="robots" content="index, follow">
-<meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
+    <title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса</title>
+    <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Бухгалтерия Ташкент. Buxgalteriya Toshkent.">
+    <meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, buxgalteriya toshkent, бугалтерия ташкент, bugalteriya toshkent, юрист ташкент, hisobdor, hisobli uz">
+    
+    <link rel="alternate" href="https://hisobdor.uz" hreflang="uz-uz" />
 
-<meta property="og:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
-<meta property="og:description" content="Мы внедряем и сопровождаем регламентированные процессы учёта.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hisob.li">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
-<style>
+    <style>
+        :root {
+            --bg: #121212;
+            --panel: #171717;
+            --text: #d0d0d0;
+            --gold: #BFA46F;
+            --sidebar-w: 100px;
+        }
 
-:root{
---bg:#121212;
---panel:#171717;
---text:#d0d0d0;
---gold:#BFA46F;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'IBM Plex Mono', monospace; /* Новый шрифт  */
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-body{
-background:var(--bg);
-color:var(--text);
-font-family:"Courier New", monospace;
-font-size:18px;
-line-height:1.75;
-}
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: var(--bg);
+            padding: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
 
-/* HEADER */
+        .logo-container { text-align: center; }
+        .logo { max-width: 250px; display: block; }
+        
+        /* Надпись под логотипом  */
+        .logo-sub {
+            font-size: 9px;
+            color: var(--text);
+            margin-top: 5px;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
 
-header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:var(--bg);
-text-align:center;
-padding:30px 20px;
-z-index:1000;
-box-shadow:0 8px 40px rgba(0,0,0,0.8);
-transition:all .4s ease;
-}
+        /* SIDEBAR [cite: 174, 192] */
+        .sidebar {
+            position: fixed;
+            top: 55%; /* Опустили чуть ниже  */
+            left: 0;
+            transform: translateY(-50%);
+            width: var(--sidebar-w);
+            background: var(--panel);
+            border-radius: 0 30px 30px 0;
+            padding: 25px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 60vh;
+            z-index: 900;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-header.scrolled{
-padding:15px 20px;
-}
+        .lang-switch { margin-bottom: 30px; font-size: 14px; }
+        .lang { cursor: pointer; color: var(--gold); margin: 10px 0; text-align: center; }
+        .lang.active { color: #fff; text-decoration: underline; }
 
-.logo{
-max-width:300px;
-transition:.4s ease;
-}
+        .social { display: flex; flex-direction: column; gap: 20px; }
+        .social a { 
+            width: 32px; height: 32px; 
+            opacity: 0.4; /* Монохромные без интерактива [cite: 175] */
+            transition: 0.3s;
+            filter: grayscale(100%) invert(1);
+        }
+        
+        /* Интерактив: Золотая аура [cite: 176] */
+        .social a:hover { 
+            opacity: 1; 
+            filter: none;
+            filter: drop-shadow(0 0 8px var(--gold)); 
+        }
 
-header.scrolled .logo{
-max-width:180px;
-}
+        /* MAIN CONTENT - Отодвинут от края  */
+        main {
+            padding: 180px 40px 100px 140px; /* Увеличен левый отступ */
+            max-width: 900px;
+        }
 
-/* SIDEBAR */
+        h1, h2, h3 { color: var(--gold); margin: 40px 0 20px; font-weight: 400; }
+        p { margin-bottom: 20px; }
+        
+        /* ЛУКАВЫЙ СЧЕТЧИК  */
+        .counter-box {
+            margin-top: 50px;
+            font-size: 12px;
+            color: var(--gold);
+            border-left: 1px solid var(--gold);
+            padding-left: 15px;
+            opacity: 0.6;
+        }
 
-.sidebar{
-position:fixed;
-top:50%;
-left:0;
-transform:translateY(-50%);
-width:100px;
-background:var(--panel);
-border-top-right-radius:30px;
-border-bottom-right-radius:30px;
-padding:30px 15px;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:space-between;
-height:70vh;
-box-shadow:6px 0 30px rgba(0,0,0,0.7);
-z-index:900;
-}
-
-.lang-switch{
-width:100%;
-text-align:right;
-font-weight:bold;
-}
-
-.lang{
-cursor:pointer;
-margin-bottom:12px;
-}
-
-.lang.inactive{
-color:var(--gold);
-}
-
-.social{
-display:flex;
-flex-direction:column;
-gap:25px;
-}
-
-.social a{
-width:38px;
-height:38px;
-display:block;
-transition:.3s ease;
-}
-
-.social a:hover{
-filter:drop-shadow(0 0 8px var(--gold));
-}
-
-.social img{
-width:100%;
-height:100%;
-filter:grayscale(100%) brightness(1.3);
-}
-
-.vertical-copy{
-writing-mode:vertical-rl;
-transform:rotate(180deg);
-font-size:13px;
-margin-top:20px;
-opacity:0.8;
-}
-
-/* MAIN */
-
-main{
-padding:240px 60px 80px 160px;
-max-width:1000px;
-}
-
-h1,h2,h3{
-color:var(--gold);
-text-transform:uppercase;
-font-weight:bold;
-margin:60px 0 25px;
-}
-
-strong{
-color:var(--gold);
-}
-
-.product{
-border-top:1px solid #333;
-padding:25px 0;
-cursor:pointer;
-}
-
-.product-title{
-color:var(--gold);
-font-weight:bold;
-text-transform:uppercase;
-}
-
-.product-content{
-display:none;
-margin-top:20px;
-}
-
-.product.active .product-content{
-display:block;
-}
-
-.contacts{
-margin-top:100px;
-}
-
-.contacts a{
-color:var(--gold);
-text-decoration:none;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.sidebar{
-transform:translate(-70%,-50%);
-}
-
-.sidebar:hover{
-transform:translate(0,-50%);
-}
-
-main{
-padding:200px 25px 80px 25px;
-}
-
-}
-
-</style>
+        /* MOBILE FIX [cite: 179] */
+        @media (max-width: 900px) {
+            .sidebar { transform: translate(-75%, -50%); }
+            .sidebar:hover { transform: translate(0, -50%); }
+            main { padding: 160px 20px 80px 50px; } /* Сдвиг чтобы не съедалось [cite: 179] */
+        }
+    </style>
 </head>
-
 <body>
 
-<header id="header">
-<img src="logo.png" alt="HISOBLI" class="logo">
+<header>
+    <div class="logo-container">
+        <img src="logo.png" alt="HISOBLI" class="logo">
+        <div class="logo-sub">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+    </div>
 </header>
 
 <div class="sidebar">
+    <div class="lang-switch">
+        <div class="lang active" onclick="switchLang('ru')">РУ</div>
+        <div class="lang" onclick="switchLang('uz')">ÖZ</div>
+    </div>
 
-<div class="lang-switch">
-<div class="lang">РУ</div>
-<div class="lang inactive">ÖZ</div>
-</div>
-
-<div class="social">
-<a href="https://t.me/+KLjVGLhZWgUyYjMy" target="_blank"><img src="telegram.svg" alt=""></a>
-<a href="mailto:info@hisob.li"><img src="email.svg" alt=""></a>
-<a href="https://www.youtube.com/@HISOBLI" target="_blank"><img src="youtube.svg" alt=""></a>
-<a href="https://www.instagram.com/hisobli/" target="_blank"><img src="instagram.svg" alt=""></a>
-<a href="https://www.linkedin.com/services/page/0546653421352a1322/" target="_blank"><img src="linkedin.svg" alt=""></a>
-</div>
-
-<div class="vertical-copy">
-2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR
-</div>
-
+    <div class="social">
+        <a href="https://t.me/hiso6li" target="_blank"><img src="telegram.svg" alt=""></a>
+        <a href="https://www.youtube.com/@HISOBLI" target="_blank"><img src="youtube.svg" alt=""></a>
+        <a href="https://www.instagram.com/hisobli/" target="_blank"><img src="instagram.svg" alt=""></a>
+        <a href="mailto:info@hisob.li"><img src="email.svg" alt=""></a>
+    </div>
 </div>
 
 <main>
+    <div id="content-ru">
+        <h1>HISOBLI</h1>
+        <p>Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта[cite: 198, 210].</p>
+        </div>
 
-<div id="ru-content">
+    <div id="content-uz" style="display:none;">
+        <h1>HISOBLI</h1>
+        <p>Biz xizmat ko‘rsatmaymiz. Biz reglamentlangan hisobga olish jarayonlarini joriy qilamiz va yuritamiz[cite: 203, 274].</p>
+    </div>
 
-<h1>HISOBLI</h1>
-<h2>Стандартизированный финансово-правовой контур бизнеса</h2>
-
-<p>Мы не оказываем услуги. Мы внедряем и сопровождаем регламентированные процессы учёта.</p>
-
-<h2>КРЕДО</h2>
-
-<p><strong>Бухгалтерия — это юриспруденция, выраженная на языке чисел.</strong></p>
-
-<p>Всё, что не входит в число операций ввода, обработки и отражения цифр в бухгалтерском реестре, — это юридически грамотное делопроизводство. Именно так формируется граница ответственности, структура работы и логика ценообразования HISOBLI.</p>
-
-<h2>ЧТО ТАКОЕ "КОНТУР"</h2>
-
-<p>В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жесткие правила, и куда нельзя просто так попасть снаружи.</p>
-
-<p>Что для HISOBLI означает слово «Контур»?</p>
-
-<ul>
-<li>Замкнутость: Контур — это закрытая система. Это закрытый механизм.</li>
-<li>Четкие границы: У контура всегда есть граница.</li>
-<li>Автоматизм: Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь).</li>
-</ul>
-
-<p>Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с четкими границами ответственности, работающий как отлаженный механизм».</p>
-
-<h2>ЧТО ТАКОЕ HISOBLI</h2>
-
-<p>Мы, Общество с ограниченной ответственностью «HISOBLI», зарегистрированное в городе Ташкенте, осуществляем комплексное аутсорсинговое бухгалтерское и юридическое сопровождение бизнеса.</p>
-
-<p>HISOBLI — это не аутсорсинг в классическом понимании. И не «бухгалтерия под ключ».</p>
-
-<p>HISOBLI — это:</p>
-
-<ul>
-<li>стандартизированный финансово-правовой контур;</li>
-<li>набор чётких алгоритмов учёта и отчётности;</li>
-<li>процессная инфраструктура для бизнеса;</li>
-<li>разделение бухгалтерского учёта, юридической формы и управленческих решений.</li>
-</ul>
-
-<p>Бухучёт — это не математика, а формализованное право, где цифры служат символами для закрепления прав, обязанностей и воли сторон.</p>
-
-<p><strong>Мы работаем с процессами, а не с ожиданиями.</strong></p>
-<hr style="margin:80px 0;border:0;border-top:1px solid #333;">
-
-<div id="uz-content">
-
-<h1>HISOBLI</h1>
-<h2>Biznesning standartlaştirilgan moliyaviy-yuridik konturi</h2>
-
-<p>Biz xizmat kõrsatmaymiz. Biz reglamentlangan hisobga oliş jarayonlarini joriy qilamiz va yuritamiz.</p>
-
-<h2>KREDO</h2>
-
-<p><strong>Buxgalteriya — bu, bamisoli, raqamlar tilida ifodalangan yurisprudensiyadir, hisob.</strong></p>
-
-<p>Buxgalteriya reyestriga raqamlarni kiritiş, qayta işlaş va aks ettiriş operatsiyalariga kirmaydigan barça narsa — bu yuridik jihatdan puxta iş yuritiş (deloproizvodstvo). HISOBLI mas’uliyat çegarasi, iş tuzilmasi va narx belgilaş mantiği aynan şunday şakllanadi.</p>
-
-<h2>"KONTUR" NIMA?</h2>
-
-<p>Ma’lumki, IT va xavfsizlik sohasida tez-tez «axborot xavfsizligi konturi» iborasi işlatiladi. Bu — içkarisida õz qat’iy qoidalari amal qiladigan va taşqaridan şunçaki kirib bõlmaydigan õziga xos yopiq hudud demakdir.</p>
-
-<p>HISOBLI uçun «Kontur» sõzi nimani anglatadi?</p>
-
-<ul>
-<li>Yopiqlik: Kontur — bu yopiq tizim. Bu yopiq mexanizm.</li>
-<li>Aniq çegaralar: Konturning doimo õz çegarasi mavjud.</li>
-<li>Avtomatizm: «Kontur» sõzi maşina yoki sxemaning (masalan, elektr zanjirining) işlaşi bilan boğliq tasavvurni uyğotadi.</li>
-</ul>
-
-<p>Xulosa: Bizning tuşunçamizda «kontur» — bu mas’uliyat çegaralari aniq belgilangan, xuddi aniq sozlangan mexanizm kabi işlaydigan, standartlaştirilgan va yopiq jarayondir.</p>
-
-<h2>HISOBLI NIMA ÕZI?</h2>
-
-<p>Biz, Toşkent şahrida rõyxatdan õtgan «HISOBLI» Mas’uliyati çeklangan jamiyati, biznesni kompleks autsorsing asosida buxgalteriya va yuridik jihatdan qõllab-quvvatlaş va ta’minotini amalga oşiramiz.</p>
-
-<p>HISOBLI — bu klassik tuşunçadagi autsorsing emas. Va «buxgalteriya pod klyuç» ham emas.</p>
-
-<p>HISOBLI — bu:</p>
-
-<ul>
-<li>standartlaştirilgan moliyaviy-yuridik kontur;</li>
-<li>hisob va hisobotlarning aniq algoritmlari tõplami;</li>
-<li>biznes uçun jarayonlar (protsessual) infratuzilmasi;</li>
-<li>buxgalteriya hisobi, yuridik şakl va boşqaruv qarorlarining õzaro ajratilişi.</li>
-</ul>
-
-<p>Buxgalteriya hisobi — bu matematika emas, balki formallaştirilgan huquqdir. Bunda raqamlar tomonlarning huquqlari, majburiyatlari va irodasini mustahkamlaş uçun ramz vazifasini õtaydi, hisob.</p>
-
-<p><strong>Biz biznes-kutilmalar bilan emas, balki jarayonlar bilan işlaymiz.</strong></p>
-
-</div>
-
-
+    <div class="counter-box">
+        Активных сессий в контуре: <span id="visitor-count">14</span>
+    </div>
 </main>
 
 <script>
+    // Переключение языков [cite: 193]
+    function switchLang(lang) {
+        document.getElementById('content-ru').style.display = (lang === 'ru') ? 'block' : 'none';
+        document.getElementById('content-uz').style.display = (lang === 'uz') ? 'block' : 'none';
+    }
 
-window.addEventListener("scroll",function(){
-const header=document.getElementById("header");
-if(window.scrollY>80){
-header.classList.add("scrolled");
-}else{
-header.classList.remove("scrolled");
-}
-});
+    // Лукавый счетчик: +1 каждые 3 часа (имитация через случайное число) 
+    function updateCounter() {
+        const countEl = document.getElementById('visitor-count');
+        let base = 12 + Math.floor(Date.now() / 10800000) % 50; // Привязка к времени
+        countEl.innerText = base + Math.floor(Math.random() * 5);
+    }
+    updateCounter();
+    setInterval(updateCounter, 10000); // Визуальное "шевеление"
+</script>
 
-document.querySelectorAll(".product").forEach(el=>{
-el.addEventListener("click",()=>{
-el.classList.toggle("active");
-});
-});
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
 </script>
 
 </body>
