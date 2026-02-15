@@ -191,6 +191,38 @@
 
       .social a { width: 34px; height: 34px; }
     }
+	/* ==================== НОВЫЕ СТИЛИ ДЛЯ ОБЛОЖКИ ПРОДУКТОВ ==================== */
+	.product-cover {
+	background: var(--panel);
+	padding: 24px 28px;
+	border: 2px solid var(--gold);
+	border-radius: 6px;
+	box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
+	margin-bottom: 20px;
+	transition: all 0.35s ease;
+	cursor: pointer;
+	  }
+
+	.product:hover .product-cover {
+	box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+	transform: translateY(-3px);
+	  }
+
+	.product-slogan {
+	font-style: italic;
+	font-weight: bold;
+	color: var(--gold);
+	font-size: 0.98em;
+	line-height: 1.45;
+	margin-top: 10px;
+	opacity: 0.95;
+	  }
+
+	/* Убираем старый отступ у заголовка — теперь он внутри обложки */
+	.product-title {
+	margin-bottom: 8px;
+	 }
+	 
   </style>
 </head>
 
@@ -299,14 +331,17 @@
 
 <h2>ПРОДУКТЫ</h2>
 <p>Каждый продукт — это отдельный стандартизированный контур. Не пакет услуг. Не набор опций.</p>
-<p>Контур — это:</p> 
-<p>- заранее определённый состав операций;</p> 
-<p>- фиксированные алгоритмы учёта;</p> 
-<p>- понятные границы ответственности;</p> 
-<p>- предсказуемая процессная нагрузка.</p>
+<p>Контур — это: 
+- заранее определённый состав операций; 
+- фиксированные алгоритмы учёта; 
+- понятные границы ответственности; 
+- предсказуемая процессная нагрузка.</p>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Capital Control</div> <span class="slogan">«Капитал любит тишину и точность»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Capital Control</div>
+    <div class="product-slogan"><strong><em>«Капитал любит тишину и точность»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Капитал любит тишину и точность»</p>
     <p>Контур для учёта операций с уставным капиталом, вкладами участников, займами, распределением прибыли и иными формами движения капитала вне текущей операционной деятельности.</p>
@@ -318,7 +353,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Digital Export</div> <span class="slogan">«Экспорт услуг без бухгалтерского шума»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Digital Export</div>
+    <div class="product-slogan"><strong><em>«Экспорт услуг без бухгалтерского шума»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Экспорт услуг без бухгалтерского шума»</p>
     <p>Процессный контур для учёта экспортной выручки, валютных поступлений и связанных с ними регуляторных требований.</p>
@@ -330,7 +368,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Public Interface</div> <span class="slogan">«Цифры на стыке бизнеса и государства»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Public Interface</div>
+    <div class="product-slogan"><strong><em>«Цифры на стыке бизнеса и государства»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Цифры на стыке бизнеса и государства»</p>
     <p>Контур учёта операций, находящихся под прямым регуляторным и публичным контролем со стороны государства.</p>
@@ -342,7 +383,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ RentFlow</div> <span class="slogan">«Аренда, которая отчитается сама»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ RentFlow</div>
+    <div class="product-slogan"><strong><em>«Аренда, которая отчитается сама»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Аренда, которая отчитается сама»</p>
     <p>Процессный контур для стандартизированного учёта арендных отношений, платежей и обязательств.</p>
@@ -354,7 +398,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Franchise Box</div> <span class="slogan">«Один шаблон — несколько бизнес‑единиц»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Franchise Box</div>
+    <div class="product-slogan"><strong><em>«Один шаблон — несколько бизнес‑единиц»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Один шаблон — несколько бизнес‑единиц»</p>
     <p>Контур стандартизации учёта для бизнеса с несколькими однотипными структурами.</p>
@@ -366,7 +413,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Project Control</div> <span class="slogan">«Минимум документов. Максимум смысла»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Project Control</div>
+    <div class="product-slogan"><strong><em>«Минимум документов. Максимум смысла»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Минимум документов. Максимум смысла»</p>
     <p>Процессный контур для учёта проектной и этапной деятельности.</p>
@@ -378,7 +428,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Base</div> <span class="slogan">«Учёт как порядок. Порядок как защита»</span>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Base</div>
+    <div class="product-slogan"><strong><em>«Учёт как порядок. Порядок как защита»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Учёт как порядок. Порядок как защита»</p>
     <p>Базовый контур для бизнеса, не подпадающего под специализированные продукты HISOBLI.</p>
@@ -515,7 +568,10 @@
 </ul>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Capital Control</div> <span class="slogan">«Kapital sukunat va aniqlikni yoqtiradi»</span></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Capital Control</div>
+    <div class="product-slogan"><strong><em>«Kapital sukunat va aniqlikni yoqtiradi»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Kapital sukunat va aniqlikni yoqtiradi»</p>
     <p>Ustav kapitali, iştirokçilarning hissalari, qarzlar, foydani taqsimlaş va joriy operatsion faoliyatdan taşqari kapital harakatining boşqa şakllari bilan boğliq operatsiyalar hisobi uçun kontur.</p>
@@ -527,7 +583,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Digital Export <span class="slogan">«Buxgalteriya şovqinisiz xizmatlar eksporti»</span></div></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Digital Export</div>
+    <div class="product-slogan"><strong><em>«Buxgalteriya şovqinisiz xizmatlar eksporti»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Buxgalteriya şovqinisiz xizmatlar eksporti»</p>
     <p>Eksport tuşumi, valyuta tuşumlari va ular bilan boğliq regulyator talablarini hisobga oliş uçun jarayoniy kontur.</p>
@@ -539,7 +598,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Public Interface <span class="slogan">«Biznes va davlat çorrahasidagi raqamlar»</span></div></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Public Interface</div>
+    <div class="product-slogan"><strong><em>«Biznes va davlat çorrahasidagi raqamlar»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Biznes va davlat çorrahasidagi raqamlar»</p>
     <p>Davlat tomonidan tõğridan-tõğri regulyator va ommaviy nazorat ostida bõlgan operatsiyalar hisobi konturi.</p>
@@ -551,7 +613,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ RentFlow <span class="slogan">«Õzi hisobot beradigan ijara»</span></div></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ RentFlow</div>
+    <div class="product-slogan"><strong><em>«Õzi hisobot beradigan ijara»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Õzi hisobot beradigan ijara»</p>
     <p>Ijara munosabatlari, tõlovlar va majburiyatlarni standartlaştirilgan hisobi uçun jarayoniy kontur.</p>
@@ -563,7 +628,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Franchise Box <span class="slogan">«Bir şablon — bir neçta biznes-birliklar»</span></div></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Franchise Box</div>
+    <div class="product-slogan"><strong><em>«Bir şablon — bir neçta biznes-birliklar»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Bir şablon — bir neçta biznes-birliklar»</p>
     <p>Bir neçta bir xil turdagi tuzilmalarga ega biznes uçun hisobni standartlaştiriş konturi.</p>
@@ -575,7 +643,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Project Control <span class="slogan">«Minimum hujjat. Maksimum ma’no»</span></div></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Project Control</div>
+    <div class="product-slogan"><strong><em>«Minimum hujjat. Maksimum ma’no»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Minimum hujjat. Maksimum ma’no»</p>
     <p>Loyiha va bosqiçli faoliyat hisobi uçun jarayoniy kontur.</p>
@@ -587,7 +658,10 @@
 </div>
 
 <div class="product">
-  <div class="product-title">BUYURI§% Ⱒ Base <span class="slogan">«Hisob — bu tartib. Tartib — bu himoya»</span></div>
+  <div class="product-cover">
+    <div class="product-title">BUYURI§% Ⱒ Base</div>
+    <div class="product-slogan"><strong><em>«Hisob — bu tartib. Tartib — bu himoya»</em></strong></div>
+  </div>
   <div class="product-content">
     <p>«Hisob — bu tartib. Tartib — bu himoya»</p>
     <p>HISOBLI ixtisoslaşgan mahsulotlariga mos tuşmaydigan biznes uçun bazaviy kontur.</p>
@@ -663,6 +737,39 @@ document.querySelectorAll(".product").forEach(el => {
   update();
   setInterval(update, 1000 * 60 * 10);
 })();
+<script>
+// ==================== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКОВ ====================
+const ruContent = document.getElementById('ru-content');
+const uzContent = document.getElementById('uz-content');
+const langRu = document.querySelector('.lang-switch .lang:first-child');
+const langUz = document.querySelector('.lang-switch .lang:last-child');
+
+function switchLanguage(lang) {
+  if (lang === 'ru') {
+    ruContent.style.display = 'block';
+    uzContent.style.display = 'none';
+    langRu.classList.remove('inactive');
+    langUz.classList.add('inactive');
+  } else {
+    ruContent.style.display = 'none';
+    uzContent.style.display = 'block';
+    langRu.classList.add('inactive');
+    langUz.classList.remove('inactive');
+  }
+}
+
+// Клик по языкам
+langRu.addEventListener('click', () => switchLanguage('ru'));
+langUz.addEventListener('click', () => switchLanguage('uz'));
+
+// Инициализация (по умолчанию русский)
+switchLanguage('ru');
+
+// ==================== АККОРДЕОН (работает на обоих языках) ====================
+document.querySelectorAll(".product").forEach(el => {
+  el.addEventListener("click", () => el.classList.toggle("active"));
+});
+</script>
 </script>
 
 </body>
