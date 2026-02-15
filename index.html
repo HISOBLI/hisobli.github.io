@@ -221,8 +221,10 @@
 	/* Убираем старый отступ у заголовка — теперь он внутри обложки */
 	.product-title {
 	margin-bottom: 8px;
-	 }
-	 
+	  }
+	#ru-content, #uz-content {
+	display: none;   /* ← важно! чтобы по умолчанию оба были скрыты */
+	  } 
   </style>
 </head>
 
@@ -712,65 +714,72 @@ window.addEventListener("scroll", function(){
   header.classList.toggle("scrolled", window.scrollY > 80);
 });
 
-// Аккордеон
-document.querySelectorAll(".product").forEach(el => {
-  el.addEventListener("click", () => el.classList.toggle("active"));
-});
+// ==================== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКОВ + АККОРДЕОН ====================
+document.addEventListener("DOMContentLoaded", function() {
+  const ruContent = document.getElementById('ru-content');
+  const uzContent = document.getElementById('uz-content');
+  const langRu   = document.querySelector('.lang-switch .lang:first-child');
+  const langUz   = document.querySelector('.lang-switch .lang:last-child');
 
-// Fake counter
-(function() {
-  const key = 'hisobli_fc';
-  const el = document.getElementById('count');
-  let count = parseInt(localStorage.getItem(key)) || Math.floor(Math.random() * 70) + 1247;
-  el.textContent = count;
-
-  function update() {
-    const now = Date.now();
-    const last = parseInt(localStorage.getItem(key + '_t')) || 0;
-    if (now - last > 1000 * 60 * 150 + Math.random() * 1000 * 60 * 60) {
-      count += Math.floor(Math.random() * 4) + 1;
-      localStorage.setItem(key, count);
-      localStorage.setItem(key + '_t', now);
-      el.textContent = count;
+  function switchLanguage(lang) {
+    if (lang === 'ru') {
+      ruContent.style.display = 'block';
+      uzContent.style.display = 'none';
+      langRu.classList.remove('inactive');
+      langUz.classList.add('inactive');
+    } else {
+      ruContent.style.display = 'none';
+      uzContent.style.display = 'block';
+      langRu.classList.add('inactive');
+      langUz.classList.remove('inactive');
     }
+
+    // После переключения языка — заново привязываем аккордеон к видимым элементам
+    attachAccordion();
   }
-  update();
-  setInterval(update, 1000 * 60 * 10);
-})();
-<script>
-// ==================== ПЕРЕКЛЮЧЕНИЕ ЯЗЫКОВ ====================
-const ruContent = document.getElementById('ru-content');
-const uzContent = document.getElementById('uz-content');
-const langRu = document.querySelector('.lang-switch .lang:first-child');
-const langUz = document.querySelector('.lang-switch .lang:last-child');
 
-function switchLanguage(lang) {
-  if (lang === 'ru') {
-    ruContent.style.display = 'block';
-    uzContent.style.display = 'none';
-    langRu.classList.remove('inactive');
-    langUz.classList.add('inactive');
-  } else {
-    ruContent.style.display = 'none';
-    uzContent.style.display = 'block';
-    langRu.classList.add('inactive');
-    langUz.classList.remove('inactive');
+  function attachAccordion() {
+    // Удаляем старые слушатели, чтобы не плодить дубли
+    document.querySelectorAll(".product").forEach(el => {
+      el.removeEventListener("click", toggleActive); // на всякий случай
+      el.addEventListener("click", toggleActive);
+    });
   }
-}
 
-// Клик по языкам
-langRu.addEventListener('click', () => switchLanguage('ru'));
-langUz.addEventListener('click', () => switchLanguage('uz'));
+  function toggleActive() {
+    this.classList.toggle("active");
+  }
 
-// Инициализация (по умолчанию русский)
-switchLanguage('ru');
+  // Клик по переключателям
+  langRu.addEventListener('click', () => switchLanguage('ru'));
+  langUz.addEventListener('click', () => switchLanguage('uz'));
 
-// ==================== АККОРДЕОН (работает на обоих языках) ====================
-document.querySelectorAll(".product").forEach(el => {
-  el.addEventListener("click", () => el.classList.toggle("active"));
+  // Инициализация
+  switchLanguage('ru');           // по умолчанию русский
+  attachAccordion();              // первый раз привязываем аккордеон
+
+  // Fake counter (оставляем как было)
+  (function() {
+    const key = 'hisobli_fc';
+    const el = document.getElementById('count');
+    let count = parseInt(localStorage.getItem(key)) || Math.floor(Math.random() * 70) + 1247;
+    el.textContent = count;
+
+    function update() {
+      const now = Date.now();
+      const last = parseInt(localStorage.getItem(key + '_t')) || 0;
+      if (now - last > 1000 * 60 * 150 + Math.random() * 1000 * 60 * 60) {
+        count += Math.floor(Math.random() * 4) + 1;
+        localStorage.setItem(key, count);
+        localStorage.setItem(key + '_t', now);
+        el.textContent = count;
+      }
+    }
+    update();
+    setInterval(update, 1000 * 60 * 10);
+  })();
 });
 </script>
-</script>
-
+	
 </body>
 </html>
