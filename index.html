@@ -53,50 +53,62 @@
     }
 
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: var(--bg);
-      text-align: center;
-      padding: 30px 20px 40px;
-      z-index: 1000;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.8);
-      transition: all .4s ease;
-    }
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background: var(--bg);
+	text-align: center;
+	padding: 20px 20px 30px;           /* уменьшили общую высоту */
+	z-index: 1000;
+	box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+	transition: all 0.35s ease;
+	}
 
-    header.scrolled { padding: 15px 20px 25px; }
+	header.scrolled {
+	padding: 12px 20px 18px;           /* ещё меньше при скролле */
+	transform: scale(1.04);            /* лёгкий зум вверх */
+	box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+	}
 
-    .logo { max-width: 300px; transition: .4s ease; }
+	.logo {
+	max-width: 320px;
+	transition: all 0.35s ease;
+	display: block;
+	margin: 0 auto;
+	}
 
-    header.scrolled .logo { max-width: 180px; }
+	header.scrolled .logo {
+	max-width: 220px;                  /* меньше, но не слишком агрессивно */
+	}
 
-    .copyright {
-      font-size: 11px;
-      opacity: 0.65;
-      margin-top: 8px;
-      letter-spacing: 0.5px;
-    }
+	.copyright {
+	font-size: 11px;
+	opacity: 0.65;
+	margin-top: 6px;                   /* ближе к лого */
+	letter-spacing: 0.5px;
+	}
 
-    .sidebar {
-      position: fixed;
-      top: calc(50% + 40px);
+	.sidebar {
+	  position: fixed;
+	  top: 50%;
       left: 0;
       transform: translateY(-50%);
-      width: 100px;
+      width: 80px;                       /* уже — было 100px */
       background: var(--panel);
-      border-top-right-radius: 30px;
-      border-bottom-right-radius: 30px;
-      padding: 40px 15px 30px;
+      border-top-right-radius: 24px;
+      border-bottom-right-radius: 24px;
+      padding: 32px 12px 28px;           /* чуть меньше внутренние отступы */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      height: 65vh;
-      box-shadow: 6px 0 30px rgba(0,0,0,0.7);
+      min-height: 420px;                 /* фиксированная минимальная высота */
+      max-height: 85vh;
+      box-shadow: 5px 0 28px rgba(0,0,0,0.75);
       z-index: 900;
-      transition: transform 0.35s ease;
-    }
+      transition: transform 0.4s ease, opacity 0.3s ease;
+	}
 
     .lang-switch { width: 100%; text-align: right; font-weight: bold; font-size: 14px; }
 
@@ -126,29 +138,51 @@
 
     .social img { width: 100%; height: 100%; }
 
-    main {
-      padding: 240px 32px 120px 32px;
-      max-width: 1100px;
+	main {
+	  padding: 180px 28px 80px 28px;     /* сильно уменьшили верхний отступ */
+	  max-width: 1080px;
       margin: 0 auto;
-      overflow: hidden;
-    }
+	}
+
+	h1, h2, h3 {
+      color: var(--gold);
+	  text-transform: uppercase;
+      font-weight: 700;
+      margin: 50px 0 20px;               /* меньше отступов сверху/снизу */
+	}
+
+	.product {
+      border-top: 1px solid #222;        /* потемнее и тоньше */
+      padding: 20px 0 16px;              /* меньше внутренние отступы */
+      cursor: pointer;
+	}
+
+	.product-content {
+      display: none;
+      margin-top: 16px;                  /* меньше отступа перед текстом */
+	}
+
+	hr {
+      margin: 50px 0;                    /* меньше высоты разделителя */
+      border: 0;
+      border-top: 1px solid #2a2a2a;     /* почти незаметный */
+      opacity: 0.4;                      /* ещё слабее */
+	}
+
+/* Убираем лишние отступы после блоков текста */
+    p, ul, ol {
+      margin: 0 0 1.1em 0;
+	}
+
+	ul, ol {
+      padding-left: 1.6em;
+      margin: 0.6em 0 1.2em 0;
+	}
 
     #ru-content, #uz-content { margin: 0; }
 
-    h1, h2, h3 {
-      color: var(--gold);
-      text-transform: uppercase;
-      font-weight: 700;
-      margin: 70px 0 28px;
-    }
-
     strong { color: var(--gold); }
 
-    .product {
-      border-top: 1px solid #333;
-      padding: 28px 0;
-      cursor: pointer;
-    }
 
     .product-title {
       color: var(--gold);
@@ -156,8 +190,6 @@
       text-transform: uppercase;
       font-size: 1.1em;
     }
-
-    .product-content { display: none; margin-top: 24px; }
 
     .product.active .product-content { display: block; }
 
@@ -177,15 +209,22 @@
 
     hr { margin: 90px 0; border: 0; border-top: 1px solid #333; }
 
-    @media (max-width: 900px) {
-      .sidebar {
-        transform: translate(-90%, -40%);
-      }
+	@media (max-width: 900px) {
+	  .sidebar {
+      width: 68px;                     /* ещё уже на мобильных */
+      padding: 28px 10px 24px;
+      transform: translateX(-85%) translateY(-50%);  /* почти скрыта */
+      opacity: 0.92;
+	}
+  
+  .sidebar:hover,
+  .sidebar:active,
+  .sidebar:focus-within {
+    transform: translateX(0) translateY(-50%);
+    opacity: 1;
+	}
+	}
 
-      .sidebar:hover,
-      .sidebar:active {
-        transform: translate(0, -40%);
-      }
 
       main { padding: 200px 32px 100px 32px; }
 
@@ -780,6 +819,5 @@ document.addEventListener("DOMContentLoaded", function() {
   })();
 });
 </script>
-	
 </body>
 </html>
