@@ -68,236 +68,210 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
 
   <style>
-    :root {
-      --bg: #121212;
-      --panel: #171717;
-      --text: #d0d0d0;
-      --gold: #BFA46F;
-    }
+  :root {
+    --bg: #121212;
+    --panel: #171717;
+    --text: #d0d0d0;
+    --gold: #BFA46F;
+  }
 
-    * { margin:0; padding:0; box-sizing:border-box; }
+  * { margin:0; padding:0; box-sizing:border-box; }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 17px;
-      line-height: 1.8;
-    }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 17px;
+    line-height: 1.75;          /* чуть плотнее */
+  }
 
-    header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	background: var(--bg);
-	text-align: center;
-	padding: 20px 20px 30px;           /* уменьшили общую высоту */
-	z-index: 1000;
-	box-shadow: 0 4px 30px rgba(0,0,0,0.7);
-	transition: all 0.35s ease;
-	}
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg);
+    text-align: center;
+    padding: 18px 20px 24px;    /* было 20/30 → уменьшено */
+    z-index: 1000;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+    transition: all 0.35s ease;
+  }
 
-	header.scrolled {
-	padding: 12px 20px 18px;           /* ещё меньше при скролле */
-	transform: scale(1.04);            /* лёгкий зум вверх */
-	box-shadow: 0 6px 40px rgba(0,0,0,0.85);
-	}
+  header.scrolled {
+    padding: 10px 20px 16px;    /* было 12/18 → ещё компактнее */
+    transform: scale(1.04);
+    box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+  }
 
-	.logo {
-	max-width: 320px;
-	transition: all 0.35s ease;
-	display: block;
-	margin: 0 auto;
-	}
+  .logo {
+    max-width: 320px;
+    transition: all 0.35s ease;
+    display: block;
+    margin: 0 auto;
+  }
 
-	header.scrolled .logo {
-	max-width: 220px;                  /* меньше, но не слишком агрессивно */
-	}
+  header.scrolled .logo {
+    max-width: 220px;
+  }
 
-	.copyright {
-	font-size: 11px;
-	opacity: 0.65;
-	margin-top: 6px;                   /* ближе к лого */
-	letter-spacing: 0.5px;
-	}
+  .copyright {
+    font-size: 11px;
+    opacity: 0.65;
+    margin-top: 4px;            /* было 6px → ближе */
+    letter-spacing: 0.5px;
+  }
 
-	.sidebar {
-	  position: fixed;
-	  top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      width: 80px;                       /* уже — было 100px */
-      background: var(--panel);
-      border-top-right-radius: 24px;
-      border-bottom-right-radius: 24px;
-      padding: 32px 12px 28px;           /* чуть меньше внутренние отступы */
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 420px;                 /* фиксированная минимальная высота */
-      max-height: 85vh;
-      box-shadow: 5px 0 28px rgba(0,0,0,0.75);
-      z-index: 900;
-      transition: transform 0.4s ease, opacity 0.3s ease;
-	}
+  .sidebar {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 80px;
+    background: var(--panel);
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    padding: 28px 10px 24px;    /* было 32/12/28 → чуть меньше */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 400px;
+    max-height: 85vh;
+    box-shadow: 5px 0 28px rgba(0,0,0,0.75);
+    z-index: 900;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
 
-    .lang-switch { width: 100%; text-align: right; font-weight: bold; font-size: 14px; }
+  .lang-switch { width: 100%; text-align: right; font-weight: bold; font-size: 14px; }
 
-    .lang { cursor: pointer; margin-bottom: 10px; }
+  .lang { cursor: pointer; margin-bottom: 8px; }   /* было 10px */
 
-    .lang.inactive { color: var(--gold); opacity: 0.75; }
+  .lang.inactive { color: var(--gold); opacity: 0.75; }
 
-    .social {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
+  .social {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;                  /* было 22px */
+  }
 
-    .social a {
-      width: 38px;
-      height: 38px;
-      display: block;
-      transition: all .25s ease;
-      filter: brightness(1.6);
-    }
+  .social a {
+    width: 38px;
+    height: 38px;
+    display: block;
+    transition: all .25s ease;
+    filter: brightness(1.6);
+  }
 
-    .social a:hover,
-    .social a:focus {
-      filter: drop-shadow(0 0 10px var(--gold)) brightness(1.3);
-      transform: scale(1.15);
-    }
+  .social a:hover,
+  .social a:focus {
+    filter: drop-shadow(0 0 10px var(--gold)) brightness(1.3);
+    transform: scale(1.15);
+  }
 
-    .social img { width: 100%; height: 100%; }
+  .social img { width: 100%; height: 100%; }
 
-	main {
-	  padding: 180px 28px 80px 28px;     /* сильно уменьшили верхний отступ */
-	  max-width: 1080px;
-      margin: 0 auto;
-	}
+  main {
+    padding: 140px 24px 60px 24px;   /* было 180/28/80 → сильно уменьшено */
+    max-width: 1080px;
+    margin: 0 auto;
+  }
 
-	h1, h2, h3 {
-      color: var(--gold);
-	  text-transform: uppercase;
-      font-weight: 700;
-      margin: 50px 0 20px;               /* меньше отступов сверху/снизу */
-	}
+  h1, h2, h3 {
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 32px 0 12px;             /* было 50/20 → сильно меньше */
+  }
 
-	.product {
-      border-top: 1px solid #222;        /* потемнее и тоньше */
-      padding: 20px 0 16px;              /* меньше внутренние отступы */
-      cursor: pointer;
-	}
+  .product {
+    border-top: 1px solid #222;      /* НЕ ТРОГАЕМ — запрет */
+    padding: 16px 0 12px;            /* было 20/16 → меньше */
+    cursor: pointer;
+  }
 
-	.product-content {
-      display: none;
-      margin-top: 16px;                  /* меньше отступа перед текстом */
-	}
+  .product-cover {
+    background: var(--panel);
+    padding: 20px 24px;              /* было 24/28 → компактнее */
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
+    margin-bottom: 12px;             /* было 20px */
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
 
-	hr {
-      margin: 50px 0;                    /* меньше высоты разделителя */
-      border: 0;
-      border-top: 1px solid #2a2a2a;     /* почти незаметный */
-      opacity: 0.4;                      /* ещё слабее */
-	}
+  .product:hover .product-cover {
+    box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+    transform: translateY(-3px);
+  }
 
-/* Убираем лишние отступы после блоков текста */
-    p, ul, ol {
-      margin: 0 0 1.1em 0;
-	}
+  .product-slogan {
+    font-style: italic;
+    font-weight: bold;
+    color: var(--gold);
+    font-size: 0.96em;
+    line-height: 1.4;
+    margin-top: 6px;                 /* было 10px */
+    opacity: 0.95;
+  }
 
-	ul, ol {
-      padding-left: 1.6em;
-      margin: 0.6em 0 1.2em 0;
-	}
+  .product-title {
+    margin-bottom: 6px;              /* было 8px */
+  }
 
-    #ru-content, #uz-content { margin: 0; }
+  .product-content {
+    display: none;
+    margin-top: 10px;                /* было 16px */
+  }
 
-    strong { color: var(--gold); }
+  .product.active .product-content { display: block; }
 
+  p, ul, ol {
+    margin: 0 0 0.9em 0;             /* было 1.1em → плотнее */
+  }
 
-    .product-title {
-      color: var(--gold);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 1.1em;
-    }
+  ul, ol {
+    padding-left: 1.5em;
+    margin: 0.5em 0 1em 0;           /* было 0.6/1.2 → меньше */
+  }
 
-    .product.active .product-content { display: block; }
+  #ru-content, #uz-content { margin: 0; }
 
-    .counter {
-      margin: 80px 0 40px;
-      font-size: 14px;
-      opacity: 0.7;
-      text-align: center;
-    }
+  strong { color: var(--gold); }
 
-    .contacts {
-      margin-top: 100px;
-      text-align: center;
-    }
+  .counter {
+    margin: 50px 0 24px;             /* было 80/40 → сильно меньше */
+    font-size: 14px;
+    opacity: 0.7;
+    text-align: center;
+  }
 
-    .contacts a { color: var(--gold); text-decoration: none; }
+  .contacts {
+    margin-top: 60px;                /* было 100px */
+    text-align: center;
+  }
 
-    hr { margin: 90px 0; border: 0; border-top: 1px solid #333; }
+  .contacts a { color: var(--gold); text-decoration: none; }
 
-	@media (max-width: 900px) {
-	  .sidebar {
-      width: 68px;                     /* ещё уже на мобильных */
-      padding: 28px 10px 24px;
-      transform: translateX(-85%) translateY(-50%);  /* почти скрыта */
+  @media (max-width: 900px) {
+    .sidebar {
+      width: 68px;
+      padding: 24px 8px 20px;        /* ещё компактнее */
+      transform: translateX(-85%) translateY(-50%);
       opacity: 0.92;
-	}
-  
-  .sidebar:hover,
-  .sidebar:active,
-  .sidebar:focus-within {
-    transform: translateX(0) translateY(-50%);
-    opacity: 1;
-	}
-	}
-
-
-      main { padding: 200px 32px 100px 32px; }
-
-      .social a { width: 34px; height: 34px; }
     }
-	/* ==================== НОВЫЕ СТИЛИ ДЛЯ ОБЛОЖКИ ПРОДУКТОВ ==================== */
-	.product-cover {
-	background: var(--panel);
-	padding: 24px 28px;
-	border: 2px solid var(--gold);
-	border-radius: 6px;
-	box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
-	margin-bottom: 20px;
-	transition: all 0.35s ease;
-	cursor: pointer;
-	  }
 
-	.product:hover .product-cover {
-	box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
-	transform: translateY(-3px);
-	  }
+    .sidebar:hover,
+    .sidebar:active,
+    .sidebar:focus-within {
+      transform: translateX(0) translateY(-50%);
+      opacity: 1;
+    }
 
-	.product-slogan {
-	font-style: italic;
-	font-weight: bold;
-	color: var(--gold);
-	font-size: 0.98em;
-	line-height: 1.45;
-	margin-top: 10px;
-	opacity: 0.95;
-	  }
-
-	/* Убираем старый отступ у заголовка — теперь он внутри обложки */
-	.product-title {
-	margin-bottom: 8px;
-	  }
-	#ru-content, #uz-content {
-	display: none;   /* ← важно! чтобы по умолчанию оба были скрыты */
-	  } 
-  </style>
+    main { padding: 160px 20px 60px 20px; }  /* было 200/32/100 */
+  }
+</style>
 </head>
 
 <body>
