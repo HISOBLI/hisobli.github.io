@@ -122,27 +122,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     letter-spacing: 0.5px;
   }
 
-  .sidebar {
-    position: fixed;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 80px;
-    background: var(--panel);
-    border-top-right-radius: 24px;
-    border-bottom-right-radius: 24px;
-    padding: 28px 10px 24px;    /* было 32/12/28 → чуть меньше */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 400px;
-    max-height: 85vh;
-    box-shadow: 5px 0 28px rgba(0,0,0,0.75);
-    z-index: 900;
-    transition: transform 0.4s ease, opacity 0.3s ease;
-  }
-
+.sidebar {
+  position: fixed;
+  top: 50%;                        /* оставляем как есть */
+  left: 0;
+  transform: translateY(-50%) translateY(33%);   /* ← вот это ключевое изменение: спускаем на ~1/3 вниз */
+  width: 80px;
+  background: var(--panel);
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  padding: 28px 10px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 400px;
+  max-height: 85vh;
+  box-shadow: 5px 0 28px rgba(0,0,0,0.75);
+  z-index: 900;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
   .lang-switch { width: 100%; text-align: right; font-weight: bold; font-size: 14px; }
 
   .lang { cursor: pointer; margin-bottom: 8px; }   /* было 10px */
