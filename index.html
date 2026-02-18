@@ -270,6 +270,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     main { padding: 160px 20px 60px 20px; }  /* было 200/32/100 */
   }
+
+/* Полностью убиваем все hr на странице — делаем их нулевыми */
+hr {
+  display: none !important;          /* самый надёжный способ — скрыть полностью */
+  /* или если хочешь оставить структуру, но сделать невидимой: */
+  /* border: none !important; */
+  /* height: 0 !important; */
+  /* margin: 0 !important; */
+  /* padding: 0 !important; */
+}
+
+/* Убираем любые возможные border-bottom у заголовков, параграфов, списков, .contacts и т.д. */
+h1, h2, h3,
+p, ul, ol, li,
+.product, .product-cover,
+.contacts, .counter {
+  border-bottom: none !important;
+  border-top: none !important;     /* на всякий случай */
+}
+
+/* Если линии от ::after или ::before — убиваем их */
+h2::after, h3::after, .contacts::after,
+p::after, ul::after {
+  content: none !important;
+  border: none !important;
+}
+
+/* Специально для твоего скрина — если линия под списками */
+ul:last-child, ol:last-child {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+}
+	  /* Полная защита от любых горизонтальных линий/hr — на всякий случай */
+hr {
+  display: none !important;
+  visibility: hidden !important;   /* дополнительная страховка */
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+	  
 </style>
 </head>
 
