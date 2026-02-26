@@ -1,1 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FAQ перед подписанием договора с HISOBLI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --gold: #BFA46F;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      text-align: center;
+      padding: 18px 20px 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+      transition: all 0.35s ease;
+    }
+    header.scrolled {
+      padding: 10px 20px 16px;
+      transform: scale(1.04);
+      box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+    }
+    .logo {
+      max-width: 320px;
+      transition: all 0.35s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    header.scrolled .logo {
+      max-width: 220px;
+    }
+    .copyright {
+      font-size: 11px;
+      opacity: 0.65;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    main {
+      padding: 140px 24px 60px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 32px 0 24px;
+    }
+    .faq-item {
+      border-top: 1px solid #222;
+      padding: 16px 0 12px;
+      cursor: pointer;
+    }
+    .faq-question {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 12px;
+      color: var(--text);
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .cloud-container {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+    .cloud-thumb {
+      max-width: 300px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cloud-thumb:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(191,164,111,0.5);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid var(--gold);
+      border-radius: 8px;
+    }
+    .modal.active {
+      display: flex;
+    }
+    @media (max-width: 900px) {
+      main { padding: 160px 20px 60px 20px; }
+      .logo { max-width: 280px; }
+      header.scrolled .logo { max-width: 200px; }
+    }
+  </style>
+</head>
+<body>
+<header id="header">
+  <img src="logo.png" alt="HISOBLI" class="logo">
+  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+</header>
 
+<main>
+  <h1>Часто задаваемые вопросы</h1>
+  <h2>перед подписанием договора с HISOBLI</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">1. Что именно выполняет HISOBLI по договору?</div>
+    <div class="faq-answer">
+      Техническая поддержка бухгалтерии и юридического документооборота строго в объёме Приложения №1. Это не замена главному бухгалтеру, а фабрика решений: ведение учёта, сдача отчётов в my3.soliq.uz, подготовка первичных документов и форм.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">2. Предусмотрены выезды в офис Заказчика или личные встречи?</div>
+    <div class="faq-answer">
+      Нет. Всё взаимодействие удалённое. Живое общение и встречи возможны только по отдельному платному соглашению (§1.1.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">3. Несёт ли HISOBLI ответственность за налоговые последствия и штрафы?</div>
+    <div class="faq-answer">
+      Нет. Ответственность ограничивается технически правильным отражением предоставленных данных. Реальность операций, налоговые риски и последствия — полностью на стороне Заказчика (§1.1.3–1.1.5, §7.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">4. Проверяются и исправляются ли ошибки учёта за прошлые периоды?</div>
+    <div class="faq-answer">
+      Нет. База принимается «как есть». Прошлое не проверяется, не исправляется и не подтверждается (§2.1–2.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">5. Какова стоимость услуг?</div>
+    <div class="faq-answer">
+      6 000 000 сум в месяц. 50 % аванс до 3-го числа месяца, остаток — в течение 3 рабочих дней после акта (§5.1–5.4).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">6. Что именно входит в ежемесячную плату 6 млн сум?</div>
+    <div class="faq-answer">
+      Полный объём услуг по Приложению №1: план счетов, инвентаризация, расчёт зарплаты (до 3 человек в базе), налоги, 10 платёжных поручений, учётная политика, кадровые документы, экспертиза договоров, ЭСФ, акты, E-Contract.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">7. В какие сроки должна предоставляться первичная документация?</div>
+    <div class="faq-answer">
+      Еженедельно, не позднее пятницы 17:00. Задержка → остановка учёта, ответственность Заказчика (§6.9).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">8. Что происходит, если первичные документы оформлены с ошибками или неполно?</div>
+    <div class="faq-answer">
+      HISOBLI уведомляет в течение 3 рабочих дней. Учёт приостанавливается до исправления (§2.4.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">9. Как считается количество операций и превышение лимитов?</div>
+    <div class="faq-answer">
+      1 операция = 1 первичный документ. Лимиты строк: накладные/чеки — 20 строк, акты — 10 строк. Каждые дополнительные 10 строк = +1 операция (§2.4.1–2.4.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">10. Участвует ли HISOBLI в выездных проверках и судах?</div>
+    <div class="faq-answer">
+      Нет. Только письменные пояснения и возражения. Очное представительство — отдельное платное соглашение (§1.10, §1.6.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">11. Кто обеспечивает доступ в my3.soliq.uz, ЭДО и ЭЦП?</div>
+    <div class="faq-answer">
+      Заказчик предоставляет доступ через доверенность и ЭЦП. Полная ответственность за безопасность аккаунтов лежит на Заказчике (§3.1–3.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">12. Что делать, если ключ ЭЦП или E-IMZO вышел из строя?</div>
+    <div class="faq-answer">
+      Восстановить в течение 1 рабочего дня. До восстановления работа приостанавливается (§Прил.2 §13).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">13. Что происходит при превышении выручки 900 млн сум?</div>
+    <div class="faq-answer">
+      HISOBLI предупреждает и получает право расторгнуть договор за 15 дней (§4.2, §4.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">14. Работает ли HISOBLI с плательщиками НДС?</div>
+    <div class="faq-answer">
+      Нет. Договор рассчитан только на упрощённый режим. НДС — отдельное соглашение (§4.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">15. Кто подписывает отчёты, декларации и ЭСФ?</div>
+    <div class="faq-answer">
+      Только Заказчик. Право подписи HISOBLI не передаётся (§3.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">16. Обязательно ли подписывать акт выполненных работ?</div>
+    <div class="faq-answer">
+      Даётся 3 рабочих дня на подпись или мотивированный отказ. Молчание = автоматическое принятие и обязанность оплаты (§5.5–5.6).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">17. Что происходит при просрочке оплаты?</div>
+    <div class="faq-answer">
+      Работа останавливается. База 1С и отчёты удерживаются до полной оплаты (§8.4–8.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">18. Каков максимальный размер ответственности HISOBLI?</div>
+    <div class="faq-answer">
+      Только реальный ущерб, причинённый доказанной технической ошибкой, и не более стоимости одного месяца услуг (§8.1–8.3).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">19. Компенсирует ли HISOBLI штрафы налоговых органов?</div>
+    <div class="faq-answer">
+      Только при одновременном выполнении четырёх условий: данные предоставлены вовремя и полностью → рекомендации соблюдены → ошибка исключительно техническая → подтверждена аудитом. И в любом случае — не более одного месяца оплаты (§8.2–8.2.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">20. Гарантируется ли конфиденциальность?</div>
+    <div class="faq-answer">
+      Да. Разглашение коммерческой тайны влечёт штраф в размере годовой стоимости услуг + возможную уголовную ответственность (§9.1–9.7).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">21. На какой срок заключается договор?</div>
+    <div class="faq-answer">
+      Автоматическая пролонгация на год, если ни одна из сторон не заявила о прекращении за 30 дней (§11.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">22. Как расторгнуть договор досрочно?</div>
+    <div class="faq-answer">
+      Уведомление за 30 календарных дней. Оплата выполненных услуг + 50 % месячной стоимости за передачу дел (§11.6).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">23. Что происходит с базой 1С после расторжения?</div>
+    <div class="faq-answer">
+      Передаётся Заказчику при отсутствии задолженности. При наличии долга — удерживается до полной оплаты (§11.7).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">24. Являются ли финансовые трудности форс-мажором?</div>
+    <div class="faq-answer">
+      Нет. Форс-мажор — только стихийные бедствия, войны, карантины (§10.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">25. Кто отвечает за правильность ИКПУ и кодов в ЭСФ?</div>
+    <div class="faq-answer">
+      Заказчик. Ошибка в коде влечёт штраф 1 % от суммы (§Прил.2 §3).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">26. Проводит ли HISOBLI инвентаризацию активов?</div>
+    <div class="faq-answer">
+      Нет. Предоставляется методика и включение в годовой отчёт. Сама инвентаризация — обязанность Заказчика (§1.2.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">27. Что происходит при изменении законодательства?</div>
+    <div class="faq-answer">
+      HISOBLI адаптируется. При существенном усложнении или росте затрат цена пересматривается за 30 дней уведомления (§6.5.1, Прил.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">28. Почему договор написан в таком жёстком и прямом стиле?</div>
+    <div class="faq-answer">
+      Чтобы исключить иллюзии и недопонимание. HISOBLI заинтересован в клиентах, которые читают, понимают и принимают правила игры, а не в тех, кто потом предъявляет претензии «а вы не сказали».
+    </div>
+  </div>
+
+  <div class="cloud-container">
+    <h2>Облако ключевых фраз</h2>
+    <img src="cloud-ru.png" alt="Облако фраз" class="cloud-thumb" onclick="openModal(this.src)">
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Увеличенное облако">
+  </div>
+</main>
+
+<script>
+  // Аккордеон для FAQ
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Модальное окно для облака
+  function openModal(src) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    img.src = src;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  // Scroll-эффект для шапки
+  window.addEventListener("scroll", function(){
+    const header = document.getElementById("header");
+    header.classList.toggle("scrolled", window.scrollY > 80);
+  });
+</script>
+</body>
+</html>
