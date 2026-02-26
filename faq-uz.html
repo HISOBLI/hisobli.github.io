@@ -1,1 +1,374 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>HISOBLI bilan shartnoma imzolashdan oldin tez-tez so'raladigan savollar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --gold: #BFA46F;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      text-align: center;
+      padding: 18px 20px 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+      transition: all 0.35s ease;
+    }
+    header.scrolled {
+      padding: 10px 20px 16px;
+      transform: scale(1.04);
+      box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+    }
+    .logo {
+      max-width: 320px;
+      transition: all 0.35s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    header.scrolled .logo {
+      max-width: 220px;
+    }
+    .copyright {
+      font-size: 11px;
+      opacity: 0.65;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    main {
+      padding: 140px 24px 60px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 32px 0 24px;
+    }
+    .faq-item {
+      border-top: 1px solid #222;
+      padding: 16px 0 12px;
+      cursor: pointer;
+    }
+    .faq-question {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 12px;
+      color: var(--text);
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .cloud-container {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+    .cloud-thumb {
+      max-width: 300px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cloud-thumb:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(191,164,111,0.5);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid var(--gold);
+      border-radius: 8px;
+    }
+    .modal.active {
+      display: flex;
+    }
+    @media (max-width: 900px) {
+      main { padding: 160px 20px 60px 20px; }
+    }
+  </style>
+</head>
+<body>
+<header id="header">
+  <img src="logo.png" alt="HISOBLI" class="logo">
+  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+</header>
 
+<main>
+  <h1>Tez-tez so'raladigan savollar</h1>
+  <h2>HISOBLI bilan shartnoma imzolashdan oldin</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">1. HISOBLI shartnoma bo'yicha aynan nima qiladi?</div>
+    <div class="faq-answer">
+      Buxgalteriya va yuridik hujjat aylanishini texnik qo'llab-quvvatlash faqat 1-ilova doirasida. Bu bosh buxgalter o'rnini bosish emas, balki qarorlar fabrikasi: hisob yuritish, my3.soliq.uz ga hisobot topshirish, birlamchi hujjatlar va shakllarni tayyorlash.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">2. Buyurtmachi ofisiga chiqish yoki jonli uchrashuvlar nazarda tutilganmi?</div>
+    <div class="faq-answer">
+      Yo'q. Barcha aloqa masofadan. Jonli suhbat va uchrashuvlar faqat alohida pullik kelishuv bo'yicha mumkin (§1.1.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">3. HISOBLI soliq oqibatlari va jarimalar uchun javob beradimi?</div>
+    <div class="faq-answer">
+      Yo'q. Javobgarlik faqat taqdim etilgan ma'lumotlarni texnik to'g'ri aks ettirish bilan cheklanadi. Operatsiyalarning haqiqiyligi, soliq risklari va oqibatlari — to'liq Buyurtmachi zimmasida (§1.1.3–1.1.5, §7.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">4. O'tgan davrlar hisobidagi xatolar tekshiriladi va tuzatiladimi?</div>
+    <div class="faq-answer">
+      Yo'q. Baza «qanday bo'lsa shunday» qabul qilinadi. O'tmish tekshirilmaydi, tuzatilmaydi va tasdiqlanmaydi (§2.1–2.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">5. Xizmatlar narxi qancha?</div>
+    <div class="faq-answer">
+      Oyiga 6 000 000 so'm. 50 % avans har oy 3-sanasiga qadar, qolgan qismi akt kelganidan keyin 3 ish kuni ichida (§5.1–5.4).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">6. Oyiga 6 mln so'mga aynan nima kiradi?</div>
+    <div class="faq-answer">
+      1-ilova bo'yicha to'liq xizmatlar: hisoblar rejasi, inventarizatsiya, ish haqi hisobi (bazada 3 kishigacha), soliqlar, 10 ta to'lov topshiriqnomasi, hisob siyosati, kadr hujjatlari, shartnomalar ekspertizasi, ESF, aktlar, E-Contract.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">7. Birlamchi hujjatlar qachon taqdim etilishi kerak?</div>
+    <div class="faq-answer">
+      Har hafta, juma kuni soat 17:00 gacha. Kechikish → hisob to'xtaydi, javobgarlik Buyurtmachida (§6.9).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">8. Birlamchi hujjatlar xato yoki to'liqsiz bo'lsa nima bo'ladi?</div>
+    <div class="faq-answer">
+      HISOBLI 3 ish kuni ichida ogohlantiradi. Xato tuzatilmaguncha hisob to'xtaydi (§2.4.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">9. Operatsiyalar soni va limitdan oshishi qanday hisoblanadi?</div>
+    <div class="faq-answer">
+      1 operatsiya = 1 birlamchi hujjat. Satrlar limiti: nakladnoy/chek — 20 satr, akt — 10 satr. Har 10 ta qo'shimcha satr = +1 operatsiya (§2.4.1–2.4.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">10. HISOBLI chiqish tekshiruvlari va sudlarda qatnashadimi?</div>
+    <div class="faq-answer">
+      Yo'q. Faqat yozma tushuntirish va e'tirozlar. Jonli vakillik — alohida pullik kelishuv (§1.10, §1.6.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">11. my3.soliq.uz, EDO va ERI ga kirishni kim ta'minlaydi?</div>
+    <div class="faq-answer">
+      Buyurtmachi ishonchnoma va ERI orqali kirishni beradi. Akkauntlar xavfsizligi uchun to'liq javobgarlik Buyurtmachida (§3.1–3.2).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">12. ERI yoki E-IMZO kaliti buzilsa nima qilish kerak?</div>
+    <div class="faq-answer">
+      1 ish kuni ichida tiklash. Tiklanmaguncha ish to'xtaydi (§Ilova 2 §13).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">13. Tushum 900 mln so'mdan oshsa nima bo'ladi?</div>
+    <div class="faq-answer">
+      HISOBLI ogohlantiradi va shartnomani 15 kunda bekor qilish huquqini oladi (§4.2, §4.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">14. HISOBLI NDS to'lovchilar bilan ishlaydimi?</div>
+    <div class="faq-answer">
+      Yo'q. Shartnoma faqat soddalashtirilgan rejim uchun. NDS — alohida kelishuv (§4.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">15. Hisobotlar, deklaratsiyalar va ESF ni kim imzolaydi?</div>
+    <div class="faq-answer">
+      Faqat Buyurtmachi. HISOBLI ga imzo huquqi o'tkazilmaydi (§3.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">16. Bajarilgan ishlar akti majburiy imzolanishi kerakmi?</div>
+    <div class="faq-answer">
+      Imzolash yoki asosli rad etish uchun 3 ish kuni beriladi. Jimlik = avtomatik qabul va to'lash majburiyati (§5.5–5.6).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">17. To'lov kechiksa nima bo'ladi?</div>
+    <div class="faq-answer">
+      Ish to'xtaydi. 1C bazasi va hisobotlar to'liq to'lovgacha ushlab turiladi (§8.4–8.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">18. HISOBLI javobgarligining maksimal miqdori qancha?</div>
+    <div class="faq-answer">
+      Faqat isbotlangan texnik xato tufayli real zarar, lekin bir oy xizmat narxidan oshmaydi (§8.1–8.3).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">19. HISOBLI soliq organlari jarimalarini qoplaydimi?</div>
+    <div class="faq-answer">
+      Faqat 4 shart bir vaqtda bajarilganda: ma'lumotlar o'z vaqtida va to'liq berilgan → tavsiyalar bajarilgan → xato faqat texnik → mustaqil audit bilan tasdiqlangan. Har qanday holatda ham — bir oylik to'lovdan oshmaydi (§8.2–8.2.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">20. Maxfiylik kafolatlanadimi?</div>
+    <div class="faq-answer">
+      Ha. Tijorat siri oshkor qilinsa, yillik xizmat narxi miqdorida jarima + mumkin bo'lgan jinoyat javobgarligi (§9.1–9.7).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">21. Shartnoma qancha muddatga tuziladi?</div>
+    <div class="faq-answer">
+      Hech bir tomon 30 kun oldin bekor qilish haqida xabar bermasa, avtomatik ravishda yilga uzaytiriladi (§11.5).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">22. Shartnomani muddatidan oldin qanday bekor qilish mumkin?</div>
+    <div class="faq-answer">
+      30 kalendar kun oldin xabarnoma. Bajarilgan xizmatlar uchun to'lov + topshirish uchun 50 % oylik qiymat (§11.6).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">23. Shartnoma bekor qilingandan keyin 1C bazasi bilan nima bo'ladi?</div>
+    <div class="faq-answer">
+      Qarzdorlik bo'lmasa Buyurtmachiga topshiriladi. Qarz bo'lsa — to'liq to'lovgacha ushlab turiladi (§11.7).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">24. Moliyaviy qiyinchiliklar fors-major hisoblanadimi?</div>
+    <div class="faq-answer">
+      Yo'q. Fors-major — faqat tabiiy ofatlar, urush, karantin (§10.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">25. ESF da IKPU va kodlarning to'g'riligi uchun kim javob beradi?</div>
+    <div class="faq-answer">
+      Buyurtmachi. Kod xatosi uchun 1 % jarima (§Ilova 2 §3).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">26. HISOBLI aktivlarni inventarizatsiya qiladimi?</div>
+    <div class="faq-answer">
+      Yo'q. Metodika beriladi va yillik hisobotga kiritiladi. Inventarizatsiyaning o'zi — Buyurtmachi majburiyati (§1.2.1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">27. Qonunchilik o'zgarsa nima bo'ladi?</div>
+    <div class="faq-answer">
+      HISOBLI moslashadi. Sezilarli murakkablashish yoki xarajat oshishi bo'lsa, narx 30 kunlik ogohlantirish bilan qayta ko'rib chiqiladi (§6.5.1, Ilova 1).
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">28. Nima uchun shartnoma bunchalik qattiq va ochiq uslubda yozilgan?</div>
+    <div class="faq-answer">
+      Illuziyalar va noto'g'ri tushunchalarni bartaraf qilish uchun. HISOBLI o'qib, tushunib, qoidalarni qabul qiladigan mijozlarni xohlaydi, keyin «siz aytmadingiz» deb da'vo qiladiganlarni emas.
+    </div>
+  </div>
+
+  <div class="cloud-container">
+    <h2>Ob'ektiv fraza buluti</h2>
+    <img src="cloud-uz.png" alt="Ob'ektiv fraza buluti" class="cloud-thumb" onclick="openModal(this.src)">
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Katta ob'ektiv fraza buluti">
+  </div>
+</main>
+
+<script>
+  // Аккордеон
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Модалка для облака
+  function openModal(src) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    img.src = src;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  // Scroll header
+  window.addEventListener("scroll", function(){
+    const header = document.getElementById("header");
+    header.classList.toggle("scrolled", window.scrollY > 80);
+  });
+</script>
+</body>
+</html>
