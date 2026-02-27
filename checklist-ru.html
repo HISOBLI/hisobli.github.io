@@ -59,7 +59,7 @@
       letter-spacing: 0.5px;
     }
     main {
-      padding: 140px 24px 60px 24px;
+      padding: 140px 24px 80px 24px;
       max-width: 1080px;
       margin: 0 auto;
     }
@@ -69,38 +69,73 @@
       font-weight: 700;
       margin: 32px 0 12px;
     }
-    .check-group {
+    .accordion {
       margin: 20px 0 40px;
-    }
-    .check-item {
       border-top: 1px solid #222;
-      padding: 16px 0 12px;
-      cursor: pointer;
     }
-    .check-question {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .accordion-header {
+      background: var(--panel);
+      padding: 16px 24px;
+      cursor: pointer;
       color: var(--gold);
       font-weight: 700;
-      font-size: 1.1em;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      transition: all 0.3s ease;
     }
-    .check-question input[type="checkbox"] {
+    .accordion-header:hover {
+      background: #1e1e1e;
+    }
+    .accordion-header::after {
+      content: '▼';
+      font-size: 0.9em;
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active::after {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      display: none;
+      padding: 16px 24px;
+      background: var(--bg);
+    }
+    .accordion-content.active {
+      display: block;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 12px 0;
+      padding: 8px 0;
+    }
+    .check-item input[type="checkbox"] {
       appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
       border: 2px solid var(--gold);
       border-radius: 4px;
       position: relative;
       cursor: pointer;
+      background: transparent;
     }
-    .check-question input[type="checkbox"]:checked::before {
+    .check-item input[type="checkbox"]:checked::before {
       content: '✔';
       position: absolute;
       top: -2px;
       left: 1px;
       color: var(--gold);
-      font-size: 18px;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .check-item label {
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
     }
     .cloud-container {
       text-align: center;
@@ -136,7 +171,8 @@
       display: flex;
     }
     @media (max-width: 900px) {
-      main { padding: 160px 20px 60px 20px; }
+      main { padding: 160px 20px 80px 20px; }
+      .accordion-header { font-size: 1em; padding: 12px 16px; }
     }
   </style>
 </head>
@@ -150,344 +186,269 @@
   <h1>Чек-лист перед подписанием договора с HISOBLI</h1>
   <p>(поставьте галочку только после полного понимания и согласия с пунктом)</p>
 
-  <h2>Общие положения и границы услуг</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        HISOBLI выполняет только техническую поддержку бухгалтерии и юр.документооборота строго по Приложению №1
+  <!-- Блок 1 -->
+  <div class="accordion">
+    <div class="accordion-header">ОБЩИЕ ПОЛОЖЕНИЯ И ГРАНИЦЫ УСЛУГ</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c1">
+        <label for="c1">HISOBLI выполняет только техническую поддержку бухгалтерии и юр.документооборота строго по Приложению №1</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Живое общение, встречи, звонки — не входят в базовую стоимость и требуют отдельного платного соглашения (§1.1.2)
+      <div class="check-item">
+        <input type="checkbox" id="c2">
+        <label for="c2">Живое общение, встречи, звонки — не входят в базовую стоимость и требуют отдельного платного соглашения (§1.1.2)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        HISOBLI не является финансовым директором, налоговым консультантом или аудитором (§1.1.3)
+      <div class="check-item">
+        <input type="checkbox" id="c3">
+        <label for="c3">HISOBLI не является финансовым директором, налоговым консультантом или аудитором (§1.1.3)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Налоговые последствия, риски, штрафы и доначисления — полностью на стороне Заказчика (§1.1.4, §7.5)
+      <div class="check-item">
+        <input type="checkbox" id="c4">
+        <label for="c4">Налоговые последствия, риски, штрафы и доначисления — полностью на стороне Заказчика (§1.1.4, §7.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Прошлые периоды не проверяются, не исправляются и не подтверждаются (§2.1–2.2)
+      <div class="check-item">
+        <input type="checkbox" id="c5">
+        <label for="c5">Прошлые периоды не проверяются, не исправляются и не подтверждаются (§2.1–2.2)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Экспресс-анализ за 60 дней назад — только для внутренней защиты HISOBLI, не является аудитом (§2.3)
+      <div class="check-item">
+        <input type="checkbox" id="c6">
+        <label for="c6">Экспресс-анализ за 60 дней назад — только для внутренней защиты HISOBLI, не является аудитом (§2.3)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        При обнаружении фиктивных операций или отсутствия первички HISOBLI вправе отказаться от работы без возврата аванса (§2.3.1)
+      <div class="check-item">
+        <input type="checkbox" id="c7">
+        <label for="c7">При обнаружении фиктивных операций или отсутствия первички HISOBLI вправе отказаться от работы без возврата аванса (§2.3.1)</label>
       </div>
     </div>
   </div>
 
-  <h2>Доступы, коммуникация и первичка</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Доступ в my3.soliq.uz, ЭДО (Didox/Faktura), 1С предоставляется Заказчиком через доверенность и действующую ЭЦП (§3.1–3.7)
+  <!-- Блок 2 -->
+  <div class="accordion">
+    <div class="accordion-header">ДОСТУПЫ, КОММУНИКАЦИЯ И ПЕРВИЧКА</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c8">
+        <label for="c8">Доступ в my3.soliq.uz, ЭДО (Didox/Faktura), 1С предоставляется Заказчиком через доверенность и действующую ЭЦП (§3.1–3.7)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="faq-question">
-        <input type="checkbox">
-        Полная ответственность за безопасность логинов, паролей и ключей ЭЦП лежит на Заказчике (§3.1.1, §3.2)
+      <div class="check-item">
+        <input type="checkbox" id="c9">
+        <label for="c9">Полная ответственность за безопасность логинов, паролей и ключей ЭЦП лежит на Заказчике (§3.1.1, §3.2)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Переписка в Telegram + файлы в ЭДО имеют юридическую силу при условии видимости отправителя (§3.3)
+      <div class="check-item">
+        <input type="checkbox" id="c10">
+        <label for="c10">Переписка в Telegram + файлы в ЭДО имеют юридическую силу при условии видимости отправителя (§3.3)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Назначен ответственный сотрудник (ФИО, Telegram), все его указания приравниваются к указаниям Заказчика (§3.4)
+      <div class="check-item">
+        <input type="checkbox" id="c11">
+        <label for="c11">Назначен ответственный сотрудник (ФИО, Telegram), все его указания приравниваются к указаниям Заказчика (§3.4)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Первичные документы предоставляются еженедельно, не позднее пятницы 17:00 (§6.9)
+      <div class="check-item">
+        <input type="checkbox" id="c12">
+        <label for="c12">Первичные документы предоставляются еженедельно, не позднее пятницы 17:00 (§6.9)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Кривая / неполная / отсутствующая первичка → уведомление за 3 дня → остановка учёта до исправления (§2.4.5)
+      <div class="check-item">
+        <input type="checkbox" id="c13">
+        <label for="c13">Кривая / неполная / отсутствующая первичка → уведомление за 3 дня → остановка учёта до исправления (§2.4.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Ключ ЭЦП / E-IMZO должен быть действующим и обновлённым; восстановление — за 1 день (§Прил.2 §2, §13)
+      <div class="check-item">
+        <input type="checkbox" id="c14">
+        <label for="c14">Ключ ЭЦП / E-IMZO должен быть действующим и обновлённым; восстановление — за 1 день (§Прил.2 §2, §13)</label>
       </div>
     </div>
   </div>
 
-  <h2>Объём и лимиты операций</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        1 операция = 1 первичный документ (§2.4.1)
+  <!-- Блок 3 -->
+  <div class="accordion">
+    <div class="accordion-header">ОБЪЁМ И ЛИМИТЫ ОПЕРАЦИЙ</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c15">
+        <label for="c15">1 операция = 1 первичный документ (§2.4.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Лимит строк в документах: накладные / чеки — 20 строк, акты — 10 строк (§2.4.1)
+      <div class="check-item">
+        <input type="checkbox" id="c16">
+        <label for="c16">Лимит строк в документах: накладные / чеки — 20 строк, акты — 10 строк (§2.4.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Каждые дополнительные 10 строк сверх лимита = +1 операция (§2.4.2)
+      <div class="check-item">
+        <input type="checkbox" id="c17">
+        <label for="c17">Каждые дополнительные 10 строк сверх лимита = +1 операция (§2.4.2)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Счёт-фактура без подтверждающей первички не принимается к учёту (§2.4.4)
+      <div class="check-item">
+        <input type="checkbox" id="c18">
+        <label for="c18">Счёт-фактура без подтверждающей первички не принимается к учёту (§2.4.4)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Количество операций считается автоматически через IT на основе предоставленной первички (§2.4)
+      <div class="check-item">
+        <input type="checkbox" id="c19">
+        <label for="c19">Количество операций считается автоматически через IT на основе предоставленной первички (§2.4)</label>
       </div>
     </div>
   </div>
 
-  <h2>Деньги, аванс и акты</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Базовая стоимость — 6 000 000 сум в месяц, только безналичный расчёт в сумах (§5.1)
+  <!-- Блок 4 -->
+  <div class="accordion">
+    <div class="accordion-header">ДЕНЬГИ, АВАНС И АКТЫ</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c20">
+        <label for="c20">Базовая стоимость — 6 000 000 сум в месяц, только безналичный расчёт в сумах (§5.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Аванс 50 % (3 млн сум) до 3-го числа каждого месяца — обязательное условие начала работ (§5.2)
+      <div class="check-item">
+        <input type="checkbox" id="c21">
+        <label for="c21">Аванс 50 % (3 млн сум) до 3-го числа каждого месяца — обязательное условие начала работ (§5.2)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Аванс не возвращается при отказе до старта работ (ушёл на подготовку и тех.запуск) (§5.2.2–5.2.4)
+      <div class="check-item">
+        <input type="checkbox" id="c22">
+        <label for="c22">Аванс не возвращается при отказе до старта работ (ушёл на подготовку и тех.запуск) (§5.2.2–5.2.4)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Акт выполненных работ направляется в первую неделю месяца (§5.5)
+      <div class="check-item">
+        <input type="checkbox" id="c23">
+        <label for="c23">Акт выполненных работ направляется в первую неделю месяца (§5.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        На подпись / мотивированный отказ даётся 3 рабочих дней (§5.5)
+      <div class="check-item">
+        <input type="checkbox" id="c24">
+        <label for="c24">На подпись / мотивированный отказ даётся 3 рабочих дней (§5.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Молчание в течение 3 дней = автоматическое принятие акта и обязанность оплаты (§5.6)
+      <div class="check-item">
+        <input type="checkbox" id="c25">
+        <label for="c25">Молчание в течение 3 дней = автоматическое принятие акта и обязанность оплаты (§5.6)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Работа начинается только после поступления денег на счёт (§5.3)
+      <div class="check-item">
+        <input type="checkbox" id="c26">
+        <label for="c26">Работа начинается только после поступления денег на счёт (§5.3)</label>
       </div>
     </div>
   </div>
 
-  <h2>Ответственность HISOBLI</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Максимальная ответственность — реальный ущерб, не более стоимости 1 месяца услуг (§8.1)
+  <!-- Блок 5 -->
+  <div class="accordion">
+    <div class="accordion-header">ОТВЕТСТВЕННОСТЬ HISOBLI</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c27">
+        <label for="c27">Максимальная ответственность — реальный ущерб, не более стоимости 1 месяца услуг (§8.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Штрафы компенсируются только при одновременном выполнении 4 условий (§8.2.1)
+      <div class="check-item">
+        <input type="checkbox" id="c28">
+        <label for="c28">Штрафы компенсируются только при одновременном выполнении 4 условий (§8.2.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        HISOBLI не отвечает за ошибки гос.порталов (my3, Didox), глюки ЭЦП, сбои серверов Заказчика (§8.6.1)
+      <div class="check-item">
+        <input type="checkbox" id="c29">
+        <label for="c29">HISOBLI не отвечает за ошибки гос.порталов (my3, Didox), глюки ЭЦП, сбои серверов Заказчика (§8.6.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        При просрочке оплаты работа останавливается, база и отчёты удерживаются (§8.4–8.5)
+      <div class="check-item">
+        <input type="checkbox" id="c30">
+        <label for="c30">При просрочке оплаты работа останавливается, база и отчёты удерживаются (§8.4–8.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        HISOBLI не проверяет подлинность документов и не несёт ответственности перед третьими лицами (§8.8)
+      <div class="check-item">
+        <input type="checkbox" id="c31">
+        <label for="c31">HISOBLI не проверяет подлинность документов и не несёт ответственности перед третьими лицами (§8.8)</label>
       </div>
     </div>
   </div>
 
-  <h2>Конфиденциальность и NDA</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Всё, что касается бизнеса Заказчика и методологии HISOBLI — коммерческая тайна (§9.1)
+  <!-- Блок 6 -->
+  <div class="accordion">
+    <div class="accordion-header">КОНФИДЕНЦИАЛЬНОСТЬ И NDA</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c32">
+        <label for="c32">Всё, что касается бизнеса Заказчика и методологии HISOBLI — коммерческая тайна (§9.1)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Разглашение → штраф в размере годовой стоимости услуг + возможная уголовная ответственность (§9.1, §9.7)
+      <div class="check-item">
+        <input type="checkbox" id="c33">
+        <label for="c33">Разглашение → штраф в размере годовой стоимости услуг + возможная уголовная ответственность (§9.1, §9.7)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Данные передаются третьим лицам только по требованию суда / ГНК с предварительным уведомлением (§9.2)
+      <div class="check-item">
+        <input type="checkbox" id="c34">
+        <label for="c34">Данные передаются третьим лицам только по требованию суда / ГНК с предварительным уведомлением (§9.2)</label>
       </div>
     </div>
   </div>
 
-  <h2>Расторжение и передача дел</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Договор автоматически продлевается на год, если нет уведомления о прекращении за 30 дней (§11.5)
+  <!-- Блок 7 -->
+  <div class="accordion">
+    <div class="accordion-header">РАСТОРЖЕНИЕ И ПЕРЕДАЧА ДЕЛ</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c35">
+        <label for="c35">Договор автоматически продлевается на год, если нет уведомления о прекращении за 30 дней (§11.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Досрочное расторжение — письменное уведомление за 30 календарных дней (§11.6)
+      <div class="check-item">
+        <input type="checkbox" id="c36">
+        <label for="c36">Досрочное расторжение — письменное уведомление за 30 календарных дней (§11.6)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        При расторжении оплачиваются выполненные услуги + 50 % месячной стоимости за передачу дел (§11.6)
+      <div class="check-item">
+        <input type="checkbox" id="c37">
+        <label for="c37">При расторжении оплачиваются выполненные услуги + 50 % месячной стоимости за передачу дел (§11.6)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        База 1С и документы передаются только после полного расчёта (§11.7)
+      <div class="check-item">
+        <input type="checkbox" id="c38">
+        <label for="c38">База 1С и документы передаются только после полного расчёта (§11.7)</label>
       </div>
     </div>
   </div>
 
-  <h2>Специальные требования и риски (Приложение №2 и др.)</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        ИКПУ, коды ТН ВЭД и классификаторы в ЭСФ — ответственность Заказчика (§Прил.2 §3)
+  <!-- Блок 8 -->
+  <div class="accordion">
+    <div class="accordion-header">СПЕЦИАЛЬНЫЕ ТРЕБОВАНИЯ И РИСКИ (Приложение №2 и др.)</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c39">
+        <label for="c39">ИКПУ, коды ТН ВЭД и классификаторы в ЭСФ — ответственность Заказчика (§Прил.2 §3)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Ошибка в ИКПУ → штраф 1 % от суммы операции (§Прил.2 §3, ст. 223 НК)
+      <div class="check-item">
+        <input type="checkbox" id="c40">
+        <label for="c40">Ошибка в ИКПУ → штраф 1 % от суммы операции (§Прил.2 §3, ст. 223 НК)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Заявления на льготы подаются через ЭДО, но законность льготы проверяет и несёт Заказчик (§Прил.2 §4)
+      <div class="check-item">
+        <input type="checkbox" id="c41">
+        <label for="c41">Заявления на льготы подаются через ЭДО, но законность льготы проверяет и несёт Заказчик (§Прил.2 §4)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Регистрация в ЭДО и видео-ID — обязанность Заказчика (§Прил.2 §5)
+      <div class="check-item">
+        <input type="checkbox" id="c42">
+        <label for="c42">Регистрация в ЭДО и видео-ID — обязанность Заказчика (§Прил.2 §5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        При превышении выручки 900 млн сум HISOBLI предупреждает и может выйти из договора (§4.2, §4.5)
+      <div class="check-item">
+        <input type="checkbox" id="c43">
+        <label for="c43">При превышении выручки 900 млн сум HISOBLI предупреждает и может выйти из договора (§4.2, §4.5)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Договор не распространяется на общий режим (НДС + прибыль), только упрощёнка (§4.1, §2.4.11)
+      <div class="check-item">
+        <input type="checkbox" id="c44">
+        <label for="c44">Договор не распространяется на общий режим (НДС + прибыль), только упрощёнка (§4.1, §2.4.11)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Финансовые трудности, проблемы с деньгами — не являются форс-мажором (§10.1)
+      <div class="check-item">
+        <input type="checkbox" id="c45">
+        <label for="c45">Финансовые трудности, проблемы с деньгами — не являются форс-мажором (§10.1)</label>
       </div>
     </div>
   </div>
 
-  <h2>Обязанности Заказчика (кратко, но критично)</h2>
-  <div class="check-group">
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Предоставлять полную и достоверную первичку еженедельно (§6.9)
+  <!-- Блок 9 -->
+  <div class="accordion">
+    <div class="accordion-header">ОБЯЗАННОСТИ ЗАКАЗЧИКА (кратко, но критично)</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c46">
+        <label for="c46">Предоставлять полную и достоверную первичку еженедельно (§6.9)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Подтверждать / акцептовать ЭСФ в течение 24 часов (§Прил.2 §12)
+      <div class="check-item">
+        <input type="checkbox" id="c47">
+        <label for="c47">Подтверждать / акцептовать ЭСФ в течение 24 часов (§Прил.2 §12)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Исправлять ошибки в первичке по указаниям HISOBLI (§6.12)
+      <div class="check-item">
+        <input type="checkbox" id="c48">
+        <label for="c48">Исправлять ошибки в первичке по указаниям HISOBLI (§6.12)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Визировать акты сверки за 2 дня (§6.14)
+      <div class="check-item">
+        <input type="checkbox" id="c49">
+        <label for="c49">Визировать акты сверки за 2 дня (§6.14)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Хранить базу 1С и все созданные документы как зеницу ока (§6.15)
+      <div class="check-item">
+        <input type="checkbox" id="c50">
+        <label for="c50">Хранить базу 1С и все созданные документы как зеницу ока (§6.15)</label>
       </div>
-    </div>
-    <div class="check-item">
-      <div class="check-question">
-        <input type="checkbox">
-        Сообщать о любых изменениях в договорах / операциях за 3 дня (§6.16)
+      <div class="check-item">
+        <input type="checkbox" id="c51">
+        <label for="c51">Сообщать о любых изменениях в договорах / операциях за 3 дня (§6.16)</label>
       </div>
     </div>
   </div>
@@ -507,6 +468,15 @@
   window.addEventListener("scroll", function(){
     const header = document.getElementById("header");
     header.classList.toggle("scrolled", window.scrollY > 80);
+  });
+
+  // Аккордеоны
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('active');
+      const content = header.nextElementSibling;
+      content.classList.toggle('active');
+    });
   });
 
   // Модалка для облака
