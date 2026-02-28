@@ -1,1 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>HISOBLI bilan şartnoma imzolaşdan oldin bilişingiz kerak bõlgan narsalar rõyxati = Çek-List</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --gold: #BFA46F;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      text-align: center;
+      padding: 18px 20px 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+      transition: all 0.35s ease;
+    }
+    header.scrolled {
+      padding: 10px 20px 16px;
+      transform: scale(1.04);
+      box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+    }
+    .logo {
+      max-width: 320px;
+      transition: all 0.35s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    header.scrolled .logo {
+      max-width: 220px;
+    }
+    .copyright {
+      font-size: 11px;
+      opacity: 0.65;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    main {
+      padding: 140px 24px 80px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    h1, h2 {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 32px 0 12px;
+    }
+    .accordion {
+      margin: 20px 0 40px;
+      border-top: 1px solid #222;
+    }
+    .accordion-header {
+      background: var(--panel);
+      padding: 16px 24px;
+      cursor: pointer;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.2em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      transition: all 0.3s ease;
+    }
+    .accordion-header:hover {
+      background: #1e1e1e;
+    }
+    .accordion-header::after {
+      content: '▼';
+      font-size: 0.9em;
+      transition: transform 0.3s ease;
+    }
+    .accordion-header.active::after {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      display: none;
+      padding: 16px 24px;
+      background: var(--bg);
+    }
+    .accordion-content.active {
+      display: block;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 12px 0;
+      padding: 8px 0;
+    }
+    .check-item input[type="checkbox"] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      border: 2px solid var(--gold);
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      background: transparent;
+    }
+    .check-item input[type="checkbox"]:checked::before {
+      content: '✔';
+      position: absolute;
+      top: -2px;
+      left: 1px;
+      color: var(--gold);
+      font-size: 20px;
+      line-height: 1;
+    }
+    .check-item label {
+      color: var(--text);
+      cursor: pointer;
+      user-select: none;
+    }
+    .cloud-container {
+      text-align: center;
+      margin: 80px 0 40px;
+    }
+    .cloud-thumb {
+      max-width: 300px;
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .cloud-thumb:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(191,164,111,0.5);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 4px solid var(--gold);
+      border-radius: 8px;
+    }
+    .modal.active {
+      display: flex;
+    }
+    @media (max-width: 900px) {
+      main { padding: 160px 20px 80px 20px; }
+      .accordion-header { font-size: 1em; padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+<header id="header">
+  <img src="logo.png" alt="HISOBLI" class="logo">
+  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+</header>
 
+<main>
+  <h1>HISOBLI bilan şartnoma imzolaşdan oldin bilişingiz kerak bõlgan narsalar rõyxati = Çek-List</h1>
+  <p>(faqat tõliq tuşungan va rozi bõlganingizdan keyin belgi qõying)</p>
+
+  <!-- Блок 1 -->
+  <div class="accordion">
+    <div class="accordion-header">UMUMIY QOIDALAR VA XIZMAT ÇEGARALARI</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c1">
+        <label for="c1">HISOBLI faqat buxgalteriya va yuridik hujjat aylanişini texnik qõllab-quvvatlaydi, qat'iy 1-ilova bõyiça</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c2">
+        <label for="c2">Jonli uçraşuvlar, suhbatlar, çiqişlar — bazaviy narxga kirmaydi, alohida boşqa pullik kelişuv talab qiladi (§1.1.2)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c3">
+        <label for="c3">HISOBLI moliyaviy direktor, soliq maslahatçisi yoki auditor emas (§1.1.3)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c4">
+        <label for="c4">Soliq oqibatlari, risklar, jarimalar va qõşimça tõlovlar — tõliq Buyurtmaçi zimmasida (§1.1.4, §7.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c5">
+        <label for="c5">Õtgan davrlar tekşirilmaydi, tuzatilmaydi va tasdiqlanmaydi (§2.1–2.2)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c6">
+        <label for="c6">60 kunlik ekspress-tahlil — faqat HISOBLI içki himoyasi uçun, audit emas (§2.3)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c7">
+        <label for="c7">Soxta operatsiyalar yoki birlamçi hujjat yõqligi aniqlansa, HISOBLI avansni qaytarmasdan işni rad etiş huquqiga ega (§2.3.1)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 2 -->
+  <div class="accordion">
+    <div class="accordion-header">KIRIŞLAR (DOSTUPLAR), ALOQA VA BIRLAMÇI (PERVIÇKA) HUJJATLAR</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c8">
+        <label for="c8">my3.soliq.uz, EDO (Didox/Faktura), 1С ga kirişni Buyurtmaçidan işonçnoma va amaldagi ERI orqali beradi (§3.1–3.7)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c9">
+        <label for="c9">Login, parol va ERI kalitlari xavfsizligi uçun tõliq javobgarlik Buyurtmaçida (§3.1.1, §3.2)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c10">
+        <label for="c10">Telegramdagi yozişmalar + EDO fayllari — yuboruvçi kõrinib turganda yuridik kuçga ega (§3.3)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c11">
+        <label for="c11">Javobgar xodim tayinlangan (FIO, Telegram), uning kõrsatmalari Buyurtmaçi kõrsatmasi/topşiriği sifatida qabul qilinadi (§3.4)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c12">
+        <label for="c12">Birlamçi hujjatlar har hafta juma kuni 17:00 gaça taqdim etilişi kerak (§6.9)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c13">
+        <label for="c13">Xato / tõliqsiz / yõq birlamçi hujjat → 3 kun içida ogohlantiriş → tuzatilmagunça hisob tõxtaydi (§2.4.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c14">
+        <label for="c14">ERI / E-IMZO kaliti amalda va yangilangan bõlişi kerak; tiklaş — 1 kun içida (§Ilova 2 §2, §13)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 3 -->
+  <div class="accordion">
+    <div class="accordion-header">OPERATSIYALAR HAJMI VA LIMITLARI</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c15">
+        <label for="c15">1 operatsiya = 1 birlamçi hujjat (§2.4.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c16">
+        <label for="c16">Hujjatlardagi satrlar limiti: nakladnoy/çek — 20 satr, akt — 10 satr (§2.4.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c17">
+        <label for="c17">Limitdan oşgan har 10 ta satr = +1 operatsiya (§2.4.2)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c18">
+        <label for="c18">Tasdiqlovçi birlamçi hujjatsiz hisob-faktura hisobga (uçyotga) olinmaydi (§2.4.4)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c19">
+        <label for="c19">Operatsiyalar soni IT orqali taqdim etilgan birlamçi hujjatlar asosida avtomatik hisoblanadi (§2.4)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 4 -->
+  <div class="accordion">
+    <div class="accordion-header">PUL, AVANS VA AKTLAR</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c20">
+        <label for="c20">Bazaviy narx — oyiga 6 000 000 sõm, faqat naqd pulsiz tõlov sõmda (§5.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c21">
+        <label for="c21">Avans 50 % (3 mln sõm) har oy 3-sanasiga qadar — iş boşlanişi uçun majburiy şart (§5.2)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c22">
+        <label for="c22">Iş boşlanişidan oldin rad etilsa avans qaytarilmaydi (tayyorgarlik va texnik işga sarf bõlib ketgan) (§5.2.2–5.2.4)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c23">
+        <label for="c23">Bajarilgan işlar akti oy boşida birinçi haftada yuboriladi (§5.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c24">
+        <label for="c24">Imzolaş yoki asosli rad etiş uçun 3 iş kuni beriladi (§5.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c25">
+        <label for="c25">3 kun içida jim turiş (javob bermaslik) = akt avtomatik qabul qilingani va tõlaş majburiyati (§5.6)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c26">
+        <label for="c26">Iş pul hisob raqamiga tuşgandan keyingina boşlanadi (§5.3)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 5 -->
+  <div class="accordion">
+    <div class="accordion-header">HISOBLI FIRMASINING JAVOBGARLIGI</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c27">
+        <label for="c27">Maksimal javobgarlik — real zarar, 1 oy xizmat narxidan oşmaydi (§8.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c28">
+        <label for="c28">Jarimalar faqat 4 şart bir vaqtda bajarilganda qoplanadi (§8.2.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c29">
+        <label for="c29">HISOBLI davlat portallari (my3, Didox), ERI nosozliklari, Buyurtmaçi serverlaridagi muammolar uçun javob bermaydi (§8.6.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c30">
+        <label for="c30">Tõlov keçiksa iş tõxtaydi, baza va hisobotlar uşlab turiladi (§8.4–8.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c31">
+        <label for="c31">HISOBLI hujjatlarning haqiqiyligini tekşirmaydi va uçinçi şaxslarga javob bermaydi (§8.8)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 6 -->
+  <div class="accordion">
+    <div class="accordion-header">KONFEDENTSIALLIK (MAXFIYLIK) VA NDA</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c32">
+        <label for="c32">Buyurtmaçi biznesi va HISOBLI metodologiyasi bilan boğliq hamma narsa — tijorat siri (§9.1)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c33">
+        <label for="c33">Oşkor qilinsa — yillik xizmat narxi miqdorida jarima + mumkin bõlgan jinoyat javobgarligi (§9.1, §9.7)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c34">
+        <label for="c34">Ma'lumotlar sud / DSQ talabiga kõra uçinçi şaxslarga oldindan ogohlantiriş bilan beriladi (§9.2)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 7 -->
+  <div class="accordion">
+    <div class="accordion-header">ŞARTNOMANI BEKOR QILIŞ VA IŞLARNI TOPŞIRIŞ</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c35">
+        <label for="c35">Şartnoma heç kim 30 kun oldin bekor qiliş haqida xabar bermasa, yilga avtomatik uzaytiriladi (§11.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c36">
+        <label for="c36">Muddatidan oldin bekor qiliş — 30 kalendar kun oldin yozma xabarnoma (§11.6)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c37">
+        <label for="c37">Bekor qilinganda bajarilgan xizmatlar uçun tõlov + topşiriş uçun 50 % oylik qiymat (§11.6)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c38">
+        <label for="c38">1C bazasi va hujjatlar faqat tõliq hisob-kitobdan keyin topşiriladi (§11.7)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 8 -->
+  <div class="accordion">
+    <div class="accordion-header">MAXSUS TALABLAR VA RISKLAR (Ilova №2 va boşqalar)</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c39">
+        <label for="c39">ESF da IKPU/MXIK, TN VED kodlari va klassifikatorlar — Buyurtmaçi javobgarligi (§Ilova 2 §3)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c40">
+        <label for="c40">IKPU/MXIK da xato → operatsiya summasining 1 % jarimasi (§Ilova 2 §3, SK 223-modda)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c41">
+        <label for="c41">Imtiyozlar bõyiça ariza EDO orqali topşiriladi, lekin imtiyozning qonuniyligi Buyurtmaçi zimmasida (§Ilova 2 §4)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c42">
+        <label for="c42">EDO da rõyxatdan õtiş va video-ID — Buyurtmaçi majburiyati (§Ilova 2 §5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c43">
+        <label for="c43">Tuşum 900 mln sõmdan oşsa HISOBLI ogohlantiradi va şartnomadan çiqiş huquqiga ega (§4.2, §4.5)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c44">
+        <label for="c44">Şartnoma umumiy rejimga (NDS + foyda) tarqalmaydi, faqat soddalaştirilgan rejim (uproşyonka) (§4.1, §2.4.11)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c45">
+        <label for="c45">Moliyaviy qiyinçiliklar, pul muammolari — fors-major emas (§10.1)</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Блок 9 -->
+  <div class="accordion">
+    <div class="accordion-header">BUYURTMAÇI MAJBURIYATLARI (qisqa, lekin muhim)</div>
+    <div class="accordion-content">
+      <div class="check-item">
+        <input type="checkbox" id="c46">
+        <label for="c46">Birlamçi (perviçka) hujjatlarni har hafta tõliq va işonçli taqdim etiş (§6.9)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c47">
+        <label for="c47">ESF ni 24 soat içida tasdiqlaş / aksept qiliş (§Ilova 2 §12)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c48">
+        <label for="c48">HISOBLI kõrsatmalariga kõra birlamçi hujjatlardagi xatolarni tuzatiş (§6.12)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c49">
+        <label for="c49">Aktlarni tasdiqlaş 2 kun içida (§6.14)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c50">
+        <label for="c50">1C bazasi va barça yaratilgan hujjatlarni kõz qaroçuğidek saqlaş (§6.15)</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="c51">
+        <label for="c51">Xõjalik şartnomalari / operatsiyalardagi har qanday õzgariş haqida 3 kun içida xabar beriş (§6.16)</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="cloud-container">
+    <h2>Asosiy Tuşunçalar Buluti</h2>
+    <img src="cloud-uz.png" alt="Tuşunçalar Buluti" class="cloud-thumb" onclick="openModal(this.src)">
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Увеличенное облако">
+  </div>
+</main>
+
+<script>
+  // Scroll header
+  window.addEventListener("scroll", function(){
+    const header = document.getElementById("header");
+    header.classList.toggle("scrolled", window.scrollY > 80);
+  });
+
+  // Аккордеоны
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.classList.toggle('active');
+      const content = header.nextElementSibling;
+      content.classList.toggle('active');
+    });
+  });
+
+  // Модалка для облака
+  function openModal(src) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    img.src = src;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+</script>
+</body>
+</html>
