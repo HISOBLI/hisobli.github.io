@@ -137,6 +137,23 @@
       cursor: pointer;
       user-select: none;
     }
+      .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 60px 0 30px;
+      font-size: 1.1em;
+    }
+    .nav-links a {
+      color: var(--gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
     .cloud-container {
       text-align: center;
       margin: 80px 0 40px;
@@ -452,7 +469,11 @@
       </div>
     </div>
   </div>
-
+<div class="nav-links">
+    <a href="https://hisob.li/comparison-ru.html">⇇Сравнительная таблица договора с HISOBLI</a>
+    <a href="https://hisob.li/faq-ru.html">(FAQ) по договору с HISOBLI⇉</a>
+  </div>
+  
   <div class="cloud-container">
     <h2>Облако ключевых фраз</h2>
     <img src="cloud-ru.png" alt="Облако фраз" class="cloud-thumb" onclick="openModal(this.src)">
