@@ -1,1 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>УСЛОВИЯ: ФИРМЫ HISOBLI vs ДРУГИХ БУХГАЛТЕРСКИХ ФИРМ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --gold: #BFA46F;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 17px;
+      line-height: 1.75;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--bg);
+      text-align: center;
+      padding: 18px 20px 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.7);
+      transition: all 0.35s ease;
+    }
+    header.scrolled {
+      padding: 10px 20px 16px;
+      transform: scale(1.04);
+      box-shadow: 0 6px 40px rgba(0,0,0,0.85);
+    }
+    .logo {
+      max-width: 320px;
+      transition: all 0.35s ease;
+      display: block;
+      margin: 0 auto;
+    }
+    header.scrolled .logo {
+      max-width: 220px;
+    }
+    .copyright {
+      font-size: 11px;
+      opacity: 0.65;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
+    }
+    main {
+      padding: 140px 24px 60px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 700;
+      margin: 32px 0 12px;
+    }
+    .param-item {
+      border-top: 1px solid #222;
+      padding: 16px 0 12px;
+      cursor: pointer;
+    }
+    .param-question {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .param-answer {
+      display: none;
+      margin-top: 10px;
+    }
+    .param-item.active .param-answer {
+      display: block;
+    }
+    .hisobli-title {
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .other-title {
+      color: var(--gold);
+      font-weight: 700;
+      margin: 16px 0 6px;
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 60px 0 30px;
+      font-size: 1.1em;
+    }
+    .nav-links a {
+      color: var(--gold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .cloud-container {
+      text-align: center;
+      margin-top: 60px;
+    }
+    .cloud-thumb {
+      max-width: 300px;
+      border: 2px solid var(--gold);
+      border-radius: 6px;
+      box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
+      transition: all 0.35s ease;
+      cursor: pointer;
+    }
+    .cloud-thumb:hover {
+      box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+      transform: translateY(-3px);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+    @media (max-width: 900px) {
+      main { padding: 160px 20px 60px 20px; }
+      .nav-links { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+<header id="header">
+  <img src="logo.png" alt="HISOBLI" class="logo">
+  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+</header>
 
+<main>
+  <h1>УСЛОВИЯ: ФИРМЫ HISOBLI vs ДРУГИХ БУХГАЛТЕРСКИХ ФИРМ</h1>
+  <p>(сравнительная таблица, где слева — наши жёсткие, но честные правила, справа — типичные обещания/ловушки конкурентов)</p>
+
+  <div class="param-item">
+    <div class="param-question">📉 Ответственность за штрафы</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Мы не платим штрафы клиента. Никогда. Ответственность только за техническую правильность отражения данных (§8.1–8.3)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Мы всё закроем», «штрафы компенсируем», «гарантия 0 штрафов» — пока не кинут
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🕰 Прошлые ошибки</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      База «как есть». Не лезем в прошлое, не чистим, не исправляем (§2.1–2.2)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Всё почистим бесплатно», «аудит и исправления в подарок» — потом доплата
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🏢 Выезды / встречи</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Нет. Только удалённо. Общение с глазу на глаз — за отдельные деньги (§1.1.2)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Приедем к вам в офис», «ваш личный бухгалтер 24/7» — пока не пропадёт
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🔑 Доступы к системам</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Клиент даёт доступ — клиент отвечает за утечки (§3.1–3.2)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Мы всё настроим сами», «не волнуйтесь» — потом твои данные на чёрном рынке
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">📄 Первичка и сроки</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      До пятницы 17:00 каждую неделю. Опоздал — учёт стоп, вина клиента (§6.9)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Присылай когда удобно», «мы подождём» — потом «где документы?!»
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">💰 Аванс и оплата</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      50% до 3-го. Молчание = акт принят и деньги снимаем (§5.2, §5.6)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Можно в конце месяца», «без предоплаты» — потом «мы уже всё сделали, платите»
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">📈 Оптимизация налогов и схемы</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Нет схем. Только законный стандарт (§1.1.3)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Сэкономим 20–40%», «серые схемы», «налоговая не заметит» — пока не заметит
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">👤 Персональный менеджер</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Нет, фабрика процессов
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      "Ваш персональный бухгалтер на связи 24/7"
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">💬 Консультации и советы</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Только письменные, без гарантий, наши рекомендации – не панацея (§7.5)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Бесплатные консультации», «подскажем как лучше» — потом «это не наша вина»
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🚨 Участие в проверках и судах</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Только письменные возражения. Очное — за отдельные бабки. В суды нет ходу нам – там только адвокаты (§1.6.1)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Представим вас в налоговой», «всё уладим» — потом «вы сами виноваты»
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🔄 Расторжение договора</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Оповещение за 30 дней + 50% за передачу дел (§11.6)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «В любой момент без штрафов» — потом «вы уже должны за 3 месяца»
+    </div>
+  </div>
+
+  <div class="param-item">
+    <div class="param-question">🛡️ Конфиденциальность</div>
+    <div class="param-answer">
+      <div class="hisobli-title">HISOBLI (честная жёсткая реальность)</div>
+      Разглашение = штраф = годовая стоимость + уголовка (§9.1–9.7)
+      <div class="other-title">Другие бухгалтерские фирмы (типичная сладкая ложь)</div>
+      «Всё конфиденциально, не переживайте» — потом твои данные у конкурентов
+    </div>
+  </div>
+
+  <div class="nav-links">
+    <a href="https://hisob.li/checklist-ru.html">⇇ЧЕКЛИСТ договора с HISOBLI</a>
+    <a href="https://hisob.li/faq-ru.html">(FAQ) по договору с HISOBLI⇉</a>
+  </div>
+
+  <div class="cloud-container">
+    <h2>Облако ключевых фраз</h2>
+    <img src="cloud-ru.png" alt="Облако фраз" class="cloud-thumb" onclick="openModal(this.src)">
+  </div>
+
+  <div id="modal" class="modal" onclick="closeModal()">
+    <img id="modal-img" src="" alt="Увеличенное облако">
+  </div>
+</main>
+
+<script>
+  // Аккордеон
+  document.querySelectorAll('.param-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Модалка
+  function openModal(src) {
+    const modal = document.getElementById('modal');
+    const img = document.getElementById('modal-img');
+    img.src = src;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+  }
+
+  // Scroll header
+  window.addEventListener("scroll", function(){
+    const header = document.getElementById("header");
+    header.classList.toggle("scrolled", window.scrollY > 80);
+  });
+</script>
+</body>
+</html>
