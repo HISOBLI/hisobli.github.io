@@ -346,27 +346,14 @@ RU || ÕZ
 </div>
 
 </div>
+<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 
-
-<div class="ticker">
-
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
-{
-"symbols":[
-{"proName":"BITSTAMP:BTCUSD","title":"BTC"},
-{"proName":"OANDA:XAUUSD","title":"GOLD"},
-{"proName":"FX_IDC:USDUZS","title":"USD/UZS"},
-{"proName":"FX_IDC:EURUZS","title":"EUR/UZS"}
-],
-"colorTheme":"dark",
-"isTransparent":true,
-"displayMode":"adaptive",
-"locale":"ru"
-}
-</script>
-
-</div>
-
+<tv-ticker-tape 
+  symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD' 
+  theme="dark" 
+  transparent="true" 
+  locale="ru">
+</tv-ticker-tape>
 
 <main>
 
