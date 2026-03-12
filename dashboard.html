@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
 
 <meta charset="UTF-8">
@@ -12,83 +11,121 @@
 
 body{
 margin:0;
-background:#0b0b0b;
-color:#e8e8e8;
+background:#070707;
 font-family:'IBM Plex Mono',monospace;
+color:#e6e6e6;
 }
 
 /* HEADER */
 
 header{
-padding:10px 40px 6px;
+padding:10px 40px 4px;
 border-bottom:1px solid #222;
 }
 
-.header-row{
+.header{
 display:grid;
-grid-template-columns:auto auto auto 1fr auto;
+grid-template-columns:80px 160px 260px 1fr auto;
 align-items:center;
-gap:16px;
+gap:12px;
 }
 
-.company-left{
+.left{
 color:#caa74b;
 font-weight:600;
 line-height:1.2;
 }
 
 .logo img{
-height:70px;
+height:60px;
 }
 
-.company-right{
+.consult{
 color:#caa74b;
 font-weight:600;
 line-height:1.2;
 width:260px;
+white-space:nowrap;
 }
 
 .lang{
-justify-self:end;
-color:#777;
-}
-
-.lang span{
 color:#caa74b;
 }
 
-/* ARCHITECTOR LINE */
+/* ARCHITECT LINE */
 
-.arch-line{
-margin-top:6px;
+.arch{
 display:flex;
 justify-content:center;
 align-items:center;
 gap:10px;
-font-size:11px;
+margin-top:6px;
+font-size:10px;
 color:#caa74b;
 white-space:nowrap;
 }
 
-.arch-line img{
+.arch img{
 height:12px;
+filter:brightness(1.2);
 }
 
 /* TICKER */
 
 .ticker{
-margin-top:4px;
+margin-top:6px;
 }
 
 /* PANEL */
 
 .panel{
-margin-top:16px;
 display:flex;
 justify-content:center;
-gap:60px;
+gap:70px;
+margin-top:18px;
 align-items:flex-start;
 }
+
+/* BUTTON ORBIT */
+
+.circle{
+width:58px;
+height:58px;
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.circle img{
+width:28px;
+z-index:3;
+filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);
+}
+
+/* ORBIT SVG */
+
+.orbit{
+position:absolute;
+width:72px;
+height:72px;
+}
+
+.orbit path{
+stroke:#caa74b;
+stroke-width:1.6;
+fill:none;
+stroke-dasharray:6 8;
+opacity:.9;
+}
+
+.orbit1{animation:spin1 9s linear infinite;}
+.orbit2{animation:spin2 14s linear infinite;}
+.orbit3{animation:spin3 18s linear infinite;}
+
+@keyframes spin1{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes spin2{from{transform:rotate(360deg)}to{transform:rotate(0)}}
+@keyframes spin3{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 /* CHANNELS */
 
@@ -100,27 +137,12 @@ text-align:center;
 color:#caa74b;
 font-size:12px;
 letter-spacing:2px;
-margin-bottom:12px;
+margin-bottom:10px;
 }
 
-.social-row{
+.social{
 display:flex;
-gap:18px;
-}
-
-.circle{
-width:54px;
-height:54px;
-border-radius:50%;
-border:2px dashed #caa74b;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.circle img{
-width:28px;
-filter:invert(76%) sepia(29%) saturate(350%) hue-rotate(7deg);
+gap:16px;
 }
 
 /* CONTACT */
@@ -132,38 +154,25 @@ text-align:center;
 .contact-title{
 color:#caa74b;
 font-size:12px;
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .contact-row{
 display:flex;
+gap:16px;
 justify-content:center;
-gap:18px;
 margin-bottom:6px;
-}
-
-.contact-icon{
-width:54px;
-height:54px;
-border-radius:50%;
-border:2px dashed #caa74b;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-color:#caa74b;
-text-decoration:none;
 }
 
 .contact-bottom{
 font-size:11px;
-color:#999;
+color:#9a9a9a;
 }
 
-/* BLOCK GRID */
+/* GRID */
 
 main{
-margin-top:20px;
+margin-top:18px;
 padding:0 40px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -174,19 +183,23 @@ gap:16px;
 border:1px solid #caa74b33;
 padding:22px;
 text-align:center;
+color:#eaeaea;
 }
 
 /* FOOTER */
 
 footer{
-margin-top:20px;
+margin-top:18px;
 border-top:1px solid #222;
-padding:10px 40px;
-color:#caa74b;
-font-size:12px;
+padding:10px 20px;
 display:grid;
-grid-template-columns:260px 1fr;
+grid-template-columns:auto 1fr;
 gap:20px;
+color:#caa74b;
+}
+
+.copy{
+white-space:nowrap;
 }
 
 .disclaimer{
@@ -195,7 +208,6 @@ line-height:1.4;
 }
 
 </style>
-
 </head>
 
 
@@ -204,31 +216,24 @@ line-height:1.4;
 
 <header>
 
-<div class="header-row">
+<div class="header">
 
-<div class="company-left">
-MÇJ<br>ООО
-</div>
+<div class="left">MÇJ<br>ООО</div>
 
-<div class="logo">
-<img src="logo.png">
-</div>
+<div class="logo"><img src="logo.png"></div>
 
-<div class="company-right">
+<div class="consult">
 KONSALTING KOMPANIYASI<br>
 КОНСАЛТИНГОВАЯ КОМПАНИЯ
 </div>
 
 <div></div>
 
-<div class="lang">
-<span>RU</span> || ÕZ
-</div>
+<div class="lang">RU || ÕZ</div>
 
 </div>
 
-
-<div class="arch-line">
+<div class="arch">
 
 <span>PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
 
@@ -245,7 +250,7 @@ KONSALTING KOMPANIYASI<br>
 
 <script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
 
-<tv-ticker-tape 
+<tv-ticker-tape
 symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD'
 theme="dark"
 transparent="true"
@@ -255,7 +260,6 @@ locale="ru">
 </div>
 
 
-
 <div class="panel">
 
 
@@ -263,29 +267,47 @@ locale="ru">
 
 <div class="channels-title">PUBLIC CHANNELS</div>
 
-<div class="social-row">
+<div class="social">
 
-<a class="circle" href="https://www.youtube.com/@HISOBLI" target="_blank">
+<a class="circle">
+<svg class="orbit orbit1" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="youtube.svg">
 </a>
 
-<a class="circle" href="https://www.instagram.com/hisobli" target="_blank">
+<a class="circle">
+<svg class="orbit orbit2" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="instagram.svg">
 </a>
 
-<a class="circle" href="https://bit.ly/Hisobli-FB" target="_blank">
+<a class="circle">
+<svg class="orbit orbit3" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="facebook.svg">
 </a>
 
-<a class="circle" href="https://bit.ly/HISOBLI-TG-kanal" target="_blank">
+<a class="circle">
+<svg class="orbit orbit1" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="telegram.svg">
 </a>
 
-<a class="circle" href="https://www.threads.com/@hisobli" target="_blank">
+<a class="circle">
+<svg class="orbit orbit2" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="threads.svg">
 </a>
 
-<a class="circle" href="https://m.me/hisobli" target="_blank">
+<a class="circle">
+<svg class="orbit orbit3" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
 <img src="messenger.svg">
 </a>
 
@@ -302,9 +324,19 @@ locale="ru">
 
 <div class="contact-row">
 
-<a class="contact-icon" href="mailto:info@hisob.li">✉</a>
+<a class="circle">
+<svg class="orbit orbit1" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
+<img src="email.svg">
+</a>
 
-<a class="contact-icon" href="https://t.me/hiso6li" target="_blank">📞</a>
+<a class="circle">
+<svg class="orbit orbit2" viewBox="0 0 100 100">
+<path d="M20 50 A30 30 0 0 1 80 50"/>
+</svg>
+<img src="phone.svg">
+</a>
 
 </div>
 
@@ -316,7 +348,6 @@ locale="ru">
 
 
 </div>
-
 
 
 <main>
@@ -331,16 +362,15 @@ locale="ru">
 </main>
 
 
-
 <footer>
 
-<div>
+<div class="copy">
 2026 © HISOBLI Mas’uliyati çeklangan jamiyati
 </div>
 
 <div class="disclaimer">
 
-Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин «Контур» в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечёт юридические последствия.
+Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин «Контур» в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов полностью или частично без письменного согласия правообладателя запрещено.
 
 </div>
 
