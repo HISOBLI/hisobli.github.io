@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
 
 <meta charset="UTF-8">
@@ -20,45 +19,40 @@ font-family:'IBM Plex Mono',monospace;
 /* HEADER */
 
 header{
-padding:12px 40px 6px;
+padding:14px 40px 6px;
 border-bottom:1px solid #1a1a1a;
 }
 
 .header-top{
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 }
 
 .brand{
 display:flex;
 align-items:center;
-gap:16px;
-}
-
-.mcj{
-color:#caa74b;
-font-weight:600;
-line-height:1.2;
+gap:20px;
 }
 
 .logo{
-height:64px;
+height:70px;
 }
 
-.consult{
+.company{
 color:#caa74b;
 font-weight:600;
-line-height:1.15;
-letter-spacing:.5px;
+line-height:1.1;
+letter-spacing:.6px;
 }
 
-.consult div{
+.company div{
 white-space:nowrap;
 }
 
 .lang{
 color:#caa74b;
+font-size:14px;
 }
 
 /* ARCH LINE */
@@ -68,21 +62,15 @@ margin-top:6px;
 display:flex;
 justify-content:center;
 align-items:center;
-gap:14px;
+gap:16px;
 font-size:10px;
 color:#caa74b;
 white-space:nowrap;
 }
 
 .divider{
-height:18px;
-filter:brightness(1.3);
-}
-
-/* TICKER */
-
-.ticker{
-margin-top:6px;
+height:20px;
+filter:brightness(1.4) sepia(1) saturate(6);
 }
 
 /* PANEL */
@@ -91,8 +79,7 @@ margin-top:6px;
 display:flex;
 justify-content:center;
 gap:70px;
-margin-top:18px;
-align-items:flex-start;
+margin-top:20px;
 }
 
 /* BUTTON */
@@ -112,7 +99,7 @@ z-index:3;
 filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);
 }
 
-/* ORBIT */
+/* ORBITS */
 
 .orbit{
 position:absolute;
@@ -140,11 +127,8 @@ stroke-linecap:round;
 
 /* CHANNELS */
 
-.channels{
-text-align:center;
-}
-
 .channels-title{
+text-align:center;
 color:#caa74b;
 font-size:12px;
 letter-spacing:2px;
@@ -154,15 +138,13 @@ margin-bottom:10px;
 .social{
 display:flex;
 gap:16px;
+justify-content:center;
 }
 
 /* CONTACT */
 
-.contact{
-text-align:center;
-}
-
 .contact-title{
+text-align:center;
 color:#caa74b;
 font-size:12px;
 margin-bottom:10px;
@@ -176,6 +158,7 @@ margin-bottom:6px;
 }
 
 .contact-bottom{
+text-align:center;
 font-size:11px;
 color:#9a9a9a;
 }
@@ -183,7 +166,7 @@ color:#9a9a9a;
 /* GRID */
 
 main{
-margin-top:18px;
+margin-top:20px;
 padding:0 40px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -194,7 +177,6 @@ gap:16px;
 border:1px solid #caa74b33;
 padding:22px;
 text-align:center;
-color:#eaeaea;
 }
 
 /* FOOTER */
@@ -219,12 +201,9 @@ line-height:1.4;
 }
 
 </style>
-
 </head>
 
-
 <body>
-
 
 <header>
 
@@ -232,15 +211,11 @@ line-height:1.4;
 
 <div class="brand">
 
-<div class="mcj">
-MÇJ<br>ООО
-</div>
-
 <img src="logo.png" class="logo">
 
-<div class="consult">
-<div>KONSALTING KOMPANIYASI</div>
-<div>КОНСАЛТИНГОВАЯ КОМПАНИЯ</div>
+<div class="company">
+<div>"HISOBLI" KONSALTING KOMPANIYASI</div>
+<div>КОНСАЛТИНГОВАЯ КОМПАНИЯ "HISOBLI"</div>
 </div>
 
 </div>
@@ -251,48 +226,28 @@ RU || ÕZ
 
 </div>
 
-
 <div class="arch-line">
 
-<span>
-PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI
-</span>
+<span>PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
 
 <img src="marker_firm.svg" class="divider">
 
-<span>
-АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ
-</span>
+<span>АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ</span>
 
 </div>
 
 </header>
 
 
-<div class="ticker">
-
-<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
-
-<tv-ticker-tape 
-symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD'
-theme="dark"
-transparent="true"
-locale="ru">
-</tv-ticker-tape>
-
-</div>
-
-
-
 <div class="panel">
 
-<div class="channels">
+<div>
 
 <div class="channels-title">PUBLIC CHANNELS</div>
 
 <div class="social">
 
-<a class="circle">
+<a href="https://www.youtube.com/@HISOBLI" target="_blank" class="circle">
 <svg class="orbit orbit1" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -301,7 +256,7 @@ locale="ru">
 <img src="youtube.svg">
 </a>
 
-<a class="circle">
+<a href="https://www.instagram.com/hisobli" target="_blank" class="circle">
 <svg class="orbit orbit2" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -310,7 +265,7 @@ locale="ru">
 <img src="instagram.svg">
 </a>
 
-<a class="circle">
+<a href="https://bit.ly/Hisobli-FB" target="_blank" class="circle">
 <svg class="orbit orbit3" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -319,7 +274,7 @@ locale="ru">
 <img src="facebook.svg">
 </a>
 
-<a class="circle">
+<a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="circle">
 <svg class="orbit orbit1" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -328,7 +283,7 @@ locale="ru">
 <img src="telegram.svg">
 </a>
 
-<a class="circle">
+<a href="https://www.threads.com/@hisobli" target="_blank" class="circle">
 <svg class="orbit orbit2" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -337,7 +292,7 @@ locale="ru">
 <img src="threads.svg">
 </a>
 
-<a class="circle">
+<a href="https://m.me/hisobli" target="_blank" class="circle">
 <svg class="orbit orbit3" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -351,7 +306,7 @@ locale="ru">
 </div>
 
 
-<div class="contact">
+<div>
 
 <div class="contact-title">
 Если вам близка логика HISOBLI — свяжитесь с нами!
@@ -359,7 +314,7 @@ locale="ru">
 
 <div class="contact-row">
 
-<a class="circle">
+<a href="mailto:info@hisob.li" class="circle">
 <svg class="orbit orbit1" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -368,7 +323,7 @@ locale="ru">
 <img src="email.svg">
 </a>
 
-<a class="circle">
+<a href="https://t.me/hiso6li" target="_blank" class="circle">
 <svg class="orbit orbit2" viewBox="0 0 100 100">
 <path d="M20 50 A30 30 0 0 1 80 50"/>
 <path d="M30 20 A30 30 0 0 1 70 80"/>
@@ -386,35 +341,6 @@ locale="ru">
 </div>
 
 </div>
-
-
-
-<main>
-
-<div class="block">DNA</div>
-<div class="block">ENGINE</div>
-<div class="block">MANIFESTO</div>
-<div class="block">ARSENAL</div>
-<div class="block">SAFE</div>
-<div class="block">INTELLECTUAL PROPERTY</div>
-
-</main>
-
-
-<footer>
-
-<div class="copy">
-2026 © HISOBLI Mas’uliyati çeklangan jamiyati
-</div>
-
-<div class="disclaimer">
-
-Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин «Контур» в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан.
-
-</div>
-
-</footer>
-
 
 </body>
 </html>
