@@ -25,6 +25,25 @@ margin:0;
 background:var(--bg);
 color:var(--text);
 font-family:'IBM Plex Mono',monospace;
+
+/* FINTECH GRID */
+
+background-image:
+linear-gradient(rgba(191,164,111,0.05) 1px, transparent 1px),
+linear-gradient(90deg, rgba(191,164,111,0.05) 1px, transparent 1px);
+
+background-size:60px 60px;
+animation:gridmove 40s linear infinite;
+}
+
+@keyframes gridmove{
+0%{
+background-position:0 0,0 0;
+}
+100%{
+background-position:60px 60px,60px 60px;
+}
+
 }
 
 /* HEADER */
@@ -200,22 +219,40 @@ text-align:center;
 /* FOOTER */
 
 footer{
-margin-top:18px;
-border-top:1px solid #222;
-padding:10px 20px;
-display:grid;
-grid-template-columns:auto 1fr;
-gap:20px;
+margin-top:60px;
+padding:20px 0;
+border-top:1px solid var(--border);
+font-size:12px;
+text-align:center;
+color:var(--muted);
+}
+
+.legal summary{
+cursor:pointer;
 color:var(--accent);
+font-size:12px;
+letter-spacing:1px;
+margin-top:5px;
 }
 
 .copy{
-white-space:nowrap;
+font-size:11px;
+margin-bottom:10px;
+letter-spacing:.5px;
 }
 
 .disclaimer{
-font-size:10px;
-line-height:1.4;
+margin-top:10px;
+color:var(--text);
+font-size:12px;
+line-height:1.6;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+}
+
+details[open]{
+padding-top:10px;
 }
 
 .marker-icon{
@@ -395,16 +432,23 @@ RU || ÕZ
 
 </main>
 
-
 <footer>
 
 <div class="copy">
 2026 © HISOBLI Mas’uliyati çeklangan jamiyati
 </div>
 
+<details class="legal">
+
+<summary>[ ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ ]</summary>
+
 <div class="disclaimer">
+
 Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
+
 </div>
+
+</details>
 
 </footer>
 
