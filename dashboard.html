@@ -12,43 +12,40 @@
 
 body{
 margin:0;
-background:#0c0c0c;
+background:#0b0b0b;
 color:#e8e8e8;
 font-family:'IBM Plex Mono',monospace;
-overflow:hidden;
 }
 
 /* HEADER */
 
 header{
-padding:8px 40px 4px 40px;
+padding:10px 40px 6px;
 border-bottom:1px solid #222;
 }
 
-.header-top{
+.header-row{
 display:grid;
-grid-template-columns:auto auto 1fr auto;
+grid-template-columns:auto auto auto 1fr auto;
 align-items:center;
 gap:16px;
 }
 
-.left{
-display:flex;
-flex-direction:column;
+.company-left{
 color:#caa74b;
 font-weight:600;
+line-height:1.2;
 }
 
 .logo img{
 height:70px;
 }
 
-.right{
-display:flex;
-flex-direction:column;
+.company-right{
 color:#caa74b;
 font-weight:600;
-width:420px;
+line-height:1.2;
+width:260px;
 }
 
 .lang{
@@ -56,21 +53,25 @@ justify-self:end;
 color:#777;
 }
 
-.lang .active{
+.lang span{
 color:#caa74b;
 }
 
-.header-bottom{
+/* ARCHITECTOR LINE */
+
+.arch-line{
 margin-top:6px;
 display:flex;
+justify-content:center;
 align-items:center;
-gap:12px;
-font-size:12px;
+gap:10px;
+font-size:11px;
 color:#caa74b;
+white-space:nowrap;
 }
 
-.header-bottom img{
-height:14px;
+.arch-line img{
+height:12px;
 }
 
 /* TICKER */
@@ -79,103 +80,118 @@ height:14px;
 margin-top:4px;
 }
 
-/* CHANNEL TITLE */
+/* PANEL */
 
-.channels-title{
-text-align:center;
-margin-top:18px;
-color:#caa74b;
-font-size:13px;
-letter-spacing:2px;
+.panel{
+margin-top:16px;
+display:flex;
+justify-content:center;
+gap:60px;
+align-items:flex-start;
 }
 
-/* SOCIAL ROW */
+/* CHANNELS */
+
+.channels{
+text-align:center;
+}
+
+.channels-title{
+color:#caa74b;
+font-size:12px;
+letter-spacing:2px;
+margin-bottom:12px;
+}
 
 .social-row{
 display:flex;
-justify-content:center;
-align-items:center;
-gap:28px;
-margin-top:14px;
+gap:18px;
 }
 
-.btn{
-position:relative;
-width:72px;
-height:72px;
+.circle{
+width:54px;
+height:54px;
+border-radius:50%;
+border:2px dashed #caa74b;
 display:flex;
 align-items:center;
 justify-content:center;
-border-radius:50%;
-background:#111;
 }
 
-.btn img{
-width:30px;
-filter:brightness(1.2);
-z-index:2;
+.circle img{
+width:28px;
+filter:invert(76%) sepia(29%) saturate(350%) hue-rotate(7deg);
 }
 
-/* HALO */
+/* CONTACT */
 
-.btn::before{
-content:"";
-position:absolute;
-width:90px;
-height:90px;
+.contact{
+text-align:center;
+}
+
+.contact-title{
+color:#caa74b;
+font-size:12px;
+margin-bottom:8px;
+}
+
+.contact-row{
+display:flex;
+justify-content:center;
+gap:18px;
+margin-bottom:6px;
+}
+
+.contact-icon{
+width:54px;
+height:54px;
 border-radius:50%;
 border:2px dashed #caa74b;
-animation:spin 10s linear infinite;
-opacity:.6;
-}
-
-@keyframes spin{
-from{transform:rotate(0deg)}
-to{transform:rotate(360deg)}
-}
-
-/* CONTACT TEXT */
-
-.contact-top{
-text-align:center;
-margin-top:16px;
-font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:24px;
 color:#caa74b;
+text-decoration:none;
 }
 
 .contact-bottom{
-text-align:center;
-margin-top:6px;
 font-size:11px;
-color:#888;
+color:#999;
 }
 
-/* BLOCKS */
+/* BLOCK GRID */
 
 main{
+margin-top:20px;
+padding:0 40px;
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:16px;
-padding:16px 40px;
 }
 
 .block{
-background:#000;
 border:1px solid #caa74b33;
-padding:24px;
+padding:22px;
 text-align:center;
 }
 
 /* FOOTER */
 
 footer{
+margin-top:20px;
 border-top:1px solid #222;
-padding:10px 30px;
+padding:10px 40px;
+color:#caa74b;
+font-size:12px;
 display:grid;
-grid-template-columns:280px 1fr;
-gap:30px;
-font-size:11px;
-color:#aaa;
+grid-template-columns:260px 1fr;
+gap:20px;
+}
+
+.disclaimer{
+font-size:10px;
+line-height:1.4;
 }
 
 </style>
@@ -188,29 +204,31 @@ color:#aaa;
 
 <header>
 
-<div class="header-top">
+<div class="header-row">
 
-<div class="left">
-<div>MÇJ</div>
-<div>ООО</div>
+<div class="company-left">
+MÇJ<br>ООО
 </div>
 
 <div class="logo">
 <img src="logo.png">
 </div>
 
-<div class="right">
-<div>KONSALTING KOMPANIYASI</div>
-<div>КОНСАЛТИНГОВАЯ КОМПАНИЯ</div>
+<div class="company-right">
+KONSALTING KOMPANIYASI<br>
+КОНСАЛТИНГОВАЯ КОМПАНИЯ
 </div>
+
+<div></div>
 
 <div class="lang">
-<span class="active">RU</span> || ÕZ
+<span>RU</span> || ÕZ
 </div>
 
 </div>
 
-<div class="header-bottom">
+
+<div class="arch-line">
 
 <span>PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
 
@@ -223,73 +241,80 @@ color:#aaa;
 </header>
 
 
-
 <div class="ticker">
 
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
-{
-"symbols":[
-{"proName":"FX_IDC:USDUZS"},
-{"proName":"FX_IDC:EURUZS"},
-{"proName":"EASYMARKETS:OILUSD"},
-{"proName":"BITSTAMP:ETHUSD"}
-],
-"colorTheme":"dark",
-"isTransparent":true,
-"locale":"ru"
-}
-</script>
+<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
+
+<tv-ticker-tape 
+symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD'
+theme="dark"
+transparent="true"
+locale="ru">
+</tv-ticker-tape>
 
 </div>
 
 
+
+<div class="panel">
+
+
+<div class="channels">
 
 <div class="channels-title">PUBLIC CHANNELS</div>
 
-
 <div class="social-row">
 
-<a class="btn" href="https://www.youtube.com/@HISOBLI" target="_blank">
+<a class="circle" href="https://www.youtube.com/@HISOBLI" target="_blank">
 <img src="youtube.svg">
 </a>
 
-<a class="btn" href="https://www.instagram.com/hisobli" target="_blank">
+<a class="circle" href="https://www.instagram.com/hisobli" target="_blank">
 <img src="instagram.svg">
 </a>
 
-<a class="btn" href="https://bit.ly/Hisobli-FB" target="_blank">
+<a class="circle" href="https://bit.ly/Hisobli-FB" target="_blank">
 <img src="facebook.svg">
 </a>
 
-<a class="btn" href="https://bit.ly/HISOBLI-TG-kanal" target="_blank">
+<a class="circle" href="https://bit.ly/HISOBLI-TG-kanal" target="_blank">
 <img src="telegram.svg">
 </a>
 
-<a class="btn" href="https://www.threads.com/@hisobli" target="_blank">
+<a class="circle" href="https://www.threads.com/@hisobli" target="_blank">
 <img src="threads.svg">
 </a>
 
-<a class="btn" href="https://m.me/hisobli" target="_blank">
+<a class="circle" href="https://m.me/hisobli" target="_blank">
 <img src="messenger.svg">
 </a>
 
-<a class="btn" href="https://t.me/hiso6li" target="_blank">
-<img src="phone.svg">
-</a>
-
-<a class="btn" href="mailto:info@hisob.li" target="_blank">
-<img src="email.svg">
-</a>
+</div>
 
 </div>
 
 
-<div class="contact-top">
-Если вам близка логика HISOBLI — свяжитесь с нами
+<div class="contact">
+
+<div class="contact-title">
+Если вам близка логика HISOBLI — свяжитесь с нами!
+</div>
+
+<div class="contact-row">
+
+<a class="contact-icon" href="mailto:info@hisob.li">✉</a>
+
+<a class="contact-icon" href="https://t.me/hiso6li" target="_blank">📞</a>
+
 </div>
 
 <div class="contact-bottom">
-Без форм. Без воронок. Без пустых обещаний
+Без форм. Без воронок. Без пустых обещаний.
+</div>
+
+</div>
+
+
 </div>
 
 
@@ -313,13 +338,9 @@ color:#aaa;
 2026 © HISOBLI Mas’uliyati çeklangan jamiyati
 </div>
 
-<div>
+<div class="disclaimer">
 
-Uşbu saytda joylaştirilgan barça matnli ifodalar, mahsulotlar arxitekturasi, metodologiya, biznes-mantiq va qõllab-quvvatlaş ta’minoti algoritmlari «HISOBLI» MÇJning intellektual mulk obyektlari hisoblanadi.
-
-Kõrsatilgan obyektlar Õzbekiston Respublikasining «Mualliflik huquqi va turdoş huquqlar tõğrisida»gi Qonuni, şuningdek Fuqarolik kodeksining 60 va 64-boblari bilan qõriqlanadi.
-
-Любое копирование, воспроизведение, тиражирование или использование указанных материалов полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
+Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин «Контур» в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечёт юридические последствия.
 
 </div>
 
