@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+
 <meta charset="UTF-8">
 <title>HISOBLI</title>
 
@@ -11,22 +12,17 @@
 
 body{
 margin:0;
-background:#1a1a1a;
+background:#111;
 font-family:'IBM Plex Mono',monospace;
 color:white;
-overflow:hidden;
 }
 
 /* HEADER */
 
 header{
-position:fixed;
-top:0;
-width:100%;
-background:#1a1a1a;
-padding:12px 40px;
-box-sizing:border-box;
+background:#111;
 border-bottom:1px solid #333;
+padding:20px 40px;
 }
 
 .header-grid{
@@ -36,24 +32,25 @@ align-items:center;
 }
 
 .brand{
+display:grid;
+row-gap:6px;
+max-width:1100px;
 color:#c9a646;
-font-weight:700;
-line-height:1.3;
 }
 
-.brand .row{
+.brand-line{
 display:flex;
 align-items:center;
-gap:18px;
+gap:20px;
 }
 
 .brand img{
-height:44px;
+height:46px;
 }
 
 .lang{
 color:#777;
-font-weight:700;
+font-weight:bold;
 }
 
 .lang span.active{
@@ -63,23 +60,23 @@ color:#c9a646;
 /* TICKER */
 
 .ticker{
-margin-top:110px;
 border-bottom:1px solid #333;
 }
 
-/* PUBLIC CHANNELS */
+/* SOCIAL BUTTONS */
 
 .channels{
 display:flex;
 justify-content:center;
-gap:50px;
-margin-top:30px;
+gap:45px;
+padding:30px 0;
+flex-wrap:wrap;
 }
 
 .channel{
 position:relative;
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -92,12 +89,10 @@ fill:white;
 z-index:2;
 }
 
-/* круговая диаграмма */
-
 .ring{
 position:absolute;
-width:80px;
-height:80px;
+width:85px;
+height:85px;
 transform:rotate(-90deg);
 }
 
@@ -105,66 +100,54 @@ transform:rotate(-90deg);
 fill:none;
 stroke:#c9a646;
 stroke-width:3;
-opacity:.8;
-stroke-dasharray:4 6;
+stroke-dasharray:6 8;
+opacity:.9;
 animation:dash linear infinite;
 }
 
 @keyframes dash{
 from{stroke-dashoffset:0}
-to{stroke-dashoffset:200}
+to{stroke-dashoffset:220}
 }
 
-/* CONTENT GRID */
+/* CONTENT */
 
 main{
-position:absolute;
-top:200px;
-bottom:80px;
-width:100%;
 display:grid;
 grid-template-columns:repeat(3,1fr);
-grid-template-rows:repeat(2,1fr);
-gap:30px;
+grid-template-rows:repeat(2,200px);
+gap:28px;
 padding:40px;
-box-sizing:border-box;
 }
 
-/* dashboard blocks */
-
 .block{
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,.45);
 border:1px solid #c9a64633;
-box-shadow:0 0 18px #000;
-backdrop-filter:blur(6px);
+box-shadow:0 0 20px rgba(0,0,0,.7);
 padding:20px;
 }
 
 /* FOOTER */
 
 footer{
-position:fixed;
-bottom:0;
-width:100%;
-background:#1a1a1a;
 border-top:1px solid #333;
-padding:10px 40px;
-box-sizing:border-box;
+padding:12px 40px;
+font-size:11px;
 display:flex;
 justify-content:space-between;
-font-size:12px;
 }
 
 .disclaimer{
 max-width:900px;
-font-size:10px;
 line-height:1.4;
 }
 
 </style>
+
 </head>
 
 <body>
+
 
 <header>
 
@@ -172,16 +155,22 @@ line-height:1.4;
 
 <div class="brand">
 
-<div class="row">
+<div class="brand-line">
+
 <span>MÇJ</span>
+
 <img src="logo.png">
+
 <span>KONSALTING KOMPANIYASI</span>
+
 </div>
 
-<div class="row">
+<div class="brand-line">
+
 <span>ООО</span>
-<span style="visibility:hidden">.</span>
+
 <span>КОНСАЛТИНГОВАЯ КОМПАНИЯ</span>
+
 </div>
 
 <div>
@@ -197,71 +186,87 @@ PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JA
 <div></div>
 
 <div class="lang">
-<span class="active">RU</span> || <span>ÕZ</span>
+<span class="active">RU</span> || ÕZ
 </div>
 
 </div>
 
 </header>
 
+
 <div class="ticker">
 
-<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
+<script src="https://widgets.tradingview.com/tv.js"></script>
 
-<tv-ticker-tape
-symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD'
-theme="dark"
-transparent="true"
-locale="ru">
-</tv-ticker-tape>
+<div id="tv"></div>
+
+<script>
+
+new TradingView.widget({
+
+container_id:"tv",
+
+width:"100%",
+
+height:80,
+
+symbols:[
+["BTCUSD"],
+["ETHUSD"],
+["XAUUSD"],
+["OILUSD"],
+["EURUZS"],
+["USDUZS"]
+],
+
+theme:"dark",
+
+style:"1",
+
+locale:"ru"
+
+})
+
+</script>
 
 </div>
 
-
-<!-- CHANNELS -->
 
 <div class="channels">
 
 <a class="channel" href="https://www.youtube.com/@HISOBLI">
 <svg class="ring"></svg>
-<svg class="icon"><use href="youtube.svg#icon"></use></svg>
+<svg class="icon"><use href="youtube.svg"></use></svg>
 </a>
 
 <a class="channel" href="https://www.instagram.com/hisobli">
 <svg class="ring"></svg>
-<svg class="icon"><use href="instagram.svg#icon"></use></svg>
+<svg class="icon"><use href="instagram.svg"></use></svg>
 </a>
 
 <a class="channel" href="https://bit.ly/Hisobli-FB">
 <svg class="ring"></svg>
-<svg class="icon"><use href="facebook.svg#icon"></use></svg>
+<svg class="icon"><use href="facebook.svg"></use></svg>
 </a>
 
 <a class="channel" href="https://www.threads.com/@hisobli">
 <svg class="ring"></svg>
-<svg class="icon"><use href="threads.svg#icon"></use></svg>
+<svg class="icon"><use href="threads.svg"></use></svg>
 </a>
 
 <a class="channel" href="https://bit.ly/HISOBLI-TG-kanal">
 <svg class="ring"></svg>
-<svg class="icon"><use href="telegram.svg#icon"></use></svg>
+<svg class="icon"><use href="telegram.svg"></use></svg>
 </a>
 
-<a class="channel" href="m.me/hisobli">
+<a class="channel" href="https://m.me/hisobli">
 <svg class="ring"></svg>
-<svg class="icon"><use href="messenger.svg#icon"></use></svg>
+<svg class="icon"><use href="messenger.svg"></use></svg>
 </a>
-
-</div>
-
-
-<!-- CONTACT -->
-
-<div class="channels">
 
 <a class="channel" href="https://t.me/hiso6li">
 <svg class="ring"></svg>
-<svg class="icon"><use href="phone.svg#icon"></use></svg>
+<svg class="icon"><use href="phone.svg"></use></svg>
 </a>
 
 <a class="channel" href="mailto:info@hisob.li">
@@ -308,20 +313,20 @@ locale="ru">
 
 document.querySelectorAll(".ring").forEach(r=>{
 
-let segments=24
+let segments=22
 
 for(let i=0;i<segments;i++){
 
 let c=document.createElementNS("http://www.w3.org/2000/svg","circle")
 
-c.setAttribute("cx","40")
-c.setAttribute("cy","40")
-c.setAttribute("r","36")
+c.setAttribute("cx","42")
+c.setAttribute("cy","42")
+c.setAttribute("r","38")
 
 c.setAttribute("class","segment")
 
-let speed=4+Math.random()*10
-let delay=Math.random()*5
+let speed=6+Math.random()*10
+let delay=Math.random()*6
 
 c.style.animationDuration=speed+"s"
 c.style.animationDelay=delay+"s"
@@ -333,6 +338,7 @@ r.appendChild(c)
 })
 
 </script>
+
 
 </body>
 </html>
