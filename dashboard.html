@@ -9,10 +9,21 @@
 
 <style>
 
+:root{
+
+--bg:#121212;
+--panel:#171717;
+--text:#d0d0d0;
+--muted:#a8a8a8;
+--accent:#BFA46F;
+--border:#222;
+
+}
+
 body{
 margin:0;
-background:#070707;
-color:#e8e8e8;
+background:var(--bg);
+color:var(--text);
 font-family:'IBM Plex Mono',monospace;
 }
 
@@ -20,7 +31,7 @@ font-family:'IBM Plex Mono',monospace;
 
 header{
 padding:14px 40px 6px;
-border-bottom:1px solid #1a1a1a;
+border-bottom:1px solid var(--border);
 }
 
 .header-top{
@@ -40,7 +51,7 @@ height:70px;
 }
 
 .company{
-color:#caa74b;
+color:var(--accent);
 font-weight:600;
 line-height:1.1;
 letter-spacing:.6px;
@@ -51,7 +62,7 @@ white-space:nowrap;
 }
 
 .lang{
-color:#caa74b;
+color:var(--accent);
 font-size:14px;
 }
 
@@ -64,7 +75,7 @@ justify-content:center;
 align-items:center;
 gap:16px;
 font-size:10px;
-color:#caa74b;
+color:var(--accent);
 white-space:nowrap;
 }
 
@@ -129,7 +140,7 @@ stroke-linecap:round;
 
 .channels-title{
 text-align:center;
-color:#caa74b;
+color:var(--accent);
 font-size:12px;
 letter-spacing:2px;
 margin-bottom:10px;
@@ -145,7 +156,7 @@ justify-content:center;
 
 .contact-title{
 text-align:center;
-color:#caa74b;
+color:var(--accent);
 font-size:12px;
 margin-bottom:10px;
 }
@@ -160,7 +171,7 @@ margin-bottom:6px;
 .contact-bottom{
 text-align:center;
 font-size:11px;
-color:#9a9a9a;
+color:var(--muted);
 }
 
 /* TICKER */
@@ -195,7 +206,7 @@ padding:10px 20px;
 display:grid;
 grid-template-columns:auto 1fr;
 gap:20px;
-color:#caa74b;
+color:var(--accent);
 }
 
 .copy{
@@ -210,7 +221,7 @@ line-height:1.4;
 .marker-icon{
 width:26px;
 height:26px;
-background-color:#caa74b;
+background-color:var(--accent);
 
 -webkit-mask-image:url("marker_firm.svg");
 mask-image:url("marker_firm.svg");
