@@ -6,145 +6,145 @@
 <meta charset="UTF-8">
 <title>HISOBLI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-background:#111;
-font-family:'IBM Plex Mono',monospace;
+background:#141414;
 color:white;
+font-family:'IBM Plex Mono',monospace;
 }
 
 /* HEADER */
 
 header{
-background:#111;
-border-bottom:1px solid #333;
+background:#141414;
+border-bottom:1px solid #2c2c2c;
 padding:20px 40px;
 }
 
 .header-grid{
 display:grid;
-grid-template-columns:auto 1fr auto;
+grid-template-columns:1fr auto;
 align-items:center;
 }
 
 .brand{
 display:grid;
 row-gap:6px;
-max-width:1100px;
-color:#c9a646;
+max-width:1200px;
 }
 
-.brand-line{
+.brand-row{
 display:flex;
 align-items:center;
-gap:20px;
+gap:18px;
+color:#caa74b;
+font-weight:600;
 }
 
-.brand img{
-height:46px;
+.brand-row img{
+height:42px;
+}
+
+.brand-text{
+color:#caa74b;
+max-width:1100px;
+font-size:13px;
 }
 
 .lang{
 color:#777;
-font-weight:bold;
 }
 
 .lang span.active{
-color:#c9a646;
+color:#caa74b;
 }
 
 /* TICKER */
 
 .ticker{
-border-bottom:1px solid #333;
+border-bottom:1px solid #2c2c2c;
 }
 
-/* SOCIAL BUTTONS */
+/* SOCIAL */
 
-.channels{
+.social{
 display:flex;
 justify-content:center;
-gap:45px;
-padding:30px 0;
-flex-wrap:wrap;
+gap:40px;
+padding:40px 0;
 }
 
-.channel{
+.btn{
 position:relative;
-width:85px;
-height:85px;
+width:90px;
+height:90px;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-.channel svg.icon{
-width:28px;
-height:28px;
-fill:white;
+.btn img{
+width:30px;
 z-index:2;
 }
 
+/* halo */
+
 .ring{
 position:absolute;
-width:85px;
-height:85px;
-transform:rotate(-90deg);
+width:90px;
+height:90px;
 }
 
 .segment{
 fill:none;
-stroke:#c9a646;
+stroke:#caa74b;
 stroke-width:3;
 stroke-dasharray:6 8;
 opacity:.9;
-animation:dash linear infinite;
+animation:spin linear infinite;
 }
 
-@keyframes dash{
-from{stroke-dashoffset:0}
-to{stroke-dashoffset:220}
+@keyframes spin{
+from{transform:rotate(0)}
+to{transform:rotate(360deg)}
 }
 
-/* CONTENT */
+/* blocks */
 
 main{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-grid-template-rows:repeat(2,200px);
-gap:28px;
+gap:30px;
 padding:40px;
 }
 
 .block{
-background:rgba(0,0,0,.45);
-border:1px solid #c9a64633;
+background:#000;
+border:1px solid #caa74b33;
+padding:30px;
 box-shadow:0 0 20px rgba(0,0,0,.7);
-padding:20px;
 }
 
-/* FOOTER */
+/* footer */
 
 footer{
-border-top:1px solid #333;
-padding:12px 40px;
-font-size:11px;
+border-top:1px solid #2c2c2c;
+padding:16px 40px;
+font-size:12px;
 display:flex;
 justify-content:space-between;
-}
-
-.disclaimer{
-max-width:900px;
-line-height:1.4;
+color:#bbb;
 }
 
 </style>
 
 </head>
+
 
 <body>
 
@@ -155,35 +155,30 @@ line-height:1.4;
 
 <div class="brand">
 
-<div class="brand-line">
+<div class="brand-row">
 
 <span>MÇJ</span>
-
 <img src="logo.png">
-
 <span>KONSALTING KOMPANIYASI</span>
 
 </div>
 
-<div class="brand-line">
+<div class="brand-row">
 
 <span>ООО</span>
-
 <span>КОНСАЛТИНГОВАЯ КОМПАНИЯ</span>
 
 </div>
 
-<div>
+<div class="brand-text">
 PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI
 </div>
 
-<div>
+<div class="brand-text">
 АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ
 </div>
 
 </div>
-
-<div></div>
 
 <div class="lang">
 <span class="active">RU</span> || ÕZ
@@ -196,102 +191,109 @@ PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JA
 
 <div class="ticker">
 
-<script src="https://widgets.tradingview.com/tv.js"></script>
+<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js">
 
-<div id="tv"></div>
-
-<script>
-
-new TradingView.widget({
-
-container_id:"tv",
-
-width:"100%",
-
-height:80,
-
-symbols:[
-["BTCUSD"],
-["ETHUSD"],
-["XAUUSD"],
-["OILUSD"],
-["EURUZS"],
-["USDUZS"]
+{
+"symbols":[
+{"proName":"FX_IDC:USDUZS"},
+{"proName":"FX_IDC:EURUZS"},
+{"proName":"EASYMARKETS:OILUSD"},
+{"proName":"BITSTAMP:ETHUSD"}
 ],
-
-theme:"dark",
-
-style:"1",
-
-locale:"ru"
-
-})
+"colorTheme":"dark",
+"isTransparent":true,
+"locale":"ru"
+}
 
 </script>
 
 </div>
 
 
-<div class="channels">
 
-<a class="channel" href="https://www.youtube.com/@HISOBLI">
-<svg class="ring"></svg>
-<svg class="icon"><use href="youtube.svg"></use></svg>
+<!-- SOCIAL NETWORKS -->
+
+<div class="social">
+
+<a class="btn" href="https://www.youtube.com/@HISOBLI">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="youtube.svg">
 </a>
 
-<a class="channel" href="https://www.instagram.com/hisobli">
-<svg class="ring"></svg>
-<svg class="icon"><use href="instagram.svg"></use></svg>
+<a class="btn" href="https://www.instagram.com/hisobli">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="instagram.svg">
 </a>
 
-<a class="channel" href="https://bit.ly/Hisobli-FB">
-<svg class="ring"></svg>
-<svg class="icon"><use href="facebook.svg"></use></svg>
+<a class="btn" href="https://bit.ly/Hisobli-FB">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="facebook.svg">
 </a>
 
-<a class="channel" href="https://www.threads.com/@hisobli">
-<svg class="ring"></svg>
-<svg class="icon"><use href="threads.svg"></use></svg>
+<a class="btn" href="https://bit.ly/HISOBLI-TG-kanal">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="telegram.svg">
 </a>
 
-<a class="channel" href="https://bit.ly/HISOBLI-TG-kanal">
-<svg class="ring"></svg>
-<svg class="icon"><use href="telegram.svg"></use></svg>
+<a class="btn" href="https://www.threads.com/@hisobli">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="threads.svg">
 </a>
 
-<a class="channel" href="https://m.me/hisobli">
-<svg class="ring"></svg>
-<svg class="icon"><use href="messenger.svg"></use></svg>
-</a>
-
-<a class="channel" href="https://t.me/hiso6li">
-<svg class="ring"></svg>
-<svg class="icon"><use href="phone.svg"></use></svg>
-</a>
-
-<a class="channel" href="mailto:info@hisob.li">
-<svg class="ring"></svg>
-<svg class="icon">@</svg>
+<a class="btn" href="https://m.me/hisobli">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="messenger.svg">
 </a>
 
 </div>
 
 
+
+<!-- CONTACT -->
+
+<div class="social">
+
+<a class="btn" href="https://t.me/hiso6li">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="phone.svg">
+</a>
+
+<a class="btn" href="mailto:info@hisob.li">
+<svg class="ring" viewBox="0 0 100 100">
+<circle class="segment" cx="50" cy="50" r="42"></circle>
+</svg>
+<img src="mail.svg">
+</a>
+
+</div>
+
+
+
 <main>
 
 <div class="block">DNA</div>
-
 <div class="block">ENGINE</div>
-
 <div class="block">MANIFESTO</div>
-
 <div class="block">ARSENAL</div>
-
 <div class="block">SAFE</div>
-
 <div class="block">INTELLECTUAL PROPERTY</div>
 
 </main>
+
 
 
 <footer>
@@ -300,45 +302,27 @@ locale:"ru"
 2026 © HISOBLI Mas’uliyati çeklangan jamiyati
 </div>
 
-<div class="disclaimer">
-Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения являются объектами интеллектуальной собственности ООО «HISOBLI».
+<div>
+Все текстовые формулировки, архитектура продуктов, методология и алгоритмы сопровождения являются интеллектуальной собственностью ООО «HISOBLI».
 </div>
 
 </footer>
 
 
+
 <script>
 
-/* генерация сегментов и случайной анимации */
+document.querySelectorAll(".segment").forEach(el=>{
 
-document.querySelectorAll(".ring").forEach(r=>{
+let speed=6+Math.random()*12
+let delay=Math.random()*5
 
-let segments=22
-
-for(let i=0;i<segments;i++){
-
-let c=document.createElementNS("http://www.w3.org/2000/svg","circle")
-
-c.setAttribute("cx","42")
-c.setAttribute("cy","42")
-c.setAttribute("r","38")
-
-c.setAttribute("class","segment")
-
-let speed=6+Math.random()*10
-let delay=Math.random()*6
-
-c.style.animationDuration=speed+"s"
-c.style.animationDelay=delay+"s"
-
-r.appendChild(c)
-
-}
+el.style.animationDuration=speed+"s"
+el.style.animationDelay=delay+"s"
 
 })
 
 </script>
-
 
 </body>
 </html>
