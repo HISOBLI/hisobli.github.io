@@ -1,205 +1,208 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
 <meta charset="UTF-8">
-
 <title>HISOBLI</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
 margin:0;
-background:#0f0f10;
+background:#1a1a1a;
+font-family:'IBM Plex Mono',monospace;
 color:white;
-font-family:'Inter',sans-serif;
+overflow:hidden;
 }
 
-/* ШАПКА */
+/* HEADER */
 
-.header{
-position:sticky;
+header{
+position:fixed;
 top:0;
-background:#0f0f10;
-border-bottom:1px solid #2a2a2a;
-text-align:center;
-padding:6px 10px;
+width:100%;
+background:#1a1a1a;
+padding:12px 40px;
+box-sizing:border-box;
+border-bottom:1px solid #333;
 }
 
-.header-row1{
-display:flex;
-justify-content:center;
+.header-grid{
+display:grid;
+grid-template-columns:auto 1fr auto;
 align-items:center;
-gap:16px;
-font-size:14px;
 }
 
-.logo img{
-height:48px;
+.brand{
+color:#c9a646;
+font-weight:700;
+line-height:1.3;
 }
 
-.header-row2{
-font-size:13px;
-margin-top:2px;
+.brand .row{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.brand img{
+height:44px;
 }
 
 .lang{
-position:absolute;
-right:18px;
-top:10px;
-font-size:14px;
-cursor:pointer;
+color:#777;
+font-weight:700;
 }
 
-/* ТИКЕР */
+.lang span.active{
+color:#c9a646;
+}
+
+/* TICKER */
 
 .ticker{
-border-bottom:1px solid #222;
+margin-top:110px;
+border-bottom:1px solid #333;
 }
 
-/* ПАНЕЛЬ КАНАЛОВ */
+/* PUBLIC CHANNELS */
 
 .channels{
 display:flex;
 justify-content:center;
-align-items:flex-start;
-gap:120px;
-padding:24px 20px;
+gap:50px;
+margin-top:30px;
 }
 
-.block-title{
-font-size:14px;
-letter-spacing:1px;
-text-align:center;
-margin-bottom:12px;
-}
-
-.row{
-display:flex;
-gap:20px;
-}
-
-/* КНОПКИ */
-
-.icon{
-width:56px;
-height:56px;
-border-radius:50%;
-background:linear-gradient(#2b2b2b,#171717);
+.channel{
+position:relative;
+width:80px;
+height:80px;
 display:flex;
 align-items:center;
 justify-content:center;
-position:relative;
-cursor:pointer;
-transition:0.2s;
 }
 
-.icon:hover{
-transform:scale(1.05);
-}
-
-/* ОРБИТЫ */
-
-.icon::before{
-content:"";
-position:absolute;
-width:78px;
-height:78px;
-border-radius:50%;
-border:2px solid rgba(212,175,55,0.55);
-animation:spin 8s linear infinite;
-}
-
-.icon::after{
-content:"";
-position:absolute;
-width:64px;
-height:64px;
-border-radius:50%;
-border:2px dashed rgba(212,175,55,0.35);
-animation:spin 12s linear reverse infinite;
-}
-
-@keyframes spin{
-from{transform:rotate(0)}
-to{transform:rotate(360deg)}
-}
-
-/* SVG */
-
-.icon svg{
-width:24px;
-height:24px;
+.channel svg.icon{
+width:28px;
+height:28px;
 fill:white;
+z-index:2;
 }
 
-.icon:hover svg{
-fill:#d4af37;
+/* круговая диаграмма */
+
+.ring{
+position:absolute;
+width:80px;
+height:80px;
+transform:rotate(-90deg);
 }
 
-/* КОНТАКТЫ */
-
-.contact{
-text-align:center;
-max-width:280px;
+.segment{
+fill:none;
+stroke:#c9a646;
+stroke-width:3;
+opacity:.8;
+stroke-dasharray:4 6;
+animation:dash linear infinite;
 }
 
-.contact-title{
-font-size:13px;
-margin-bottom:12px;
+@keyframes dash{
+from{stroke-dashoffset:0}
+to{stroke-dashoffset:200}
 }
 
-.contact-sub{
-font-size:11px;
-color:#9a9a9a;
-margin-top:10px;
+/* CONTENT GRID */
+
+main{
+position:absolute;
+top:200px;
+bottom:80px;
+width:100%;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+grid-template-rows:repeat(2,1fr);
+gap:30px;
+padding:40px;
+box-sizing:border-box;
 }
 
-/* ФУТЕР */
+/* dashboard blocks */
 
-.footer{
-border-top:1px solid #2a2a2a;
-text-align:center;
-font-size:11px;
-color:#888;
-padding:10px;
+.block{
+background:rgba(0,0,0,0.45);
+border:1px solid #c9a64633;
+box-shadow:0 0 18px #000;
+backdrop-filter:blur(6px);
+padding:20px;
+}
+
+/* FOOTER */
+
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+background:#1a1a1a;
+border-top:1px solid #333;
+padding:10px 40px;
+box-sizing:border-box;
+display:flex;
+justify-content:space-between;
+font-size:12px;
+}
+
+.disclaimer{
+max-width:900px;
+font-size:10px;
+line-height:1.4;
 }
 
 </style>
 </head>
 
-
 <body>
 
+<header>
 
-<!-- ШАПКА -->
+<div class="header-grid">
 
-<div class="header">
+<div class="brand">
 
-<div class="header-row1">
-
-<span>ООО</span>
-
-<div class="logo">
+<div class="row">
+<span>MÇJ</span>
 <img src="logo.png">
+<span>KONSALTING KOMPANIYASI</span>
 </div>
 
-<span>консалтинговая компания</span>
+<div class="row">
+<span>ООО</span>
+<span style="visibility:hidden">.</span>
+<span>КОНСАЛТИНГОВАЯ КОМПАНИЯ</span>
+</div>
+
+<div>
+PATENTLAŞTIRILGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI
+</div>
+
+<div>
+АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ
+</div>
 
 </div>
 
-<div class="header-row2">
-запатентованные стандартизированные финансово-правовые контуры
+<div></div>
+
+<div class="lang">
+<span class="active">RU</span> || <span>ÕZ</span>
 </div>
 
-<div class="lang">Ru / Öz</div>
-
 </div>
 
-
-
-<!-- ТИКЕР TRADINGVIEW -->
+</header>
 
 <div class="ticker">
 
@@ -215,111 +218,121 @@ locale="ru">
 </div>
 
 
-
-<!-- PUBLIC CHANNELS + CONTACT -->
+<!-- CHANNELS -->
 
 <div class="channels">
 
+<a class="channel" href="https://www.youtube.com/@HISOBLI">
+<svg class="ring"></svg>
+<svg class="icon"><use href="youtube.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="https://www.instagram.com/hisobli">
+<svg class="ring"></svg>
+<svg class="icon"><use href="instagram.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="https://bit.ly/Hisobli-FB">
+<svg class="ring"></svg>
+<svg class="icon"><use href="facebook.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="https://www.threads.com/@hisobli">
+<svg class="ring"></svg>
+<svg class="icon"><use href="threads.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="https://bit.ly/HISOBLI-TG-kanal">
+<svg class="ring"></svg>
+<svg class="icon"><use href="telegram.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="m.me/hisobli">
+<svg class="ring"></svg>
+<svg class="icon"><use href="messenger.svg#icon"></use></svg>
+</a>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div class="channels">
+
+<a class="channel" href="https://t.me/hiso6li">
+<svg class="ring"></svg>
+<svg class="icon"><use href="phone.svg#icon"></use></svg>
+</a>
+
+<a class="channel" href="mailto:info@hisob.li">
+<svg class="ring"></svg>
+<svg class="icon">@</svg>
+</a>
+
+</div>
+
+
+<main>
+
+<div class="block">DNA</div>
+
+<div class="block">ENGINE</div>
+
+<div class="block">MANIFESTO</div>
+
+<div class="block">ARSENAL</div>
+
+<div class="block">SAFE</div>
+
+<div class="block">INTELLECTUAL PROPERTY</div>
+
+</main>
+
+
+<footer>
 
 <div>
-
-<div class="block-title">PUBLIC CHANNELS</div>
-
-<div class="row">
-
-<a class="icon" href="https://youtube.com/@hisobli">
-
-<svg viewBox="0 0 24 24">
-<path d="M23.5 6.2s-.2-1.7-.9-2.4c-.9-.9-1.9-.9-2.4-1C16.8 2.5 12 2.5 12 2.5h0s-4.8 0-8.2.3c-.5.1-1.5.1-2.4 1-.7.7-.9 2.4-.9 2.4S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.7.9 2.4c.9.9 2.1.9 2.6 1 1.9.2 8 .3 8 .3s4.8 0 8.2-.3c.5-.1 1.5-.1 2.4-1 .7-.7.9-2.4.9-2.4s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.6 14.7V7.9l6.5 3.4-6.5 3.4z"/>
-</svg>
-
-</a>
-
-
-<a class="icon" href="https://instagram.com/hisobli">
-
-<svg viewBox="0 0 24 24">
-<path d="M7 2C4 2 2 4 2 7v10c0 3 2 5 5 5h10c3 0 5-2 5-5V7c0-3-2-5-5-5H7zm5 5a5 5 0 110 10 5 5 0 010-10zm6-1a1.2 1.2 0 110 2.4A1.2 1.2 0 0118 6z"/>
-</svg>
-
-</a>
-
-
-<a class="icon" href="https://facebook.com/hisobli">
-
-<svg viewBox="0 0 24 24">
-<path d="M13 22v-9h3l1-4h-4V7c0-1 .3-2 2-2h2V1s-2-.3-3.5-.3C9.5.7 8 2.5 8 5.5V9H5v4h3v9z"/>
-</svg>
-
-</a>
-
-
-<a class="icon" href="https://threads.net">
-
-<svg viewBox="0 0 24 24">
-<path d="M12 2C7 2 4 5 4 9c0 3 2 5 5 5h2c2 0 3-1 3-2s-1-2-3-2h-1"/>
-</svg>
-
-</a>
-
-
-<a class="icon" href="https://t.me/hiso6li">
-
-<svg viewBox="0 0 24 24">
-<path d="M9 18l-.4 3.7c.6 0 .9-.3 1.2-.6l2.8-2.7 5.8 4.3c1 .6 1.7.3 2-.9L23 2.6c.3-1.3-.5-1.8-1.5-1.4L1.6 9c-1.3.5-1.3 1.2-.2 1.6l5 1.6L19 4.8"/>
-</svg>
-
-</a>
-
+2026 © HISOBLI Mas’uliyati çeklangan jamiyati
 </div>
 
+<div class="disclaimer">
+Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения являются объектами интеллектуальной собственности ООО «HISOBLI».
 </div>
 
+</footer>
 
 
-<div class="contact">
+<script>
 
-<div class="contact-title">
-Если вам близка логика HISOBLI — свяжитесь с нами
-</div>
+/* генерация сегментов и случайной анимации */
 
-<div class="row">
+document.querySelectorAll(".ring").forEach(r=>{
 
-<a class="icon" href="mailto:info@hisob.li">
+let segments=24
 
-<svg viewBox="0 0 24 24">
-<path d="M2 4h20v16H2zM2 4l10 8 10-8"/>
-</svg>
+for(let i=0;i<segments;i++){
 
-</a>
+let c=document.createElementNS("http://www.w3.org/2000/svg","circle")
 
+c.setAttribute("cx","40")
+c.setAttribute("cy","40")
+c.setAttribute("r","36")
 
-<a class="icon" href="https://t.me/hiso6li">
+c.setAttribute("class","segment")
 
-<svg viewBox="0 0 24 24">
-<path d="M6 2h12v4H6zM4 6h16v14H4z"/>
-</svg>
+let speed=4+Math.random()*10
+let delay=Math.random()*5
 
-</a>
+c.style.animationDuration=speed+"s"
+c.style.animationDelay=delay+"s"
 
-</div>
+r.appendChild(c)
 
-<div class="contact-sub">
-Без форм. Без воронок. Без пустых обещаний.
-</div>
+}
 
-</div>
+})
 
-</div>
-
-
-
-<!-- ФУТЕР -->
-
-<div class="footer">
-2026 © ООО «HISOBLI» MÇJ — юридический дисклеймер
-</div>
-
+</script>
 
 </body>
 </html>
