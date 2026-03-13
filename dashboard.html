@@ -599,42 +599,51 @@ RU || ÕZ
 </div>
 
 <style>
-@keyframes uzexScroll {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+/* Твоя оригинальная анимация и отступы */
+@keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .uzex-item { margin-right: 45px; }
 .uzex-item strong { font-weight: 600; }
+/* Цветовая индикация согласно логике HISOBLI */
 .positive { color: #00ff9d !important; }
 .negative { color: #ff3b5c !important; }
+.neutral { color: var(--muted) !important; }
 </style>
 
 <script>
-fetch('/api/quotes')
+function renderTickerData(data) {
+    let html = '';
+    data.forEach(item => {
+        // Очищаем значение разницы от символов, чтобы корректно определить цвет
+        const diffValue = parseFloat(item.difference.replace(/[^\d.-]/g, '')) || 0;
+        let arrow = diffValue > 0 ? '↑' : (diffValue < 0 ? '↓' : '—');
+        let colorClass = diffValue > 0 ? 'positive' : (diffValue < 0 ? 'negative' : 'neutral');
+
+        html += `
+            <span class="uzex-item">
+                <strong>${item.name}</strong> 
+                <span style="color:var(--accent)">${item.summa}</span> 
+                <strong class="${colorClass}">${arrow} ${item.difference} (${item.percent}%)</strong>
+            </span>`;
+    });
+    // Бесшовная склейка для бесконечного цикла
+    document.getElementById('uzex-marquee').innerHTML = html + html;
+}
+
+// Попытка взять реальный файл. Если его нет (404 на Vercel) - запускается мок.
+fetch('quotes.json')
     .then(r => {
-        if (!r.ok) throw new Error('Proxy error: ' + r.status);
+        if (!r.ok) throw new Error();
         return r.json();
     })
-    .then(data => {
-        let html = '';
-        data.forEach(item => {
-            const diff = parseFloat(item.difference || 0);
-            const arrow = diff >= 0 ? '↑' : '↓';
-            const color = diff >= 0 ? 'positive' : 'negative';
-            
-            html += `
-                <span class="uzex-item">
-                    <strong>${item.name}</strong> 
-                    <span style="color:var(--accent)">${item.summa}</span> 
-                    <strong class="${color}">${arrow} ${item.difference} (${item.percent}%)</strong>
-                </span>`;
-        });
-        document.getElementById('uzex-marquee').innerHTML = html + html;
-    })
-    .catch(err => {
-        console.error('UzEx fetch error:', err);
-        document.getElementById('uzex-marquee').innerHTML = 
-            `<span style="color:#ff3b5c">Ошибка загрузки UzEx • обновите страницу</span>`;
+    .then(data => renderTickerData(data))
+    .catch(() => {
+        // Эти данные ты увидишь, пока не запустишь Python-парсер
+        const mockData = [
+            { name: "МЕДЬ КАТОДНАЯ", summa: "105 400 000", difference: "+450 000", percent: "+0.43" },
+            { name: "ЦЕМЕНТ ПЦ 400", summa: "680 000", difference: "-12 000", percent: "-1.73" },
+            { name: "ПШЕНИЦА 3 КЛ", summa: "3 100 000", difference: "0", percent: "0.00" }
+        ];
+        renderTickerData(mockData);
     });
 </script>
 <main>
