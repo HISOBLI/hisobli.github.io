@@ -508,7 +508,10 @@ RU || ÕZ
 
 <script>
 fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://uzex.uz/Quote/GetQuotes'))
-    .then(r => r.json())
+    .then(r => {
+        if (!r.ok) throw new Error('Network response was not ok');
+        return r.json();
+    })
     .then(data => {
         let html = '';
         data.forEach(item => {
@@ -523,15 +526,14 @@ fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://uzex.u
                     <strong class="${color}">${arrow} ${item.difference} (${item.percent}%)</strong>
                 </span>`;
         });
-        // дублируем для бесконечной петли
         document.getElementById('uzex-marquee').innerHTML = html + html;
     })
-    .catch(() => {
+    .catch(err => {
+        console.error(err);
         document.getElementById('uzex-marquee').innerHTML = 
-            `<span style="color:#ff3b5c">UzEx котировки временно недоступны • обновите страницу</span>`;
+            `<span style="color:#ff3b5c">UzEx котировки временно недоступны • попробуйте позже</span>`;
     });
 </script>
-
 <main>
     <div class="block">
         <div class="block-title">DNA</div>
