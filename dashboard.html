@@ -507,7 +507,7 @@ RU || ÕZ
 </style>
 
 <script>
-fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://uzex.uz/Quote/GetQuotes'))
+fetch('/api/quotes')
     .then(r => {
         if (!r.ok) throw new Error('Network response was not ok');
         return r.json();
