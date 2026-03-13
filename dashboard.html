@@ -483,6 +483,100 @@ RU || ÕZ
 
 </header>
 
+<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; font-size:14px; padding:10px 0; margin-bottom: 20px;">
+    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 55s linear infinite;"></div>
+</div>
+
+<style>
+@keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.uzex-item { margin-right: 50px; font-family: 'IBM Plex Mono', monospace; }
+.positive { color: #00ff9d !important; }
+.negative { color: #ff3b5c !important; }
+.neutral { color: var(--muted) !important; }
+</style>
+
+<div class="channels-panel" style="background:var(--panel); border:1px solid var(--accent); border-radius:8px; padding:20px; margin-bottom:30px;">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <div class="social-icons">
+             <span style="color:var(--muted); font-size:12px; display:block; margin-bottom:10px; text-align:center; letter-spacing:2px;">PUBLIC CHANNELS</span>
+             </div>
+        <div class="contact-text" style="text-align:right;">
+             <p style="font-size:14px; color:var(--accent);">Если вам близка логика HISOBLI — свяжитесь с нами!</p>
+             <p style="font-size:12px; color:var(--muted);">Без форм. Без воронок. Без пустых обещаний.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+async function getGlobalMarketData() {
+    let marketData = [
+        { id: 'BTCUSDT', name: "BITCOIN", type: 'crypto' },
+        { id: 'ETHUSDT', name: "ETHEREUM", type: 'crypto' },
+        { id: 'PAXGUSDT', name: "GOLD (XAU)", type: 'crypto' },
+        { id: 'UZS', name: "USD/UZS", type: 'forex' },
+        { id: 'RUB', name: "RUB/UZS", type: 'forex' },
+        { id: 'KZT', name: "KZT/UZS", type: 'forex' },
+        { id: 'EUR', name: "EUR/USD", type: 'forex' },
+        { id: 'GBP', name: "GBP/USD", type: 'forex' },
+        { id: 'BRENT', name: "OIL BRENT", type: 'mock', val: "84.22", diff: "+0.12", percent: "0.14" },
+        { id: 'COPPER', name: "COPPER", type: 'mock', val: "9124.5", diff: "-45.2", percent: "0.49" },
+        { id: 'GAS', name: "NATURAL GAS", type: 'mock', val: "2.14", diff: "+0.03", percent: "1.22" }
+    ];
+
+    try {
+        const cryptoSymbols = ['BTCUSDT', 'ETHUSDT', 'PAXGUSDT'];
+        const cryptoRes = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=["${cryptoSymbols.join('","')}"]`);
+        const cryptos = await cryptoRes.json();
+        
+        cryptos.forEach(c => {
+            let item = marketData.find(m => m.id === c.symbol);
+            if(item) {
+                item.summa = parseFloat(c.lastPrice).toLocaleString();
+                item.difference = (parseFloat(c.priceChange) > 0 ? '+' : '') + parseFloat(c.priceChange).toFixed(2);
+                item.percent = c.priceChangePercent;
+            }
+        });
+
+        const fxRes = await fetch('https://open.er-api.com/v6/latest/USD');
+        const fxData = await fxRes.json();
+        
+        if(fxData && fxData.rates) {
+            const r = fxData.rates;
+            marketData.find(m => m.id === 'UZS').summa = r.UZS.toLocaleString();
+            marketData.find(m => m.id === 'RUB').summa = (r.UZS / r.RUB).toFixed(2);
+            marketData.find(m => m.id === 'KZT').summa = (r.UZS / r.KZT).toFixed(2);
+            marketData.find(m => m.id === 'EUR').summa = (1 / r.EUR).toFixed(4);
+            marketData.find(m => m.id === 'GBP').summa = (1 / r.GBP).toFixed(4);
+            
+            marketData.filter(m => m.type === 'forex').forEach(m => {
+                m.difference = "LIVE"; m.percent = "FX";
+            });
+        }
+    } catch (e) { console.warn("Backup data used"); }
+
+    let html = '';
+    marketData.forEach(item => {
+        const val = item.summa || item.val;
+        const diff = item.difference || item.diff;
+        const prcnt = item.percent || "0.00";
+        const isPos = diff.toString().includes('+') || parseFloat(diff) > 0;
+        const isNeg = diff.toString().includes('-') || parseFloat(diff) < 0;
+        let colorClass = isPos ? 'positive' : (isNeg ? 'negative' : 'neutral');
+        let arrow = isPos ? '↑' : (isNeg ? '↓' : '—');
+
+        html += `
+            <span class="uzex-item">
+                <strong style="color:var(--muted)">${item.name}</strong> 
+                <span style="color:var(--accent); margin-left:5px;">${val}</span> 
+                <strong class="${colorClass}" style="margin-left:5px;">${arrow} ${diff} (${prcnt}%)</strong>
+            </span>`;
+    });
+    document.getElementById('uzex-marquee').innerHTML = html + html;
+}
+getGlobalMarketData();
+setInterval(getGlobalMarketData, 600000);
+</script>
+
 
 <div class="panel">
 
@@ -583,125 +677,6 @@ RU || ÕZ
 
 </div>
 
-</div>
-<script type="module" src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"></script>
-
-<tv-ticker-tape 
-  symbols='BITSTAMP:BTCUSD,OANDA:XAUUSD,FX_IDC:USDUZS,FX_IDC:EURUZS,EASYMARKETS:OILUSD,BITSTAMP:ETHUSD' 
-  theme="dark" 
-  transparent="true" 
-  locale="ru">
-</tv-ticker-tape>
-
-  <!-- === UZEX ТИКЕР В ТВОЁМ СТИЛЕ === -->
-<div class="ticker" style="background:var(--panel); border:1px solid var(--accent); border-radius:6px; padding:14px 20px; overflow:hidden; white-space:nowrap; font-size:15px; margin-top:20px;">
-    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 40s linear infinite;"></div>
-</div>
-
-<style>
-/* Твоя оригинальная анимация и отступы */
-@keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.uzex-item { margin-right: 45px; }
-.uzex-item strong { font-weight: 600; }
-/* Цветовая индикация согласно логике HISOBLI */
-.positive { color: #00ff9d !important; }
-.negative { color: #ff3b5c !important; }
-.neutral { color: var(--muted) !important; }
-</style>
-
-<script>
-function renderTickerData(data) {
-    let html = '';
-    data.forEach(item => {
-        // Очищаем значение разницы от символов, чтобы корректно определить цвет
-        const diffValue = parseFloat(item.difference.replace(/[^\d.-]/g, '')) || 0;
-        let arrow = diffValue > 0 ? '↑' : (diffValue < 0 ? '↓' : '—');
-        let colorClass = diffValue > 0 ? 'positive' : (diffValue < 0 ? 'negative' : 'neutral');
-
-        html += `
-            <span class="uzex-item">
-                <strong>${item.name}</strong> 
-                <span style="color:var(--accent)">${item.summa}</span> 
-                <strong class="${colorClass}">${arrow} ${item.difference} (${item.percent}%)</strong>
-            </span>`;
-    });
-    // Бесшовная склейка для бесконечного цикла
-    document.getElementById('uzex-marquee').innerHTML = html + html;
-}
-
-// Попытка взять реальный файл. Если его нет (404 на Vercel) - запускается мок.
-fetch('quotes.json')
-    .then(r => {
-        if (!r.ok) throw new Error();
-        return r.json();
-    })
-    .then(data => renderTickerData(data))
-    .catch(() => {
-        // Эти данные ты увидишь, пока не запустишь Python-парсер
-        const mockData = [
-            { name: "МЕДЬ КАТОДНАЯ", summa: "105 400 000", difference: "+450 000", percent: "+0.43" },
-            { name: "ЦЕМЕНТ ПЦ 400", summa: "680 000", difference: "-12 000", percent: "-1.73" },
-            { name: "ПШЕНИЦА 3 КЛ", summa: "3 100 000", difference: "0", percent: "0.00" }
-        ];
-        renderTickerData(mockData);
-    });
-</script>
-
-<script>
-async function getLiveRates() {
-    let data = [
-        { name: "BTC/USD", summa: "Загрузка...", difference: "0", percent: "0" },
-        { name: "USD/UZS", summa: "Загрузка...", difference: "0", percent: "0" },
-        { name: "МЕДЬ (LME)", summa: "9,140", difference: "+12", percent: "+0.13" },
-        { name: "НЕФТЬ BRENT", summa: "82.40", difference: "-0.15", percent: "-0.18" }
-    ];
-
-    try {
-        // 1. Получаем курс BTC с Binance (без ключей, работает всегда)
-        const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
-        const btcData = await btcRes.json();
-        data[0].summa = parseFloat(btcData.lastPrice).toLocaleString();
-        data[0].difference = (parseFloat(btcData.priceChange) > 0 ? '+' : '') + parseFloat(btcData.priceChange).toFixed(2);
-        data[0].percent = btcData.priceChangePercent;
-
-        // 2. Получаем курс USD/UZS (используем надежный бесплатный API)
-        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const exData = await exchangeRes.json();
-        if(exData && exData.rates && exData.rates.UZS) {
-            data[1].summa = exData.rates.UZS.toLocaleString();
-            data[1].difference = "Центробанк"; // API часто не дает суточную разницу
-            data[1].percent = "LIVE";
-        }
-    } catch (e) {
-        console.error("Ошибка обновления живых данных, используем резерв контура", e);
-    }
-    
-    renderTickerData(data);
-}
-
-function renderTickerData(data) {
-    let html = '';
-    data.forEach(item => {
-        const diffValue = parseFloat(item.difference) || 0;
-        let arrow = diffValue > 0 ? '↑' : (diffValue < 0 ? '↓' : '—');
-        let colorClass = diffValue > 0 ? 'positive' : (diffValue < 0 ? 'negative' : 'neutral');
-
-        html += `
-            <span class="uzex-item">
-                <strong>${item.name}</strong> 
-                <span style="color:var(--accent)">${item.summa}</span> 
-                <strong class="${colorClass}">${arrow} ${item.difference} (${item.percent}%)</strong>
-            </span>`;
-    });
-    document.getElementById('uzex-marquee').innerHTML = html + html;
-}
-
-// Запуск
-getLiveRates();
-// Обновляем данные раз в 5 минут, чтобы не нагружать сайт
-setInterval(getLiveRates, 300000);
-</script>
-  
 <main>
     <div class="block">
         <div class="block-title">DNA</div>
