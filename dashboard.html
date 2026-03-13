@@ -646,6 +646,62 @@ fetch('quotes.json')
         renderTickerData(mockData);
     });
 </script>
+
+<script>
+async function getLiveRates() {
+    let data = [
+        { name: "BTC/USD", summa: "Загрузка...", difference: "0", percent: "0" },
+        { name: "USD/UZS", summa: "Загрузка...", difference: "0", percent: "0" },
+        { name: "МЕДЬ (LME)", summa: "9,140", difference: "+12", percent: "+0.13" },
+        { name: "НЕФТЬ BRENT", summa: "82.40", difference: "-0.15", percent: "-0.18" }
+    ];
+
+    try {
+        // 1. Получаем курс BTC с Binance (без ключей, работает всегда)
+        const btcRes = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
+        const btcData = await btcRes.json();
+        data[0].summa = parseFloat(btcData.lastPrice).toLocaleString();
+        data[0].difference = (parseFloat(btcData.priceChange) > 0 ? '+' : '') + parseFloat(btcData.priceChange).toFixed(2);
+        data[0].percent = btcData.priceChangePercent;
+
+        // 2. Получаем курс USD/UZS (используем надежный бесплатный API)
+        const exchangeRes = await fetch('https://open.er-api.com/v6/latest/USD');
+        const exData = await exchangeRes.json();
+        if(exData && exData.rates && exData.rates.UZS) {
+            data[1].summa = exData.rates.UZS.toLocaleString();
+            data[1].difference = "Центробанк"; // API часто не дает суточную разницу
+            data[1].percent = "LIVE";
+        }
+    } catch (e) {
+        console.error("Ошибка обновления живых данных, используем резерв контура", e);
+    }
+    
+    renderTickerData(data);
+}
+
+function renderTickerData(data) {
+    let html = '';
+    data.forEach(item => {
+        const diffValue = parseFloat(item.difference) || 0;
+        let arrow = diffValue > 0 ? '↑' : (diffValue < 0 ? '↓' : '—');
+        let colorClass = diffValue > 0 ? 'positive' : (diffValue < 0 ? 'negative' : 'neutral');
+
+        html += `
+            <span class="uzex-item">
+                <strong>${item.name}</strong> 
+                <span style="color:var(--accent)">${item.summa}</span> 
+                <strong class="${colorClass}">${arrow} ${item.difference} (${item.percent}%)</strong>
+            </span>`;
+    });
+    document.getElementById('uzex-marquee').innerHTML = html + html;
+}
+
+// Запуск
+getLiveRates();
+// Обновляем данные раз в 5 минут, чтобы не нагружать сайт
+setInterval(getLiveRates, 300000);
+</script>
+  
 <main>
     <div class="block">
         <div class="block-title">DNA</div>
