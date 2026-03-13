@@ -526,20 +526,12 @@ fetch('/api/quotes')
                     <strong class="${color}">${arrow} ${item.difference} (${item.percent}%)</strong>
                 </span>`;
         });
-        // дублируем для петли
         document.getElementById('uzex-marquee').innerHTML = html + html;
     })
     .catch(err => {
         console.error('UzEx fetch error:', err);
         document.getElementById('uzex-marquee').innerHTML = 
             `<span style="color:#ff3b5c">Ошибка загрузки UzEx • обновите страницу</span>`;
-    });
-        document.getElementById('uzex-marquee').innerHTML = html + html;
-    })
-    .catch(err => {
-        console.error(err);
-        document.getElementById('uzex-marquee').innerHTML = 
-            `<span style="color:#ff3b5c">UzEx котировки временно недоступны • попробуйте позже</span>`;
     });
 </script>
 <main>
@@ -582,7 +574,7 @@ fetch('/api/quotes')
 
 <details class="legal">
 
-<summary>[ ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ ]</summary>
+<summary>ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ</summary>
 
 <div class="disclaimer">
 
