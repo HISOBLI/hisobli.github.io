@@ -263,44 +263,72 @@ text-align:center;
 }
 
 /* FOOTER */
-
-footer{
-margin-top:60px;
-padding:20px 0;
-border-top:1px solid var(--border);
-font-size:12px;
-text-align:center;
-color:var(--muted);
+footer {
+  margin-top: 60px;
+  padding: 20px 40px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--panel);
 }
 
-.legal summary{
-cursor:pointer;
-color:var(--accent);
-font-size:12px;
-letter-spacing:1px;
-margin-top:5px;
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
 }
 
-.copy{
-font-size:11px;
-margin-bottom:10px;
-letter-spacing:.5px;
+.copy {
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
-.disclaimer{
-margin-top:10px;
-color:var(--text);
-font-size:12px;
-line-height:1.6;
-max-width:900px;
-margin-left:auto;
-margin-right:auto;
+.legal {
+  margin: 0;
 }
 
-details[open]{
-padding-top:10px;
+.legal summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 1px;
+  list-style: none; /* убирает стрелку по умолчанию */
 }
 
+.legal summary::-webkit-details-marker {
+  display: none; /* для Safari/Chrome */
+}
+
+.disclaimer {
+  margin-top: 10px;
+  color: var(--text);
+  font-size: 12px;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+details[open] {
+  padding-top: 10px;
+}
+
+/* Для мобильных — чтобы не ломалось */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .copy {
+    margin-bottom: 10px;
+  }
+}
 .marker-icon{
 width:26px;
 height:26px;
@@ -342,6 +370,81 @@ background-position:0 0,-200px 0;
 }
 }
 
+/* 1. Убираем стандартную стрелку у <details>/<summary> */
+details summary {
+  list-style: none;                   /* убирает маркер в Firefox/Chrome */
+}
+
+details summary::-webkit-details-marker {
+  display: none;                      /* убирает стрелку в WebKit-браузерах (Chrome, Safari) */
+}
+
+/* 2. Добавляем свой маркер ПЕРЕД summary через ::before */
+details summary {
+  position: relative;
+  padding-left: 34px;                 /* место под иконку слева */
+}
+
+details summary::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.2em;                       /* размер относительно шрифта summary — соразмерно заголовкам */
+  height: 1.2em;
+  background-color: var(--accent);
+  -webkit-mask-image: url("marker_firm.svg");
+  mask-image: url("marker_firm.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* 3. Делаем то же самое для всех маркированных списков <ul> и <ol> на сайте */
+ul, ol {
+  list-style: none;                   /* убираем стандартные точки/цифры */
+  padding-left: 2em;                  /* место под иконки */
+}
+
+li {
+  position: relative;
+  padding-left: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;                         /* небольшая корректировка по вертикали */
+  width: 1.1em;
+  height: 1.1em;
+  background-color: var(--accent);
+  -webkit-mask-image: url("marker_firm.svg");
+  mask-image: url("marker_firm.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+/* 4. Если хочешь, чтобы в футере summary был чуть крупнее — можно уточнить */
+.legal summary {
+  font-size: 13px;                    /* чуть крупнее, если нужно */
+  padding-left: 38px;                 /* чуть больше места под иконку */
+}
+
+.legal summary::before {
+  width: 1.4em;
+  height: 1.4em;
+}  
+  
 </style>
 </head>
 
@@ -567,24 +670,16 @@ fetch('/api/quotes')
 </main>
 
 <footer>
-
-<div class="copy">
-2026 © HISOBLI Mas’uliyati çeklangan jamiyati
-</div>
-
-<details class="legal">
-
-<summary>ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ</summary>
-
-<div class="disclaimer">
-
-Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
-
-</div>
-
-</details>
-
+  <div class="footer-container">
+    <div class="copy">2026 © HISOBLI Mas’uliyati çeklangan jamiyati</div>
+    
+    <details class="legal">
+      <summary>[ ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ ]</summary>
+      <div class="disclaimer">
+        Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
+      </div>
+    </details>
+  </div>
 </footer>
-
 </body>
 </html>
