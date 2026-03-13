@@ -507,7 +507,7 @@ RU || ÕZ
 </style>
 
 <script>
-fetch('https://thingproxy.freeboard.io/fetch/https://uzex.uz/Quote/GetQuotes')
+fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://uzex.uz/Quote/GetQuotes'))
     .then(r => r.json())
     .then(data => {
         let html = '';
