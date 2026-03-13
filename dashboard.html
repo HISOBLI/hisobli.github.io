@@ -509,7 +509,7 @@ RU || ÕZ
 <script>
 fetch('/api/quotes')
     .then(r => {
-        if (!r.ok) throw new Error('Network response was not ok');
+        if (!r.ok) throw new Error('Proxy error: ' + r.status);
         return r.json();
     })
     .then(data => {
@@ -526,6 +526,14 @@ fetch('/api/quotes')
                     <strong class="${color}">${arrow} ${item.difference} (${item.percent}%)</strong>
                 </span>`;
         });
+        // дублируем для петли
+        document.getElementById('uzex-marquee').innerHTML = html + html;
+    })
+    .catch(err => {
+        console.error('UzEx fetch error:', err);
+        document.getElementById('uzex-marquee').innerHTML = 
+            `<span style="color:#ff3b5c">Ошибка загрузки UzEx • обновите страницу</span>`;
+    });
         document.getElementById('uzex-marquee').innerHTML = html + html;
     })
     .catch(err => {
