@@ -490,6 +490,48 @@ RU || ÕZ
   locale="ru">
 </tv-ticker-tape>
 
+  <!-- === UZEX ТИКЕР В ТВОЁМ СТИЛЕ === -->
+<div class="ticker" style="background:var(--panel); border:1px solid var(--accent); border-radius:6px; padding:14px 20px; overflow:hidden; white-space:nowrap; font-size:15px; margin-top:20px;">
+    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 40s linear infinite;"></div>
+</div>
+
+<style>
+@keyframes uzexScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.uzex-item { margin-right: 45px; }
+.uzex-item strong { font-weight: 600; }
+.positive { color: #00ff9d !important; }
+.negative { color: #ff3b5c !important; }
+</style>
+
+<script>
+fetch('https://corsproxy.io/?https://uzex.uz/Quote/GetQuotes')
+    .then(r => r.json())
+    .then(data => {
+        let html = '';
+        data.forEach(item => {
+            const diff = parseFloat(item.difference || 0);
+            const arrow = diff >= 0 ? '↑' : '↓';
+            const color = diff >= 0 ? 'positive' : 'negative';
+            
+            html += `
+                <span class="uzex-item">
+                    <strong>${item.name}</strong> 
+                    <span style="color:var(--accent)">${item.summa}</span> 
+                    <strong class="${color}">${arrow} ${item.difference} (${item.percent}%)</strong>
+                </span>`;
+        });
+        // дублируем для бесконечной петли
+        document.getElementById('uzex-marquee').innerHTML = html + html;
+    })
+    .catch(() => {
+        document.getElementById('uzex-marquee').innerHTML = 
+            `<span style="color:#ff3b5c">UzEx котировки временно недоступны • обновите страницу</span>`;
+    });
+</script>
+
 <main>
     <div class="block">
         <div class="block-title">DNA</div>
