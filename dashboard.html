@@ -667,8 +667,34 @@ setInterval(getGlobalMarketData, 600000);
         <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
     </div>
 </div>  
-  
-<main style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+  <main style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+
+    <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>CAPITAL CONTROL<br>[64.20.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>DIGITAL EXPORT<br>[62.01.0 62.02.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>PUBLIC INTERFACE<br>[82.99.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>RENTFLOW<br>[68.20.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>FRANCHISE BOX<br>[77.40.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>PROJECT CONTROL<br>[71.11.0 71.12.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>REGULATORY COMPLIANCE<br>[94.99.0]</div>
+        </div>
+        <div class="product-item">
+            <div class="title-text">BUYURI§% <span class="m-sep"></span><br>BASE</div>
+        </div>
+    </div>
 
     <div class="block shape-parallel">
         <div class="blur-bg fakechart anim-1"></div>
@@ -677,33 +703,47 @@ setInterval(getGlobalMarketData, 600000);
         </div>
     </div>
 
-    <div class="master-block shape-square" style="grid-column: 2; border-width: 2px;">
+    <div class="master-block shape-square" style="grid-column: 2; border: 2px solid var(--accent); cursor: pointer;" 
+         onclick="document.getElementById('product-grid').style.display='grid'">
         <div class="blur-bg fakechart anim-3"></div>
         <div class="title-belt">
             <div class="title-text">ЛИНИЯ ПРОДУКТОВ<br>BUYURI§%</div>
         </div>
     </div>
-	
-	<div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>CAPITAL CONTROL <br><br>[64.20.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>DIGITAL EXPORT <br><br>[62.01.0 62.02.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>PUBLIC INTERFACE <br><br>[82.99.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>RENTFLOW <br><br>[68.20.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>FRANCHISE BOX <br><br>[77.40.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>PROJECT CONTROL <br><br>[71.11.0 71.12.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>REGULATORY COMPLIANCE <br><br>[94.99.0]</div>
-        <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>BASE</div>
-    </div>
 
-    <div class="block" style="grid-column: 3 / span 2; grid-row: span 2;">
+    <div class="block" style="grid-column: 3 / span 2; grid-row: span 2; padding:0; overflow:hidden;">
         <div class="tradingview-widget-container" style="height:100%; width:100%;">
-            </div>
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+            {
+              "dataSource": "NASDAQ100",
+              "blockSize": "market_cap_basic",
+              "blockColor": "change|60",
+              "grouping": "no_group",
+              "locale": "ru",
+              "symbolUrl": "",
+              "colorTheme": "dark",
+              "hasTopBar": false,
+              "isDataSetEnabled": false,
+              "isZoomEnabled": true,
+              "width": "100%",
+              "height": "100%"
+            }
+            </script>
+        </div>
     </div>
 
     <div class="block shape-square">
         <div class="blur-bg fakechart anim-2"></div>
         <div class="title-belt">
             <div class="title-text">ГЕОМЕТРИЯ<br>КОНТУРА</div>
+        </div>
+    </div>
+
+    <div class="block shape-parallel">
+        <div class="blur-bg fakechart anim-3"></div>
+        <div class="title-belt">
+            <div class="title-text">ПРОЦЕССНАЯ <span class="m-sep"></span> ФАБРИКА</div>
         </div>
     </div>
 
