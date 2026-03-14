@@ -445,26 +445,8 @@ li::before {
   height: 1.4em;
 }  
 
-/* Автоматически окрашиваем текст, который написан КАПСЛОКОМ */
-p, div, span, strong, h1, h2, h3, h4, h5, h6, li, a {
-  text-transform: uppercase; /* если хочешь принудительно делать капс — убери эту строку */
-}
-
-*:not(input):not(textarea):not(select) {
-  text-transform: none; /* сбрасываем капс для обычного текста */
-}
-
-/* Главное правило: если текст состоит ТОЛЬКО из больших букв — красим в accent */
-[class*=" "][style*="text-transform: uppercase"],
-p, div, span, strong, h1, h2, h3, h4, h5, h6, li, a {
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
-/* Исключаем маленькие буквы и нормальный текст */
-*:not([style*="text-transform: uppercase"]):not(.title):not(.header) {
-  color: var(--text);
-}  
+/* Подсветка капслока */
+.caps-highlight { color: var(--accent); font-weight: 600; }  
   
 </style>
 </head>
@@ -652,5 +634,37 @@ setInterval(getGlobalMarketData, 600000);
     </details>
   </div>
 </footer>
+
+ <script>
+function highlightCaps(container) {
+    // Регулярное выражение: ищем слова из заглавных букв (кириллица и латиница) от 3 символов
+    const regex = /\b([A-ZА-ЯЁ]{3,})\b/g;
+    
+    // Проходим по всем текстовым узлам, чтобы не испортить HTML-теги
+    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    const nodesToReplace = [];
+
+    while (node = walker.nextNode()) {
+        if (node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE') {
+            if (node.nodeValue.match(regex)) {
+                nodesToReplace.push(node);
+            }
+        }
+    }
+
+    nodesToReplace.forEach(node => {
+        const span = document.createElement('span');
+        span.innerHTML = node.nodeValue.replace(regex, '<span class="caps-highlight">$1</span>');
+        node.parentNode.replaceChild(span, node);
+    });
+}
+
+// Запуск после загрузки страницы
+window.addEventListener('DOMContentLoaded', () => {
+    highlightCaps(document.body);
+});
+</script> 
+  
 </body>
 </html>
