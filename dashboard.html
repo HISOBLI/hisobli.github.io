@@ -250,55 +250,94 @@ main {
     gap: 16px;
 }
 
-.block {
-    border: 1px solid #caa74b33;
-    padding: 22px;
-    text-align: center;
-    background: rgba(18, 18, 18, 0.4);
-    backdrop-filter: blur(2px);
-}
-
-/* Новое: Стили для 8 квадратов (добавить после .block) */
-.products-layer {
-    position: absolute;
-    top: 0; left: 40px; right: 40px; bottom: 0;
-    z-index: 100;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 20px;
-    pointer-events: none;
-}
-
-.product-item {
-    pointer-events: auto;
-    aspect-ratio: 1 / 1; 
+/* Единый стиль контейнеров (как у панели соцсетей) */
+.block, .product-item, .master-block {
+    background: var(--panel);
     border: 1px solid var(--accent);
-    background: rgba(23, 23, 23, 0.88);
-    backdrop-filter: blur(12px);
-    padding: 15px;
+    border-radius: 6px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.7), 0 0 20px rgba(191,164,111,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-    transition: 0.3s;
-    font-size: 11px;
+    align-items: center;
 }
 
-.product-item:hover {
-    background: var(--accent);
-    color: var(--bg);
+.block:hover, .product-item:hover, .master-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.9), 0 0 25px rgba(191,164,111,0.12);
 }
 
-.block-title {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--bg);
-    padding: 2px 10px;
+/* Эффект заголовка: "Пояс" в цвете фона посередине */
+.title-belt {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    background: var(--bg); /* Цвет фона сайта */
+    padding: 8px 0;
+    z-index: 10;
+    text-align: center;
+    border-top: 1px solid rgba(191,164,111,0.3);
+    border-bottom: 1px solid rgba(191,164,111,0.3);
+}
+
+.title-text {
+    color: var(--accent);
     font-weight: 600;
-    font-size: 13px;
-    margin-bottom: 15px;
-    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: -0.2px; /* Узкий кернинг */
+    text-transform: uppercase;
+    padding: 0 10px;
+}
+
+/* Маркер-разделитель (высотой со шрифт) */
+.m-sep {
+    display: inline-block;
+    height: 1em; /* Равен высоте шрифта */
+    width: 1em;
+    background-color: var(--accent);
+    -webkit-mask: url("marker_firm.svg") no-repeat center / contain;
+    mask: url("marker_firm.svg") no-repeat center / contain;
+    vertical-align: middle;
+    margin: 0 4px;
+}
+
+/* Разные фигуры */
+.shape-rect { grid-column: span 2; height: 180px; }
+.shape-square { grid-column: span 1; aspect-ratio: 1/1; }
+.shape-parallel { transform: skewX(-5deg); grid-column: span 1; }
+.shape-parallel > * { transform: skewX(5deg); } /* Выравниваем контент */
+
+/* Асинхронный блюр-фон */
+.blur-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    filter: blur(8px);
+    opacity: 0.4;
+    z-index: 1;
+}
+
+/* Разные скорости анимации для имитации живых данных */
+.anim-1 { animation: chartmove 6s linear infinite; }
+.anim-2 { animation: chartmove 10s linear infinite reverse; }
+.anim-3 { animation: chartmove 14s ease-in-out infinite; }
+
+.products-layer {
+    display: none;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 1000;
+    /* Сетка 4x2, где центр пустой (или продукты вокруг) */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
 }
 
 /* FOOTER */
@@ -629,8 +668,23 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 </div>  
   
-<main>
-    <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
+<main style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+
+    <div class="block shape-parallel">
+        <div class="blur-bg fakechart anim-1"></div>
+        <div class="title-belt">
+            <div class="title-text">АКСИОМА <span class="m-sep"></span> HISOBLI</div>
+        </div>
+    </div>
+
+    <div class="master-block shape-square" style="grid-column: 2; border-width: 2px;">
+        <div class="blur-bg fakechart anim-3"></div>
+        <div class="title-belt">
+            <div class="title-text">ЛИНИЯ ПРОДУКТОВ<br>BUYURI§%</div>
+        </div>
+    </div>
+	
+	<div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
         <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>CAPITAL CONTROL <br><br>[64.20.0]</div>
         <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>DIGITAL EXPORT <br><br>[62.01.0 62.02.0]</div>
         <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>PUBLIC INTERFACE <br><br>[82.99.0]</div>
@@ -641,39 +695,25 @@ setInterval(getGlobalMarketData, 600000);
         <div class="product-item">BUYURI§% <span class="marker-icon" style="display:inline-block; vertical-align:middle;"></span> <br>BASE</div>
     </div>
 
-    <div class="block"><div class="block-title">АКСИОМА HISOBLI</div><div class="fakechart"></div></div>
-
-    <div class="block" style="border: 2px solid var(--accent); cursor:pointer;" onclick="document.getElementById('product-grid').style.display='grid'">
-        <div class="block-title">ЛИНИЯ ПРОДУКТОВ BUYURI§%</div>
-        <div class="fakechart" style="height:100px; opacity:0.3;"></div>
-        <div style="font-size:10px; color:var(--accent); margin-top:10px;">[ ИНИЦИАЦИЯ КОНТУРА ]</div>
+    <div class="block" style="grid-column: 3 / span 2; grid-row: span 2;">
+        <div class="tradingview-widget-container" style="height:100%; width:100%;">
+            </div>
     </div>
 
-    <div class="block" style="grid-column: span 2; grid-row: span 2; padding:0; overflow:hidden;">
-        <div class="tradingview-widget-container" style="height:100%; width:100%;">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-            {
-              "dataSource": "NASDAQ100",
-              "blockSize": "market_cap_basic",
-              "blockColor": "change|60",
-              "grouping": "no_group",
-              "locale": "ru",
-              "symbolUrl": "",
-              "colorTheme": "dark",
-              "hasTopBar": false,
-              "isDataSetEnabled": false,
-              "isZoomEnabled": true,
-              "width": "100%",
-              "height": "100%"
-            }
-            </script>
+    <div class="block shape-square">
+        <div class="blur-bg fakechart anim-2"></div>
+        <div class="title-belt">
+            <div class="title-text">ГЕОМЕТРИЯ<br>КОНТУРА</div>
         </div>
     </div>
 
-    <div class="block"><div class="block-title">ГЕОМЕТРИЯ КОНТУРА</div><div class="fakechart"></div></div>
-    <div class="block"><div class="block-title">ПРОЦЕССНАЯ ФАБРИКА</div><div class="fakechart"></div></div>
-    <div class="block" style="grid-column: 4;"><div class="block-title">ПРОТОКОЛ ЗАЩИТЫ</div><div class="fakechart"></div></div>
+    <div class="block shape-rect" style="grid-column: 1 / span 2;">
+        <div class="blur-bg fakechart anim-1"></div>
+        <div class="title-belt">
+            <div class="title-text">ПРОТОКОЛ <span class="m-sep"></span> ЗАЩИТЫ</div>
+        </div>
+    </div>
+
 </main>
 
 <footer>
