@@ -1,0 +1,29 @@
+name: Lex News Update
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install deps
+        run: pip install requests beautifulsoup4
+      - name: Run scraper
+        run: python parser.py
+      - name: Commit & push
+        run: |
+          git config --global user.name 'LexBot'
+          git config --global user.email 'bot@github.com'
+          git add news.json
+          git commit -m "Auto-update Lex.uz news" || exit 0
+          git push
