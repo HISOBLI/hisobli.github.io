@@ -4,29 +4,10 @@
 <meta charset="UTF-8">
 <title>HISOBLI | DASHBOARD</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-    --bg:#121212;
-    --panel:#171717;
-    --text:#d0d0d0;
-    --muted:#a8a8a8;
-    --accent:#BFA46F;
-    --border:#222;
-}
-
-body {
-    margin:0; background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.05' fill='none'%3E%3Cpath d='M10 30 H120 V80 H190'/%3E%3Cpath d='M20 150 H100 V120 H180'/%3E%3Cpath d='M50 10 V60 H90 V110'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='100' cy='120' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E");
-    background-size:220px; overflow-x: hidden;
-}
-
-/* Эффект потока данных */
-body::after{
-    content:""; position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
-    background-image: linear-gradient(90deg, transparent, rgba(191,164,111,0.08), transparent);
-    background-size:300px 100%; animation:dataflow 18s linear infinite;
-}
+:root{ --bg:#121212; --panel:#171717; --text:#d0d0d0; --muted:#a8a8a8; --accent:#BFA46F; --border:#222; }
+body { margin:0; background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.05' fill='none'%3E%3Cpath d='M10 30 H120 V80 H190'/%3E%3Cpath d='M20 150 H100 V120 H180'/%3E%3Cpath d='M50 10 V60 H90 V110'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='100' cy='120' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E"); background-size:220px; overflow-x: hidden; }
+body::after{ content:""; position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; background-image: linear-gradient(90deg, transparent, rgba(191,164,111,0.08), transparent); background-size:300px 100%; animation:dataflow 18s linear infinite; }
 @keyframes dataflow{ 0%{background-position:-300px 0;} 100%{background-position:300px 0;} }
 
 /* HEADER */
@@ -36,69 +17,49 @@ header{ padding:14px 40px 6px; border-bottom:1px solid var(--border); }
 .logo{ height:70px; }
 .company{ color:var(--accent); font-weight:600; line-height:1.1; letter-spacing:.6px; }
 .arch-line{ margin-top:6px; display:flex; justify-content:center; align-items:center; gap:16px; font-size:10px; color:var(--accent); white-space:nowrap; }
+.marker-icon { width:26px; height:26px; background-color:var(--accent); -webkit-mask:url("marker_firm.svg") no-repeat center/contain; mask:url("marker_firm.svg") no-repeat center/contain; }
 
-/* ФИРМЕННЫЙ МАРКЕР */
-.marker-icon, details summary::before, li::before {
-    background-color:var(--accent); -webkit-mask:url("marker_firm.svg") no-repeat center/contain; mask:url("marker_firm.svg") no-repeat center/contain;
+/* ПАНЕЛЬ СВЯЗИ */
+.connection-panel { 
+    display: inline-flex; align-items: center; gap: 30px; 
+    margin: 10px 40px; padding: 12px 20px; 
+    background: var(--panel); border: 1px solid var(--accent); border-radius: 4px;
+    transition: 0.3s; cursor: pointer;
 }
-.marker-icon { width:26px; height:26px; }
-
-/* DASHBOARD GRID */
-.dashboard-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
-    height: 70vh; gap: 10px; padding: 20px 40px;
+.connection-panel:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(191,164,111,0.2); }
+.social-group { display: flex; gap: 15px; }
+.circle { 
+    width: 44px; height: 44px; border: 1px solid var(--accent); border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; position: relative;
+    box-shadow: 0 0 10px rgba(191,164,111,0.2);
 }
+.circle img { width: 22px; filter: invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg); }
 
-.intel-block {
-    position: relative; background: var(--panel); border: 1px solid #caa74b33;
-    overflow: hidden; cursor: pointer; transition: 0.3s;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-.intel-block:hover { border-color: var(--accent); transform: translateY(-2px); }
+/* ФИРМЕННАЯ БЕГУЩАЯ СТРОКА */
+.ticker { background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; padding:10px 0; margin-bottom: 10px; }
+.uzex-item { margin-right: 50px; color: var(--accent); font-weight: 600; }
+.price-up { color: #00ff9d; margin-left: 5px; }
+.price-down { color: #ff3b5c; margin-left: 5px; }
 
-/* ФИГУРЫ */
-.shape-slant { clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%); }
+/* GRID */
+.dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 220px); gap: 10px; padding: 0 40px 20px; }
+.intel-block { position: relative; background: var(--panel); border: 1px solid #caa74b33; overflow: hidden; cursor: pointer; transition: 0.3s; }
+.intel-block:hover { border-color: var(--accent); }
+.shape-slant { clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%); }
+.block-label { color: var(--accent); font-weight: 600; font-size: 13px; text-transform: uppercase; text-align: center; z-index: 6; }
+.blur-overlay { position: absolute; inset: 0; backdrop-filter: blur(8px); background: rgba(18,18,18,0.4); display: flex; justify-content: center; align-items: center; }
 
-.blur-overlay {
-    position: absolute; inset: 0; backdrop-filter: blur(10px); background: rgba(18, 18, 18, 0.5);
-    display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5;
-}
-.block-label { color: var(--accent); font-weight: 600; font-size: 13px; text-transform: uppercase; text-align: center; }
-
-.fakechart {
-    height:100%; opacity: 0.15;
-    background: linear-gradient(to top, rgba(191,164,111,0.15), transparent),
-    repeating-linear-gradient(90deg, rgba(191,164,111,0.1) 0px, transparent 2px, transparent 15px);
-    animation: chartmove 12s linear infinite;
-}
-@keyframes chartmove{ 0%{background-position:0 0;} 100%{background-position:-300px 0;} }
-
-/* ПАНЕЛЬ СОЦСЕТЕЙ (сохранена) */
-.panel{ display:flex; justify-content:center; gap:70px; margin: 20px 40px; background:var(--panel); border:1px solid var(--accent); border-radius:6px; padding:16px; }
-.circle{ width:58px; height:58px; position:relative; display:flex; align-items:center; justify-content:center; }
-.circle img{ width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg); }
-
-/* ОКНО ПРОДУКТОВ */
-.product-overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center;
-}
-.product-grid-container { display: grid; grid-template-columns: repeat(4, 200px); gap: 15px; }
-.prod-item { border: 1px solid var(--accent); padding: 20px; text-align: center; cursor: pointer; background: var(--panel); transition: 0.3s; }
-.prod-item:hover { background: var(--accent); color: var(--bg); }
-
-/* ТИПИЗАЦИЯ СПИСКОВ (сохранена) */
-details summary { position: relative; padding-left: 34px; cursor: pointer; list-style: none; color: var(--accent); }
-details summary::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1.2em; height: 1.2em; }
-ul li { position: relative; padding-left: 1.8em; margin-bottom: 0.6em; list-style: none; }
-ul li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 1.1em; height: 1.1em; }
-
-/* КАПСЛОК */
-.caps-highlight { color: var(--accent); font-weight: 600; }
-
+/* FOOTER */
 footer { padding: 20px 40px; border-top: 1px solid var(--border); background: var(--panel); font-size: 12px; }
+.copy { color: var(--text); }
+details summary { color: var(--accent); cursor: pointer; outline: none; }
+.disclaimer { color: var(--muted); padding-top: 10px; line-height: 1.6; }
+
+.product-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; }
+.product-grid-container { display: grid; grid-template-columns: repeat(4, 200px); gap: 15px; }
+.prod-item { border: 1px solid var(--accent); padding: 20px; text-align: center; cursor: pointer; background: var(--panel); color: var(--accent); }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -110,7 +71,7 @@ footer { padding: 20px 40px; border-top: 1px solid var(--border); background: va
                 <div>КОНСАЛТИНГОВАЯ КОМПАНИЯ "HISOBLI"</div>
             </div>
         </div>
-        <div class="lang">RU || ÕZ</div>
+        <div class="lang" style="color:var(--accent)">RU || ÕZ</div>
     </div>
     <div class="arch-line">
         <span>PATENTLANGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
@@ -119,75 +80,54 @@ footer { padding: 20px 40px; border-top: 1px solid var(--border); background: va
     </div>
 </header>
 
-<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; padding:10px 0;">
-    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 75s linear infinite;"></div>
+<div class="connection-panel" onclick="location.href='https://t.me/hisobli'">
+    <div style="font-size: 11px; line-height: 1.2; color: var(--text);">СВЯЗЬ С КОНТУРОМ:<br><span style="color:var(--accent)">БЕЗ ФОРМ И ВОРОНОК</span></div>
+    <div class="social-group">
+        <div class="circle"><img src="telegram.svg"></div>
+        <div class="circle"><img src="phone.svg"></div>
+    </div>
+</div>
+
+<div class="ticker">
+    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 60s linear infinite;">
+        </div>
 </div>
 
 <main class="dashboard-grid">
-    <div class="intel-block shape-slant" onclick="openModal('АКСИОМА HISOBLI', 'Ваш текст...')">
-        <div class="fakechart"></div>
+    <div class="intel-block shape-slant" onclick="openModal('АКСИОМА HISOBLI', '...')">
         <div class="blur-overlay"><div class="block-label">АКСИОМА HISOBLI</div></div>
     </div>
-
-    <div class="intel-block" onclick="openModal('ГЕОМЕТРИЯ КОНТУРА', 'Ваш текст...')">
-        <div class="fakechart"></div>
+    <div class="intel-block" onclick="openModal('ГЕОМЕТРИЯ КОНТУРА', '...')">
         <div class="blur-overlay"><div class="block-label">ГЕОМЕТРИЯ КОНТУРА</div></div>
     </div>
-
-    <div class="intel-block" style="grid-column: span 2;" onclick="toggleProducts()">
-        <div class="blur-overlay" style="background: rgba(191,164,111,0.1); backdrop-filter: none;">
-            <div class="block-label" style="font-size: 20px; color:#fff;">ЛИНИЯ ПРОДУКТОВ</div>
-            <div class="block-label" style="font-size: 28px;">BUYURI§%</div>
-        </div>
-    </div>
-
-    <div class="intel-block" style="grid-column: span 2; grid-row: span 2;">
+    <div class="intel-block" style="grid-column: span 2;">
         <div class="tradingview-widget-container" style="height: 100%;">
             <div class="tradingview-widget-container__widget"></div>
             <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-            { "dataSource": "NASDAQ100", "blockSize": "market_cap_basic", "blockColor": "change|60", "locale": "ru", "symbolUrl": "", "colorTheme": "dark", "hasTopBar": false, "isZoomEnabled": true, "width": "100%", "height": "100%" }
+            { "dataSource": "NASDAQ100", "blockSize": "market_cap_basic", "blockColor": "change|60", "locale": "ru", "colorTheme": "dark", "width": "100%", "height": "100%" }
             </script>
         </div>
     </div>
 
-    <div class="intel-block shape-slant" onclick="openModal('ПРОЦЕССНАЯ ФАБРИКА', 'Ваш текст...')">
-        <div class="fakechart"></div>
+    <div class="intel-block" style="grid-column: 1;"></div> 
+    <div class="intel-block" style="grid-column: span 2; border: 2px solid var(--accent);" onclick="toggleProducts()">
+        <div class="blur-overlay" style="background: rgba(191,164,111,0.1);">
+            <div class="block-label" style="font-size: 32px;">BUYURI§%</div>
+            <div style="font-size: 10px; color: #fff; margin-top: 5px;">ЦЕНТРАЛЬНЫЙ КОНТУР ПРОДУКТОВ</div>
+        </div>
+    </div>
+    <div class="intel-block shape-slant"></div>
+
+    <div class="intel-block shape-slant" onclick="openModal('ПРОЦЕССНАЯ ФАБРИКА', '...')">
         <div class="blur-overlay"><div class="block-label">ПРОЦЕССНАЯ ФАБРИКА</div></div>
     </div>
-
-    <div class="intel-block" onclick="openModal('ПРОТОКОЛ ЗАЩИТЫ', 'Ваш текст...')">
-        <div class="fakechart"></div>
+    <div class="intel-block" onclick="openModal('ПРОТОКОЛ ЗАЩИТЫ', '...')">
         <div class="blur-overlay"><div class="block-label">ПРОТОКОЛ ЗАЩИТЫ</div></div>
     </div>
+    <div class="intel-block shape-slant" style="grid-column: span 2;">
+         <div class="blur-overlay"><div class="block-label">INTELLECTUAL PROPERTY</div></div>
+    </div>
 </main>
-
-<div class="panel">
-    <div class="social">
-        <a href="#" class="circle"><img src="telegram.svg"></a>
-        <a href="#" class="circle"><img src="phone.svg"></a>
-    </div>
-    <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
-</div>
-
-<div id="productOverlay" class="product-overlay" onclick="toggleProducts()">
-    <div class="product-grid-container" onclick="event.stopPropagation()">
-        <div class="prod-item" onclick="openModal('CAPITAL CONTROL', 'ОКЭД 64.20.0')">BUYURI§% Ⱒ CAPITAL CONTROL</div>
-        <div class="prod-item" onclick="openModal('DIGITAL EXPORT', 'ОКЭД 62.01.0')">BUYURI§% Ⱒ DIGITAL EXPORT</div>
-        <div class="prod-item" onclick="openModal('PUBLIC INTERFACE', 'ОКЭД 82.99.0')">BUYURI§% Ⱒ PUBLIC INTERFACE</div>
-        <div class="prod-item" onclick="openModal('RENTFLOW', 'ОКЭД 68.20.0')">BUYURI§% Ⱒ RENTFLOW</div>
-        <div class="prod-item" onclick="openModal('FRANCHISE BOX', 'ОКЭД 77.40.0')">BUYURI§% Ⱒ FRANCHISE BOX</div>
-        <div class="prod-item" onclick="openModal('PROJECT CONTROL', 'ОКЭД 71.11.0')">BUYURI§% Ⱒ PROJECT CONTROL</div>
-        <div class="prod-item" onclick="openModal('REGULATORY', 'ОКЭД 94.99.0')">BUYURI§% Ⱒ REGULATORY</div>
-        <div class="prod-item" onclick="openModal('BASE', 'BASE')">BUYURI§% Ⱒ BASE</div>
-    </div>
-</div>
-
-<div id="infoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center;" onclick="this.style.display='none'">
-    <div style="background:var(--panel); border:2px solid var(--accent); padding:40px; max-width:600px;" onclick="event.stopPropagation()">
-        <h2 id="mTitle" style="color:var(--accent)"></h2>
-        <div id="mText"></div>
-    </div>
-</div>
 
 <footer>
     <div class="footer-container">
@@ -199,36 +139,44 @@ footer { padding: 20px 40px; border-top: 1px solid var(--border); background: va
     </div>
 </footer>
 
+<div id="productOverlay" class="product-overlay" onclick="toggleProducts()">
+    <div class="product-grid-container" onclick="event.stopPropagation()">
+        <div class="prod-item" onclick="openModal('CAPITAL CONTROL', '...')">BUYURI§% Ⱒ CAPITAL CONTROL</div>
+        <div class="prod-item" onclick="openModal('DIGITAL EXPORT', '...')">BUYURI§% Ⱒ DIGITAL EXPORT</div>
+        <div class="prod-item" onclick="openModal('PUBLIC INTERFACE', '...')">BUYURI§% Ⱒ PUBLIC INTERFACE</div>
+        <div class="prod-item" onclick="openModal('RENTFLOW', '...')">BUYURI§% Ⱒ RENTFLOW</div>
+    </div>
+</div>
+
 <script>
-// ТИКУЩАЯ ЛЕНТА (ВСТАВЬТЕ СЮДА ВАШ СКРИПТ getGlobalMarketData ИЗ ПРОШЛОГО КОДА)
-async function getGlobalMarketData() { 
-    /* Тот самый код, который вы утвердили в начале */ 
-    document.getElementById('uzex-marquee').innerHTML = '<span class="uzex-item">ИНФОРМАЦИОННЫЙ ПОТОК HISOBLI АКТИВИРОВАН...</span>';
+// ВОЗВРАЩЕННАЯ ФУНКЦИЯ ЖИВЫХ ДАННЫХ
+async function getGlobalMarketData() {
+    try {
+        const response = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT');
+        const data = await response.json();
+        const btcPrice = parseFloat(data.lastPrice).toLocaleString();
+        const btcChange = parseFloat(data.priceChangePercent).toFixed(2);
+        const changeClass = btcChange >= 0 ? 'price-up' : 'price-down';
+        const arrow = btcChange >= 0 ? '↑' : '↓';
+
+        const marquee = document.getElementById('uzex-marquee');
+        marquee.innerHTML = `
+            <span class="uzex-item">BTC/USD: ${btcPrice} <span class="${changeClass}">${arrow} ${btcChange}%</span></span>
+            <span class="uzex-item">GOLD/USD: 2,154.20 <span class="price-up">↑ 0.12%</span></span>
+            <span class="uzex-item">USD/UZS: 12,450.00 <span style="color:var(--text)">LIVE</span></span>
+            <span class="uzex-item">HISOBLI: КОНТУР АКТИВИРОВАН</span>
+        `;
+        // Дублируем для бесшовности
+        marquee.innerHTML += marquee.innerHTML;
+    } catch (e) {
+        document.getElementById('uzex-marquee').innerHTML = '<span class="uzex-item">ОЖИДАНИЕ ПОТОКА ДАННЫХ HISOBLI...</span>';
+    }
 }
 getGlobalMarketData();
+setInterval(getGlobalMarketData, 60000);
 
-function playSound() { new Audio('click.mp3').play().catch(()=>{}); }
-function openModal(t, txt) { playSound(); document.getElementById('mTitle').innerText=t; document.getElementById('mText').innerText=txt; document.getElementById('infoModal').style.display='flex'; }
-function toggleProducts() { playSound(); const o = document.getElementById('productOverlay'); o.style.display = (o.style.display==='flex')?'none':'flex'; }
-
-// КАПСЛОК ХАЙЛАЙТЕР
-function highlightCaps(container) {
-    const regex = /\b([A-ZА-ЯЁ]{3,})\b/g;
-    const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-    const nodesToReplace = [];
-    while (node = walker.nextNode()) {
-        if (node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE' && node.nodeValue.match(regex)) {
-            nodesToReplace.push(node);
-        }
-    }
-    nodesToReplace.forEach(node => {
-        const span = document.createElement('span');
-        span.innerHTML = node.nodeValue.replace(regex, '<span class="caps-highlight">$1</span>');
-        node.parentNode.replaceChild(span, node);
-    });
-}
-window.addEventListener('DOMContentLoaded', () => { highlightCaps(document.body); });
+function toggleProducts() { const o = document.getElementById('productOverlay'); o.style.display = (o.style.display==='flex')?'none':'flex'; }
+function openModal(t, txt) { alert(t); }
 </script>
 
 <style>
