@@ -444,6 +444,27 @@ li::before {
   width: 1.4em;
   height: 1.4em;
 }  
+
+/* Автоматически окрашиваем текст, который написан КАПСЛОКОМ */
+p, div, span, strong, h1, h2, h3, h4, h5, h6, li, a {
+  text-transform: uppercase; /* если хочешь принудительно делать капс — убери эту строку */
+}
+
+*:not(input):not(textarea):not(select) {
+  text-transform: none; /* сбрасываем капс для обычного текста */
+}
+
+/* Главное правило: если текст состоит ТОЛЬКО из больших букв — красим в accent */
+[class*=" "][style*="text-transform: uppercase"],
+p, div, span, strong, h1, h2, h3, h4, h5, h6, li, a {
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Исключаем маленькие буквы и нормальный текст */
+*:not([style*="text-transform: uppercase"]):not(.title):not(.header) {
+  color: var(--text);
+}  
   
 </style>
 </head>
@@ -484,7 +505,7 @@ RU || ÕZ
 </header>
 
 <div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; font-size:14px; padding:10px 0; margin-bottom: 20px;">
-    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 55s linear infinite;"></div>
+    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 75s linear infinite;"></div>
 </div>
 
 <style>
@@ -494,18 +515,6 @@ RU || ÕZ
 .negative { color: #ff3b5c !important; }
 .neutral { color: var(--muted) !important; }
 </style>
-
-<div class="channels-panel" style="background:var(--panel); border:1px solid var(--accent); border-radius:8px; padding:20px; margin-bottom:30px;">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div class="social-icons">
-             <span style="color:var(--muted); font-size:12px; display:block; margin-bottom:10px; text-align:center; letter-spacing:2px;">PUBLIC CHANNELS</span>
-             </div>
-        <div class="contact-text" style="text-align:right;">
-             <p style="font-size:14px; color:var(--accent);">Если вам близка логика HISOBLI — свяжитесь с нами!</p>
-             <p style="font-size:12px; color:var(--muted);">Без форм. Без воронок. Без пустых обещаний.</p>
-        </div>
-    </div>
-</div>
 
 <script>
 async function getGlobalMarketData() {
