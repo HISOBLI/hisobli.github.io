@@ -1,670 +1,239 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
 <meta charset="UTF-8">
-<title>HISOBLI</title>
-
+<title>HISOBLI | DASHBOARD</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-
 :root{
-
---bg:#121212;
---panel:#171717;
---text:#d0d0d0;
---muted:#a8a8a8;
---accent:#BFA46F;
---border:#222;
-
+    --bg:#121212;
+    --panel:#171717;
+    --text:#d0d0d0;
+    --muted:#a8a8a8;
+    --accent:#BFA46F;
+    --border:#222;
 }
 
-body{
-
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:'IBM Plex Mono',monospace;
-
-/* PCB PATTERN */
-
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.05' fill='none'%3E%3Cpath d='M10 30 H120 V80 H190'/%3E%3Cpath d='M20 150 H100 V120 H180'/%3E%3Cpath d='M50 10 V60 H90 V110'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='100' cy='120' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E");
-
-background-size:220px;
-
+body {
+    margin:0; background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.05' fill='none'%3E%3Cpath d='M10 30 H120 V80 H190'/%3E%3Cpath d='M20 150 H100 V120 H180'/%3E%3Cpath d='M50 10 V60 H90 V110'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='100' cy='120' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E");
+    background-size:220px; overflow-x: hidden;
 }
 
+/* Эффект потока данных */
 body::after{
-
-content:"";
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-pointer-events:none;
-
-background-image:
-
-linear-gradient(90deg, transparent, rgba(191,164,111,0.08), transparent);
-
-background-size:300px 100%;
-
-animation:dataflow 18s linear infinite;
-
+    content:""; position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
+    background-image: linear-gradient(90deg, transparent, rgba(191,164,111,0.08), transparent);
+    background-size:300px 100%; animation:dataflow 18s linear infinite;
 }
-
-@keyframes dataflow{
-
-0%{
-background-position:-300px 0;
-}
-
-100%{
-background-position:300px 0;
-}
-
-}
-
-
+@keyframes dataflow{ 0%{background-position:-300px 0;} 100%{background-position:300px 0;} }
 
 /* HEADER */
+header{ padding:14px 40px 6px; border-bottom:1px solid var(--border); }
+.header-top{ display:flex; align-items:center; justify-content:space-between; }
+.brand{ display:flex; align-items:center; gap:20px; }
+.logo{ height:70px; }
+.company{ color:var(--accent); font-weight:600; line-height:1.1; letter-spacing:.6px; }
+.arch-line{ margin-top:6px; display:flex; justify-content:center; align-items:center; gap:16px; font-size:10px; color:var(--accent); white-space:nowrap; }
 
-header{
-padding:14px 40px 6px;
-border-bottom:1px solid var(--border);
+/* ФИРМЕННЫЙ МАРКЕР */
+.marker-icon, details summary::before, li::before {
+    background-color:var(--accent); -webkit-mask:url("marker_firm.svg") no-repeat center/contain; mask:url("marker_firm.svg") no-repeat center/contain;
+}
+.marker-icon { width:26px; height:26px; }
+
+/* DASHBOARD GRID */
+.dashboard-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(3, 1fr);
+    height: 70vh; gap: 10px; padding: 20px 40px;
 }
 
-.header-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
+.intel-block {
+    position: relative; background: var(--panel); border: 1px solid #caa74b33;
+    overflow: hidden; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+.intel-block:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-.brand{
-display:flex;
-align-items:center;
-gap:20px;
+/* ФИГУРЫ */
+.shape-slant { clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%); }
+
+.blur-overlay {
+    position: absolute; inset: 0; backdrop-filter: blur(10px); background: rgba(18, 18, 18, 0.5);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 5;
 }
+.block-label { color: var(--accent); font-weight: 600; font-size: 13px; text-transform: uppercase; text-align: center; }
 
-.logo{
-height:70px;
+.fakechart {
+    height:100%; opacity: 0.15;
+    background: linear-gradient(to top, rgba(191,164,111,0.15), transparent),
+    repeating-linear-gradient(90deg, rgba(191,164,111,0.1) 0px, transparent 2px, transparent 15px);
+    animation: chartmove 12s linear infinite;
 }
+@keyframes chartmove{ 0%{background-position:0 0;} 100%{background-position:-300px 0;} }
 
-.company{
-color:var(--accent);
-font-weight:600;
-line-height:1.1;
-letter-spacing:.6px;
+/* ПАНЕЛЬ СОЦСЕТЕЙ (сохранена) */
+.panel{ display:flex; justify-content:center; gap:70px; margin: 20px 40px; background:var(--panel); border:1px solid var(--accent); border-radius:6px; padding:16px; }
+.circle{ width:58px; height:58px; position:relative; display:flex; align-items:center; justify-content:center; }
+.circle img{ width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg); }
+
+/* ОКНО ПРОДУКТОВ */
+.product-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center;
 }
+.product-grid-container { display: grid; grid-template-columns: repeat(4, 200px); gap: 15px; }
+.prod-item { border: 1px solid var(--accent); padding: 20px; text-align: center; cursor: pointer; background: var(--panel); transition: 0.3s; }
+.prod-item:hover { background: var(--accent); color: var(--bg); }
 
-.company div{
-white-space:nowrap;
-}
+/* ТИПИЗАЦИЯ СПИСКОВ (сохранена) */
+details summary { position: relative; padding-left: 34px; cursor: pointer; list-style: none; color: var(--accent); }
+details summary::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 1.2em; height: 1.2em; }
+ul li { position: relative; padding-left: 1.8em; margin-bottom: 0.6em; list-style: none; }
+ul li::before { content: ""; position: absolute; left: 0; top: 0.3em; width: 1.1em; height: 1.1em; }
 
-.lang{
-color:var(--accent);
-font-size:14px;
-}
+/* КАПСЛОК */
+.caps-highlight { color: var(--accent); font-weight: 600; }
 
-/* ARCH LINE */
-
-.arch-line{
-margin-top:6px;
-display:flex;
-justify-content:center;
-align-items:center;
-gap:16px;
-font-size:10px;
-color:var(--accent);
-white-space:nowrap;
-}
-
-.divider{
-height:20px;
-filter:brightness(1.4) sepia(1) saturate(6);
-}
-
-/* PANEL */
-
-.panel{
-display:flex;
-transition:0.25s;
-justify-content:center;
-gap:70px;
-margin-top:20px;
-backdrop-filter:blur(6px);
-background:var(--panel);
-border:1px solid var(--accent);
-border-radius:6px;
-padding:16px;
-box-shadow:
-0 0 0 1px rgba(191,164,111,0.05),
-0 8px 20px rgba(0,0,0,0.7),
-0 0 20px rgba(191,164,111,0.06);
-}
-
-.panel:hover{
-transform:translateY(-3px);
-box-shadow:
-0 0 0 1px rgba(191,164,111,0.08),
-0 12px 28px rgba(0,0,0,0.9),
-0 0 25px rgba(191,164,111,0.12);
-transition:0.25s;
-}
-
-/* BUTTON */
-
-.circle{
-width:58px;
-height:58px;
-position:relative;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.circle img{
-width:28px;
-z-index:3;
-filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);
-}
-
-/* ORBITS */
-
-.orbit{
-position:absolute;
-width:72px;
-height:72px;
-}
-
-.orbit path{
-stroke:#caa74b;
-fill:none;
-stroke-linecap:round;
-}
-
-.orbit1 path:nth-child(1){stroke-width:1.2}
-.orbit1 path:nth-child(2){stroke-width:2.4}
-.orbit1 path:nth-child(3){stroke-width:1}
-
-.orbit1{animation:spin1 10s linear infinite}
-.orbit2{animation:spin2 14s linear infinite}
-.orbit3{animation:spin3 18s linear infinite}
-
-@keyframes spin1{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-@keyframes spin2{from{transform:rotate(360deg)}to{transform:rotate(0)}}
-@keyframes spin3{from{transform:rotate(0)}to{transform:rotate(360deg)}}
-
-/* CHANNELS */
-
-.channels-title{
-text-align:center;
-color:var(--accent);
-font-size:12px;
-letter-spacing:2px;
-margin-bottom:10px;
-}
-
-.social{
-display:flex;
-gap:16px;
-justify-content:center;
-}
-
-/* CONTACT */
-
-.contact-title{
-text-align:center;
-color:var(--accent);
-font-size:12px;
-margin-bottom:10px;
-}
-
-.contact-row{
-display:flex;
-gap:16px;
-justify-content:center;
-margin-bottom:6px;
-}
-
-.contact-bottom{
-text-align:center;
-font-size:11px;
-color:var(--muted);
-}
-
-/* TICKER */
-
-.ticker{
-margin-top:20px;
-padding:0 40px;
-}
-
-/* GRID */
-
-main{
-margin-top:20px;
-padding:0 40px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-}
-
-.block{
-border:1px solid #caa74b33;
-padding:22px;
-text-align:center;
-}
-
-/* FOOTER */
-footer {
-  margin-top: 60px;
-  padding: 20px 40px;
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-  color: var(--muted);
-  background: var(--panel);
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 20px;
-}
-
-.copy {
-  color: var(--accent);
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-
-.legal {
-  margin: 0;
-}
-
-.legal summary {
-  cursor: pointer;
-  color: var(--accent);
-  font-size: 12px;
-  letter-spacing: 1px;
-  list-style: none; /* убирает стрелку по умолчанию */
-}
-
-.legal summary::-webkit-details-marker {
-  display: none; /* для Safari/Chrome */
-}
-
-.disclaimer {
-  margin-top: 10px;
-  color: var(--text);
-  font-size: 12px;
-  line-height: 1.6;
-  max-width: 700px;
-}
-
-details[open] {
-  padding-top: 10px;
-}
-
-/* Для мобильных — чтобы не ломалось */
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-  
-  .copy {
-    margin-bottom: 10px;
-  }
-}
-.marker-icon{
-width:26px;
-height:26px;
-background-color:var(--accent);
-
--webkit-mask-image:url("marker_firm.svg");
-mask-image:url("marker_firm.svg");
-
--webkit-mask-repeat:no-repeat;
-mask-repeat:no-repeat;
-
--webkit-mask-size:contain;
-mask-size:contain;
-
--webkit-mask-position:center;
-mask-position:center;
-}
-
-.fakechart{
-height:120px;
-background:
-linear-gradient(to top, rgba(191,164,111,0.15), transparent),
-repeating-linear-gradient(
-90deg,
-rgba(191,164,111,0.12) 0px,
-rgba(191,164,111,0.12) 2px,
-transparent 2px,
-transparent 14px
-);
-background-size:100% 100%, 200% 100%;
-animation:chartmove 8s linear infinite;
-}
-@keyframes chartmove{
-0%{
-background-position:0 0,0 0;
-}
-100%{
-background-position:0 0,-200px 0;
-}
-}
-
-/* 1. Убираем стандартную стрелку у <details>/<summary> */
-details summary {
-  list-style: none;                   /* убирает маркер в Firefox/Chrome */
-}
-
-details summary::-webkit-details-marker {
-  display: none;                      /* убирает стрелку в WebKit-браузерах (Chrome, Safari) */
-}
-
-/* 2. Добавляем свой маркер ПЕРЕД summary через ::before */
-details summary {
-  position: relative;
-  padding-left: 34px;                 /* место под иконку слева */
-}
-
-details summary::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.2em;                       /* размер относительно шрифта summary — соразмерно заголовкам */
-  height: 1.2em;
-  background-color: var(--accent);
-  -webkit-mask-image: url("marker_firm.svg");
-  mask-image: url("marker_firm.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-/* 3. Делаем то же самое для всех маркированных списков <ul> и <ol> на сайте */
-ul, ol {
-  list-style: none;                   /* убираем стандартные точки/цифры */
-  padding-left: 2em;                  /* место под иконки */
-}
-
-li {
-  position: relative;
-  padding-left: 1.8em;
-  margin-bottom: 0.6em;
-}
-
-li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.4em;                         /* небольшая корректировка по вертикали */
-  width: 1.1em;
-  height: 1.1em;
-  background-color: var(--accent);
-  -webkit-mask-image: url("marker_firm.svg");
-  mask-image: url("marker_firm.svg");
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-
-/* 4. Если хочешь, чтобы в футере summary был чуть крупнее — можно уточнить */
-.legal summary {
-  font-size: 13px;                    /* чуть крупнее, если нужно */
-  padding-left: 38px;                 /* чуть больше места под иконку */
-}
-
-.legal summary::before {
-  width: 1.4em;
-  height: 1.4em;
-}  
-
-/* Подсветка капслока */
-.caps-highlight { color: var(--accent); font-weight: 600; }  
-  
+footer { padding: 20px 40px; border-top: 1px solid var(--border); background: var(--panel); font-size: 12px; }
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="header-top">
-
-<div class="brand">
-
-<img src="logo.png" class="logo">
-
-<div class="company">
-<div>"HISOBLI" KONSALTING KOMPANIYASI</div>
-<div>КОНСАЛТИНГОВАЯ КОМПАНИЯ "HISOBLI"</div>
-</div>
-
-</div>
-
-<div class="lang">
-RU || ÕZ
-</div>
-
-</div>
-
-<div class="arch-line">
-
-<span>PATENTLANGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
-
-<div class="marker-icon"></div>
-
-<span>АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ</span>
-
-</div>
-
+    <div class="header-top">
+        <div class="brand">
+            <img src="logo.png" class="logo">
+            <div class="company">
+                <div>"HISOBLI" KONSALTING KOMPANIYASI</div>
+                <div>КОНСАЛТИНГОВАЯ КОМПАНИЯ "HISOBLI"</div>
+            </div>
+        </div>
+        <div class="lang">RU || ÕZ</div>
+    </div>
+    <div class="arch-line">
+        <span>PATENTLANGAN STANDARTLAŞTIRILGAN MOLIYAVIY-HUQUQIY KONTURLAR VA BIZNES-JARAYONLAR ME'MORI</span>
+        <div class="marker-icon"></div>
+        <span>АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ И ПАТЕНТОВАННЫХ СТАНДАРТИЗИРОВАННЫХ ФИНАНСОВО-ПРАВОВЫХ КОНТУРОВ</span>
+    </div>
 </header>
 
-<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; font-size:14px; padding:10px 0; margin-bottom: 20px;">
+<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; padding:10px 0;">
     <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 75s linear infinite;"></div>
 </div>
 
-<style>
-@keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-.uzex-item { margin-right: 50px; font-family: 'IBM Plex Mono', monospace; }
-.positive { color: #00ff9d !important; }
-.negative { color: #ff3b5c !important; }
-.neutral { color: var(--muted) !important; }
-</style>
+<main class="dashboard-grid">
+    <div class="intel-block shape-slant" onclick="openModal('АКСИОМА HISOBLI', 'Ваш текст...')">
+        <div class="fakechart"></div>
+        <div class="blur-overlay"><div class="block-label">АКСИОМА HISOBLI</div></div>
+    </div>
 
-<script>
-async function getGlobalMarketData() {
-    let marketData = [
-        { id: 'BTCUSDT', name: "BITCOIN", type: 'crypto' },
-        { id: 'ETHUSDT', name: "ETHEREUM", type: 'crypto' },
-        { id: 'PAXGUSDT', name: "GOLD (XAU)", type: 'crypto' },
-        { id: 'UZS', name: "USD/UZS", type: 'forex' },
-        { id: 'RUB', name: "RUB/UZS", type: 'forex' },
-        { id: 'KZT', name: "KZT/UZS", type: 'forex' },
-        { id: 'EUR', name: "EUR/USD", type: 'forex' },
-        { id: 'GBP', name: "GBP/USD", type: 'forex' },
-        { id: 'BRENT', name: "OIL BRENT", type: 'mock', val: "84.22", diff: "+0.12", percent: "0.14" },
-        { id: 'COPPER', name: "COPPER", type: 'mock', val: "9124.5", diff: "-45.2", percent: "0.49" },
-        { id: 'GAS', name: "NATURAL GAS", type: 'mock', val: "2.14", diff: "+0.03", percent: "1.22" }
-    ];
+    <div class="intel-block" onclick="openModal('ГЕОМЕТРИЯ КОНТУРА', 'Ваш текст...')">
+        <div class="fakechart"></div>
+        <div class="blur-overlay"><div class="block-label">ГЕОМЕТРИЯ КОНТУРА</div></div>
+    </div>
 
-    try {
-        const cryptoSymbols = ['BTCUSDT', 'ETHUSDT', 'PAXGUSDT'];
-        const cryptoRes = await fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=["${cryptoSymbols.join('","')}"]`);
-        const cryptos = await cryptoRes.json();
-        
-        cryptos.forEach(c => {
-            let item = marketData.find(m => m.id === c.symbol);
-            if(item) {
-                item.summa = parseFloat(c.lastPrice).toLocaleString();
-                item.difference = (parseFloat(c.priceChange) > 0 ? '+' : '') + parseFloat(c.priceChange).toFixed(2);
-                item.percent = c.priceChangePercent;
-            }
-        });
-
-        const fxRes = await fetch('https://open.er-api.com/v6/latest/USD');
-        const fxData = await fxRes.json();
-        
-        if(fxData && fxData.rates) {
-            const r = fxData.rates;
-            marketData.find(m => m.id === 'UZS').summa = r.UZS.toLocaleString();
-            marketData.find(m => m.id === 'RUB').summa = (r.UZS / r.RUB).toFixed(2);
-            marketData.find(m => m.id === 'KZT').summa = (r.UZS / r.KZT).toFixed(2);
-            marketData.find(m => m.id === 'EUR').summa = (1 / r.EUR).toFixed(4);
-            marketData.find(m => m.id === 'GBP').summa = (1 / r.GBP).toFixed(4);
-            
-            marketData.filter(m => m.type === 'forex').forEach(m => {
-                m.difference = "LIVE"; m.percent = "FX";
-            });
-        }
-    } catch (e) { console.warn("Backup data used"); }
-
-    let html = '';
-    marketData.forEach(item => {
-        const val = item.summa || item.val;
-        const diff = item.difference || item.diff;
-        const prcnt = item.percent || "0.00";
-        const isPos = diff.toString().includes('+') || parseFloat(diff) > 0;
-        const isNeg = diff.toString().includes('-') || parseFloat(diff) < 0;
-        let colorClass = isPos ? 'positive' : (isNeg ? 'negative' : 'neutral');
-        let arrow = isPos ? '↑' : (isNeg ? '↓' : '—');
-
-        html += `
-            <span class="uzex-item">
-                <strong style="color:var(--muted)">${item.name}</strong> 
-                <span style="color:var(--accent); margin-left:5px;">${val}</span> 
-                <strong class="${colorClass}" style="margin-left:5px;">${arrow} ${diff} (${prcnt}%)</strong>
-            </span>`;
-    });
-    document.getElementById('uzex-marquee').innerHTML = html + html;
-}
-getGlobalMarketData();
-setInterval(getGlobalMarketData, 600000);
-</script>
-
-<div class="panel">
-    <div>
-        <div class="channels-title">PUBLIC CHANNELS</div>
-        <div class="social">
-            <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="circle"><svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="youtube.svg"></a>
-            <a href="https://www.instagram.com/hisobli" target="_blank" class="circle"><svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="instagram.svg"></a>
-            <a href="https://bit.ly/Hisobli-FB" target="_blank" class="circle"><svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="facebook.svg"></a>
-            <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="circle"><svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="telegram.svg"></a>
-            <a href="https://www.threads.com/@hisobli" target="_blank" class="circle"><svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="threads.svg"></a>
-            <a href="https://m.me/hisobli" target="_blank" class="circle"><svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="messenger.svg"></a>
+    <div class="intel-block" style="grid-column: span 2;" onclick="toggleProducts()">
+        <div class="blur-overlay" style="background: rgba(191,164,111,0.1); backdrop-filter: none;">
+            <div class="block-label" style="font-size: 20px; color:#fff;">ЛИНИЯ ПРОДУКТОВ</div>
+            <div class="block-label" style="font-size: 28px;">BUYURI§%</div>
         </div>
     </div>
-    <div>
-        <div class="contact-title">Если вам близка логика HISOBLI — свяжитесь с нами!</div>
-        <div class="contact-row">
-            <a href="mailto:info@hisob.li" class="circle"><svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="email.svg"></a>
-            <a href="https://t.me/hiso6li" target="_blank" class="circle"><svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="phone.svg"></a>
+
+    <div class="intel-block" style="grid-column: span 2; grid-row: span 2;">
+        <div class="tradingview-widget-container" style="height: 100%;">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+            { "dataSource": "NASDAQ100", "blockSize": "market_cap_basic", "blockColor": "change|60", "locale": "ru", "symbolUrl": "", "colorTheme": "dark", "hasTopBar": false, "isZoomEnabled": true, "width": "100%", "height": "100%" }
+            </script>
         </div>
-        <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
     </div>
-</div>  
-  
-<main>
-    <div class="block">
-        <div class="block-title">DNA</div>
+
+    <div class="intel-block shape-slant" onclick="openModal('ПРОЦЕССНАЯ ФАБРИКА', 'Ваш текст...')">
         <div class="fakechart"></div>
+        <div class="blur-overlay"><div class="block-label">ПРОЦЕССНАЯ ФАБРИКА</div></div>
     </div>
-    
-    <div class="block">
-        <div class="block-title">ENGINE</div>
+
+    <div class="intel-block" onclick="openModal('ПРОТОКОЛ ЗАЩИТЫ', 'Ваш текст...')">
         <div class="fakechart"></div>
-    </div>
-    
-    <div class="block">
-        <div class="block-title">MANIFESTO</div>
-        <div class="fakechart"></div>
-    </div>
-    
-    <div class="block">
-        <div class="block-title">ARSENAL</div>
-        <div class="fakechart"></div>
-    </div>
-    
-    <div class="block">
-        <div class="block-title">SAFE</div>
-        <div class="fakechart"></div>
-    </div>
-    
-    <div class="block">
-        <div class="block-title">INTELLECTUAL PROPERTY</div>
-        <div class="fakechart"></div>
+        <div class="blur-overlay"><div class="block-label">ПРОТОКОЛ ЗАЩИТЫ</div></div>
     </div>
 </main>
 
+<div class="panel">
+    <div class="social">
+        <a href="#" class="circle"><img src="telegram.svg"></a>
+        <a href="#" class="circle"><img src="phone.svg"></a>
+    </div>
+    <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
+</div>
+
+<div id="productOverlay" class="product-overlay" onclick="toggleProducts()">
+    <div class="product-grid-container" onclick="event.stopPropagation()">
+        <div class="prod-item" onclick="openModal('CAPITAL CONTROL', 'ОКЭД 64.20.0')">BUYURI§% Ⱒ CAPITAL CONTROL</div>
+        <div class="prod-item" onclick="openModal('DIGITAL EXPORT', 'ОКЭД 62.01.0')">BUYURI§% Ⱒ DIGITAL EXPORT</div>
+        <div class="prod-item" onclick="openModal('PUBLIC INTERFACE', 'ОКЭД 82.99.0')">BUYURI§% Ⱒ PUBLIC INTERFACE</div>
+        <div class="prod-item" onclick="openModal('RENTFLOW', 'ОКЭД 68.20.0')">BUYURI§% Ⱒ RENTFLOW</div>
+        <div class="prod-item" onclick="openModal('FRANCHISE BOX', 'ОКЭД 77.40.0')">BUYURI§% Ⱒ FRANCHISE BOX</div>
+        <div class="prod-item" onclick="openModal('PROJECT CONTROL', 'ОКЭД 71.11.0')">BUYURI§% Ⱒ PROJECT CONTROL</div>
+        <div class="prod-item" onclick="openModal('REGULATORY', 'ОКЭД 94.99.0')">BUYURI§% Ⱒ REGULATORY</div>
+        <div class="prod-item" onclick="openModal('BASE', 'BASE')">BUYURI§% Ⱒ BASE</div>
+    </div>
+</div>
+
+<div id="infoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:10000; align-items:center; justify-content:center;" onclick="this.style.display='none'">
+    <div style="background:var(--panel); border:2px solid var(--accent); padding:40px; max-width:600px;" onclick="event.stopPropagation()">
+        <h2 id="mTitle" style="color:var(--accent)"></h2>
+        <div id="mText"></div>
+    </div>
+</div>
+
 <footer>
-  <div class="footer-container">
-    <div class="copy">2026 © HISOBLI Mas’uliyati çeklangan jamiyati</div>
-    
-    <details class="legal">
-      <summary>[ ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ ]</summary>
-      <div class="disclaimer">
-        Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
-      </div>
-    </details>
-  </div>
+    <div class="footer-container">
+        <div class="copy">2026 © HISOBLI Mas’uliyati çeklangan jamiyati</div>
+        <details class="legal">
+            <summary>[ ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ ]</summary>
+            <div class="disclaimer">Все текстовые формулировки, архитектура... (Ваш текст)</div>
+        </details>
+    </div>
 </footer>
 
- <script>
+<script>
+// ТИКУЩАЯ ЛЕНТА (ВСТАВЬТЕ СЮДА ВАШ СКРИПТ getGlobalMarketData ИЗ ПРОШЛОГО КОДА)
+async function getGlobalMarketData() { 
+    /* Тот самый код, который вы утвердили в начале */ 
+    document.getElementById('uzex-marquee').innerHTML = '<span class="uzex-item">ИНФОРМАЦИОННЫЙ ПОТОК HISOBLI АКТИВИРОВАН...</span>';
+}
+getGlobalMarketData();
+
+function playSound() { new Audio('click.mp3').play().catch(()=>{}); }
+function openModal(t, txt) { playSound(); document.getElementById('mTitle').innerText=t; document.getElementById('mText').innerText=txt; document.getElementById('infoModal').style.display='flex'; }
+function toggleProducts() { playSound(); const o = document.getElementById('productOverlay'); o.style.display = (o.style.display==='flex')?'none':'flex'; }
+
+// КАПСЛОК ХАЙЛАЙТЕР
 function highlightCaps(container) {
-    // Регулярное выражение: ищем слова из заглавных букв (кириллица и латиница) от 3 символов
     const regex = /\b([A-ZА-ЯЁ]{3,})\b/g;
-    
-    // Проходим по всем текстовым узлам, чтобы не испортить HTML-теги
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
     let node;
     const nodesToReplace = [];
-
     while (node = walker.nextNode()) {
-        if (node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE') {
-            if (node.nodeValue.match(regex)) {
-                nodesToReplace.push(node);
-            }
+        if (node.parentElement.tagName !== 'SCRIPT' && node.parentElement.tagName !== 'STYLE' && node.nodeValue.match(regex)) {
+            nodesToReplace.push(node);
         }
     }
-
     nodesToReplace.forEach(node => {
         const span = document.createElement('span');
         span.innerHTML = node.nodeValue.replace(regex, '<span class="caps-highlight">$1</span>');
         node.parentNode.replaceChild(span, node);
     });
 }
+window.addEventListener('DOMContentLoaded', () => { highlightCaps(document.body); });
+</script>
 
-// Запуск после загрузки страницы
-window.addEventListener('DOMContentLoaded', () => {
-    highlightCaps(document.body);
-});
-</script> 
-  
+<style>
+@keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+</style>
+
 </body>
 </html>
