@@ -3,7 +3,6 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HISOBLI</title>
 
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -27,7 +26,6 @@ margin:0;
 background:var(--bg);
 color:var(--text);
 font-family:'IBM Plex Mono',monospace;
-overflow-x:hidden;
 
 /* PCB PATTERN */
 
@@ -72,6 +70,8 @@ background-position:300px 0;
 }
 
 }
+
+
 
 /* HEADER */
 
@@ -148,43 +148,6 @@ filter:brightness(1.4) sepia(1) saturate(6);
 .panel:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 28px rgba(0,0,0,0.9);
-}
-
-#lex-news-container {
-    width: 100%;
-    min-width: 0;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent) transparent;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-}
-
-.top-panels {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 16px;
-    padding: 0 40px;
-    margin-top: 20px;
-}
-
-.top-panels .panel {
-    display: inline-flex;
-    flex: 0 1 auto;
-    margin: 0;
-}
-
-.top-panels .lex-block {
-    width: 320px;
-    height: 590px;
-    margin: 0;
-    flex: 0 0 320px;
-    align-items: stretch;
-}
-
-.top-panels .lex-block > div {
-    width: 100%;
-    min-width: 0;
 }
 
 /* Стили .circle, .orbit, .channels-title и т.д. ОСТАВЛЯЕМ КАК ЕСТЬ */
@@ -433,74 +396,20 @@ details[open] {
 }
 
 /* Для мобильных — чтобы не ломалось */
-@media (max-width: 1100px) {
-    header {
-        padding: 12px 16px 8px;
-    }
-
-    .header-top,
-    .arch-line {
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    .arch-line {
-        justify-content: flex-start;
-        white-space: normal;
-        font-size: 9px;
-    }
-
-    .ticker {
-        padding: 0 16px;
-    }
-
-    .top-panels {
-        flex-direction: column;
-        padding: 0 16px;
-        gap: 14px;
-    }
-
-    .top-panels .panel,
-    .top-panels .lex-block {
-        width: 100% !important;
-        max-width: none;
-        flex: 1 1 auto;
-    }
-
-.top-panels .panel {
-    display: flex;
+@media (max-width: 768px) {
+  .footer-container {
     flex-direction: column;
-    gap: 12px;
-}
-    .top-panels .lex-block {
-        height: 460px;
-    }
-
-    main {
-        grid-template-columns: 1fr !important;
-        padding: 24px 16px !important;
-        gap: 16px !important;
-    }
-
-    .shape-rect,
-    .shape-square,
-    .shape-parallel,
-    .master-block {
-        grid-column: 1 / -1 !important;
-    }
-
-    footer {
-        padding: 20px 16px;
-    }
-}
+    align-items: flex-start;
+    text-align: left;
+  }
   
   .copy {
     margin-bottom: 10px;
   }
 }
 .marker-icon{
-display:block;
-flex: 0 0 26px;
+width:26px;
+height:26px;
 background-color:var(--accent);
 
 -webkit-mask-image:url("marker_firm.svg");
@@ -615,42 +524,7 @@ li::before {
 }  
 
 /* Подсветка капслока */
-.caps-highlight { color: var(--accent); font-weight: 600; }
-
-#lex-news-container {
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent) transparent;
-}
-#lex-news-container a {
-    color: var(--accent);
-    text-decoration: none;
-}
-#lex-news-container a:hover {
-    color: #fff;
-    text-shadow: 0 0 8px rgba(191,164,111,0.6);
-}
-.lex-title {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Орбиты для LEX-кнопки */
-.circle {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.orbit {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-}
-.orbit path { stroke: #BFA46F; fill: none; stroke-linecap: round; }
-.orbit1 { animation: spin1 8s linear infinite; }
-@keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }  
+.caps-highlight { color: var(--accent); font-weight: 600; }  
   
 </style>
 </head>
@@ -772,7 +646,6 @@ getGlobalMarketData();
 setInterval(getGlobalMarketData, 600000);
 </script>
 
-<div class="top-panels">
 <div class="panel">
     <div>
         <div class="channels-title">PUBLIC CHANNELS</div>
@@ -793,34 +666,8 @@ setInterval(getGlobalMarketData, 600000);
         </div>
         <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
     </div>
-</div>
-
-<div class="block lex-block" style="padding:22px 18px; display:flex; flex-direction:column;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <div class="circle" style="width:58px; height:58px; margin:0; flex-shrink:0;">
-				<svg class="orbit orbit1" viewBox="0 0 100 100" style="width:72px; height:72px;">
-				<path d="M20 50 A30 30 0 0 1 80 50"/>
-				<path d="M30 20 A30 30 0 0 1 70 80"/>
-				<path d="M50 10 A40 40 0 0 1 60 90"/>
-				</svg>
-				<img src="paragraf.svg" style="width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
-			</div>
-            <div class="block-title" style="margin:0; flex:1;">ОБНОВЛЕНИЯ LEX.UZ
-        </div>
-        </div>
-        <div style="margin:8px 0; font-size:14px; color:#00ff9d; font-weight:600;" id="lex-today-count">
-            СЕГОДНЯ: — новых НПА
-        </div>
-        
-        <div id="lex-news-container" style="flex:1; overflow-y:auto; font-size:11px; line-height:1.45; padding-right:8px;">
-		</div>
-        
-        <div style="margin-top:12px; font-size:9px; color:var(--muted); text-align:right;" id="lex-top-organ">
-            Активный орган: —
-        </div>
-    </div>
-  
-  <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+</div>  
+  <main style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
 
     <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
         <div class="product-item">
@@ -864,6 +711,27 @@ setInterval(getGlobalMarketData, 600000);
         </div>
     </div>
 
+    <div class="block" style="grid-column: 3 / span 2; grid-row: span 2; padding:0; overflow:hidden;">
+        <div class="tradingview-widget-container" style="height:100%; width:100%;">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
+            {
+              "dataSource": "NASDAQ100",
+              "blockSize": "market_cap_basic",
+              "blockColor": "change|60",
+              "grouping": "no_group",
+              "locale": "ru",
+              "symbolUrl": "",
+              "colorTheme": "dark",
+              "hasTopBar": false,
+              "isDataSetEnabled": false,
+              "isZoomEnabled": true,
+              "width": "100%",
+              "height": "100%"
+            }
+            </script>
+        </div>
+    </div>
 
     <div class="block shape-square">
         <div class="blur-bg fakechart anim-2"></div>
@@ -931,41 +799,6 @@ window.addEventListener('DOMContentLoaded', () => {
     highlightCaps(document.body);
 });
 </script> 
-  
-<script>
-
-async function loadLexNews() {
-    try {
-        const res = await fetch('news.json');
-        const data = await res.json();
-        
-        document.getElementById('lex-today-count').innerHTML = 
-            `СЕГОДНЯ: <span style="color:#00ff9d">${data.today_count}</span> новых НПА`;
-
-        document.getElementById('lex-top-organ').textContent = 
-            `Активный орган: ${data.top_organ}`;
-
-        const container = document.getElementById('lex-news-container');
-
-        container.innerHTML = data.news.map(item => `
-            <div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed rgba(191,164,111,0.25)">
-                <a href="${item.link}" target="_blank" class="lex-title">
-                    ${item.title}
-                </a>
-                <span style="color:var(--muted);font-size:9px;display:block;">
-                    ${item.date} • ${item.organ}
-                </span>
-            </div>
-        `).join('');
-
-    } catch(e) {
-        console.error("Новости в пути...", e);
-    }
-}
-
-loadLexNews();
-
-</script>
   
 </body>
 </html>
