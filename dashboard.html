@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -681,7 +682,7 @@ getGlobalMarketData();
 setInterval(getGlobalMarketData, 600000);
 </script>
 
-<div class="panel">
+<div class="panel" style="float: left;">
     <div>
         <div class="channels-title">PUBLIC CHANNELS</div>
         <div class="social">
@@ -703,26 +704,16 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 </div>
 
-<div style="display:flex; gap:20px; margin:0 40px 20px; align-items:flex-start;">
-    <!-- PUBLIC CHANNELS остаётся слева -->
-    
-    <!-- УЗКИЙ ВЫСОКИЙ LEX.UZ (точно как ты хотел) -->
-    <div class="block" style="
-		width:420px;
-		margin-left:auto;
-		padding:22px 18px;
-		height:420px;
-		display:flex;
-		flex-direction:column;
-	">
-        <!-- Новый заголовок с иконкой paragraf.svg и орбитами -->
+<div class="block" style="width:320px; float:right; margin:20px 40px 20px 0; padding:22px 18px; height:420px; display:flex; flex-direction:column;">
         <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <!-- Мини-кнопка с орбитами (как в PUBLIC CHANNELS) -->
-            <div class="circle" style="width:42px; height:42px; margin:0;">
-                <svg class="orbit orbit1" viewBox="0 0 100 100" style="width:24px;height:24px;"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-                <img src="paragraf.svg" style="width:24px; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
-            </div>
-            
+            <div class="circle" style="width:58px; height:58px; margin:0; flex-shrink:0;">
+				<svg class="orbit orbit1" viewBox="0 0 100 100" style="width:72px; height:72px;">
+				<path d="M20 50 A30 30 0 0 1 80 50"/>
+				<path d="M30 20 A30 30 0 0 1 70 80"/>
+				<path d="M50 10 A40 40 0 0 1 60 90"/>
+				</svg>
+				<img src="paragraf.svg" style="width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+			</div>
             <div class="block-title" style="margin:0; flex:1;">ОБНОВЛЕНИЯ LEX.UZ</div>
         </div>
         
@@ -737,9 +728,8 @@ setInterval(getGlobalMarketData, 600000);
             Активный орган: —
         </div>
     </div>
-</div>
   
-  <main style="position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+  <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
 
     <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
         <div class="product-item">
