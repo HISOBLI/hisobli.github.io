@@ -1,1 +1,197 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HISOBLI — Dashboard v2</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --muted: #a8a8a8;
+      --accent: #bfa46f;
+      --border: #222;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --radius: 12px;
+      --header-h: 72px;
+      --footer-h: 56px;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(191, 164, 111, 0.05) 0 1px, transparent 1px),
+        linear-gradient(35deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191, 164, 111, 0.06) 0 1px, transparent 1px),
+        linear-gradient(0deg, rgba(191, 164, 111, 0.04) 0 1px, transparent 1px);
+      background-size: 42px 42px, 28px 28px, 32px 32px, 70px 70px, 70px 70px;
+      background-position: 0 0, 0 0, 14px 8px, 0 0, 0 0;
+      overflow: hidden;
+    }
+
+    .pcb-reverse {
+      background-color: var(--panel);
+      background-image:
+        radial-gradient(circle at 82% 68%, rgba(191, 164, 111, 0.06) 0 1px, transparent 1px),
+        linear-gradient(-35deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(-145deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191, 164, 111, 0.07) 0 1px, transparent 1px),
+        linear-gradient(0deg, rgba(191, 164, 111, 0.05) 0 1px, transparent 1px);
+      background-size: 42px 42px, 26px 26px, 34px 34px, 70px 70px, 70px 70px;
+      background-position: 0 0, 0 0, 14px 8px, 0 0, 0 0;
+    }
+
+    .frame {
+      height: 100vh;
+      display: grid;
+      grid-template-rows: var(--header-h) 1fr var(--footer-h);
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .panel {
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .footer,
+    .comms,
+    .title-strip {
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      border-radius: var(--radius);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .dashboard-field {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 10px;
+      min-height: 0;
+    }
+
+    .widget {
+      position: relative;
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .widget:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .title-strip {
+      position: absolute;
+      inset: auto 10% 42% 10%;
+      min-height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      padding: 6px 12px;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .w1 { grid-column: span 4; grid-row: span 2; }
+    .w2 { grid-column: span 3; grid-row: span 3; }
+    .w3 { grid-column: span 5; grid-row: span 2; }
+    .w4 { grid-column: span 2; grid-row: span 3; }
+    .w5 { grid-column: span 4; grid-row: span 2; }
+    .w6 { grid-column: span 6; grid-row: span 1; }
+
+    .comms {
+      border-radius: var(--radius);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1024px) {
+      body { overflow: auto; }
+      .frame {
+        height: auto;
+        min-height: 100vh;
+        grid-template-rows: var(--header-h) auto var(--footer-h);
+      }
+      .main { grid-template-columns: 1fr; }
+      .dashboard-field {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+      }
+      .w1, .w2, .w3, .w4, .w5, .w6 {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .comms { min-height: 180px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <header class="topbar pcb-reverse">HISOBLI CONTROL SURFACE</header>
+
+    <main class="main">
+      <section class="dashboard-field panel" aria-label="Поле дашборда">
+        <article class="widget pcb-reverse w1"><div class="title-strip pcb-reverse">STRATEGY MODULE</div></article>
+        <article class="widget pcb-reverse w2"><div class="title-strip pcb-reverse">MARKET FLOW</div></article>
+        <article class="widget pcb-reverse w3"><div class="title-strip pcb-reverse">CAPITAL MAP</div></article>
+        <article class="widget pcb-reverse w4"><div class="title-strip pcb-reverse">LEGAL FRAME</div></article>
+        <article class="widget pcb-reverse w5"><div class="title-strip pcb-reverse">GROWTH SIGNAL</div></article>
+        <article class="widget pcb-reverse w6"><div class="title-strip pcb-reverse">PRODUCT CORE</div></article>
+      </section>
+
+      <aside class="comms pcb-reverse" aria-label="Блок коммуникации">
+        COMMUNICATION HUB
+      </aside>
+    </main>
+
+    <footer class="footer pcb-reverse">HISOBLI // DASHBOARD BLUEPRINT</footer>
+  </div>
+</body>
+</html>
