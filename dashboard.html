@@ -150,6 +150,15 @@ filter:brightness(1.4) sepia(1) saturate(6);
     box-shadow: 0 12px 28px rgba(0,0,0,0.9);
 }
 
+#lex-news-container {
+    width: 100%;
+    min-width: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
 .top-panels {
     display: flex;
     align-items: flex-start;
@@ -170,6 +179,12 @@ filter:brightness(1.4) sepia(1) saturate(6);
     height: 590px;
     margin: 0;
     flex: 0 0 320px;
+    align-items: stretch;
+}
+
+.top-panels .lex-block > div {
+    width: 100%;
+    min-width: 0;
 }
 
 /* Стили .circle, .orbit, .channels-title и т.д. ОСТАВЛЯЕМ КАК ЕСТЬ */
@@ -736,7 +751,7 @@ setInterval(getGlobalMarketData, 600000);
 				</svg>
 				<img src="paragraf.svg" style="width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
 			</div>
-            <div class="block-title" style="margin:0; flex:1;">ОБНОВЛЕНИЯ LEX.UZ</div>
+            <div class="block-title" style="margin:0; flex:1;">ОБНОВЛЕНИЯ LEX.UZ
         </div>
         </div>
         <div style="margin:8px 0; font-size:14px; color:#00ff9d; font-weight:600;" id="lex-today-count">
@@ -744,7 +759,7 @@ setInterval(getGlobalMarketData, 600000);
         </div>
         
         <div id="lex-news-container" style="flex:1; overflow-y:auto; font-size:11px; line-height:1.45; padding-right:8px;">
-        </div>
+		</div>
         
         <div style="margin-top:12px; font-size:9px; color:var(--muted); text-align:right;" id="lex-top-organ">
             Активный орган: —
