@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса в Узбекистане</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
@@ -80,27 +81,75 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
 
+  <title>HISOBLI — Dashboard v2</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --panel: #171717;
+      --text: #d0d0d0;
+      --muted: #a8a8a8;
+      --accent: #bfa46f;
+      --border: #222;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --radius: 12px;
+      --header-h: 72px;
+      --footer-h: 56px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+
     body {
       min-height: 100vh;
       color: var(--text);
       font-family: "Inter", "Segoe UI", Arial, sans-serif;
       background-color: var(--bg);
       background-image:
+
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23BFA46F' stroke-opacity='0.14' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 28h44v20h36v28h46'/%3E%3Cpath d='M18 78h30v34h56v16h62'/%3E%3Cpath d='M4 154h38v-20h42v30h50'/%3E%3Cpath d='M128 10v30h36v26h42'/%3E%3Cpath d='M168 66v30h-24v26h40'/%3E%3Cpath d='M150 126v30h34v24'/%3E%3Cpath d='M72 172v-28h26v-34'/%3E%3Cpath d='M42 204v-20h30v-20h36'/%3E%3Cpath d='M96 2v20h30v24h26'/%3E%3C/g%3E%3Cg fill='%23BFA46F' fill-opacity='0.22'%3E%3Ccircle cx='8' cy='28' r='2.2'/%3E%3Ccircle cx='134' cy='76' r='2.2'/%3E%3Ccircle cx='166' cy='94' r='2.2'/%3E%3Ccircle cx='84' cy='164' r='2.2'/%3E%3Ccircle cx='150' cy='126' r='2.2'/%3E%3Ccircle cx='126' cy='22' r='2.2'/%3E%3Ccircle cx='208' cy='92' r='2.2'/%3E%3Ccircle cx='42' cy='184' r='2.2'/%3E%3Ccircle cx='108' cy='204' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
       background-size: 220px 220px;
+
+        radial-gradient(circle at 15% 20%, rgba(191, 164, 111, 0.05) 0 1px, transparent 1px),
+        linear-gradient(35deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191, 164, 111, 0.06) 0 1px, transparent 1px),
+        linear-gradient(0deg, rgba(191, 164, 111, 0.04) 0 1px, transparent 1px);
+      background-size: 42px 42px, 28px 28px, 32px 32px, 70px 70px, 70px 70px;
+      background-position: 0 0, 0 0, 14px 8px, 0 0, 0 0;
+
       overflow: hidden;
     }
 
     .pcb-reverse {
       background-color: var(--panel);
       background-image:
+
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23BFA46F' stroke-opacity='0.14' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M212 28h-44v20h-36v28h-46'/%3E%3Cpath d='M202 78h-30v34h-56v16h-62'/%3E%3Cpath d='M216 154h-38v-20h-42v30h-50'/%3E%3Cpath d='M92 10v30h-36v26h-42'/%3E%3Cpath d='M52 66v30h24v26h-40'/%3E%3Cpath d='M70 126v30h-34v24'/%3E%3Cpath d='M148 172v-28h-26v-34'/%3E%3Cpath d='M178 204v-20h-30v-20h-36'/%3E%3Cpath d='M124 2v20h-30v24h-26'/%3E%3C/g%3E%3Cg fill='%23BFA46F' fill-opacity='0.22'%3E%3Ccircle cx='212' cy='28' r='2.2'/%3E%3Ccircle cx='86' cy='76' r='2.2'/%3E%3Ccircle cx='54' cy='94' r='2.2'/%3E%3Ccircle cx='136' cy='164' r='2.2'/%3E%3Ccircle cx='70' cy='126' r='2.2'/%3E%3Ccircle cx='94' cy='22' r='2.2'/%3E%3Ccircle cx='12' cy='92' r='2.2'/%3E%3Ccircle cx='178' cy='184' r='2.2'/%3E%3Ccircle cx='112' cy='204' r='2.2'/%3E%3C/g%3E%3C/svg%3E");
       background-size: 220px 220px;
+
+        radial-gradient(circle at 82% 68%, rgba(191, 164, 111, 0.06) 0 1px, transparent 1px),
+        linear-gradient(-35deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(-145deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(191, 164, 111, 0.07) 0 1px, transparent 1px),
+        linear-gradient(0deg, rgba(191, 164, 111, 0.05) 0 1px, transparent 1px);
+      background-size: 42px 42px, 26px 26px, 34px 34px, 70px 70px, 70px 70px;
+      background-position: 0 0, 0 0, 14px 8px, 0 0, 0 0;
+
     }
 
     .frame {
       height: 100vh;
       display: grid;
+
       grid-template-rows: var(--header-h) 1fr auto;
       gap: var(--gap);
       padding: 12px;
@@ -144,16 +193,70 @@
       grid-auto-rows: minmax(44px, 1fr);
       grid-auto-flow: dense;
       gap: var(--gap);
+
+      grid-template-rows: var(--header-h) 1fr var(--footer-h);
+      gap: 12px;
+      padding: 12px;
+    }
+
+    .panel {
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .footer,
+    .comms,
+    .title-strip {
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      border-radius: var(--radius);
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 12px;
+      min-height: 0;
+    }
+
+    .dashboard-field {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      gap: 10px;
+      min-height: 0;
+
     }
 
     .widget {
       position: relative;
+
       overflow: hidden;
+
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .widget:hover {
       transform: translateY(-3px);
+
       box-shadow: 0 16px 32px rgba(0, 0, 0, 0.46);
     }
 
@@ -163,21 +266,34 @@
       inset: 0;
       background: linear-gradient(160deg, rgba(191, 164, 111, 0.08), transparent 40%, rgba(191, 164, 111, 0.03));
       z-index: 1;
+
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+
     }
 
     .title-strip {
       position: absolute;
+
       z-index: 3;
       left: 8%;
       right: 8%;
       top: 50%;
       transform: translateY(-50%);
       padding: 8px;
+
+      inset: auto 10% 42% 10%;
+      min-height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      padding: 6px 12px;
+
       text-align: center;
       text-transform: uppercase;
       font-weight: 700;
       color: var(--accent);
     }
+
 
     .s11 { grid-column: span 1; grid-row: span 1; }
     .s12 { grid-column: span 1; grid-row: span 2; }
@@ -243,11 +359,32 @@
 
     details[open] { padding-top: 6px; }
 
+
+    .w1 { grid-column: span 4; grid-row: span 2; }
+    .w2 { grid-column: span 3; grid-row: span 3; }
+    .w3 { grid-column: span 5; grid-row: span 2; }
+    .w4 { grid-column: span 2; grid-row: span 3; }
+    .w5 { grid-column: span 4; grid-row: span 2; }
+    .w6 { grid-column: span 6; grid-row: span 1; }
+
+    .comms {
+      border-radius: var(--radius);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+
     @media (max-width: 1024px) {
       body { overflow: auto; }
       .frame {
         height: auto;
         min-height: 100vh;
+
         grid-template-rows: var(--header-h) auto auto;
       }
       .main { grid-template-columns: 1fr; }
@@ -259,10 +396,25 @@
         grid-column: span 1;
         grid-row: span 1;
       }
+
+        grid-template-rows: var(--header-h) auto var(--footer-h);
+      }
+      .main { grid-template-columns: 1fr; }
+      .dashboard-field {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 180px;
+      }
+      .w1, .w2, .w3, .w4, .w5, .w6 {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .comms { min-height: 180px; }
+
     }
   </style>
 </head>
 <body>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53LXLGG5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
@@ -310,6 +462,27 @@
         </details>
       </div>
     </footer>
+
+  <div class="frame">
+    <header class="topbar pcb-reverse">HISOBLI CONTROL SURFACE</header>
+
+    <main class="main">
+      <section class="dashboard-field panel" aria-label="Поле дашборда">
+        <article class="widget pcb-reverse w1"><div class="title-strip pcb-reverse">STRATEGY MODULE</div></article>
+        <article class="widget pcb-reverse w2"><div class="title-strip pcb-reverse">MARKET FLOW</div></article>
+        <article class="widget pcb-reverse w3"><div class="title-strip pcb-reverse">CAPITAL MAP</div></article>
+        <article class="widget pcb-reverse w4"><div class="title-strip pcb-reverse">LEGAL FRAME</div></article>
+        <article class="widget pcb-reverse w5"><div class="title-strip pcb-reverse">GROWTH SIGNAL</div></article>
+        <article class="widget pcb-reverse w6"><div class="title-strip pcb-reverse">PRODUCT CORE</div></article>
+      </section>
+
+      <aside class="comms pcb-reverse" aria-label="Блок коммуникации">
+        COMMUNICATION HUB
+      </aside>
+    </main>
+
+    <footer class="footer pcb-reverse">HISOBLI // DASHBOARD BLUEPRINT</footer>
+
   </div>
 </body>
 </html>
