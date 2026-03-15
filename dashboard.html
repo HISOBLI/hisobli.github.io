@@ -73,8 +73,6 @@ background-position:300px 0;
 
 }
 
-
-
 /* HEADER */
 
 header{
@@ -469,10 +467,11 @@ details[open] {
         flex: 1 1 auto;
     }
 
-    .top-panels .panel {
-        display: flex;
-    }
-
+.top-panels .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
     .top-panels .lex-block {
         height: 460px;
     }
@@ -500,8 +499,8 @@ details[open] {
   }
 }
 .marker-icon{
-width:26px;
-height:26px;
+display:block;
+flex: 0 0 26px;
 background-color:var(--accent);
 
 -webkit-mask-image:url("marker_firm.svg");
