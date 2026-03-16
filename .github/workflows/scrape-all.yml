@@ -1,0 +1,29 @@
+name: 📰 Еженедельный парсинг MONITORING
+
+on:
+  schedule:
+    - cron: '0 9 * * 1,4'      # понедельник и четверг в 09:00 UTC (12:00 Ташкент)
+  workflow_dispatch:           # кнопка «Run workflow» вручную
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Установка Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Установка зависимостей
+        run: pip install requests beautifulsoup4 lxml
+      
+      - name: Запуск парсера
+        run: python scrape_all.py
+      
+      - name: Коммит и пуш изменений
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🔄 Авто-парсинг MONITORING (lex + norma + bss + bakiroo)"
+          file_pattern: news.json
