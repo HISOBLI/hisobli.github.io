@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -60,7 +60,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/favicons/site.webmanifest" />
   <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
-
+	
 <style>
 
 :root{
@@ -184,9 +184,9 @@ height:20px;
 filter:brightness(1.4) sepia(1) saturate(6);
 }
 
-/* PANEL — Заменить только это для сдвига влево */
+/* PANEL */
 .panel {
-    display: inline-flex; /* Сжимает блок по контенту */
+    display: inline-flex;
     align-items: center;
     gap: 40px; 
     margin: 20px 40px; 
@@ -241,7 +241,6 @@ filter:brightness(1.4) sepia(1) saturate(6);
     min-width: 0;
 }
 
-/* Стили .circle, .orbit, .channels-title и т.д. ОСТАВЛЯЕМ КАК ЕСТЬ */
 
 /* BUTTON */
 
@@ -331,7 +330,7 @@ margin-top:20px;
 padding:0 40px;
 }
 
-/* GRID — Полная замена этой секции */
+/* GRID */
 main {
     position: relative; 
     margin-top: 20px;
@@ -341,7 +340,7 @@ main {
     gap: 16px;
 }
 
-/* Единый стиль контейнеров (как у панели соцсетей) */
+/* Единый стиль контейнеров */
 .block, .product-item, .master-block {
     background: var(--panel);
     border: 1px solid var(--accent);
@@ -362,14 +361,13 @@ main {
     box-shadow: 0 12px 28px rgba(0,0,0,0.9), 0 0 25px rgba(191,164,111,0.12);
 }
 
-/* Эффект заголовка: "Пояс" в цвете фона посередине */
 .title-belt {
     position: absolute;
     top: 50%;
     left: 0;
     width: 100%;
     transform: translateY(-50%);
-    background: var(--bg); /* Цвет фона сайта */
+    background: var(--bg); 
     padding: 8px 0;
     z-index: 10;
     text-align: center;
@@ -381,15 +379,14 @@ main {
     color: var(--accent);
     font-weight: 600;
     font-size: 12px;
-    letter-spacing: -0.2px; /* Узкий кернинг */
+    letter-spacing: -0.2px; 
     text-transform: uppercase;
     padding: 0 10px;
 }
 
-/* Маркер-разделитель (высотой со шрифт) */
 .m-sep {
     display: inline-block;
-    height: 1em; /* Равен высоте шрифта */
+    height: 1em; 
     width: 1em;
     background-color: var(--accent);
     -webkit-mask: url("marker_firm.svg") no-repeat center / contain;
@@ -398,13 +395,11 @@ main {
     margin: 0 4px;
 }
 
-/* Разные фигуры */
 .shape-rect { grid-column: span 2; height: 180px; }
 .shape-square { grid-column: span 1; aspect-ratio: 1/1; }
 .shape-parallel { transform: skewX(-5deg); grid-column: span 1; }
-.shape-parallel > * { transform: skewX(5deg); } /* Выравниваем контент */
+.shape-parallel > * { transform: skewX(5deg); } 
 
-/* Асинхронный блюр-фон */
 .blur-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -413,7 +408,6 @@ main {
     z-index: 1;
 }
 
-/* Разные скорости анимации для имитации живых данных */
 .anim-1 { animation: chartmove 6s linear infinite; }
 .anim-2 { animation: chartmove 10s linear infinite reverse; }
 .anim-3 { animation: chartmove 14s ease-in-out infinite; }
@@ -425,7 +419,6 @@ main {
     transform: translate(-50%, -50%);
     width: 100%;
     z-index: 1000;
-    /* Сетка 4x2, где центр пустой (или продукты вокруг) */
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 20px;
@@ -467,11 +460,11 @@ footer {
   color: var(--accent);
   font-size: 12px;
   letter-spacing: 1px;
-  list-style: none; /* убирает стрелку по умолчанию */
+  list-style: none; 
 }
 
 .legal summary::-webkit-details-marker {
-  display: none; /* для Safari/Chrome */
+  display: none; 
 }
 
 .disclaimer {
@@ -486,7 +479,6 @@ details[open] {
   padding-top: 10px;
 }
 
-/* Для мобильных — чтобы не ломалось */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -539,19 +531,17 @@ background-position:0 0,-200px 0;
 }
 }
 
-/* 1. Убираем стандартную стрелку у <details>/<summary> */
 details summary {
-  list-style: none;                   /* убирает маркер в Firefox/Chrome */
+  list-style: none;                   
 }
 
 details summary::-webkit-details-marker {
-  display: none;                      /* убирает стрелку в WebKit-браузерах (Chrome, Safari) */
+  display: none;                      
 }
 
-/* 2. Добавляем свой маркер ПЕРЕД summary через ::before */
 details summary {
   position: relative;
-  padding-left: 34px;                 /* место под иконку слева */
+  padding-left: 34px;                 
 }
 
 details summary::before {
@@ -560,7 +550,7 @@ details summary::before {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.2em;                       /* размер относительно шрифта summary — соразмерно заголовкам */
+  width: 1.2em;                       
   height: 1.2em;
   background-color: var(--accent);
   -webkit-mask-image: url("marker_firm.svg");
@@ -573,10 +563,9 @@ details summary::before {
   mask-position: center;
 }
 
-/* 3. Делаем то же самое для всех маркированных списков <ul> и <ol> на сайте */
 ul, ol {
-  list-style: none;                   /* убираем стандартные точки/цифры */
-  padding-left: 2em;                  /* место под иконки */
+  list-style: none;                   
+  padding-left: 2em;                  
 }
 
 li {
@@ -589,7 +578,7 @@ li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.4em;                         /* небольшая корректировка по вертикали */
+  top: 0.4em;                         
   width: 1.1em;
   height: 1.1em;
   background-color: var(--accent);
@@ -603,10 +592,9 @@ li::before {
   mask-position: center;
 }
 
-/* 4. Если хочешь, чтобы в футере summary был чуть крупнее — можно уточнить */
 .legal summary {
-  font-size: 13px;                    /* чуть крупнее, если нужно */
-  padding-left: 38px;                 /* чуть больше места под иконку */
+  font-size: 13px;                    
+  padding-left: 38px;                 
 }
 
 .legal summary::before {
@@ -614,7 +602,6 @@ li::before {
   height: 1.4em;
 }  
 
-/* Подсветка капслока */
 .caps-highlight { color: var(--accent); font-weight: 600; }
 
 #lex-news-container {
@@ -636,7 +623,6 @@ li::before {
     overflow: hidden;
 }
 
-/* Орбиты для LEX-кнопки */
 .circle {
     position: relative;
     display: flex;
@@ -782,7 +768,6 @@ setInterval(getGlobalMarketData, 600000);
             <a href="https://bit.ly/Hisobli-FB" target="_blank" class="circle"><svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="facebook.svg"></a>
             <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="circle"><svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="telegram.svg"></a>
             <a href="https://www.threads.com/@hisobli" target="_blank" class="circle"><svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="threads.svg"></a>
-			<a href="https://x.com/hisobli" target="_blank" class="circle"><svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="twitter.svg"></a>
             <a href="https://m.me/hisobli" target="_blank" class="circle"><svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg><img src="messenger.svg"></a>
         </div>
     </div>
@@ -800,9 +785,9 @@ setInterval(getGlobalMarketData, 600000);
     <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
         <div class="circle" style="width:58px; height:58px; margin:0; flex-shrink:0;">
             <svg class="orbit orbit1" viewBox="0 0 100 100" style="width:72px; height:72px;">
-                <path d="M20 50 A30 30 0 0 1 80 50"/>
-                <path d="M30 20 A30 30 0 0 1 70 80"/>
-                <path d="M50 10 A40 40 0 0 1 60 90"/>
+            <path d="M20 50 A30 30 0 0 1 80 50"/>
+            <path d="M30 20 A30 30 0 0 1 70 80"/>
+            <path d="M50 10 A40 40 0 0 1 60 90"/>
             </svg>
             <img src="paragraf.svg" style="width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
         </div>
@@ -814,14 +799,13 @@ setInterval(getGlobalMarketData, 600000);
     </div>
     
     <div id="lex-news-container" style="flex:1; overflow-y:auto; font-size:11px; line-height:1.45; padding-right:8px;">
-        </div>
+    </div>
     
     <div style="margin-top:12px; font-size:9px; color:var(--muted); text-align:right;" id="lex-top-organ">
         Активный орган: —
     </div>
-    </div>
-  
-  <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+</div> 
+</div> <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
 
     <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
         <div class="product-item">
@@ -904,10 +888,8 @@ setInterval(getGlobalMarketData, 600000);
 
  <script>
 function highlightCaps(container) {
-    // Регулярное выражение: ищем слова из заглавных букв (кириллица и латиница) от 3 символов
     const regex = /\b([A-ZА-ЯЁ]{3,})\b/g;
     
-    // Проходим по всем текстовым узлам, чтобы не испортить HTML-теги
     const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
     let node;
     const nodesToReplace = [];
@@ -927,7 +909,6 @@ function highlightCaps(container) {
     });
 }
 
-// Запуск после загрузки страницы
 window.addEventListener('DOMContentLoaded', () => {
     highlightCaps(document.body);
 });
