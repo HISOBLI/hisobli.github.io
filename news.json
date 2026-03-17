@@ -1,20 +1,27 @@
 {
-  "period_ru": "16–17 марта 2026",
-  "period_uz": "16–17 mart 2026",
+  "period_ru": "13–17 марта 2026",
+  "period_uz": "13–17 mart 2026",
   "items": [
     {
-      "source": "norma",
-      "title": "Скачать обновления",
+      "source": "lex",
+      "title": "О внесении изменения в пункт 4 Приложения 1 к Правилам внутреннего контроля по противодействию легализации доходов, полученных от преступной",
       "date": "17.03.2026",
-      "link": "https://www.norma.uz/updates/",
+      "link": "https://lex.uz/ru/docs/8082998",
+      "marker": null
+    },
+    {
+      "source": "bss",
+      "title": "Какие праздничные дни будут в Узбекистане в 2026 году",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/1949-prazdnichnye-dni-v-uzbekistane-v-2024-godu",
       "marker": null
     },
     {
       "source": "bakiroo",
-      "title": "250 кубми ё 500 куб",
-      "date": "16.03.2026",
-      "link": "https://t.me/the_bakiroo/12147?single",
-      "marker": null
+      "title": "Ягона биллинг тизим қачон ишга тушади?",
+      "date": "13.03.2026",
+      "link": "https://t.me/the_bakiroo/12139",
+      "marker": "!!!"
     },
     {
       "source": "bakiroo",
