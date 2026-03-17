@@ -1,62 +1,125 @@
 {
-  "period_ru": "13–17 марта 2026",
-  "period_uz": "13–17 mart 2026",
+  "period": "17.03.2026",
   "items": [
     {
       "source": "lex",
       "title": "Ўзбекистон Республикаси бухгалтерия ҳисобининг миллий стандарти (21-сонли БҲМС) «Хўжалик юритувчи субъектларда бухгалтерия ҳисобининг ҳисобв",
       "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/-8084155",
-      "marker": null
+      "link": "https://lex.uz/ru/docs/-8084155"
+    },
+    {
+      "source": "lex",
+      "title": "Бухгалтерия ҳисобининг миллий стандарти (20-сонли БҲМС) «Кичик тадбиркорлик субъектлари томонидан бухгалтерия ҳисобини юритишнинг соддалашти",
+      "date": "17.03.2026",
+      "link": "https://lex.uz/ru/docs/-8082724"
     },
     {
       "source": "lex",
       "title": "Атоқли давлат ва жамоат арбоби Қаллибек Камалов таваллудининг 100 йиллигини кенг нишонлаш тўғрисида",
       "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8084173",
-      "marker": null
+      "link": "https://lex.uz/ru/docs/8084173"
     },
     {
       "source": "lex",
       "title": "Сунъий интеллектга асосланган ечимларни яратиш, жорий қилиш ва улардан фойдаланиш бўйича этика қоидаларини тасдиқлаш тўғрисида",
       "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/-8083233",
-      "marker": null
+      "link": "https://lex.uz/ru/docs/-8083233"
     },
     {
       "source": "lex",
       "title": "«Божхона иши соҳасида қўлланиладиган айрим ҳужжатлар ва ҳисоботлар шаклларини тасдиқлаш тўғрисида»ги қарорга ўзгартиришлар ва қўшимча кирити",
       "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8083043",
-      "marker": null
+      "link": "https://lex.uz/ru/docs/8083043"
+    },
+    {
+      "source": "norma",
+      "title": "Усиливаются меры борьбы с незаконным подключением к энергосетям",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/usilivayutsya_mery_borby_s_nezakonnym_podklyucheniem_k_energosetyam"
+    },
+    {
+      "source": "norma",
+      "title": "Шелководство: субсидии, налоговые льготы и масштабное расширение тутовых плантаций",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/shelkovodstvo_subsidii_nalogovye_lgoty_i_masshtabnoe_rasshirenie_tutovyh_plantaciy"
+    },
+    {
+      "source": "norma",
+      "title": "Разработана Стратегия кибербезопасности Узбекистана",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/razrabotana_strategiya_kiberbezopasnosti_uzbekistana"
+    },
+    {
+      "source": "norma",
+      "title": "В госорганах внедряется ИТ-аудит",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/v_gosorganah_vnedryaetsya_it-audit"
+    },
+    {
+      "source": "norma",
+      "title": "Систему «tax free» расширяют: иностранцам упростят возврат НДС при покупках",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/sistemu_tax_free_rasshiryayut_inostrancam_uprostyat_vozvrat_nds_pri_pokupkah"
+    },
+    {
+      "source": "bss",
+      "title": "Как бухгалтеру хранить и уничтожать бланки строгой отчетности в 2026 году",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/117-blanki-strogoy-otchetnosti-kak-hranit-i-unichtojit"
+    },
+    {
+      "source": "bss",
+      "title": "Какие проводки применять при франшизе: бухгалтерский и налоговый учет",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/3422-kakie-provodki-primenyat-pri-franshize-buhgalterskiy-i-nalogovyy-uchet"
+    },
+    {
+      "source": "bss",
+      "title": "Какие ставки НДС действуют в Узбекистане в 2026 году",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/552-stavka-nds-v-uzbekistane"
+    },
+    {
+      "source": "bss",
+      "title": "Как выделить НДС из суммы в 2026 году – инструкция",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/455-kak-vydelit-nds"
+    },
+    {
+      "source": "bss",
+      "title": "Пошаговый порядок расторжения договора ГПХ",
+      "date": "17.03.2026",
+      "link": "https://www.bss.uz/article/2546-obrazets-dogovora-gph-besplatnyy-shablon-kotoryy-uprostit-vashu-rabotu"
     },
     {
       "source": "bakiroo",
-      "title": "Ҳукмрон партия ва сенаторларимиз ўзбилармон амалдорларга сўров юбориши эмас, парламентга чақириши керак",
-      "date": "15.03.2026",
-      "link": "https://t.me/the_bakiroo/12145",
-      "marker": null
+      "title": "Ҳам тайёр хонадонлар, ҳам тижорат объектлари",
+      "date": "17.03.2026",
+      "link": "https://t.me/the_bakiroo/12151"
     },
     {
       "source": "bakiroo",
-      "title": "11- автобус Шифобахш сувларгача, 88- автобус Иттифоққача борадими?  Бугунги йиғишда Давлат раҳбари Тошкент халқа йўлигача келаётган 20 та ав",
-      "date": "13.03.2026",
-      "link": "https://t.me/the_bakiroo/10450",
-      "marker": null
-    },
-    {
-      "source": "bakiroo",
-      "title": "Озиқ-овқат хавфсизлиги бўйича таклиф этилаётган янги тизим муҳокамаси давом этмоқда",
-      "date": "16.03.2026",
-      "link": "https://t.me/the_bakiroo/12154",
-      "marker": "!!!"
+      "title": "​Ўзкимёсаноат \"кипрлик олигархга\" текинга совға қилган Самарқандкимё улушини 30 миллион доллар тўлаб сотиб олган  Ўтган йили илгари сурилган",
+      "date": "14.03.2026",
+      "link": "https://t.me/the_bakiroo/12141"
     },
     {
       "source": "bakiroo",
       "title": "250 кубми ё 500 куб  Истеъмолчилар тақдим этаётган маълумотларга кўра, мартнинг 15 куни учун 500 куб эмас, амалда 250 куб базавий меъёр белг",
       "date": "16.03.2026",
-      "link": "https://t.me/the_bakiroo/12147",
-      "marker": null
+      "link": "https://t.me/the_bakiroo/12147"
+    },
+    {
+      "source": "bakiroo",
+      "title": "11- автобус Шифобахш сувларгача, 88- автобус Иттифоққача борадими?  Бугунги йиғишда Давлат раҳбари Тошкент халқа йўлигача келаётган 20 та ав",
+      "date": "13.03.2026",
+      "link": "https://t.me/the_bakiroo/10450"
+    },
+    {
+      "source": "bakiroo",
+      "title": "Бу қанақа шкала бўлади?   Газ учун тарифлар ойлик истеъмол шкаласига асосан белгиланган. Энергетикларнинг хабарига ишонилса, 500 куб метр ба",
+      "date": "16.03.2026",
+      "link": "https://t.me/the_bakiroo/12066"
     }
   ]
 }
