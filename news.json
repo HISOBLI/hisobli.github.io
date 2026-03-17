@@ -1,20 +1,27 @@
 {
-  "period_ru": "13–14 марта 2026",
-  "period_uz": "13–14 mart 2026",
+  "period_ru": "16–17 марта 2026",
+  "period_uz": "16–17 mart 2026",
   "items": [
     {
-      "source": "bakiroo",
-      "title": "​",
-      "date": "14.03.2026",
-      "link": "https://t.me/the_bakiroo/12144",
-      "marker": "!!!"
+      "source": "norma",
+      "title": "Скачать обновления",
+      "date": "17.03.2026",
+      "link": "https://www.norma.uz/updates/",
+      "marker": null
     },
     {
       "source": "bakiroo",
-      "title": "Ягона биллинг тизим қачон ишга тушади?",
-      "date": "13.03.2026",
-      "link": "https://t.me/the_bakiroo/12139",
-      "marker": "!!!"
+      "title": "250 кубми ё 500 куб",
+      "date": "16.03.2026",
+      "link": "https://t.me/the_bakiroo/12147?single",
+      "marker": null
+    },
+    {
+      "source": "bakiroo",
+      "title": "Бу қанақа шкала бўлади?   Газ учун тарифлар ойлик истеъмол шкаласига асосан белгиланган. Энергетикларнинг хабарига ишонилса, 500 куб метр ба",
+      "date": "16.03.2026",
+      "link": "https://t.me/the_bakiroo/12066",
+      "marker": null
     }
   ]
 }
