@@ -64,7 +64,7 @@ def parse_norma():
         r = requests.get(SOURCES["norma"], headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for h3 in soup.find_all("h3"):
+        for h3 in soup.select("h3:has(a[href^='/'])"):
             a = h3.find("a")
             if not a: continue
             title = a.get_text(strip=True)
@@ -83,6 +83,8 @@ def parse_norma():
         return items
     except Exception as e:
         print(f"Norma error: {e}")
+        print("Norma raw count:", len(items))
+        if items: print("Norma first title:", items[0]["title"])
         return []
 
 def parse_bss():
