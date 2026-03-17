@@ -1044,12 +1044,13 @@ async function loadMonitoring() {
         const res = await fetch('news.json');
         const data = await res.json();
 
-        // Период
-        document.getElementById('monitor-period').innerHTML = 
-            `Обновление за <span style="color:#00ff9d">${data.period}</span> в законах, статьях, критических анализах.`;
+        // Период (теперь берём period_ru)
+        const periodText = data.period_ru || data.period || '—';
+        document.getElementById('monitor-period').innerHTML =
+            `Обновление за <span style="color:#00ff9d">${periodText}</span> в законах, статьях, критических анализах.`;
 
-        // Бегущая строка (дублируем для seamless)
-        const itemsHtml = data.news.map(item => `
+        // Бегущая строка — теперь используем data.items
+        const itemsHtml = (data.items || []).map(item => `
             <div class="news-item">
                 <span class="marker">${item.marker || '•'}</span>
                 <a href="${item.link}" target="_blank">${item.title}</a>
@@ -1058,13 +1059,13 @@ async function loadMonitoring() {
         `).join('');
 
         const marquee = document.getElementById('monitor-marquee');
-        marquee.innerHTML = itemsHtml + itemsHtml;   // бесконечная петля
+        marquee.innerHTML = itemsHtml + itemsHtml;   // seamless loop
 
     } catch(e) {
         console.error("Мониторинг в пути...", e);
         document.getElementById('monitor-marquee').innerHTML = `
             <div class="news-item" style="text-align:center;color:var(--muted);">
-                Данные обновляются... (проверь news.json)
+                Ошибка загрузки news.json
             </div>`;
     }
 }
