@@ -716,9 +716,11 @@ li::before {
     letter-spacing: 1.2px;
 }
 .bottom-belt {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 11px;
-    margin-top: 12px;
-    padding: 7px 0;
+    letter-spacing: 0.8px;
 }
   
 </style>
@@ -913,9 +915,9 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 
     <!-- 4. Период обновлений -->
-    <div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
-        Обновление за 16.03.2026 — 22.03.2026 в законах, статьях, критических анализах.
-    </div>
+	<div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
+		Обновление за <span style="color:#00ff9d">14–17 марта 2026</span> в законах, статьях, критических анализах.
+	</div>
 
     <!-- 5. Бегущая строка -->
     <div class="marquee-wrapper">
@@ -923,13 +925,14 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 
     <!-- 6. Нижний пояс категорий -->
-    <div class="bottom-belt">
-        § Обновления в Законах/Qonunga o‘zgartirishlar  
-        % Важно для бухгалтерии/Buxgalteriya uchun muhim  
-        !!! Критика/Tanqid
-    </div>
+	<div id="monitor-bottom-belt" class="bottom-belt">
+		§ - Обновления в Законах;  
+		% - Важно для бухгалтерии;  
+		!!! - Критическая аналитика.
+	</div>
 </div> 
-</div> <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
+</div> 
+	<main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
 
     <div id="product-grid" class="products-layer" style="display:none;" onclick="this.style.display='none'">
         <div class="product-item">
@@ -1039,17 +1042,32 @@ window.addEventListener('DOMContentLoaded', () => {
 </script> 
   
 <script>
+let currentLang = 'ru';
+
 async function loadMonitoring() {
     try {
         const res = await fetch('news.json');
         const data = await res.json();
 
-        // Период (теперь берём period_ru)
-        const periodText = data.period_ru || data.period || '—';
-        document.getElementById('monitor-period').innerHTML =
-            `Обновление за <span style="color:#00ff9d">${periodText}</span> в законах, статьях, критических анализах.`;
+        const periodVal = currentLang === 'ru' 
+            ? (data.period_ru || '14–17 марта 2026') 
+            : (data.period_uz || '14–17 mart 2026');
 
-        // Бегущая строка — теперь используем data.items
+        // === Полная фраза периода ===
+        const periodHTML = currentLang === 'ru'
+            ? `Обновление за <span style="color:#00ff9d">${periodVal}</span> в законах, статьях, критических анализах.`
+            : `Qonunlar, maqolalar va tanqidiy tahlillarning <span style="color:#00ff9d">${periodVal}</span> mobaynidagi yangilanişlari.`;
+
+        document.getElementById('monitor-period').innerHTML = periodHTML;
+
+        // === Нижний пояс (bottom-belt) ===
+        const bottomRU = `§ - Обновления в Законах;   % - Важно для бухгалтерии;   !!! - Критическая аналитика.`;
+        const bottomUZ = `§ - Qonunga õzgartirişlar;   % - Buxgalteriya uçun muhim;   !!! - Tanqidiy tahlil.`;
+        
+        document.getElementById('monitor-bottom-belt').innerHTML = 
+            currentLang === 'ru' ? bottomRU : bottomUZ;
+
+        // === Бегущая строка (остаётся без изменений) ===
         const itemsHtml = (data.items || []).map(item => `
             <div class="news-item">
                 <span class="marker">${item.marker || '•'}</span>
@@ -1059,16 +1077,20 @@ async function loadMonitoring() {
         `).join('');
 
         const marquee = document.getElementById('monitor-marquee');
-        marquee.innerHTML = itemsHtml + itemsHtml;   // seamless loop
+        marquee.innerHTML = itemsHtml + itemsHtml;
 
     } catch(e) {
         console.error("Мониторинг в пути...", e);
-        document.getElementById('monitor-marquee').innerHTML = `
-            <div class="news-item" style="text-align:center;color:var(--muted);">
-                Ошибка загрузки news.json
-            </div>`;
     }
 }
+
+// Переключатель RU || ÕZ
+document.querySelector('.lang').addEventListener('click', () => {
+    currentLang = currentLang === 'ru' ? 'uz' : 'ru';
+    document.querySelector('.lang').textContent = currentLang === 'ru' ? 'RU || ÕZ' : 'ÕZ || RU';
+    loadMonitoring();
+});
+
 window.addEventListener('DOMContentLoaded', loadMonitoring);
 </script>
   
