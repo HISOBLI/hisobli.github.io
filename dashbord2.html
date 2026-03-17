@@ -204,6 +204,28 @@ filter:brightness(1.4) sepia(1) saturate(6);
     box-shadow: 0 12px 28px rgba(0,0,0,0.9);
 }
 
+/* TOP-PANELS — точное расположение как было у lex-block */
+.top-panels {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 40px;
+    margin-top: 20px;
+}
+.top-panels .panel {
+    display: inline-flex;
+    flex: 0 0 480px;           /* фиксированная ширина левой панели */
+    margin: 0;
+}
+.top-panels .monitor-block {
+    flex: 1;
+    min-width: 0;
+    height: 590px;
+    margin: 0;
+    align-items: stretch;
+}
+
 #lex-news-container {
     width: 100%;
     min-width: 0;
@@ -213,33 +235,6 @@ filter:brightness(1.4) sepia(1) saturate(6);
     word-break: break-word;
 }
 
-.top-panels {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 16px;
-    padding: 0 40px;
-    margin-top: 20px;
-}
-
-.top-panels .panel {
-    display: inline-flex;
-    flex: 0 1 auto;
-    margin: 0;
-}
-
-.top-panels .lex-block {
-    width: 320px;
-    height: 590px;
-    margin: 0;
-    flex: 0 0 320px;
-    align-items: stretch;
-}
-
-.top-panels .lex-block > div {
-    width: 100%;
-    min-width: 0;
-}
 
 
 /* BUTTON */
@@ -638,6 +633,94 @@ li::before {
 .orbit1 { animation: spin1 8s linear infinite; }
 @keyframes spin1 { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }  
   
+  /* ==================== МОНИТОРИНГ ==================== */
+.monitor-block {
+    flex: 1;
+    min-width: 0;
+    width: auto;
+    height: 590px;
+    margin: 0;
+    align-items: stretch;
+}
+.monitor-block > div {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Марки + анимация */
+.marker {
+    color: #ff3b5c;
+    font-weight: 700;
+    font-size: 1.28em;
+    margin-right: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    animation: marker-pulse 1.8s infinite ease-in-out;
+}
+@keyframes marker-pulse {
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.25) translateY(-2px); }
+}
+
+/* Бегущая строка вверх (бесконечная) */
+.marquee-wrapper {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 10px 8px;
+    overflow: hidden;
+    position: relative;
+    margin: 8px 0;
+}
+.marquee {
+    display: flex;
+    flex-direction: column;
+    animation: marquee-scroll 40s linear infinite;
+}
+@keyframes marquee-scroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+.news-item {
+    padding: 7px 0 6px;
+    border-bottom: 1px dashed rgba(191,164,111,0.25);
+    font-size: 11px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+.news-item a {
+    color: var(--text);
+    text-decoration: none;
+}
+.news-item a:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(191,164,111,0.6);
+}
+.news-date {
+    color: var(--muted);
+    font-size: 9px;
+    margin-left: 10px;
+}
+
+/* Пояс источников и нижний пояс */
+.sites-row, .bottom-belt {
+    background: var(--bg);
+    padding: 8px 0;
+    text-align: center;
+    border-top: 1px solid rgba(191,164,111,0.3);
+    border-bottom: 1px solid rgba(191,164,111,0.3);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+}
+.bottom-belt {
+    font-size: 11px;
+    margin-top: 12px;
+    padding: 7px 0;
+}
+  
 </style>
 </head>
 
@@ -782,28 +865,68 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 </div>
 
-<div class="block lex-block" style="padding:22px 18px; display:flex; flex-direction:column;">
-    <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-        <div class="circle" style="width:58px; height:58px; margin:0; flex-shrink:0;">
-            <svg class="orbit orbit1" viewBox="0 0 100 100" style="width:72px; height:72px;">
-            <path d="M20 50 A30 30 0 0 1 80 50"/>
-            <path d="M30 20 A30 30 0 0 1 70 80"/>
-            <path d="M50 10 A40 40 0 0 1 60 90"/>
+<div class="block monitor-block" style="padding:22px 18px; display:flex; flex-direction:column;">
+    <!-- 1. Заголовок MONITORING -->
+    <div style="display:flex; justify-content:center; align-items:center; gap:24px; margin-bottom:14px;">
+        <!-- Левая иконка (paragraf.svg) -->
+        <div class="circle" style="width:48px;height:48px;flex-shrink:0;">
+            <svg class="orbit orbit1" viewBox="0 0 100 100" style="width:66px;height:66px;">
+                <path d="M20 50 A30 30 0 0 1 80 50"/>
+                <path d="M30 20 A30 30 0 0 1 70 80"/>
+                <path d="M50 10 A40 40 0 0 1 60 90"/>
             </svg>
-            <img src="paragraf.svg" style="width:28px; z-index:3; filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+            <img src="paragraf.svg" style="width:26px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
         </div>
-        <div class="block-title" style="margin:0; flex:1;">ОБНОВЛЕНИЯ LEX.UZ</div>
+
+        <div style="color:var(--accent);font-weight:600;font-size:15.5px;letter-spacing:2.5px;text-transform:uppercase;">MONITORING</div>
+
+        <!-- Правая иконка (procent.svg) -->
+        <div class="circle" style="width:48px;height:48px;flex-shrink:0;">
+            <svg class="orbit orbit3" viewBox="0 0 100 100" style="width:66px;height:66px;">
+                <path d="M20 50 A30 30 0 0 1 80 50"/>
+                <path d="M30 20 A30 30 0 0 1 70 80"/>
+                <path d="M50 10 A40 40 0 0 1 60 90"/>
+            </svg>
+            <img src="procent.svg" style="width:26px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+        </div>
     </div>
 
-    <div style="margin:8px 0; font-size:14px; color:#00ff9d; font-weight:600;" id="lex-today-count">
-        СЕГОДНЯ: — новых НПА
+        <!-- 2. 4 иконки источников (орбиты удалены навсегда) -->
+		<div style="display:flex;justify-content:center;gap:22px;margin-bottom:14px;">
+			<a href="https://lex.uz" target="_blank" class="circle" style="width:42px;height:42px;">
+			<img src="lex.svg" style="width:24px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+			</a>
+			<a href="https://norma.uz" target="_blank" class="circle" style="width:42px;height:42px;">
+			<img src="norma.svg" style="width:24px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+			</a>
+			<a href="https://bss.uz" target="_blank" class="circle" style="width:42px;height:42px;">
+			<img src="bss.svg" style="width:24px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+			</a>
+			<a href="https://t.me/the_bakiroo" target="_blank" class="circle" style="width:42px;height:42px;">
+			<img src="bakiroo.svg" style="width:24px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
+			</a>
+			</div>
+
+    <!-- 3. Пояс сайтов (золотая полоса) -->
+    <div class="sites-row">
+        www.lex.uz  www.norma.uz  www.bss.uz  https://t.me/the_bakiroo
     </div>
-    
-    <div id="lex-news-container" style="flex:1; overflow-y:auto; font-size:11px; line-height:1.45; padding-right:8px;">
+
+    <!-- 4. Период обновлений -->
+    <div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
+        Обновление за 16.03.2026 — 22.03.2026 в законах, статьях, критических анализах.
     </div>
-    
-    <div style="margin-top:12px; font-size:9px; color:var(--muted); text-align:right;" id="lex-top-organ">
-        Активный орган: —
+
+    <!-- 5. Бегущая строка -->
+    <div class="marquee-wrapper">
+        <div id="monitor-marquee" class="marquee"></div>
+    </div>
+
+    <!-- 6. Нижний пояс категорий -->
+    <div class="bottom-belt">
+        § Обновления в Законах/Qonunga o‘zgartirishlar  
+        % Важно для бухгалтерии/Buxgalteriya uchun muhim  
+        !!! Критика/Tanqid
     </div>
 </div> 
 </div> <main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
@@ -916,38 +1039,36 @@ window.addEventListener('DOMContentLoaded', () => {
 </script> 
   
 <script>
-
-async function loadLexNews() {
+async function loadMonitoring() {
     try {
         const res = await fetch('news.json');
         const data = await res.json();
-        
-        document.getElementById('lex-today-count').innerHTML = 
-            `СЕГОДНЯ: <span style="color:#00ff9d">${data.today_count}</span> новых НПА`;
 
-        document.getElementById('lex-top-organ').textContent = 
-            `Активный орган: ${data.top_organ}`;
+        // Период
+        document.getElementById('monitor-period').innerHTML = 
+            `Обновление за <span style="color:#00ff9d">${data.period}</span> в законах, статьях, критических анализах.`;
 
-        const container = document.getElementById('lex-news-container');
-
-        container.innerHTML = data.news.map(item => `
-            <div style="margin-bottom:12px;padding-bottom:10px;border-bottom:1px dashed rgba(191,164,111,0.25)">
-                <a href="${item.link}" target="_blank" class="lex-title">
-                    ${item.title}
-                </a>
-                <span style="color:var(--muted);font-size:9px;display:block;">
-                    ${item.date} • ${item.organ}
-                </span>
+        // Бегущая строка (дублируем для seamless)
+        const itemsHtml = data.news.map(item => `
+            <div class="news-item">
+                <span class="marker">${item.marker || '•'}</span>
+                <a href="${item.link}" target="_blank">${item.title}</a>
+                <span class="news-date">• ${item.date}</span>
             </div>
         `).join('');
 
+        const marquee = document.getElementById('monitor-marquee');
+        marquee.innerHTML = itemsHtml + itemsHtml;   // бесконечная петля
+
     } catch(e) {
-        console.error("Новости в пути...", e);
+        console.error("Мониторинг в пути...", e);
+        document.getElementById('monitor-marquee').innerHTML = `
+            <div class="news-item" style="text-align:center;color:var(--muted);">
+                Данные обновляются... (проверь news.json)
+            </div>`;
     }
 }
-
-loadLexNews();
-
+window.addEventListener('DOMContentLoaded', loadMonitoring);
 </script>
   
 </body>
