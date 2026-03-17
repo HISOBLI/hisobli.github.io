@@ -5,14 +5,9 @@ from datetime import datetime, timedelta
 import requests
 from bs4 import BeautifulSoup
 
-SOURCES = {
-    "lex":   "https://lex.uz/ru/search/unique",
-    "norma": "https://www.norma.uz/novoe_v_zakonodatelstve",
-    "bss":   "https://www.bss.uz/article",
-    "bakiroo": "https://t.me/s/the_bakiroo"
-}
+HEADERS = {"User-Agent": "Mozilla/5.0"}
 
-MAX_PER_SOURCE = 7
+MAX_PER_SOURCE = 10
 
 
 # ===================== DATE =====================
@@ -73,42 +68,16 @@ def score(item):
     return s
 
 
-# ===================== PARSERS =====================
+# ===================== LEX =====================
 def parse_lex():
-    try:
-        r = requests.get(SOURCES["lex"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-        soup = BeautifulSoup(r.text, "html.parser")
+    items = []
 
-        items = []
+    for page in range(1, 4):
+        try:
+            url = f"https://lex.uz/ru/search/unique?page={page}"
+            r = requests.get(url, headers=HEADERS, timeout=15)
+            soup = BeautifulSoup(r.text, "html.parser")
 
-        # основной способ (таблица)
-        rows = soup.select("table tr")
-        for tr in rows[1:]:
-            tds = tr.find_all("td")
-            if len(tds) < 2:
-                continue
-
-            a = tds[1].find("a")
-            if not a:
-                continue
-
-            title = a.get_text(strip=True)
-            dt = parse_date(tds[0].get_text(strip=True))
-
-            if not dt or dt < datetime.now() - timedelta(days=14):
-                continue
-
-            link = "https://lex.uz" + a["href"] if a["href"].startswith("/") else a["href"]
-
-            items.append({
-                "source": "lex",
-                "title": title[:140],
-                "date": dt.strftime("%d.%m.%Y"),
-                "link": link
-            })
-
-        # fallback если таблицы нет
-        if not items:
             for a in soup.find_all("a", href=True):
                 if "/docs/" not in a["href"]:
                     continue
@@ -126,115 +95,117 @@ def parse_lex():
                     "link": link
                 })
 
-        print(f"Lex: {len(items)}")
-        return items[:MAX_PER_SOURCE]
+        except Exception as e:
+            print("Lex page error:", e)
 
-    except Exception as e:
-        print(f"Lex error: {e}")
-        return []
+    print(f"Lex total: {len(items)}")
+    return items[:MAX_PER_SOURCE]
 
 
+# ===================== NORMA =====================
 def parse_norma():
-    try:
-        r = requests.get(SOURCES["norma"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-        soup = BeautifulSoup(r.text, "html.parser")
+    items = []
 
-        items = []
+    for page in range(1, 4):
+        try:
+            url = f"https://www.norma.uz/novoe_v_zakonodatelstve?page={page}"
+            r = requests.get(url, headers=HEADERS, timeout=15)
+            soup = BeautifulSoup(r.text, "html.parser")
 
-        for h3 in soup.find_all("h3"):
-            a = h3.find("a")
-            if not a:
-                continue
+            for a in soup.find_all("a", href=True):
+                href = a["href"]
 
-            title = a.get_text(strip=True)
+                if "/novoe_v_zakonodatelstve/" not in href:
+                    continue
 
-            # ищем дату рядом
-            container = h3.parent.get_text(" ", strip=True)
-            dt = parse_date(container)
+                title = a.get_text(strip=True)
+                if len(title) < 20:
+                    continue
 
-            if not dt:
-                continue
+                # пытаемся найти дату рядом
+                parent_text = a.parent.get_text(" ", strip=True)
+                dt = parse_date(parent_text)
 
-            if dt < datetime.now() - timedelta(days=14):
-                continue
+                if not dt:
+                    dt = datetime.now()
 
-            href = a["href"]
-            link = "https://www.norma.uz" + href if href.startswith("/") else href
+                if dt < datetime.now() - timedelta(days=14):
+                    continue
 
-            items.append({
-                "source": "norma",
-                "title": title[:140],
-                "date": dt.strftime("%d.%m.%Y"),
-                "link": link
-            })
+                link = "https://www.norma.uz" + href
 
-        print(f"Norma: {len(items)}")
-        return items[:MAX_PER_SOURCE]
+                items.append({
+                    "source": "norma",
+                    "title": title[:140],
+                    "date": dt.strftime("%d.%m.%Y"),
+                    "link": link
+                })
 
-    except Exception as e:
-        print(f"Norma error: {e}")
-        return []
+        except Exception as e:
+            print("Norma page error:", e)
+
+    print(f"Norma total: {len(items)}")
+    return items[:MAX_PER_SOURCE]
 
 
+# ===================== BSS =====================
 def parse_bss():
-    try:
-        r = requests.get(SOURCES["bss"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-        soup = BeautifulSoup(r.text, "html.parser")
+    items = []
 
-        items = []
+    for page in range(1, 4):
+        try:
+            url = f"https://www.bss.uz/article/?PAGEN_1={page}"
+            r = requests.get(url, headers=HEADERS, timeout=15)
+            soup = BeautifulSoup(r.text, "html.parser")
 
-        for tag in soup.find_all(["h2", "h3"]):
-            a = tag.find("a")
-            if not a:
-                continue
+            for a in soup.find_all("a", href=True):
+                href = a["href"]
 
-            title = a.get_text(strip=True)
+                if "/article/" not in href:
+                    continue
 
-            text = tag.parent.get_text(" ", strip=True)
-            dt = parse_date(text)
+                title = a.get_text(strip=True)
+                if len(title) < 20:
+                    continue
 
-            if not dt or dt < datetime.now() - timedelta(days=14):
-                continue
+                dt = datetime.now()
 
-            href = a["href"]
-            link = "https://www.bss.uz" + href if href.startswith("/") else href
+                link = "https://www.bss.uz" + href if href.startswith("/") else href
 
-            items.append({
-                "source": "bss",
-                "title": title[:140],
-                "date": dt.strftime("%d.%m.%Y"),
-                "link": link
-            })
+                items.append({
+                    "source": "bss",
+                    "title": title[:140],
+                    "date": dt.strftime("%d.%m.%Y"),
+                    "link": link
+                })
 
-        print(f"BSS: {len(items)}")
-        return items[:MAX_PER_SOURCE]
+        except Exception as e:
+            print("BSS page error:", e)
 
-    except Exception as e:
-        print(f"BSS error: {e}")
-        return []
+    print(f"BSS total: {len(items)}")
+    return items[:MAX_PER_SOURCE]
 
 
+# ===================== BAKIROO =====================
 def parse_bakiroo():
     try:
-        r = requests.get(SOURCES["bakiroo"], timeout=12)
+        r = requests.get("https://t.me/s/the_bakiroo", timeout=12)
         soup = BeautifulSoup(r.text, "lxml")
 
         items = []
 
-        for msg in soup.find_all("div", class_="tgme_widget_message")[:15]:
+        for msg in soup.find_all("div", class_="tgme_widget_message")[:20]:
             text_div = msg.find("div", class_="tgme_widget_message_text")
             if not text_div:
                 continue
 
             title = text_div.get_text("\n", strip=True).split("\n")[0]
 
-            # дата
             time_tag = msg.find("time")
             if time_tag and time_tag.has_attr("datetime"):
                 dt = datetime.strptime(time_tag["datetime"][:10], "%Y-%m-%d")
-                date_out = dt.strftime("%d.%m.%Y")
             else:
-                date_out = datetime.now().strftime("%d.%m.%Y")
+                dt = datetime.now()
 
             link_a = msg.find("a", href=re.compile(r"/the_bakiroo/\d+"))
             link = link_a["href"] if link_a else "#"
@@ -242,7 +213,7 @@ def parse_bakiroo():
             items.append({
                 "source": "bakiroo",
                 "title": title[:140],
-                "date": date_out,
+                "date": dt.strftime("%d.%m.%Y"),
                 "link": link
             })
 
@@ -250,72 +221,37 @@ def parse_bakiroo():
         return items
 
     except Exception as e:
-        print(f"Bakiroo error: {e}")
+        print("Bakiroo error:", e)
         return []
 
 
-# ===================== MARKERS =====================
-def assign_marker(item):
-    t = item["title"].lower()
-    s = item["source"]
-
-    if s == "lex" and any(w in t for w in ["закон","қонун","qonun","президент"]):
-        return "§"
-
-    if s in ["norma","bss"] and any(w in t for w in ["налог","soliq","бухгалтер"]):
-        return "%"
-
-    if s == "bakiroo":
-        if any(w in t for w in ["олигарх","президент"]) or random.random() < 0.3:
-            return "!!!"
-
-    return None
-
-
 # ===================== MAIN =====================
-all_items = parse_lex() + parse_norma() + parse_bss() + parse_bakiroo()
+all_items = (
+    parse_lex()
+    + parse_norma()
+    + parse_bss()
+    + parse_bakiroo()
+)
 
 all_items = deduplicate(all_items)
 all_items.sort(key=score, reverse=True)
 
 selected = []
 
-for src in ["lex","norma","bss"]:
+for src in ["lex", "norma", "bss"]:
     src_items = [i for i in all_items if i["source"] == src]
-    selected.extend(src_items[:4])
+    selected.extend(src_items[:5])
 
 bak_items = [i for i in all_items if i["source"] == "bakiroo"]
 if bak_items:
-    selected.extend(random.sample(bak_items, min(4, len(bak_items))))
-
-for i in selected:
-    i["marker"] = assign_marker(i)
-
-dates = []
-for i in selected:
-    try:
-        dates.append(datetime.strptime(i["date"], "%d.%m.%Y"))
-    except:
-        pass
-
-if dates:
-    min_d, max_d = min(dates), max(dates)
-
-    ru_months = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"]
-    uz_months = ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentabr","oktabr","noyabr","dekabr"]
-
-    period_ru = f"{min_d.day}–{max_d.day} {ru_months[min_d.month-1]} {min_d.year}"
-    period_uz = f"{min_d.day}–{max_d.day} {uz_months[min_d.month-1]} {min_d.year}"
-else:
-    period_ru = period_uz = datetime.now().strftime("%d.%m.%Y")
+    selected.extend(random.sample(bak_items, min(5, len(bak_items))))
 
 news_data = {
-    "period_ru": period_ru,
-    "period_uz": period_uz,
+    "period": datetime.now().strftime("%d.%m.%Y"),
     "items": selected
 }
 
 with open("news.json", "w", encoding="utf-8") as f:
     json.dump(news_data, f, ensure_ascii=False, indent=2)
 
-print(f"✅ ГОТОВО: {len(selected)} записей | Период: {period_ru}")
+print(f"✅ DONE: {len(selected)} items")
