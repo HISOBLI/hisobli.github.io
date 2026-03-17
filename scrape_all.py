@@ -6,7 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
-
 MAX_PER_SOURCE = 10
 
 
@@ -68,6 +67,26 @@ def score(item):
     return s
 
 
+# ===================== MARKERS =====================
+def assign_marker(item):
+    t = item["title"].lower()
+    s = item["source"]
+
+    if s == "lex" and any(w in t for w in ["закон", "қонун", "qonun", "президент", "prezident"]):
+        return "§"
+
+    if s in ["norma", "bss"] and any(w in t for w in ["бухгалтер", "buxgalter", "налог", "soliq"]):
+        return "%"
+
+    if s == "bakiroo" and (
+        any(w in t for w in ["олигарх", "шотир", "ўғри", "валломат", "президент"])
+        or random.random() < 0.35
+    ):
+        return "!!!"
+
+    return None
+
+
 # ===================== LEX =====================
 def parse_lex():
     items = []
@@ -122,7 +141,6 @@ def parse_norma():
                 if len(title) < 20:
                     continue
 
-                # пытаемся найти дату рядом
                 parent_text = a.parent.get_text(" ", strip=True)
                 dt = parse_date(parent_text)
 
@@ -168,14 +186,12 @@ def parse_bss():
                 if len(title) < 20:
                     continue
 
-                dt = datetime.now()
-
                 link = "https://www.bss.uz" + href if href.startswith("/") else href
 
                 items.append({
                     "source": "bss",
                     "title": title[:140],
-                    "date": dt.strftime("%d.%m.%Y"),
+                    "date": datetime.now().strftime("%d.%m.%Y"),
                     "link": link
                 })
 
@@ -233,25 +249,56 @@ all_items = (
     + parse_bakiroo()
 )
 
+if not all_items:
+    print("❌ Нет данных")
+    exit()
+
 all_items = deduplicate(all_items)
 all_items.sort(key=score, reverse=True)
 
 selected = []
 
+LIMIT_PER_SOURCE = 5
+
 for src in ["lex", "norma", "bss"]:
     src_items = [i for i in all_items if i["source"] == src]
-    selected.extend(src_items[:5])
+    selected.extend(src_items[:LIMIT_PER_SOURCE])
 
 bak_items = [i for i in all_items if i["source"] == "bakiroo"]
 if bak_items:
-    selected.extend(random.sample(bak_items, min(5, len(bak_items))))
+    selected.extend(random.sample(bak_items, min(LIMIT_PER_SOURCE, len(bak_items))))
+
+for i in selected:
+    i["marker"] = assign_marker(i)
+
+selected.sort(key=lambda x: x["date"], reverse=True)
+
+dates = []
+for i in selected:
+    try:
+        dates.append(datetime.strptime(i["date"], "%d.%m.%Y"))
+    except:
+        pass
+
+if dates:
+    min_d = min(dates)
+    max_d = max(dates)
+
+    ru_months = ["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"]
+    uz_months = ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentabr","oktabr","noyabr","dekabr"]
+
+    period_ru = f"{min_d.day}–{max_d.day} {ru_months[min_d.month-1]} {min_d.year}"
+    period_uz = f"{min_d.day}–{max_d.day} {uz_months[min_d.month-1]} {min_d.year}"
+else:
+    period_ru = period_uz = datetime.now().strftime("%d.%m.%Y")
 
 news_data = {
-    "period": datetime.now().strftime("%d.%m.%Y"),
+    "period_ru": period_ru,
+    "period_uz": period_uz,
     "items": selected
 }
 
 with open("news.json", "w", encoding="utf-8") as f:
     json.dump(news_data, f, ensure_ascii=False, indent=2)
 
-print(f"✅ DONE: {len(selected)} items")
+print(f"✅ ГОТОВО: {len(selected)} новостей | Период: {period_ru}")
