@@ -5,7 +5,6 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-# ===================== НАСТРОЙКИ =====================
 SOURCES = {
     "lex":   "https://lex.uz/ru/search/unique",
     "norma": "https://www.norma.uz/novoe_v_zakonodatelstve",
@@ -13,104 +12,119 @@ SOURCES = {
     "bakiroo": "https://t.me/s/the_bakiroo"
 }
 
-MAX_PER_SOURCE = {"lex": 4, "norma": 4, "bss": 4, "bakiroo": 10}
+MAX_PER_SOURCE = {"lex": 5, "norma": 5, "bss": 5, "bakiroo": 10}
 
-# ===================== УЛУЧШЕННЫЙ ПАРСЕР ДАТ =====================
 def parse_date(date_str):
-    if not date_str:
-        return datetime.now()
-    date_str = date_str.strip().replace(" ", "")
-    
-    # Пробуем разные форматы
-    formats = [
-        "%d.%m.%Y",          # 16.03.2026
-        "%Y.%m.%d",          # 2026.03.16
-        "%Y-%m-%d",          # 2026-03-16
-        "%d %B %Y",          # 12 марта 2026 (но без перевода пока)
-    ]
-    
+    if not date_str: return datetime.now()
+    date_str = re.sub(r'\s+', ' ', date_str.strip())
+    formats = ["%d.%m.%Y", "%Y.%m.%d", "%Y-%m-%d", "%d %B %Y"]
     for fmt in formats:
-        try:
-            return datetime.strptime(date_str, fmt)
-        except ValueError:
-            pass
-    
-    # Если текстовая дата типа "12 марта 2026"
-    month_ru = {"января":1, "февраля":2, "марта":3, "апреля":4, "мая":5, "июня":6,
-                "июля":7, "августа":8, "сентября":9, "октября":10, "ноября":11, "декабря":12}
-    for ru, num in month_ru.items():
+        try: return datetime.strptime(date_str, fmt)
+        except: pass
+    # Текстовая дата
+    month_map = {"января":1, "февраля":2, "марта":3, "апреля":4, "мая":5, "июня":6,
+                 "июля":7, "августа":8, "сентября":9, "октября":10, "ноября":11, "декабря":12}
+    for ru, m in month_map.items():
         if ru in date_str.lower():
-            try:
-                day_year = re.sub(r'[а-яА-Я]+', '', date_str.lower()).strip()
-                day, year = day_year.split()[:2]
-                return datetime(int(year), num, int(day))
-            except:
-                pass
-    
-    # fallback
+            parts = re.findall(r'\d+', date_str)
+            if len(parts) >= 2:
+                day, year = int(parts[0]), int(parts[-1])
+                return datetime(year, m, day)
     return datetime.now()
 
-# ===================== ПАРСЕРЫ (обновлённые) =====================
 def parse_lex():
     try:
-        r = requests.get(SOURCES["lex"], timeout=12)
+        r = requests.get(SOURCES["lex"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for row in soup.select("div.search-result-item")[:MAX_PER_SOURCE["lex"]]:
-            a = row.find("a")
-            if not a: continue
-            title = a.get_text(strip=True)
-            date_el = row.find(string=re.compile(r"\d{2}\.\d{2}\.\d{4}"))
-            date_str = date_el.strip() if date_el else ""
-            dt = parse_date(date_str)
-            date_out = dt.strftime("%d.%m.%Y")
-            link = "https://lex.uz" + a["href"]
-            items.append({"source": "lex", "title": title[:140], "date": date_out, "link": link})
+        # Новый селектор: строки таблицы результатов
+        for tr in soup.select("table tr")[1:MAX_PER_SOURCE["lex"]+1]:  # пропускаем заголовок
+            # В parse_lex, внутри for tr in soup.select("table tr")[1:]:
+		tds = tr.find_all("td")
+		if len(tds) < 2: continue
+		a = tds[1].find("a")
+		if not a: continue
+		title = a.get_text(strip=True)
+		# Дата часто в tds[1] после title или в tds[0]
+		full_text = tds[1].get_text(strip=True)
+		date_match = re.search(r'\d{2}\.\d{2}\.\d{4}', full_text)
+		date_str = date_match.group(0) if date_match else tds[0].get_text(strip=True)
+		dt = parse_date(date_str)
+		date_out = dt.strftime("%d.%m.%Y")
+		link = "https://lex.uz" + a["href"] if a["href"].startswith("/") else a["href"]
+        print(f"Lex: {len(items)} items")
         return items
-    except Exception as e:
-        print("Ошибка lex:", str(e))
+		print(f"{source.upper()} raw items: {len(items)}")
+		if items:
+		print("Пример первого: ", items[0])
+		except Exception as e:
+        print(f"Lex error: {e}")
         return []
 
 def parse_norma():
     try:
-        r = requests.get(SOURCES["norma"], timeout=12)
+        r = requests.get(SOURCES["norma"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for item in soup.select(".news-item, .article-item")[:MAX_PER_SOURCE["norma"]]:
-            a = item.find("a")
-            if not a: continue
-            title = a.get_text(strip=True)
-            date_el = item.find(class_="date") or item.find(string=re.compile(r"\d{2}\.\d{2}\.\d{4}"))
-            date_str = date_el.get_text(strip=True) if date_el else ""
-            dt = parse_date(date_str)
-            date_out = dt.strftime("%d.%m.%Y")
-            link = "https://www.norma.uz" + a["href"] if a["href"].startswith("/") else a["href"]
-            items.append({"source": "norma", "title": title[:140], "date": date_out, "link": link})
+        text = soup.get_text(separator="\n", strip=True)
+        lines = text.splitlines()
+        i = 0
+        while i < len(lines) - 1:
+            line = lines[i].strip()
+            if re.match(r'^\d{2}\.\d{2}\.\d{4}$', line):
+                date_str = line
+                i += 1
+                if i >= len(lines): break
+                title_line = lines[i].strip()
+                if title_line and not title_line.startswith('['):
+                    title = title_line
+                    i += 1
+                    if i < len(lines) and '[Читать подробно]' in lines[i]:
+                        href_match = re.search(r'\((/ru/novoe_v_zakonodatelstve/[^)]+)\)', lines[i])
+                        href = href_match.group(1) if href_match else ""
+                        link = "https://www.norma.uz" + href if href else ""
+                        dt = parse_date(date_str)
+                        date_out = dt.strftime("%d.%m.%Y")
+                        items.append({"source": "norma", "title": title[:140], "date": date_out, "link": link})
+            i += 1
+        print(f"Norma: {len(items)} items")
         return items
+		print(f"{source.upper()} raw items: {len(items)}")
+		if items:
+		print("Пример первого: ", items[0])
     except Exception as e:
-        print("Ошибка norma:", str(e))
+        print(f"Norma error: {e}")
         return []
 
 def parse_bss():
     try:
-        r = requests.get(SOURCES["bss"], timeout=12)
+        r = requests.get(SOURCES["bss"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for art in soup.select("article, .article")[:MAX_PER_SOURCE["bss"]]:
-            a = art.find("a")
+        for h in soup.find_all(['h2', 'h3']):
+            a = h.find('a')
             if not a: continue
             title = a.get_text(strip=True)
+            # Дата — следующий sibling или в meta
             date_str = ""
-            date_el = art.find(class_="date") or art.find(string=re.compile(r"\d{1,2}\s*марта|апреля|\d{2}\.\d{2}"))
-            if date_el:
-                date_str = date_el.get_text(strip=True)
-            dt = parse_date(date_str)
+            next_el = h.find_next(['span', 'small', 'time', 'div'])
+            if next_el:
+                date_str = next_el.get_text(strip=True)
+                if not re.search(r'\d', date_str):
+                    date_str = h.find_next(string=re.compile(r'\d{1,2}\s*марта|апреля|\d{2}\.\d{2}'))
+            dt = parse_date(date_str or "17.03.2026")  # fallback
             date_out = dt.strftime("%d.%m.%Y")
-            link = "https://www.bss.uz" + a["href"] if a["href"].startswith("/") else a["href"]
+            href = a["href"]
+            link = "https://www.bss.uz" + href if href.startswith("/") else href
             items.append({"source": "bss", "title": title[:140], "date": date_out, "link": link})
+            if len(items) >= MAX_PER_SOURCE["bss"]: break
+        print(f"BSS: {len(items)} items")
         return items
+		print(f"{source.upper()} raw items: {len(items)}")
+		if items:
+		print("Пример первого: ", items[0])
     except Exception as e:
-        print("Ошибка bss:", str(e))
+        print(f"BSS error: {e}")
         return []
 
 def parse_bakiroo():
@@ -127,16 +141,20 @@ def parse_bakiroo():
             else:
                 date_out = datetime.now().strftime("%d.%m.%Y")
             
-            text_div = msg.find("div", class_="tgme_widget_message_text")
-            if not text_div: continue
             text = text_div.get_text(separator="\n", strip=True)
-            lines = text.split("\n")
+            lines = [line.strip() for line in text.split("\n") if line.strip()]
             title = lines[0] if lines else "Без заголовка"
+            # Если первый line короткий и жирный — берём его
+            if len(title) < 20 and '**' in text:  # простой чек
+                title = lines[0]
             link_a = msg.find("a", href=re.compile(r"/the_bakiroo/\d+"))
             link = link_a["href"] if link_a else "#"
             
             items.append({"source": "bakiroo", "title": title[:140], "date": date_out, "link": link})
         return items
+		print(f"{source.upper()} raw items: {len(items)}")
+		if items:
+		print("Пример первого: ", items[0])
     except Exception as e:
         print("Ошибка bakiroo:", str(e))
         return []
