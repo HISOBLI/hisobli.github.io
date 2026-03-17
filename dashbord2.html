@@ -993,11 +993,13 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 
     <!-- 6. Нижний пояс категорий -->
-	<div id="monitor-bottom-belt" class="bottom-belt">
-		§ - Обновления в Законах;  
-		% - Важно для бухгалтерии;  
-		!!! - Критическая аналитика.
-	</div>
+	<div id="monitor-bottom-belt"
+     data-lang-ru="§ - Обновления в Законах;<br>% - Важно для бухгалтерии;<br>!!! - Критическая аналитика."
+     data-lang-uz="§ - Qonunga õzgartirişlar;<br>% - Buxgalteriya uçun muhim;<br>!!! - Tanqidiy tahlil.">
+  § - Обновления в Законах;<br>
+  % - Важно для бухгалтерии;<br>
+  !!! - Критическая аналитика.
+</div>
 </div> 
 </div> 
 	<main style="clear: both; position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 40px;">
@@ -1160,6 +1162,35 @@ document.querySelector('.lang').addEventListener('click', () => {
 });
 
 window.addEventListener('DOMContentLoaded', loadMonitoring);
+</script>
+<script>
+  let currentLang = 'ru'; // глобальная переменная языка
+</script>
+<script>
+  function updateLang() {
+    document.querySelectorAll('[data-lang-ru]').forEach(el => {
+      const text = el.getAttribute(`data-lang-${currentLang}`);
+      if (text) {
+        el.textContent = text;
+      }
+    });
+  }
+</script>
+<script>
+  document.querySelector('.lang').addEventListener('click', () => {
+    currentLang = currentLang === 'ru' ? 'uz' : 'ru';
+    document.querySelector('.lang').textContent = 
+      currentLang === 'ru' ? 'RU || ÕZ' : 'ÕZ || RU';
+    
+    // обновляем все тексты централизованно
+    updateLang();
+
+    // твои специфические вызовы
+    loadMonitoring();
+  });
+
+  // при загрузке страницы сразу выставляем язык
+  updateLang();
 </script>
   
 </body>
