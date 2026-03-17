@@ -80,15 +80,28 @@ margin:0;
 background:var(--bg);
 color:var(--text);
 font-family:'JetBrains Mono',monospace;
-
-/* PCB PATTERN */
-
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.05' fill='none'%3E%3Cpath d='M10 30 H120 V80 H190'/%3E%3Cpath d='M20 150 H100 V120 H180'/%3E%3Cpath d='M50 10 V60 H90 V110'/%3E%3Ccircle cx='120' cy='80' r='3'/%3E%3Ccircle cx='100' cy='120' r='3'/%3E%3Ccircle cx='90' cy='110' r='3'/%3E%3C/g%3E%3C/svg%3E");
-
-background-size:220px;
-
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.04' fill='none'%3E%3Cpath d='M10 190 V10 M30 190 V10 M50 190 V10 M70 190 V10 M90 190 V10'/%3E%3Ccircle cx='10' cy='30' r='2'/%3E%3Ccircle cx='30' cy='70' r='2'/%3E%3Ccircle cx='50' cy='110' r='2'/%3E%3Ccircle cx='70' cy='150' r='2'/%3E%3Ccircle cx='90' cy='190' r='2'/%3E%3C/g%3E%3C/svg%3E");
+background-size: 220px;
+background-color: #121212;
 }
 
+header {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.04' fill='none'%3E%3Cpath d='M190 10 L10 190 M170 10 L10 170 M150 10 L10 150 M130 10 L10 130 M110 10 L10 110'/%3E%3Ccircle cx='30' cy='170' r='2'/%3E%3Ccircle cx='50' cy='150' r='2'/%3E%3Ccircle cx='70' cy='130' r='2'/%3E%3Ccircle cx='90' cy='110' r='2'/%3E%3Ccircle cx='110' cy='90' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 200px;
+  background-color: #121212;
+}
+footer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.04' fill='none'%3E%3Cpath d='M10 10 V190 M30 10 V190 M50 10 V190 M70 10 V190 M90 10 V190'/%3E%3Ccircle cx='10' cy='170' r='2'/%3E%3Ccircle cx='30' cy='130' r='2'/%3E%3Ccircle cx='50' cy='90' r='2'/%3E%3Ccircle cx='70' cy='50' r='2'/%3E%3Ccircle cx='90' cy='10' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 240px;
+  background-color: #121212;
+}
+h1, h2 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23BFA46F' stroke-width='1' opacity='0.04' fill='none'%3E%3Cpath d='M10 10 L190 190 M10 30 L170 190 M10 50 L150 190 M10 70 L130 190 M10 90 L110 190'/%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3Ccircle cx='50' cy='50' r='2'/%3E%3Ccircle cx='70' cy='70' r='2'/%3E%3Ccircle cx='90' cy='90' r='2'/%3E%3Ccircle cx='110' cy='110' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 180px;
+  background-color: #121212;
+}
+	
+	
 body::after{
 display: none;
 content:"";
