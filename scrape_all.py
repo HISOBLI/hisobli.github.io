@@ -1,6 +1,6 @@
 import json
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -12,48 +12,48 @@ SOURCES = {
     "bakiroo": "https://t.me/s/the_bakiroo"
 }
 
-MAX_PER_SOURCE = {"lex": 5, "norma": 5, "bss": 5, "bakiroo": 10}
+MAX_PER_SOURCE = {"lex": 12, "norma": 12, "bss": 12, "bakiroo": 15}  # больше, чтобы захватить неделю
 
 def parse_date(date_str):
     if not date_str:
         return datetime.now()
     date_str = re.sub(r'\s+', ' ', date_str.strip())
-    formats = ["%d.%m.%Y", "%Y.%m.%d", "%Y-%m-%d", "%d %B %Y"]
+    formats = ["%d.%m.%Y", "%d %B %Y", "%d %B %Y йилдаги", "%Y.%m.%d", "%Y-%m-%d"]
     for fmt in formats:
         try:
             return datetime.strptime(date_str, fmt)
         except:
             pass
-    # Текстовая дата
     month_map = {"января":1, "февраля":2, "марта":3, "апреля":4, "мая":5, "июня":6,
-                 "июля":7, "августа":8, "сентября":9, "октября":10, "ноября":11, "декабря":12}
+                 "июля":7, "августа":8, "сентября":9, "октября":10, "ноября":11, "декабря":12,
+                 "mart":3, "yanvar":1, "fevral":2, "aprel":4}
     for ru, m in month_map.items():
         if ru in date_str.lower():
             parts = re.findall(r'\d+', date_str)
             if len(parts) >= 2:
-                day, year = int(parts[0]), int(parts[-1])
+                day = int(parts[0])
+                year = int(parts[-1])
                 return datetime(year, m, day)
     return datetime.now()
 
 def parse_lex():
     try:
-        r = requests.get(SOURCES["lex"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        r = requests.get(SOURCES["lex"], headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for tr in soup.select("table tr")[1:MAX_PER_SOURCE["lex"]+1]:
+        for tr in soup.select("table tr")[1:]:
             tds = tr.find_all("td")
-            if len(tds) < 3:
-                continue
+            if len(tds) < 2: continue
+            date_td = tds[0].get_text(strip=True)
             a = tds[1].find("a")
-            if not a:
-                continue
+            if not a: continue
             title = a.get_text(strip=True)
-            date_str = tds[0].get_text(strip=True)
-            dt = parse_date(date_str)
+            dt = parse_date(date_td)
+            if dt < datetime.now() - timedelta(days=14): continue  # только за 2 недели
             date_out = dt.strftime("%d.%m.%Y")
             link = "https://lex.uz" + a["href"] if a["href"].startswith("/") else a["href"]
             items.append({"source": "lex", "title": title[:140], "date": date_out, "link": link})
-        print(f"Lex: {len(items)} items")
+        print(f"Lex: {len(items)} items | Пример: {items[0] if items else 'пусто'}")
         return items
     except Exception as e:
         print(f"Lex error: {e}")
@@ -61,22 +61,25 @@ def parse_lex():
 
 def parse_norma():
     try:
-        r = requests.get(SOURCES["norma"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        r = requests.get(SOURCES["norma"], headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for block in soup.select("div.article, div.news-block, .item")[:MAX_PER_SOURCE["norma"]]:
-            a = block.find("a")
-            if not a:
-                continue
+        for h3 in soup.find_all("h3"):
+            a = h3.find("a")
+            if not a: continue
             title = a.get_text(strip=True)
-            date_el = block.find("span.date, .date, time")
-            date_str = date_el.get_text(strip=True) if date_el else ""
-            dt = parse_date(date_str)
+            # дата часто сразу после h3 в тексте
+            next_text = h3.next_sibling
+            date_str = ""
+            if next_text and isinstance(next_text, str):
+                date_str = next_text.strip()[:10]
+            dt = parse_date(date_str or h3.get_text(strip=True))
+            if dt < datetime.now() - timedelta(days=14): continue
             date_out = dt.strftime("%d.%m.%Y")
             href = a["href"]
             link = "https://www.norma.uz" + href if href.startswith("/") else href
             items.append({"source": "norma", "title": title[:140], "date": date_out, "link": link})
-        print(f"Norma: {len(items)} items")
+        print(f"Norma: {len(items)} items | Пример: {items[0] if items else 'пусто'}")
         return items
     except Exception as e:
         print(f"Norma error: {e}")
@@ -84,24 +87,24 @@ def parse_norma():
 
 def parse_bss():
     try:
-        r = requests.get(SOURCES["bss"], headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        r = requests.get(SOURCES["bss"], headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}, timeout=15)
         soup = BeautifulSoup(r.text, "html.parser")
         items = []
-        for art in soup.select("div.article, article, .post-item, li.article")[:MAX_PER_SOURCE["bss"]]:
-            a = art.find("a")
-            if not a:
-                continue
+        for h2 in soup.find_all(["h2", "h3"]):
+            a = h2.find("a")
+            if not a: continue
             title = a.get_text(strip=True)
             date_str = ""
-            date_el = art.find("span.date, .date, time, small")
-            if date_el:
-                date_str = date_el.get_text(strip=True)
+            next_sib = h2.next_sibling
+            if next_sib and isinstance(next_sib, str):
+                date_str = next_sib.strip()
             dt = parse_date(date_str)
+            if dt < datetime.now() - timedelta(days=14): continue
             date_out = dt.strftime("%d.%m.%Y")
             href = a["href"]
             link = "https://www.bss.uz" + href if href.startswith("/") else href
             items.append({"source": "bss", "title": title[:140], "date": date_out, "link": link})
-        print(f"BSS: {len(items)} items")
+        print(f"BSS: {len(items)} items | Пример: {items[0] if items else 'пусто'}")
         return items
     except Exception as e:
         print(f"BSS error: {e}")
@@ -188,3 +191,5 @@ with open("news.json", "w", encoding="utf-8") as f:
     json.dump(news_data, f, ensure_ascii=False, indent=2)
 
 print(f"Готово: {len(selected)} записей, период {start_ru}")
+print("Всего raw items:", len(all_items))
+print("Selected sources:", [i["source"] for i in selected])
