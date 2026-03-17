@@ -743,7 +743,39 @@ li::before {
 .top-panels .panel > div:first-child {
     padding-right: 140px;
 }
-  
+
+.panel-channels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px; /* пробел между блоками */
+}
+
+.channels-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* PUBLIC CHANNELS прижат к левому краю */
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* CONTACT прижат к правому краю */
+}
+
+.panel-channels .social {
+  display: flex;
+  flex-wrap: nowrap; /* все иконки в одну линию */
+  gap: 16px;
+}
+
+.panel-channels .contact-row {
+  display: flex;
+  flex-wrap: nowrap; /* две иконки в одну линию */
+  gap: 16px;
+}
+	
+	
 </style>
 </head>
 
@@ -865,58 +897,39 @@ setInterval(getGlobalMarketData, 600000);
 </script>
 
 <div class="top-panels">
-<div class="panel" style="display: flex; justify-content: space-between; align-items: center; gap: 40px;">
-  <!-- PUBLIC CHANNELS — слева -->
-  <div style="display: flex; flex-direction: column; align-items: flex-start;">
-    <div class="channels-title">PUBLIC CHANNELS</div>
-    <div class="social" style="flex-wrap: nowrap;">
-      <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="circle">
-        <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="youtube.svg">
-      </a>
-      <a href="https://www.instagram.com/hisobli" target="_blank" class="circle">
-        <svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="instagram.svg">
-      </a>
-      <a href="https://bit.ly/Hisobli-FB" target="_blank" class="circle">
-        <svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="facebook.svg">
-      </a>
-      <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="circle">
-        <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="telegram.svg">
-      </a>
-      <a href="https://x.com/hisobli" target="_blank" class="circle">
-        <svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="twitter.svg">
-      </a>
-      <a href="https://www.threads.com/@hisobli" target="_blank" class="circle">
-        <svg class="orbit orbit3" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="threads.svg">
-      </a>
-      <a href="https://m.me/hisobli" target="_blank" class="circle">
-        <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="messenger.svg">
-      </a>
+  <div class="panel panel-channels">
+    <!-- PUBLIC CHANNELS — слева -->
+    <div class="channels-block">
+      <div class="channels-title">PUBLIC CHANNELS</div>
+      <div class="social">
+        <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="circle">...</a>
+        <a href="https://www.instagram.com/hisobli" target="_blank" class="circle">...</a>
+        <a href="https://bit.ly/Hisobli-FB" target="_blank" class="circle">...</a>
+        <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="circle">...</a>
+        <a href="https://x.com/hisobli" target="_blank" class="circle">...</a>
+        <a href="https://www.threads.com/@hisobli" target="_blank" class="circle">...</a>
+        <a href="https://m.me/hisobli" target="_blank" class="circle">...</a>
+      </div>
     </div>
-  </div>
 
-  <!-- CONTACT — справа -->
-  <div style="display: flex; flex-direction: column; align-items: flex-end;">
-    <div class="contact-title">Если вам близка логика HISOBLI — свяжитесь с нами!</div>
-    <div class="contact-row">
-      <a href="mailto:info@hisob.li" class="circle">
-        <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="email.svg">
-      </a>
-      <a href="https://t.me/hiso6li" target="_blank" class="circle">
-        <svg class="orbit orbit2" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
-        <img src="phone.svg">
-      </a>
+    <!-- CONTACT — справа -->
+    <div class="contact-block">
+      <div class="contact-title"
+           data-lang-ru="Если вам близка логика HISOBLI — свяжитесь с нами!"
+           data-lang-uz="Agar HISOBLI olğa surayongan mantiği sizga yaqin bõlsa — biz bilan boğlaning!">
+      </div>
+      <div class="contact-row">
+        <a href="mailto:info@hisob.li" class="circle">...</a>
+        <a href="https://t.me/hiso6li" target="_blank" class="circle">...</a>
+      </div>
+      <div class="contact-bottom"
+           data-lang-ru="Без форм. Без воронок. Без пустых обещаний."
+           data-lang-uz="Şaxsiy ma’lumotlarni yiğiş Formalarisiz. Voronkalarsiz. Quruq Va’dalarsiz.">
+      </div>
     </div>
-    <div class="contact-bottom">Без форм. Без воронок. Без пустых обещаний.</div>
   </div>
 </div>
+
 
 <div class="block monitor-block" style="padding:22px 18px; display:flex; flex-direction:column;">
     <!-- 1. Заголовок MONITORING -->
@@ -1143,6 +1156,14 @@ document.querySelector('.lang').addEventListener('click', () => {
 });
 
 window.addEventListener('DOMContentLoaded', loadMonitoring);
+
+function switchLanguage(lang) {
+  document.querySelectorAll('[data-lang-ru]').forEach(el => {
+    el.textContent = el.getAttribute(lang === 'ru' ? 'data-lang-ru' : 'data-lang-uz');
+  });
+}
+
+	
 </script>
   
 </body>
