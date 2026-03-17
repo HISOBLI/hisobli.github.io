@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>HISOBLI — Стандартизированный финансово-правовой контур бизнеса в Узбекистане</title>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -22,14 +21,12 @@
     gtag('config', 'G-647Y51PYZ2', { debug_mode: true });
   </script>
 
-  <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-53LXLGG5');</script>
 
-  <!-- SEO -->
   <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Бухгалтерский аутсорсинг, юридическое сопровождение учёта, регламентированные процессы без управленческих решений. Ташкент, Узбекистан.">
   <meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, бухгалтерский аутсорсинг Узбекистан, юридическое сопровождение бизнеса, финансово-правовой контур, регламентированный учёт, удалённый юрисконсульт Узбекистан">
 
@@ -50,7 +47,6 @@
   <meta property="og:locale" content="ru_RU">
   <meta property="og:locale:alternate" content="uz_UZ">
 
-  <!-- JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -782,11 +778,14 @@ RU || ÕZ
 
 </header>
 
-<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); overflow:hidden; white-space:nowrap; font-size:14px; padding:10px 0; margin-bottom: 20px;">
-    <div id="uzex-marquee" style="display:inline-block; animation:uzexScroll 75s linear infinite;"></div>
-</div>
+<div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); margin-bottom: 20px;">
+    <script type="module" src="https://widgets.tradingview-widget.com/w/ru/tv-ticker-tape.js"></script>
+    <tv-ticker-tape symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,CMCMARKETS:GOLD,FX_IDC:USDUZS,TVC:USOIL,TVC:SILVER,CMCMARKETS:COTTONK2026,CAPITALCOM:COPPER,ACTIVTRADES:WHEATK2026,CMCMARKETS:USNATGASJ2026,FRED:GEPUCURRENT" line-chart-type="Line" item-size="compact" hover-type="performance-grid" show-hover theme="dark" transparent></tv-ticker-tape>
+    
+    </div>
 
 <style>
+/* СТИЛИ СТАРОГО ТИККЕРА СОХРАНЕНЫ ДЛЯ ИСТОРИИ */
 @keyframes uzexScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .uzex-item { margin-right: 50px; font-family: 'JetBrains Mono', monospace; }
 .positive { color: #00ff9d !important; }
@@ -795,6 +794,7 @@ RU || ÕZ
 </style>
 
 <script>
+/* ЛОГИКА СТАРОГО ТИККЕРА ДЕАКТИВИРОВАНА 
 async function getGlobalMarketData() {
     let marketData = [
         { id: 'BTCUSDT', name: "BITCOIN", type: 'crypto' },
@@ -858,15 +858,15 @@ async function getGlobalMarketData() {
                 <strong class="${colorClass}" style="margin-left:5px;">${arrow} ${diff} (${prcnt}%)</strong>
             </span>`;
     });
-    document.getElementById('uzex-marquee').innerHTML = html + html;
+    if(document.getElementById('uzex-marquee')) document.getElementById('uzex-marquee').innerHTML = html + html;
 }
 getGlobalMarketData();
 setInterval(getGlobalMarketData, 600000);
+*/
 </script>
 
 <div class="top-panels">
 <div class="panel" style="display: flex; justify-content: space-between; align-items: center; gap: 40px;">
-  <!-- PUBLIC CHANNELS — слева -->
   <div style="display: flex; flex-direction: column; align-items: flex-start;">
     <div class="channels-title">PUBLIC CHANNELS</div>
     <div class="social" style="flex-wrap: nowrap;">
@@ -901,7 +901,6 @@ setInterval(getGlobalMarketData, 600000);
     </div>
   </div>
 
-  <!-- CONTACT — справа -->
   <div style="display: flex; flex-direction: column; align-items: flex-end;">
     <div class="contact-title">Если вам близка логика HISOBLI — свяжитесь с нами!</div>
     <div class="contact-row">
@@ -919,9 +918,7 @@ setInterval(getGlobalMarketData, 600000);
 </div>
 
 <div class="block monitor-block" style="padding:22px 18px; display:flex; flex-direction:column;">
-    <!-- 1. Заголовок MONITORING -->
     <div style="display:flex; justify-content:center; align-items:center; gap:24px; margin-bottom:14px;">
-        <!-- Левая иконка (paragraf.svg) -->
         <div class="circle" style="width:48px;height:48px;flex-shrink:0;">
             <svg class="orbit orbit1" viewBox="0 0 100 100" style="width:66px;height:66px;">
                 <path d="M20 50 A30 30 0 0 1 80 50"/>
@@ -933,7 +930,6 @@ setInterval(getGlobalMarketData, 600000);
 
         <div style="color:var(--accent);font-weight:600;font-size:15.5px;letter-spacing:2.5px;text-transform:uppercase;">MONITORING</div>
 
-        <!-- Правая иконка (procent.svg) -->
         <div class="circle" style="width:48px;height:48px;flex-shrink:0;">
             <svg class="orbit orbit3" viewBox="0 0 100 100" style="width:66px;height:66px;">
                 <path d="M20 50 A30 30 0 0 1 80 50"/>
@@ -944,8 +940,7 @@ setInterval(getGlobalMarketData, 600000);
         </div>
     </div>
 
-        <!-- 2. 4 иконки источников (орбиты удалены навсегда) -->
-		<div style="display:flex;justify-content:center;gap:22px;margin-bottom:14px;">
+        <div style="display:flex;justify-content:center;gap:22px;margin-bottom:14px;">
 			<a href="https://lex.uz" target="_blank" class="circle" style="width:42px;height:42px;">
 			<img src="lex.svg" style="width:24px;z-index:3;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
 			</a>
@@ -960,23 +955,19 @@ setInterval(getGlobalMarketData, 600000);
 			</a>
 			</div>
 
-    <!-- 3. Пояс сайтов (золотая полоса) -->
     <div class="sites-row">
         www.lex.uz  www.norma.uz  www.bss.uz  https://t.me/the_bakiroo
     </div>
 
-    <!-- 4. Период обновлений -->
-	<div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
+    <div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
 		Обновление за <span style="color:#00ff9d">14–17 марта 2026</span> в законах, статьях, критических анализах.
 	</div>
 
-    <!-- 5. Бегущая строка -->
     <div class="marquee-wrapper">
         <div id="monitor-marquee" class="marquee"></div>
     </div>
 
-    <!-- 6. Нижний пояс категорий -->
-	<div id="monitor-bottom-belt" class="bottom-belt">
+    <div id="monitor-bottom-belt" class="bottom-belt">
 		§ - Обновления в Законах;  
 		% - Важно для бухгалтерии;  
 		!!! - Критическая аналитика.
