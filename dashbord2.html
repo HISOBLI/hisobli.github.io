@@ -962,7 +962,7 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 
     <div id="monitor-period" style="text-align:center;color:var(--muted);font-size:11px;margin:10px 0 6px;">
-		Обновление за <span style="color:#00ff9d">14–17 марта 2026</span> в законах, статьях, критических анализах.
+		Обновление за <span style="color:#00ff9d">неделю</span> в законах, статьях, критических анализах.
 	</div>
 
     <div class="marquee-wrapper">
@@ -1109,7 +1109,9 @@ async function loadMonitoring() {
         const response = await fetch('news.json');
         const data = await response.json();
         
-        const periodVal = data.period || '24 часа';
+        const periodVal = currentLang === 'ru' 
+            ? (data.period_ru || 'неделю') 
+            : (data.period_uz || 'hafta');
         const periodHTML = currentLang === 'ru' 
             ? `Обновления за <span style="color:#00ff9d">${periodVal}</span> в законах, статьях, критических анализах.`
             : `Qonunlar, maqolalar va tanqidiy tahlillarning <span style="color:#00ff9d">${periodVal}</span> mobaynidagi yangilanişlari.`;
