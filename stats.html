@@ -157,7 +157,7 @@
 
 <script>
 // === ТВОЙ ENDPOINT ===
-const ENDPOINT = "https://corsproxy.io/?https://jsonblob.com/api/jsonBlob/019d02f5-c3b4-72d7-a7bf-4ea5df9ee311";
+const ENDPOINT = "https://corsproxy.io/?https://jsonblob.com/api/jsonBlob/019d02f5-c3b4-72d7-a7bf-4ea5df9ee311/raw";
 
 // Получаем / генерируем свой fp один раз
 let myFp = localStorage.getItem('myAnalyticsFp');
@@ -174,11 +174,24 @@ let charts = {};
 async function loadData() {
   try {
     const res = await fetch(ENDPOINT);
-    allData = (await res.json()) || [];
+    let rawData = await res.text();  // сначала как текст, чтобы увидеть, что пришло
+    console.log("Raw response:", rawData);  // ← это покажет в консоли, что именно вернул прокси
+
+    let parsed;
+    try {
+      parsed = JSON.parse(rawData);
+    } catch (e) {
+      console.error("Не JSON:", rawData.slice(0, 200));
+      alert("Получены некорректные данные от хранилища. Проверь консоль.");
+      return;
+    }
+
+    allData = Array.isArray(parsed) ? parsed : [];
     renderFilters();
     renderAll();
   } catch(e) {
-    alert("Ошибка загрузки: " + e.message);
+    console.error("Fetch error:", e);
+    alert("Ошибка загрузки: " + e.message + ". Проверь консоль.");
   }
 }
 
