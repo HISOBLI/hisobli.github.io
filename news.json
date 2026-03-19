@@ -1,146 +1,146 @@
 {
-  "period_ru": "14–17 марта 2026",
-  "period_uz": "14–17 mart 2026",
+  "period_ru": "16–19 марта 2026",
+  "period_uz": "16–19 mart 2026",
   "items": [
     {
       "source": "lex",
-      "title": "О внесении изменения в пункт 6 Национальный стандарт бухгалтерского учета Республики Узбекистан (НСБУ № 21) «План счетов бухгалтерского учет",
-      "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8084375",
+      "title": "Давлат мулкини хусусийлаштириш соҳаси такомиллаштирилиши муносабати билан Ўзбекистон Республикасининг айрим қонун ҳужжатларига ўзгартириш ва",
+      "date": "19.03.2026",
+      "link": "https://lex.uz/ru/docs/8087613",
+      "marker": "§"
+    },
+    {
+      "source": "lex",
+      "title": "О праздновании священного Рамазан хайита",
+      "date": "19.03.2026",
+      "link": "https://lex.uz/ru/docs/8090632",
       "marker": null
     },
     {
       "source": "lex",
-      "title": "О внесении изменений в некоторые ведомственные нормативно-правовые акти, принятые министерствами и ведомствами в связи с совершенствованием ",
-      "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8085813",
+      "title": "Кўчмас мулк ва транспорт воситаларининг олди-сотди шартномалари бўйича ҳисоб-китобларни амалга ошириш учун нотариуслар ва банклар ўртасида э",
+      "date": "19.03.2026",
+      "link": "https://lex.uz/ru/docs/8087150",
       "marker": null
     },
     {
       "source": "lex",
-      "title": "Давлат бошқаруви тизими такомиллаштирилиши муносабати билан вазирлик  ва идоралар томонидан қабул қилинган айрим идоравий норматив-ҳуқуқий ҳ",
-      "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8085550",
+      "title": "О внесении изменений и дополнений в Положение о Высшей квалификационной комиссии при Министерстве юстиции Республики Узбекистан",
+      "date": "19.03.2026",
+      "link": "https://lex.uz/ru/docs/8086467",
       "marker": null
     },
     {
       "source": "lex",
-      "title": "Атоқли давлат ва жамоат арбоби Қаллибек Камалов таваллудининг 100 йиллигини кенг нишонлаш тўғрисида",
-      "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8084173",
-      "marker": null
-    },
-    {
-      "source": "lex",
-      "title": "Об утверждении Этических правил разработки, внедрения и использования решений, основанных на искусственном интеллекте",
-      "date": "17.03.2026",
-      "link": "https://lex.uz/ru/docs/8083770",
+      "title": "Кўчмас мулкдан фойдаланишда илғор ахборот технологияларини жорий этиш чора-тадбирлари тўғрисида",
+      "date": "19.03.2026",
+      "link": "https://lex.uz/ru/docs/8087543",
       "marker": null
     },
     {
       "source": "norma",
       "title": "Усиливаются меры борьбы с незаконным подключением к энергосетям",
-      "date": "17.03.2026",
+      "date": "19.03.2026",
       "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/usilivayutsya_mery_borby_s_nezakonnym_podklyucheniem_k_energosetyam",
       "marker": null
     },
     {
       "source": "norma",
       "title": "Шелководство: субсидии, налоговые льготы и масштабное расширение тутовых плантаций",
-      "date": "17.03.2026",
+      "date": "19.03.2026",
       "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/shelkovodstvo_subsidii_nalogovye_lgoty_i_masshtabnoe_rasshirenie_tutovyh_plantaciy",
       "marker": "%"
     },
     {
       "source": "norma",
+      "title": "Разработаны этические правила использования решений на основе искусственного интеллекта",
+      "date": "19.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/razrabotany_eticheskie_pravila_ispolzovaniya_resheniy_na_osnove_iskusstvennogo_intellekta",
+      "marker": null
+    },
+    {
+      "source": "norma",
       "title": "Разработана Стратегия кибербезопасности Узбекистана",
-      "date": "17.03.2026",
+      "date": "19.03.2026",
       "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/razrabotana_strategiya_kiberbezopasnosti_uzbekistana",
       "marker": null
     },
     {
       "source": "norma",
       "title": "В госорганах внедряется ИТ-аудит",
-      "date": "17.03.2026",
+      "date": "19.03.2026",
       "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/v_gosorganah_vnedryaetsya_it-audit",
       "marker": null
     },
     {
-      "source": "norma",
-      "title": "Систему «tax free» расширяют: иностранцам упростят возврат НДС при покупках",
-      "date": "17.03.2026",
-      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/sistemu_tax_free_rasshiryayut_inostrancam_uprostyat_vozvrat_nds_pri_pokupkah",
-      "marker": null
-    },
-    {
       "source": "bss",
-      "title": "Как бухгалтеру хранить и уничтожать бланки строгой отчетности в 2026 году",
-      "date": "17.03.2026",
-      "link": "https://www.bss.uz/article/117-blanki-strogoy-otchetnosti-kak-hranit-i-unichtojit",
+      "title": "Какие налоги удерживать при выдаче подарков работникам",
+      "date": "19.03.2026",
+      "link": "https://www.bss.uz/article/137-kakimi-nalogami-oblagayutsya-podarki-rabotnikam-v-uzbekistane",
       "marker": "%"
     },
     {
       "source": "bss",
-      "title": "Какие проводки применять при франшизе: бухгалтерский и налоговый учет",
-      "date": "17.03.2026",
-      "link": "https://www.bss.uz/article/3422-kakie-provodki-primenyat-pri-franshize-buhgalterskiy-i-nalogovyy-uchet",
+      "title": "Как бухгалтеру вести учет материалов на счете 1000 в Узбекистане",
+      "date": "19.03.2026",
+      "link": "https://www.bss.uz/article/99-schet-10-materialy-buhgalterskiy-uchet-materialov-v-uzbekistane",
       "marker": "%"
     },
     {
       "source": "bss",
-      "title": "Какие ставки НДС действуют в Узбекистане в 2026 году",
-      "date": "17.03.2026",
-      "link": "https://www.bss.uz/article/552-stavka-nds-v-uzbekistane",
-      "marker": null
+      "title": "Премирование сотрудников: что проверить бухгалтеру по видам и условиям",
+      "date": "19.03.2026",
+      "link": "https://www.bss.uz/article/131-premirovanie-sotrudnikov-v-uzbekistane-vidy-i-usloviya",
+      "marker": "%"
     },
     {
       "source": "bss",
-      "title": "Как выделить НДС из суммы в 2026 году – инструкция",
-      "date": "17.03.2026",
-      "link": "https://www.bss.uz/article/455-kak-vydelit-nds",
-      "marker": null
+      "title": "Налоговый агент по НДФЛ в Узбекистане: обязанности, ставки и примеры из практики",
+      "date": "19.03.2026",
+      "link": "https://www.bss.uz/article/3435-nalogovyy-agent-po-ndfl-v-uzbekistane-obyazannosti-stavki-i-primery-iz-praktiki",
+      "marker": "%"
     },
     {
       "source": "bss",
-      "title": "Пошаговый порядок расторжения договора ГПХ",
-      "date": "17.03.2026",
-      "link": "https://www.bss.uz/article/2546-obrazets-dogovora-gph-besplatnyy-shablon-kotoryy-uprostit-vashu-rabotu",
-      "marker": null
+      "title": "Как бухгалтеру оформить подарки сотрудникам и отразить в учете",
+      "date": "19.03.2026",
+      "link": "https://www.bss.uz/article/119-podarki-sotrudnikam-kak-oformit-i-otrazit-v-uchete",
+      "marker": "%"
     },
     {
       "source": "bakiroo",
       "title": "Ҳам тайёр хонадонлар, ҳам тижорат объектлари",
-      "date": "17.03.2026",
+      "date": "19.03.2026",
       "link": "https://t.me/the_bakiroo/12151",
       "marker": null
     },
     {
       "source": "bakiroo",
-      "title": "Бу қанақа шкала бўлади?   Газ учун тарифлар ойлик истеъмол шкаласига асосан белгиланган. Энергетикларнинг хабарига ишонилса, 500 куб метр ба",
-      "date": "16.03.2026",
-      "link": "https://t.me/the_bakiroo/12066",
+      "title": "Эскроу ҳисобварақлар сўмда ишлайди",
+      "date": "18.03.2026",
+      "link": "https://t.me/the_bakiroo/12168",
       "marker": null
     },
     {
       "source": "bakiroo",
-      "title": "Озиқ-овқат хавфсизлиги бўйича таклиф этилаётган янги тизим муҳокамаси давом этмоқда",
-      "date": "16.03.2026",
-      "link": "https://t.me/the_bakiroo/12154",
-      "marker": "!!!"
-    },
-    {
-      "source": "bakiroo",
-      "title": "Самарқандкимё миллийлаштирилиши керак!  Бу талаб аниқ-тиниқ қилиб ҳукумат қарорида ёзиб қўйилган.  Лойиҳа 2023 йил 1 июлгача ишга тушиши кер",
-      "date": "14.03.2026",
-      "link": "https://t.me/the_bakiroo/12142",
+      "title": "Нақдсиз тўловларнинг транзакцион харажатлари минималлаштириладими?  Кейинги кунларда Марказий банкдан тортиб Солиқ қўмитасигача 1 апрелдан у",
+      "date": "18.03.2026",
+      "link": "https://t.me/the_bakiroo/12043",
       "marker": null
     },
     {
       "source": "bakiroo",
-      "title": "​Ўзкимёсаноат \"кипрлик олигархга\" текинга совға қилган Самарқандкимё улушини 30 миллион доллар тўлаб сотиб олган  Ўтган йили илгари сурилган",
-      "date": "14.03.2026",
-      "link": "https://t.me/the_bakiroo/12141",
-      "marker": "!!!"
+      "title": "Эскроу ҳисобварақлари учун комиссиялар қанча бўлади?  1 апрелдан Ўзбекистонда уй-жой ва автомобиль савдолари эскроу ҳисобварақлари орқали ам",
+      "date": "18.03.2026",
+      "link": "https://t.me/the_bakiroo/12165",
+      "marker": null
+    },
+    {
+      "source": "bakiroo",
+      "title": "🏢",
+      "date": "16.03.2026",
+      "link": "https://t.me/the_bakiroo/12156",
+      "marker": null
     }
   ]
 }
