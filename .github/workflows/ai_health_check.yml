@@ -16,8 +16,8 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install NEW AI Library
-        run: pip install -U google-genai # Ставим новую библиотеку, которую они просят
+      - name: Install AI Library
+        run: pip install -U google-genai
       - name: Run AI Audit
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY1 }}
@@ -26,8 +26,11 @@ jobs:
           from google import genai
           import os
 
-          # Инициализируем клиента по новому стандарту
-          client = genai.Client(api_key=os.environ['GEMINI_API_KEY'])
+          # Мы принудительно создаем конфиг для стабильной версии v1
+          client = genai.Client(
+              api_key=os.environ['GEMINI_API_KEY'],
+              http_options={'api_version': 'v1'} # Убираем v1beta к чертовой матери
+          )
           
           files = ['dashbord2.html', 'stats.html']
           
@@ -37,7 +40,7 @@ jobs:
                       content = f.read()
                   print(f'--- ANALYZING: {file_name} ---')
                   try:
-                      # Новый синтаксис вызова для Gemini 1.5/3 через актуальный клиент
+                      # Используем полное имя модели, как требует новый стандарт
                       response = client.models.generate_content(
                           model='gemini-1.5-flash', 
                           contents=f'Check this HTML for errors and PCB style compliance: {content}'
