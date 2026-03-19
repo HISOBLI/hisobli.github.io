@@ -1,8 +1,8 @@
 name: AI Code Health Check
 on:
   schedule:
-    - cron: '0 0 * * *' # Запуск раз в сутки
-  workflow_dispatch: # Ручной запуск кнопкой
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -16,32 +16,34 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install AI Library
+      - name: Install Library
         run: pip install -U google-generativeai
       - name: Run AI Audit
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY1 }} # Ключ берется из "сейфа" GitHub
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY1 }}
         run: |
           python -c "
           import google.generativeai as genai
           import os
 
-          # Настройка ИИ через переменную из секретов
           genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          
+          # Мы используем универсальное имя модели, которое понимает и 1.5 и 3 версия API
           model = genai.GenerativeModel('gemini-1.5-flash')
 
-          files_to_check = ['dashbord2.html', 'stats.html']
+          files = ['dashbord2.html', 'stats.html']
           
-          for file_name in files_to_check:
-              try:
+          for file_name in files:
+              if os.path.exists(file_name):
                   with open(file_name, 'r', encoding='utf-8') as f:
                       content = f.read()
-                  
-                  print(f'--- ПРОВЕРКА ФАЙЛА: {file_name} ---')
-                  prompt = f'Проверь этот HTML/JS код на наличие синтаксических ошибок и битых ссылок. Верни краткий отчет: OK или список ошибок. Код:\n\n{content}'
-                  response = model.generate_content(prompt)
-                  print(response.text)
-                  print('\n' + '='*30 + '\n')
-              except Exception as e:
-                  print(f'Ошибка при открытии {file_name}: {e}')
+                  print(f'--- ANALYZING: {file_name} ---')
+                  # Упрощенный вызов без лишних параметров, чтобы избежать 404
+                  try:
+                      response = model.generate_content(f'Check this HTML for errors and PCB style compliance: {content}')
+                      print(response.text)
+                  except Exception as e:
+                      print(f'AI Error: {e}')
+              else:
+                  print(f'File {file_name} not found.')
           "
