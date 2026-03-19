@@ -53,23 +53,23 @@
     },
     {
       "source": "norma",
+      "title": "Продлевается возрастное ограничение для занятия должности нотариуса",
+      "date": "19.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/prodlevaetsya_vozrastnoe_ogranichenie_dlya_zanyatiya_doljnosti_notariusa",
+      "marker": null
+    },
+    {
+      "source": "norma",
+      "title": "Купля-продажа недвижимости и транспортных средств – в безналичной форме",
+      "date": "19.03.2026",
+      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/kuplya-prodaja_nedvijimosti_i_transportnyh_sredstv_-_v_beznalichnoy_forme",
+      "marker": null
+    },
+    {
+      "source": "norma",
       "title": "Разработаны этические правила использования решений на основе искусственного интеллекта",
       "date": "19.03.2026",
       "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/razrabotany_eticheskie_pravila_ispolzovaniya_resheniy_na_osnove_iskusstvennogo_intellekta",
-      "marker": null
-    },
-    {
-      "source": "norma",
-      "title": "Разработана Стратегия кибербезопасности Узбекистана",
-      "date": "19.03.2026",
-      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/razrabotana_strategiya_kiberbezopasnosti_uzbekistana",
-      "marker": null
-    },
-    {
-      "source": "norma",
-      "title": "В госорганах внедряется ИТ-аудит",
-      "date": "19.03.2026",
-      "link": "https://www.norma.uz/ru/novoe_v_zakonodatelstve/v_gosorganah_vnedryaetsya_it-audit",
       "marker": null
     },
     {
@@ -109,23 +109,9 @@
     },
     {
       "source": "bakiroo",
-      "title": "Ҳам тайёр хонадонлар, ҳам тижорат объектлари",
-      "date": "19.03.2026",
-      "link": "https://t.me/the_bakiroo/12151",
-      "marker": null
-    },
-    {
-      "source": "bakiroo",
-      "title": "Эскроу ҳисобварақлар сўмда ишлайди",
+      "title": "Агар битим амалга ошмаса ёки бекор қилинса — эскроу ҳисобварағидаги маблағ харидорга қайтарилади  Марказий банк давлат улуши мавжуд тижорат ",
       "date": "18.03.2026",
-      "link": "https://t.me/the_bakiroo/12168",
-      "marker": null
-    },
-    {
-      "source": "bakiroo",
-      "title": "Нақдсиз тўловларнинг транзакцион харажатлари минималлаштириладими?  Кейинги кунларда Марказий банкдан тортиб Солиқ қўмитасигача 1 апрелдан у",
-      "date": "18.03.2026",
-      "link": "https://t.me/the_bakiroo/12043",
+      "link": "https://t.me/the_bakiroo/12166",
       "marker": null
     },
     {
@@ -133,6 +119,20 @@
       "title": "Эскроу ҳисобварақлари учун комиссиялар қанча бўлади?  1 апрелдан Ўзбекистонда уй-жой ва автомобиль савдолари эскроу ҳисобварақлари орқали ам",
       "date": "18.03.2026",
       "link": "https://t.me/the_bakiroo/12165",
+      "marker": "!!!"
+    },
+    {
+      "source": "bakiroo",
+      "title": "Нақдсиз тўловларнинг транзакцион харажатлари минималлаштириладими?  Кейинги кунларда Марказий банкдан тортиб Солиқ қўмитасигача 1 апрелдан у",
+      "date": "18.03.2026",
+      "link": "https://t.me/the_bakiroo/12043",
+      "marker": "!!!"
+    },
+    {
+      "source": "bakiroo",
+      "title": "​3- фабрика: Тендерсиз пудратларда вақтдан ҳам, маблағдан ҳам каррасига ютқазилади  Бунга навбатдаги яққол мисол ҳеч қандай тендер-пендерсиз",
+      "date": "17.03.2026",
+      "link": "https://t.me/the_bakiroo/10970",
       "marker": null
     },
     {
@@ -140,7 +140,7 @@
       "title": "🏢",
       "date": "16.03.2026",
       "link": "https://t.me/the_bakiroo/12156",
-      "marker": null
+      "marker": "!!!"
     }
   ]
 }
