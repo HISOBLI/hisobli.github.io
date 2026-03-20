@@ -782,8 +782,9 @@ li::before {
 
 <div class="ticker" style="background:var(--panel); border-bottom:1px solid var(--accent); margin-bottom: 20px;">
     <script type="module" src="https://widgets.tradingview-widget.com/w/ru/tv-ticker-tape.js"></script>
-	<tv-ticker-tape symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,CMCMARKETS:GOLD,FX_IDC:USDUZS,TVC:USOIL,TVC:SILVER,CMCMARKETS:COTTONK2026,CAPITALCOM:COPPER,ACTIVTRADES:WHEATK2026,CMCMARKETS:USNATGASJ2026,FRED:GEPUCURRENT,ECONOMICS:UZGDP" hide-chart line-chart-type="Line" item-size="compact" hover-type="performance-grid" theme="dark" transparent></tv-ticker-tape>
-</div>
+    <tv-ticker-tape symbols="FOREXCOM:SPXUSD,FOREXCOM:NSXUSD,FOREXCOM:DJI,BITSTAMP:BTCUSD,BITSTAMP:ETHUSD,CMCMARKETS:GOLD,FX_IDC:USDUZS,TVC:USOIL,TVC:SILVER,CMCMARKETS:COTTONK2026,CAPITALCOM:COPPER,ACTIVTRADES:WHEATK2026,CMCMARKETS:USNATGASJ2026,FRED:GEPUCURRENT" line-chart-type="Line" item-size="compact" hover-type="performance-grid" show-hover theme="dark" transparent></tv-ticker-tape>
+    
+    </div>
 
 <style>
 /* СТИЛИ СТАРОГО ТИККЕРА СОХРАНЕНЫ ДЛЯ ИСТОРИИ */
@@ -905,7 +906,11 @@ setInterval(getGlobalMarketData, 600000);
   <div style="display: flex; flex-direction: column; align-items: flex-end;">
     <div class="contact-title" data-lang-key="contact_title">Если вам близка логика HISOBLI — свяжитесь с нами!</div>
     <div class="contact-row">
-      <a href="mailto:info@hisob.li" class="circle">
+      <a href="https://wa.me/p/34356703400641221/998959525939" class="circle">
+        <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
+        <img src="whatsapp.svg">
+      </a>
+	  <a href="mailto:info@hisob.li" class="circle">
         <svg class="orbit orbit1" viewBox="0 0 100 100"><path d="M20 50 A30 30 0 0 1 80 50"/><path d="M30 20 A30 30 0 0 1 70 80"/><path d="M50 10 A40 40 0 0 1 60 90"/></svg>
         <img src="email.svg">
       </a>
@@ -1169,30 +1174,30 @@ window.onload = () => {
 </script>
 
 <script>
-// === ТВОЙ ENDPOINT (замени на свой blobId) ===
-const ENDPOINT = "https://api.npoint.io/5cd87eb706a25e6131df"; // ←←←←← ИЗМЕНИ!
+// SUPABASE КЛЮЧИ
+const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co/rest/v1/analytics";
+const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cXJuc294b2FjeHl6YWhvcWxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3NTIsImV4cCI6MjA4OTQ2Njc1Mn0.OBONo_RG8dmfsc5PymfLhEjC5kcqqPzMVHRYSnDmy7s";
 
-// Лёгкий fingerprint
 function getFingerprint() {
-  return btoa(navigator.userAgent + navigator.language + screen.width + screen.height + Intl.DateTimeFormat().resolvedOptions().timeZone).slice(0, 16);
+  return btoa(navigator.userAgent + navigator.language + screen.width + screen.height + Intl.DateTimeFormat().resolvedOptions().timeZone).slice(0,16);
 }
 
-// Основная функция отправки (с append!)
 async function sendData(payload) {
   try {
-    let res = await fetch(ENDPOINT);
-    let data = await res.json();
-    if (!Array.isArray(data)) data = [];
-    data.push(payload);
-    await fetch(ENDPOINT, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
+    await fetch(SUPABASE_URL, {
+      method: "POST",
+      headers: {
+        "apikey": ANON_KEY,
+        "Authorization": `Bearer ${ANON_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
     });
-  } catch(e) { console.log("Аналитика работает, но сеть глючит"); }
+  } catch(e) {}
 }
 
-// === 1. Логируем визит + всё расширенное ===
+// ВИЗИТ
 const visitPayload = {
   type: "visit",
   url: location.href,
@@ -1202,7 +1207,6 @@ const visitPayload = {
   session: Math.random().toString(36).slice(2),
   ua: navigator.userAgent,
   lang: navigator.language,
-  languages: navigator.languages,
   screen: `${screen.width}x${screen.height}`,
   tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
   platform: navigator.platform,
@@ -1210,42 +1214,28 @@ const visitPayload = {
 };
 sendData(visitPayload);
 
-// === 2. УСЛОЖНЁННЫЕ КЛИКИ (по твоей реальной архитектуре) ===
+// КЛИКИ
 document.addEventListener("click", e => {
   const target = e.target.closest("a, .circle, #lang-ru, #lang-uz, .master-block, .block, .panel, details");
   if (!target) return;
-
   let label = "unknown";
   if (target.id) label = target.id;
   else if (target.href) label = target.href.split("/").pop();
-  else if (target.textContent) label = target.textContent.trim().slice(0, 40);
-
-  sendData({
-    type: "click",
-    label: label,
-    url: location.href,
-    time: new Date().toISOString(),
-    fp: getFingerprint()
-  });
+  else if (target.textContent) label = target.textContent.trim().slice(0,40);
+  sendData({ type: "click", label: label, url: location.href, time: new Date().toISOString(), fp: getFingerprint() });
 });
 
-// === 3. Видимость блоков + scroll depth ===
+// ПРОСМОТР БЛОКОВ
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      sendData({
-        type: "view",
-        section: entry.target.classList[0] || "unknown",
-        url: location.href,
-        time: new Date().toISOString()
-      });
+      sendData({ type: "view", section: entry.target.classList[0] || "unknown", url: location.href, time: new Date().toISOString() });
     }
   });
 }, { threshold: 0.5 });
-
 document.querySelectorAll(".top-panels, main, footer, .panel, .block").forEach(el => observer.observe(el));
 
-// Scroll depth
+// СКРОЛЛ
 let lastDepth = 0;
 window.addEventListener("scroll", () => {
   const depth = Math.floor((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
@@ -1255,18 +1245,13 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// === 4. Время на странице (при уходе) ===
+// КОНЕЦ СЕССИИ
 let startTime = Date.now();
 window.addEventListener("beforeunload", () => {
   const duration = Math.round((Date.now() - startTime) / 1000);
-  sendData({
-    type: "session_end",
-    duration: duration + "s",
-    url: location.href,
-    fp: getFingerprint()
-  });
+  sendData({ type: "session_end", duration: duration + "s", url: location.href, fp: getFingerprint() });
 });
-</script>	
-	
+</script>
+  
 </body>
 </html>
