@@ -54,30 +54,36 @@
         </div>
     </div>
 </div>
-
-<script>
+    <script>
     let state = {
         flow: 'export',
         viz: 'tree_map',
-        year: '2022' // Последний стабильный год в их базе
+        year: '2022'
     };
 
     function buildUrl() {
-        // Использование специального эндпоинта для EMBED (разрешен X-Frame-Options)
-        // Формат: /en/visualize/embed/{тип}/{классификатор}/{направление}/{страна}/{партнер}/{продукт}/{год}/
-        const baseUrl = "https://oec.world/en/visualize/embed";
-        return `${baseUrl}/${state.viz}/hs92/${state.flow}/uzb/all/show/${state.year}/`;
+        // ВНИМАНИЕ: Мы меняем основной домен на эндпоинт визуализатора
+        // и добавляем параметр embed=true, который отключает проверку localStorage
+        const flow = state.flow;
+        const vizType = state.viz; // tree_map, stacked, network
+        
+        // Формируем URL, который OEC отдает для встраивания (Legacy Embed Mode)
+        return `https://oec.world/en/visualize/embed/${vizType}/hs92/${flow}/uzb/all/show/${state.year}/?embed=true`;
     }
 
     function refresh() {
         const frame = document.getElementById('oec-engine');
-        frame.src = buildUrl();
+        const finalUrl = buildUrl();
         
-        // Визуальное обновление кнопок
+        // ПЕРЕД ЗАГРУЗКОЙ: очищаем iframe, чтобы сбросить ошибки React
+        frame.src = "about:blank"; 
+        
+        setTimeout(() => {
+            frame.src = finalUrl;
+        }, 10);
+
         document.querySelectorAll('.tm-btn').forEach(b => b.classList.remove('active'));
         document.getElementById(`f-${state.flow}`).classList.add('active');
-        
-        // Маппинг ID кнопок визуализации
         const vizId = state.viz === 'tree_map' ? 'composition' : (state.viz === 'stacked' ? 'growth' : 'map');
         document.getElementById(`v-${vizId}`).classList.add('active');
     }
@@ -87,9 +93,7 @@
         refresh();
     }
 
-    // Первый запуск
     refresh();
 </script>
-
 </body>
 </html>
