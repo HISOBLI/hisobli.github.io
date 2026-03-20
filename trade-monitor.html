@@ -4,24 +4,22 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #121212; --panel: #171717; --text: #d0d0d0; --accent: #BFA46F; --font-main: 'Fira Mono', monospace; }
+        :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; --font-main: 'Fira Mono', monospace; }
         body { background-color: var(--bg); margin: 0; padding: 0; overflow: hidden; }
         
-        /* ГЕОМЕТРИЯ СТРОГО ПО ЧЕРТЕЖУ */
         .tm-main-container {
             width: 540px; height: 380px; 
             background: var(--panel); border: 1px solid var(--accent); border-radius: 2px;
-            overflow: hidden; display: flex; flex-direction: column;
-            margin-left: 145px;
+            display: flex; flex-direction: column; margin-left: 145px;
         }
 
         .tm-header { background: var(--accent); padding: 8px 12px; display: flex; align-items: center; justify-content: center; gap: 15px; }
         .tm-flag { width: 30px; height: auto; border: 1px solid #fff; }
         .tm-header-text { color: var(--bg); font-size: 13px; font-weight: 700; text-transform: uppercase; font-family: var(--font-main); }
         
-        /* ОКНО ДЛЯ ОРИГИНАЛЬНОГО ВИДЖЕТА */
-        .tm-iframe-wrapper { flex: 1; width: 100%; border: none; background: #fff; }
-        iframe { width: 100%; height: 100%; border: none; }
+        /* КОНТЕЙНЕР ДЛЯ ОРИГИНАЛЬНОГО ПЛЕЕРА OEC */
+        .tm-viewport { flex: 1; background: #fff; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; }
 
         .tm-controls { background: var(--panel); padding: 10px 0; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--accent); }
         .tm-btn-row { display: flex; gap: 6px; justify-content: center; }
@@ -40,72 +38,57 @@
         <div class="tm-header-text">UZBEKISTAN: EXPORT-IMPORT</div>
     </div>
 
-    <div class="tm-iframe-wrapper">
-        <iframe id="oec-frame" src=""></iframe>
+    <div class="tm-viewport">
+        <iframe id="oec-engine" src=""></iframe>
     </div>
 
     <div class="tm-controls">
         <div class="tm-btn-row">
-            <button id="f-export" class="tm-btn active" onclick="setMode('export')">ЭКСПОРТ</button>
-            <button id="f-import" class="tm-btn" onclick="setMode('import')">ИМПОРТ</button>
+            <button id="f-export" class="tm-btn active" onclick="setParam('flow', 'export')">ЭКСПОРТ</button>
+            <button id="f-import" class="tm-btn" onclick="setParam('flow', 'import')">ИМПОРТ</button>
         </div>
         <div class="tm-btn-row">
-            <button id="v-map" class="tm-btn" onclick="setView('map')">КАРТА</button>
-            <button id="v-growth" class="tm-btn" onclick="setView('growth')">РАЗВИТИЕ</button>
-            <button id="v-composition" class="tm-btn active" onclick="setView('composition')">СОСТАВ</button>
+            <button id="v-map" class="tm-btn" onclick="setParam('viz', 'geo_map')">КАРТА</button>
+            <button id="v-growth" class="tm-btn" onclick="setParam('viz', 'stacked')">РАЗВИТИЕ</button>
+            <button id="v-composition" class="tm-btn active" onclick="setParam('viz', 'tree_map')">СОСТАВ</button>
         </div>
     </div>
 </div>
 
 <script>
-    let currentMode = 'export';
-    let currentView = 'composition';
+    let state = {
+        flow: 'export',
+        viz: 'tree_map',
+        year: '2022' // Последний стабильный год в их базе
+    };
 
-    // ГЕНЕРАТОР ССЫЛОК НА ОРИГИНАЛЬНЫЕ ВИЗУАЛИЗАЦИИ OEC
-    // Мы используем формат Embed, который предназначен для вставки
-    function getOecUrl() {
-        const flow = currentMode === 'export' ? 'export' : 'import';
+    function buildUrl() {
+        // Использование специального эндпоинта для EMBED (разрешен X-Frame-Options)
+        // Формат: /en/visualize/embed/{тип}/{классификатор}/{направление}/{страна}/{партнер}/{продукт}/{год}/
+        const baseUrl = "https://oec.world/en/visualize/embed";
+        return `${baseUrl}/${state.viz}/hs92/${state.flow}/uzb/all/show/${state.year}/`;
+    }
+
+    function refresh() {
+        const frame = document.getElementById('oec-engine');
+        frame.src = buildUrl();
         
-        if (currentView === 'composition') {
-            // Виджет Tree Map (Состав)
-            return `https://oec.world/en/visualize/embed/tree_map/hs92/${flow}/uzb/all/show/2022/`;
-        } else if (currentView === 'growth') {
-            // Виджет Stacked (Развитие)
-            return `https://oec.world/en/visualize/embed/stacked/hs92/${flow}/uzb/all/show/2012.2022/`;
-        } else if (currentView === 'map') {
-            // Виджет Geo Map (Карта)
-            return `https://oec.world/en/visualize/embed/network/hs92/${flow}/uzb/all/show/2022/`;
-        }
-    }
-
-    function updateFrame() {
-        const frame = document.getElementById('oec-frame');
-        const newUrl = getOecUrl();
-        if (frame.src !== newUrl) {
-            frame.src = newUrl;
-        }
-    }
-
-    function setMode(m) {
-        currentMode = m;
-        updateUI();
-        updateFrame();
-    }
-
-    function setView(v) {
-        currentView = v;
-        updateUI();
-        updateFrame();
-    }
-
-    function updateUI() {
+        // Визуальное обновление кнопок
         document.querySelectorAll('.tm-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`f-${currentMode}`).classList.add('active');
-        document.getElementById(`v-${currentView}`).classList.add('active');
+        document.getElementById(`f-${state.flow}`).classList.add('active');
+        
+        // Маппинг ID кнопок визуализации
+        const vizId = state.viz === 'tree_map' ? 'composition' : (state.viz === 'stacked' ? 'growth' : 'map');
+        document.getElementById(`v-${vizId}`).classList.add('active');
     }
 
-    // Стартовая загрузка
-    updateFrame();
+    function setParam(key, val) {
+        state[key] = val;
+        refresh();
+    }
+
+    // Первый запуск
+    refresh();
 </script>
 
 </body>
