@@ -1,3 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <title>HISOBLI — МОЯ СЕКРЕТНАЯ АНАЛИТИКА</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    :root { --bg:#121212; --panel:#171717; --text:#d0d0d0; --gold:#BFA46F; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.6; }
+    header { position:fixed; top:0; left:0; width:100%; background:var(--bg); text-align:center; padding:18px 20px 24px; z-index:1000; box-shadow:0 4px 30px rgba(0,0,0,0.7); }
+    header.scrolled { padding:10px 20px 16px; transform:scale(1.04); }
+    .logo { max-width:320px; display:block; margin:0 auto; }
+    header.scrolled .logo { max-width:220px; }
+    .copyright { font-size:11px; opacity:0.65; margin-top:4px; }
+    main { padding:140px 24px 60px; max-width:1200px; margin:0 auto; }
+    h1,h2 { color:var(--gold); text-transform:uppercase; font-weight:700; margin:32px 0 16px; }
+    select,input,button { background:var(--panel); color:var(--text); border:1px solid var(--gold); padding:8px 12px; margin:8px 8px 8px 0; cursor:pointer; }
+    button:hover { background:var(--gold); color:#121212; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:24px; }
+    canvas { background:var(--panel); border:1px solid #222; border-radius:6px; }
+    table { width:100%; border-collapse:collapse; margin-top:20px; }
+    th,td { border:1px solid #333; padding:10px; text-align:left; }
+    th { background:#1a1a1a; color:var(--gold); }
+    .me { font-weight:bold; color:var(--gold); background:rgba(191,164,111,0.1); }
+    .realtime-notification { position:fixed; bottom:20px; right:20px; background:#BFA46F; color:#121212; padding:15px 20px; border-radius:8px; box-shadow:0 10px 30px rgba(191,164,111,0.4); z-index:9999; display:none; }
+    #stats, #topUsers, #onlineUsers { margin:20px 0; font-size:18px; }
+  </style>
+</head>
+<body>
+
+<header id="header">
+  <img src="logo.png" alt="HISOBLI" class="logo">
+  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
+</header>
+
+<main>
+  <h1>МОЯ СЕКРЕТНАЯ АНАЛИТИКА</h1>
+  <div class="fingerprint-info">Твой fp: <span id="myFp"></span></div>
+
+  <div id="stats"></div>
+  <div id="topUsers"></div>
+  <div id="onlineUsers"></div>
+
+  <div style="margin:20px 0;">
+    <label>Фильтр по странице: </label><select id="pageFilter"><option value="">Все страницы</option></select>
+    <label>Тип события: </label><select id="typeFilter"><option value="">Все</option><option value="visit">Визиты</option><option value="click">Клики</option><option value="view">Просмотры</option><option value="scroll">Скролл</option><option value="session_end">Сессия</option></select>
+    <input type="text" id="fpSearch" placeholder="Поиск по fp">
+    <button onclick="loadData()">Обновить</button>
+    <button onclick="archiveOld()">Архивировать старше 30 дней</button>
+    <button onclick="exportCSV()">CSV</button>
+  </div>
+
+  <div class="grid">
+    <div><h2>Динамика визитов</h2><canvas id="visitsChart"></canvas></div>
+    <div><h2>Языки</h2><canvas id="langChart"></canvas></div>
+    <div><h2>Устройства</h2><canvas id="deviceChart"></canvas></div>
+    <div><h2>Гео (TZ)</h2><canvas id="geoChart"></canvas></div>
+    <div><h2>Активность по часам</h2><canvas id="heatmapChart"></canvas></div>
+    <div><h2>Топ кликов</h2><canvas id="topClicksChart"></canvas></div>
+    <div><h2>RU vs UZ</h2><canvas id="ruUzChart"></canvas></div>
+    <div><h2>Топ продуктов BUYURI§%</h2><canvas id="productsChart"></canvas></div>
+    <div><h2>Средняя длительность сессии</h2><canvas id="sessionDurationChart"></canvas></div>
+    <div><h2>Источники трафика</h2><canvas id="referrerChart"></canvas></div>
+    <div><h2>Новые уникальные fp</h2><canvas id="uniqueFpChart"></canvas></div>
+  </div>
+
+  <h2>Таблица</h2>
+  <table id="dataTable"><thead><tr><th>Время</th><th>Тип</th><th>Страница/Label</th><th>FP</th><th>Доп</th></tr></thead><tbody></tbody></table>
+
+  <div id="realtime-toast" class="realtime-notification"></div>
+</main>
+
 <script>
 const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cXJuc294b2FjeHl6YWhvcWxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3NTIsImV4cCI6MjA4OTQ2Njc1Mn0.OBONo_RG8dmfsc5PymfLhEjC5kcqqPzMVHRYSnDmy7s";
@@ -160,3 +236,5 @@ async function exportCSV() {
 window.addEventListener("scroll", () => document.getElementById("header").classList.toggle("scrolled", window.scrollY > 80));
 loadData();
 </script>
+</body>
+</html>
