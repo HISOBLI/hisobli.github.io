@@ -1,1 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISOBLI — TRADE MONITOR TEST</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
 
+    <style>
+        /* ИСПОЛЬЗОВАНИЕ ПЕРЕМЕННЫХ ИЗ ТВОЕГО DASHBORD2.HTML */
+        :root {
+            --bg: #121212;
+            --panel: #171717;
+            --text: #d0d0d0;
+            --accent: #BFA46F;
+            --border: #222;
+            --font-main: 'Fira Mono', monospace;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* КОНТЕЙНЕР ВИДЖЕТА (ГРАНИЦЫ И ЦВЕТ) */
+        .tm-main-container {
+            width: 700px;
+            background: var(--panel);
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* ШАПКА ВИДЖЕТА (СТРОГО ПО ТЗ: ПОДЛОЖКА, ЦВЕТ, НЕИЗМЕННЫЙ ТЕКСТ) */
+        .tm-header {
+            background: var(--accent);
+            padding: 12px;
+            text-align: center;
+        }
+
+        .tm-header-text {
+            color: var(--bg);
+            font-size: 14px;
+            font-weight: 700; /* BOLD */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ПОЛЕ ГРАФИКА */
+        .tm-content {
+            padding: 20px;
+        }
+
+        #tm-chart-canvas {
+            width: 100%;
+            height: 400px;
+            background: rgba(0,0,0,0.1);
+        }
+
+        /* КНОПКИ УПРАВЛЕНИЯ (СТИЛЬ .panel ИЗ ТВОЕГО САЙТА) */
+        .tm-controls-wrapper {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tm-btn-row {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .tm-action-btn {
+            background: var(--panel);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 10px 18px;
+            font-family: var(--font-main);
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+        }
+
+        /* ЭФФЕКТ ХОВЕР (КОПИЯ ИЗ ТВОЕГО DASHBORD2.HTML) */
+        .tm-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background: rgba(191,164,111,0.1);
+        }
+
+        .tm-action-btn.active {
+            background: var(--accent);
+            color: var(--bg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="tm-main-container">
+    <div class="tm-header">
+        <div class="tm-header-text">🇺🇿 UZBEKISTAN: EXPORT-IMPORT</div>
+    </div>
+
+    <div class="tm-content">
+        <div id="tm-chart-canvas"></div>
+
+        <div class="tm-controls-wrapper">
+            <div class="tm-btn-row">
+                <button id="flow-exp" class="tm-action-btn active" onclick="updateFlow('export')">EKSPORT | ЭКСПОРТ</button>
+                <button id="flow-imp" class="tm-action-btn" onclick="updateFlow('import')">IMPORT | ИМПОРТ</button>
+            </div>
+            <div class="tm-btn-row">
+                <button id="view-map" class="tm-action-btn" onclick="updateView('map')">XARITA | КАРТА</button>
+                <button id="view-growth" class="tm-action-btn" onclick="updateView('growth')">RIVOJI | РАЗВИТИЕ</button>
+                <button id="view-comp" class="tm-action-btn active" onclick="updateView('composition')">TARKIBI | СОСТАВ</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ИНИЦИАЛИЗАЦИЯ ECHARTS
+    let chartDom = document.getElementById('tm-chart-canvas');
+    let myChart = echarts.init(chartDom, 'dark');
+    
+    // ПАРАМЕТРЫ ЗАПРОСА (УЗБЕКИСТАН - КОНСТАНТА)
+    const OEC_API_BASE = "https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_92&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2013%2C2014%2C2015%2C2016%2C2017%2C2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%3B";
+    let currentFlow = "Exporter%20Country%3Aasuzb"; // По умолчанию Экспорт
+
+    // ФУНКЦИЯ ПОЛУЧЕНИЯ ДАННЫХ
+    async function fetchData() {
+        myChart.showLoading({ color: '#BFA46F', maskColor: 'rgba(0, 0, 0, 0.4)' });
+        try {
+            const response = await fetch(OEC_API_BASE + currentFlow);
+            const json = await response.json();
+            renderChart(json.data);
+        } catch (err) {
+            console.error("API Error:", err);
+        } finally {
+            myChart.hideLoading();
+        }
+    }
+
+    // ЛОГИКА ОТРИСОВКИ (STACKED AREA CHART)
+    function renderChart(data) {
+        // Здесь будет маппинг данных. Для теста рисуем структуру:
+        let option = {
+            backgroundColor: 'transparent',
+            tooltip: { trigger: 'axis' },
+            grid: { top: 30, left: '3%', right: '4%', bottom: '3%', containLabel: true },
+            xAxis: { 
+                type: 'category', 
+                data: ['2013', '2015', '2017', '2019', '2021', '2023'],
+                axisLine: { lineStyle: { color: '#BFA46F' } }
+            },
+            yAxis: { 
+                type: 'value', 
+                splitLine: { lineStyle: { color: '#222' } },
+                axisLine: { lineStyle: { color: '#BFA46F' } }
+            },
+            series: [
+                {
+                    name: 'Commodity A',
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: { opacity: 0.8 },
+                    emphasis: { focus: 'series' },
+                    data: [120, 132, 101, 134, 90, 230],
+                    color: '#BFA46F'
+                },
+                {
+                    name: 'Commodity B',
+                    type: 'line',
+                    stack: 'Total',
+                    areaStyle: { opacity: 0.5 },
+                    emphasis: { focus: 'series' },
+                    data: [220, 182, 191, 234, 290, 330],
+                    color: '#555'
+                }
+            ]
+        };
+        myChart.setOption(option);
+    }
+
+    // УПРАВЛЕНИЕ КНОПКАМИ
+    function updateFlow(type) {
+        document.querySelectorAll('.tm-btn-row:first-child .tm-action-btn').forEach(b => b.classList.remove('active'));
+        if(type === 'export') {
+            currentFlow = "Exporter%20Country%3Aasuzb";
+            document.getElementById('flow-exp').classList.add('active');
+        } else {
+            currentFlow = "Importer%20Country%3Aasuzb";
+            document.getElementById('flow-imp').classList.add('active');
+        }
+        fetchData();
+    }
+
+    function updateView(view) {
+        document.querySelectorAll('.tm-btn-row:last-child .tm-action-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('view-' + view.replace('composition', 'comp').replace('dynamic', 'growth')).classList.add('active');
+        // Здесь будет логика смены типа чарта (Map/Stacked)
+    }
+
+    // Первый запуск
+    window.addEventListener('resize', () => myChart.resize());
+    fetchData();
+</script>
+
+</body>
+</html>
