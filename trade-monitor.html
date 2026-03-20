@@ -4,22 +4,21 @@
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
-        :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; --anthracite: #121212; }
-        body { background: var(--bg); margin: 0; font-family: 'Fira Mono', monospace; color: var(--accent); overflow: hidden; }
+        :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; }
+        body { background: var(--bg); margin: 0; font-family: 'Fira Mono', monospace; overflow: hidden; }
         .tm-container {
             width: 540px; height: 380px; border: 1px solid var(--accent);
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
         }
-        .tm-header { background: var(--accent); color: var(--bg); padding: 8px; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
+        .tm-header { background: var(--accent); color: var(--bg); padding: 6px; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 11px; }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
-        .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); background: var(--panel); }
+        .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
         .btn-group { display: flex; gap: 4px; justify-content: center; }
         .btn { 
             background: transparent; border: 1px solid var(--accent); color: var(--accent); 
-            padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase; transition: 0.2s;
+            padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
         }
         .btn.active { background: var(--accent); color: var(--bg); }
-        .btn:hover { opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -43,9 +42,8 @@
 <script>
     const chart = echarts.init(document.getElementById('canvas'));
     let mode = 'export', view = 'composition';
-
     const OEC_COLORS = ['#ffcc00', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#1abc9c', '#34495e', '#d35400', '#7f8c8d'];
-
+    
     const apis = {
         'export-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
         'import-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
@@ -58,32 +56,38 @@
     const formatVal = (v) => v >= 1e9 ? (v/1e9).toFixed(2) + ' $B' : (v/1e6).toFixed(2) + ' $M';
 
     async function load() {
-        chart.showLoading({ color: '#BFA46F', textColor: '#121212' });
+        chart.showLoading({ color: '#BFA46F' });
         try {
             const res = await fetch(apis[`${mode}-${view}`]);
             const json = await res.json();
             if (view === 'composition') renderTreemap(json.data);
             else if (view === 'growth') renderGrowth(json.data);
             else renderMap(json.data);
-        } catch(e) { console.error("Data Error", e); }
+        } catch(e) { console.error(e); }
         chart.hideLoading();
     }
 
     function renderTreemap(data) {
-        const clean = data.sort((a,b) => b['Trade Value'] - a['Trade Value']).slice(0, 15);
+        const sorted = data.sort((a,b) => b['Trade Value'] - a['Trade Value']).slice(0, 18);
+        const total = sorted.reduce((sum, i) => sum + i['Trade Value'], 0);
+        
         chart.setOption({
             color: OEC_COLORS,
-            tooltip: { 
-                trigger: 'item', 
-                backgroundColor: '#fff', 
-                formatter: (p) => `<b style="color:#121212">${p.name}</b><br/><span style="color:#121212">${formatVal(p.value)}</span>` 
-            },
+            tooltip: { trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' } },
             series: [{
                 type: 'treemap',
-                data: clean.map(i => ({ name: i['HS4'], value: i['Trade Value'] })),
-                label: { show: true, formatter: '{b}\n{d}%', color: '#121212', fontSize: 10, fontWeight: 'bold' },
-                itemStyle: { borderColor: '#fff', borderWidth: 1 },
-                breadcrumb: { show: false }
+                width: '100%', height: '100%', left: 0, top: 0, right: 0, bottom: 0,
+                data: sorted.map(i => ({ 
+                    name: i['HS4'], 
+                    value: i['Trade Value'],
+                    percent: ((i['Trade Value'] / total) * 100).toFixed(1) + '%'
+                })),
+                label: { 
+                    show: true, position: 'inside', color: '#121212', fontSize: 10, fontWeight: 'bold',
+                    formatter: (p) => `${p.name}\n${p.data.percent}`
+                },
+                breadcrumb: { show: false },
+                itemStyle: { borderColor: '#fff', borderWidth: 1 }
             }]
         }, true);
     }
@@ -93,40 +97,48 @@
         const top = [...new Set(data.filter(d => d.Year == 2024).sort((a,b) => b['Trade Value'] - a['Trade Value']).map(d => d['HS4']))].slice(0, 6);
         
         const series = top.map((p, idx) => ({
-            name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.8 }, 
-            symbol: 'none', color: OEC_COLORS[idx % OEC_COLORS.length],
-            data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || {})['Trade Value'] || 0)
+            name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.85 }, 
+            symbol: 'circle', symbolSize: 4, color: OEC_COLORS[idx % OEC_COLORS.length],
+            data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || { 'Trade Value': 0 })['Trade Value'])
         }));
 
         chart.setOption({
             tooltip: { 
-                trigger: 'item', // Важно: показываем только тот слой, на который навели
-                backgroundColor: '#fff', 
-                formatter: (p) => `<b style="color:#121212">${p.seriesName}</b><br/><span style="color:#121212">${p.name}: ${formatVal(p.value)}</span>`
+                trigger: 'axis', backgroundColor: '#fff', textStyle: { color: '#121212' },
+                formatter: (params) => {
+                    let res = `<b>${params[0].name}</b><br/>`;
+                    params.forEach(item => {
+                        res += `<span style="color:${item.color}">●</span> ${item.seriesName}: ${formatVal(item.value)}<br/>`;
+                    });
+                    return res;
+                }
             },
-            grid: { top: 20, bottom: 30, left: 50, right: 20 },
-            xAxis: { type: 'category', data: years, axisLabel: { color: '#121212' } },
-            yAxis: { type: 'value', axisLabel: { show: false }, splitLine: { show: false } },
+            grid: { left: '1%', right: '2%', top: '5%', bottom: '5%', containLabel: true },
+            xAxis: { type: 'category', boundaryGap: false, data: years },
+            yAxis: { type: 'value', splitLine: { show: false }, axisLabel: { show: false } },
             series: series
         }, true);
     }
 
     async function renderMap(data) {
-        const geo = await (await fetch('https://raw.githubusercontent.com/apache/echarts/master/test/data/map/json/world.json')).json();
-        echarts.registerMap('world', geo);
+        const geoRes = await fetch('https://raw.githubusercontent.com/apache/echarts/master/test/data/map/json/world.json');
+        const geoJson = await geoRes.json();
+        echarts.registerMap('world', geoJson);
         const key = mode === 'export' ? 'Importer Country' : 'Exporter Country';
-        
+
         chart.setOption({
-            visualMap: { min: 0, max: 1e9, inRange: { color: ['#f0f0f0', '#BFA46F'] }, show: false },
-            tooltip: { 
-                trigger: 'item', 
-                backgroundColor: '#fff',
-                formatter: (p) => p.data ? `<b style="color:#121212">${p.name}</b><br/><span style="color:#121212">${formatVal(p.value)}</span>` : `<span style="color:#121212">${p.name}: No data</span>`
+            visualMap: { min: 0, max: 1e9, inRange: { color: ['#e0e0e0', '#BFA46F'] }, show: false },
+            tooltip: { trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' } },
+            geo: {
+                map: 'world',
+                roam: true,
+                center: [65, 40], // Фокус на Центральную Азию
+                zoom: 4.5, // Увеличиваем масштаб, чтобы убрать океаны
+                itemStyle: { areaColor: '#f5f5f5', borderColor: '#dcdcdc' },
+                emphasis: { itemStyle: { areaColor: '#ffcc00' }, label: { show: false } }
             },
             series: [{ 
-                type: 'map', map: 'world', 
-                itemStyle: { areaColor: '#f5f5f5', borderColor: '#ccc' },
-                emphasis: { itemStyle: { areaColor: '#ffcc00' } },
+                type: 'map', geoIndex: 0,
                 data: data.map(i => ({ name: i[key], value: i['Trade Value'] })) 
             }]
         }, true);
@@ -142,7 +154,6 @@
     }
 
     load();
-    window.onresize = () => chart.resize();
 </script>
 </body>
 </html>
