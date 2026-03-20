@@ -1,86 +1,10 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <title>HISOBLI — МОЯ СЕКРЕТНАЯ АНАЛИТИКА</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <style>
-    :root { --bg:#121212; --panel:#171717; --text:#d0d0d0; --gold:#BFA46F; }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace; font-size:16px; line-height:1.6; }
-    header { position:fixed; top:0; left:0; width:100%; background:var(--bg); text-align:center; padding:18px 20px 24px; z-index:1000; box-shadow:0 4px 30px rgba(0,0,0,0.7); }
-    header.scrolled { padding:10px 20px 16px; transform:scale(1.04); }
-    .logo { max-width:320px; display:block; margin:0 auto; }
-    header.scrolled .logo { max-width:220px; }
-    .copyright { font-size:11px; opacity:0.65; margin-top:4px; }
-    main { padding:140px 24px 60px; max-width:1200px; margin:0 auto; }
-    h1,h2 { color:var(--gold); text-transform:uppercase; font-weight:700; margin:32px 0 16px; }
-    select,input,button { background:var(--panel); color:var(--text); border:1px solid var(--gold); padding:8px 12px; margin:8px 8px 8px 0; cursor:pointer; }
-    button:hover { background:var(--gold); color:#121212; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:24px; }
-    canvas { background:var(--panel); border:1px solid #222; border-radius:6px; }
-    table { width:100%; border-collapse:collapse; margin-top:20px; }
-    th,td { border:1px solid #333; padding:10px; text-align:left; }
-    th { background:#1a1a1a; color:var(--gold); }
-    .me { font-weight:bold; color:var(--gold); background:rgba(191,164,111,0.1); }
-    .realtime-notification { position:fixed; bottom:20px; right:20px; background:#BFA46F; color:#121212; padding:15px 20px; border-radius:8px; box-shadow:0 10px 30px rgba(191,164,111,0.4); z-index:9999; display:none; }
-    #stats, #topUsers, #onlineUsers { margin:20px 0; font-size:18px; }
-  </style>
-</head>
-<body>
-
-<header id="header">
-  <img src="logo.png" alt="HISOBLI" class="logo">
-  <div class="copyright">2026© HISOBLI | BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</div>
-</header>
-
-<main>
-  <h1>МОЯ СЕКРЕТНАЯ АНАЛИТИКА</h1>
-  <div class="fingerprint-info">Твой fp: <span id="myFp"></span></div>
-
-  <div id="stats"></div>
-  <div id="topUsers"></div>
-  <div id="onlineUsers"></div>
-
-  <div style="margin:20px 0;">
-    <label>Фильтр по странице: </label><select id="pageFilter"><option value="">Все страницы</option></select>
-    <label>Тип события: </label><select id="typeFilter"><option value="">Все</option><option value="visit">Визиты</option><option value="click">Клики</option><option value="view">Просмотры</option><option value="scroll">Скролл</option><option value="session_end">Сессия</option></select>
-    <input type="text" id="fpSearch" placeholder="Поиск по fp">
-    <button onclick="loadData()">Обновить</button>
-    <button onclick="archiveOld()">Архивировать старше 30 дней</button>
-    <button onclick="exportCSV()">CSV</button>
-  </div>
-
-  <div class="grid">
-    <div><h2>Динамика визитов</h2><canvas id="visitsChart"></canvas></div>
-    <div><h2>Языки</h2><canvas id="langChart"></canvas></div>
-    <div><h2>Устройства</h2><canvas id="deviceChart"></canvas></div>
-    <div><h2>Гео (TZ)</h2><canvas id="geoChart"></canvas></div>
-    <div><h2>Активность по часам</h2><canvas id="heatmapChart"></canvas></div>
-    <div><h2>Топ кликов</h2><canvas id="topClicksChart"></canvas></div>
-    <div><h2>RU vs UZ</h2><canvas id="ruUzChart"></canvas></div>
-    <div><h2>Топ продуктов BUYURI§%</h2><canvas id="productsChart"></canvas></div>
-    <div><h2>Средняя длительность сессии</h2><canvas id="sessionDurationChart"></canvas></div>
-    <div><h2>Источники трафика</h2><canvas id="referrerChart"></canvas></div>
-    <div><h2>Новые уникальные fp</h2><canvas id="uniqueFpChart"></canvas></div>
-  </div>
-
-  <h2>Таблица</h2>
-  <table id="dataTable"><thead><tr><th>Время</th><th>Тип</th><th>Страница/Label</th><th>FP</th><th>Доп</th></tr></thead><tbody></tbody></table>
-
-  <div id="realtime-toast" class="realtime-notification"></div>
-</main>
-
 <script>
 const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cXJuc294b2FjeHl6YWhvcWxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3NTIsImV4cCI6MjA4OTQ2Njc1Mn0.OBONo_RG8dmfsc5PymfLhEjC5kcqqPzMVHRYSnDmy7s";
 
 const sb = supabase.createClient(SUPABASE_URL, ANON_KEY);
 
-const charts = {}; // для повторного использования графиков
+const charts = {}; // хранилище для повторного использования Chart.js
 
 let myFp = localStorage.getItem('myAnalyticsFp') || (localStorage.setItem('myAnalyticsFp', btoa(navigator.userAgent + navigator.language + screen.width + screen.height + Intl.DateTimeFormat().resolvedOptions().timeZone).slice(0,16)), localStorage.getItem('myAnalyticsFp'));
 document.getElementById('myFp').textContent = myFp;
@@ -105,7 +29,7 @@ async function loadData() {
     allData = data || [];
     renderAll();
   } catch (err) {
-    console.error("Ошибка загрузки:", err.message);
+    console.error("Ошибка загрузки данных:", err.message);
   }
 }
 
@@ -119,66 +43,64 @@ function renderChart(id, config) {
 }
 
 function renderAll() {
-  const ctx = id => document.getElementById(id).getContext('2d');
+  // Объявляем переменные ОДИН раз
+  let visits = {};
+  let langs = {};
+  let devices = {};
+  let countries = {};
+  let hours = Array(24).fill(0);
+  let clicks = {};
+  let ru = 0, uz = 0;
+  let products = {};
+  let durations = [];
+  let referrers = {};
+  let uniqueFp = {};
 
-  // Динамика визитов
-  const visits = {};
-  allData.filter(d=>d.type==='visit').forEach(d=>{ const day = d.time.split('T')[0]; visits[day]=(visits[day]||0)+1; });
+  // Заполняем данные
+  allData.forEach(d => {
+    if (d.type === 'visit') {
+      const day = d.time.split('T')[0];
+      visits[day] = (visits[day] || 0) + 1;
+    }
+    if (d.lang) langs[d.lang] = (langs[d.lang] || 0) + 1;
+    if (d.screen) devices[d.screen] = (devices[d.screen] || 0) + 1;
+    const c = d.tz?.includes('Tashkent') ? 'Узбекистан' : (d.tz?.split('/')[0] || 'Другое');
+    countries[c] = (countries[c] || 0) + 1;
+    if (d.time) hours[new Date(d.time).getHours()]++;
+    if (d.type === 'click' && d.label) clicks[d.label] = (clicks[d.label] || 0) + 1;
+    if (d.lang?.startsWith('ru')) ru++;
+    if (d.lang?.startsWith('uz')) uz++;
+    if (d.label && d.label.includes('BUYURI')) products[d.label] = (products[d.label] || 0) + 1;
+    if (d.type === 'session_end' && d.duration) durations.push(parseInt(d.duration) || 0);
+    let r = 'Прямой';
+    try { if (d.referrer) r = new URL(d.referrer).hostname; } catch {}
+    referrers[r] = (referrers[r] || 0) + 1;
+    if (d.time) {
+      const day = d.time.split('T')[0];
+      if (!uniqueFp[day]) uniqueFp[day] = new Set();
+      uniqueFp[day].add(d.fp);
+    }
+  });
+
+  // Рендерим графики
   renderChart('visitsChart', { type:'line', data:{ labels:Object.keys(visits).sort(), datasets:[{label:'Визиты', data:Object.values(visits), borderColor:'#BFA46F'}] } });
-
-  // Языки
-  const langs = {};
-  allData.forEach(d=>{ if(d.lang) langs[d.lang]=(langs[d.lang]||0)+1; });
   renderChart('langChart', { type:'pie', data:{ labels:Object.keys(langs), datasets:[{data:Object.values(langs), backgroundColor:['#BFA46F','#a08050','#d0d0d0']}] } });
-
-  // Устройства
-  const devices = {};
-  allData.forEach(d=>{ if(d.screen) devices[d.screen]=(devices[d.screen]||0)+1; });
   renderChart('deviceChart', { type:'bar', data:{ labels:Object.keys(devices), datasets:[{label:'Экраны', data:Object.values(devices), backgroundColor:'#BFA46F'}] } });
-
-  // Гео
-  const countries = {};
-  allData.forEach(d=>{ const c = d.tz?.includes('Tashkent')?'Узбекистан':d.tz?.split('/')[0]||'Другое'; countries[c]=(countries[c]||0)+1; });
   renderChart('geoChart', { type:'bar', data:{ labels:Object.keys(countries), datasets:[{label:'Страны', data:Object.values(countries), backgroundColor:'#BFA46F'}] } });
-
-  // Активность по часам
-  const hours = Array(24).fill(0);
-  allData.forEach(d=>{ if(d.time) hours[new Date(d.time).getHours()]++; });
   renderChart('heatmapChart', { type:'bar', data:{ labels:Array.from({length:24},(_,i)=>i.toString().padStart(2,'0')+':00'), datasets:[{label:'По часам', data:hours, backgroundColor:'#BFA46F'}] } });
 
-  // Топ кликов
-  const clicks = {};
-  allData.filter(d=>d.type==='click'&&d.label).forEach(d=>{ clicks[d.label]=(clicks[d.label]||0)+1; });
   const topC = Object.entries(clicks).sort((a,b)=>b[1]-a[1]).slice(0,8);
   renderChart('topClicksChart', { type:'bar', data:{ labels:topC.map(x=>x[0].slice(0,18)), datasets:[{label:'Топ кликов', data:topC.map(x=>x[1]), backgroundColor:'#BFA46F'}] } });
 
-  // RU vs UZ
-  let ru=0, uz=0;
-  allData.forEach(d=>{ if(d.lang?.startsWith('ru')) ru++; if(d.lang?.startsWith('uz')) uz++; });
   renderChart('ruUzChart', { type:'pie', data:{ labels:['RU','UZ'], datasets:[{data:[ru,uz], backgroundColor:['#BFA46F','#a08050']}] } });
 
-  // Топ продуктов
-  const products = {};
-  allData.filter(d=>d.label&&d.label.includes('BUYURI')).forEach(d=>{ products[d.label]=(products[d.label]||0)+1; });
   renderChart('productsChart', { type:'bar', data:{ labels:Object.keys(products), datasets:[{label:'Продукты', data:Object.values(products), backgroundColor:'#BFA46F'}] } });
 
-  // Средняя сессия
-  const durations = allData.filter(d=>d.type==='session_end'&&d.duration).map(d=>parseInt(d.duration)||0);
   const avg = durations.length ? (durations.reduce((a,b)=>a+b,0)/durations.length).toFixed(1) : 0;
   renderChart('sessionDurationChart', { type:'bar', data:{ labels:['Средняя сессия'], datasets:[{label:'секунды', data:[avg], backgroundColor:'#BFA46F'}] } });
 
-  // Источники трафика
-  const referrers = {};
-  allData.forEach(d=>{ 
-    let r = 'Прямой';
-    try { if (d.referrer) r = new URL(d.referrer).hostname; } catch {}
-    referrers[r]=(referrers[r]||0)+1; 
-  });
   renderChart('referrerChart', { type:'pie', data:{ labels:Object.keys(referrers), datasets:[{data:Object.values(referrers), backgroundColor:['#BFA46F','#a08050','#d0d0d0']}] } });
 
-  // Новые уникальные fp
-  const uniqueFp = {};
-  allData.forEach(d=>{ const day = d.time.split('T')[0]; if(!uniqueFp[day]) uniqueFp[day] = new Set(); uniqueFp[day].add(d.fp); });
   renderChart('uniqueFpChart', { type:'line', data:{ labels:Object.keys(uniqueFp).sort(), datasets:[{label:'Новые fp', data:Object.values(uniqueFp).map(s=>s.size), borderColor:'#BFA46F'}] } });
 
   // Таблица
@@ -192,23 +114,23 @@ function renderAll() {
   });
 
   // Конверсия
-  let visits = 0, clicks = 0, products = 0;
+  let v = 0, c = 0, p = 0;
   allData.forEach(d => {
-    if (d.type === 'visit') visits++;
-    if (d.type === 'click') clicks++;
-    if (d.label?.includes('BUYURI')) products++;
+    if (d.type === 'visit') v++;
+    if (d.type === 'click') c++;
+    if (d.label?.includes('BUYURI')) p++;
   });
-  const clickRate = visits ? ((clicks / visits) * 100).toFixed(1) : 0;
-  const productRate = clicks ? ((products / clicks) * 100).toFixed(1) : 0;
-  document.getElementById('stats').innerHTML = `Визиты: ${visits} | CTR: ${clickRate}% | Интерес к продукту: ${productRate}%`;
+  const ctr = v ? ((c / v) * 100).toFixed(1) : 0;
+  const prodRate = c ? ((p / c) * 100).toFixed(1) : 0;
+  document.getElementById('stats').innerHTML = `Визиты: ${v} | CTR: ${ctr}% | Продукты: ${prodRate}%`;
 
-  // Топ активные пользователи
+  // Топ активные
   const map = {};
   allData.forEach(d => { map[d.fp] = (map[d.fp] || 0) + 1; });
   const top = Object.entries(map).sort((a,b)=>b[1]-a[1]).slice(0,5);
   document.getElementById('topUsers').innerHTML = 'Топ активные:<br>' + top.map(([fp,c]) => `${fp.slice(0,8)}... — ${c}`).join('<br>');
 
-  // Онлайн сейчас (за 2 минуты)
+  // Онлайн
   const now = Date.now();
   const online = new Set();
   allData.forEach(d => {
@@ -238,5 +160,3 @@ async function exportCSV() {
 window.addEventListener("scroll", () => document.getElementById("header").classList.toggle("scrolled", window.scrollY > 80));
 loadData();
 </script>
-</body>
-</html>
