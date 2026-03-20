@@ -2,148 +2,57 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HISOBLI — TRADE MONITOR</title>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-
     <style>
-        :root {
-            --bg: #121212;
-            --panel: #171717;
-            --text: #d0d0d0;
-            --accent: #BFA46F;
-            --font-main: 'Fira Mono', monospace;
-        }
-
-        body {
-            background-color: var(--bg);
-            margin: 0;
-            padding: 0; /* Убираем падинги для точного позиционирования */
-            display: flex;
-            justify-content: flex-start;
-        }
-
+        :root { --bg: #121212; --panel: #171717; --text: #d0d0d0; --accent: #BFA46F; --font-main: 'Fira Mono', monospace; }
+        body { background-color: var(--bg); margin: 0; padding: 0; display: flex; justify-content: flex-start; }
+        
         /* ГЕОМЕТРИЯ СТРОГО ПО ЧЕРТЕЖУ */
         .tm-main-container {
-            /* Позиционирование: расчет от иконок PUBLIC CHANNELS до середины MONITORING */
-            width: 540px; 
-            height: 380px; 
-            background: var(--panel);
-            border: 1px solid var(--accent);
-            border-radius: 2px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            margin-left: 145px; /* Смещение влево до зазора между Threads и Messenger */
-            margin-top: 0;      /* Под блоком Public Channels */
+            width: 540px; height: 380px; 
+            background: var(--panel); border: 1px solid var(--accent); border-radius: 2px;
+            overflow: hidden; display: flex; flex-direction: column;
+            margin-left: 145px; margin-top: 0;
         }
 
-        /* ШАПКА: ПОЛНОЦВЕТНЫЙ ФЛАГ + ПОДЛОЖКА */
-        .tm-header {
-            background: var(--accent);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
+        .tm-header { background: var(--accent); padding: 8px 12px; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .tm-flag { width: 30px; height: auto; border: 1px solid #fff; }
+        .tm-header-text { color: var(--bg); font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-family: var(--font-main); }
+        .tm-content { flex: 1; padding: 10px; display: flex; flex-direction: column; position: relative; }
+        #tm-chart-canvas { width: 100%; height: 260px; }
 
-        /* Официальный цветной флаг РУз */
-        .tm-flag-icon {
-            width: 28px;
-            height: 14px;
-            box-shadow: 0 0 2px rgba(0,0,0,0.3);
-            background-image: linear-gradient(to bottom, #0099B5 33.3%, #FFFFFF 33.3%, #FFFFFF 66.6%, #1EB53A 66.6%);
-            position: relative;
-            border: 0.5px solid #fff;
+        .tm-controls { margin-top: auto; padding-bottom: 5px; display: flex; flex-direction: column; gap: 8px; }
+        .tm-btn-row { display: flex; gap: 6px; justify-content: center; }
+        .tm-btn { 
+            background: var(--panel); border: 1px solid var(--accent); color: var(--accent); 
+            padding: 6px 12px; font-family: var(--font-main); font-size: 9px; 
+            cursor: pointer; text-transform: uppercase; transition: 0.2s;
         }
-        /* Упрощенная имитация для стабильности отображения (цвета по ГОСТ) */
-        .tm-flag-real {
-            width: 30px;
-            height: auto;
-            display: block;
-        }
-
-        .tm-header-text {
-            color: var(--bg);
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-family: var(--font-main);
-        }
-
-        .tm-content {
-            flex: 1;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #tm-chart-canvas {
-            width: 100%;
-            height: 240px;
-        }
-
-        /* КНОПКИ */
-        .tm-controls {
-            margin-top: auto;
-            padding-bottom: 5px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .tm-btn-row {
-            display: flex;
-            gap: 6px;
-            justify-content: center;
-        }
-
-        .tm-btn {
-            background: var(--panel);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 6px 12px;
-            font-family: var(--font-main);
-            font-size: 9px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
-        }
-
-        .tm-btn:hover {
-            background: rgba(191,164,111,0.1);
-            transform: translateY(-2px);
-        }
-
-        .tm-btn.active {
-            background: var(--accent);
-            color: var(--bg);
-        }
+        .tm-btn:hover { background: rgba(191,164,111,0.1); transform: translateY(-2px); }
+        .tm-btn.active { background: var(--accent); color: var(--bg); }
     </style>
 </head>
 <body>
 
 <div class="tm-main-container">
     <div class="tm-header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/1280px-Flag_of_Uzbekistan.svg.png" class="tm-flag-real" alt="Flag">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/1280px-Flag_of_Uzbekistan.svg.png" class="tm-flag" alt="Flag">
         <div class="tm-header-text">UZBEKISTAN: EXPORT-IMPORT</div>
     </div>
 
     <div class="tm-content">
         <div id="tm-chart-canvas"></div>
-
         <div class="tm-controls">
             <div class="tm-btn-row">
-                <button id="f-exp" class="tm-btn active">EKSPORT | ЭКСПОРТ</button>
-                <button id="f-imp" class="tm-btn">IMPORT | ИМПОРТ</button>
+                <button id="f-export" class="tm-btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
+                <button id="f-import" class="tm-btn" onclick="setMode('import')">IMPORT | ИМПОРТ</button>
             </div>
             <div class="tm-btn-row">
-                <button id="v-map" class="tm-btn">XARITA | КАРТА</button>
-                <button id="v-dyn" class="tm-btn">RIVOJI | РАЗВИТИЕ</button>
-                <button id="v-comp" class="tm-btn active">TARKIBI | СОСТАВ</button>
+                <button id="v-map" class="tm-btn" onclick="setView('map')">XARITA | КАРТА</button>
+                <button id="v-growth" class="tm-btn" onclick="setView('growth')">RIVOJI | РАЗВИТИЕ</button>
+                <button id="v-composition" class="tm-btn active" onclick="setView('composition')">TARKIBI | СОСТАВ</button>
             </div>
         </div>
     </div>
@@ -151,36 +60,70 @@
 
 <script>
     const chart = echarts.init(document.getElementById('tm-chart-canvas'), 'dark');
-    
-    const option = {
-        backgroundColor: 'transparent',
-        tooltip: { trigger: 'axis' },
-        grid: { top: '10%', left: '3%', right: '4%', bottom: '5%', containLabel: true },
-        xAxis: { 
-            type: 'category', 
-            data: ['2013', '2016', '2019', '2022', '2024'],
-            axisLine: { lineStyle: { color: '#BFA46F' } }
-        },
-        yAxis: { 
-            type: 'value', 
-            splitLine: { lineStyle: { color: '#222' } },
-            axisLine: { lineStyle: { color: '#BFA46F' } }
-        },
-        series: [
-            {
-                name: 'Data',
-                type: 'line',
-                stack: 'Total',
-                areaStyle: { color: '#BFA46F', opacity: 0.5 },
-                data: [120, 200, 150, 480, 710],
-                symbol: 'none',
-                lineStyle: { color: '#BFA46F' }
-            }
-        ]
+    let currentMode = 'export'; // export | import
+    let currentView = 'composition'; // map | growth | composition
+
+    // КАРТА ССЫЛОК ПО ВАШЕМУ СПИСКУ
+    const apiMap = {
+        'export-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
+        'import-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
+        'export-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CImporter%20Country&measures=Trade%20Value&parents=true&properties=Importer%20Country%20ISO%203&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
+        'import-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CExporter%20Country&measures=Trade%20Value&parents=true&properties=Exporter%20Country%20ISO%203&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
+        'export-growth': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%3BExporter%20Country%3Aasuzb',
+        'import-growth': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%3BImporter%20Country%3Aasuzb'
     };
 
-    chart.setOption(option);
+    async function loadData() {
+        chart.showLoading({ color: '#BFA46F', maskColor: 'rgba(0,0,0,0.3)', text: 'HISOBLI DATA...' });
+        const key = `${currentMode}-${currentView}`;
+        try {
+            const res = await fetch(apiMap[key]);
+            const json = await res.json();
+            updateChart(json.data);
+        } catch (e) { console.error("Data fail", e); }
+        chart.hideLoading();
+    }
+
+    function updateChart(data) {
+        let option = {};
+        if (currentView === 'composition') {
+            // Рисуем TreeMap (Теплая карта состава)
+            option = {
+                tooltip: { trigger: 'item', formatter: '{b}: ${c}' },
+                series: [{
+                    type: 'treemap',
+                    data: data.map(item => ({ name: item['HS4'] || item['Section'], value: item['Trade Value'] })),
+                    levels: [{ itemStyle: { borderColor: '#171717', borderWidth: 1, gapWidth: 1 } }]
+                }]
+            };
+        } else if (currentView === 'growth') {
+            // Рисуем Stacked Line (Развитие)
+            const years = [...new Set(data.map(d => d.Year))].sort();
+            option = {
+                tooltip: { trigger: 'axis' },
+                xAxis: { type: 'category', data: years, axisLine: {lineStyle: {color: '#BFA46F'}} },
+                yAxis: { type: 'value', splitLine: {lineStyle: {color: '#222'}} },
+                series: [{ type: 'line', areaStyle: {}, data: years.map(y => data.filter(d => d.Year === y).reduce((s, c) => s + c['Trade Value'], 0)), color: '#BFA46F' }]
+            };
+        }
+        chart.setOption(option, true);
+    }
+
+    function setMode(m) { 
+        currentMode = m; 
+        document.getElementById('f-export').classList.toggle('active', m === 'export');
+        document.getElementById('f-import').classList.toggle('active', m === 'import');
+        loadData(); 
+    }
+    function setView(v) { 
+        currentView = v; 
+        ['v-map', 'v-growth', 'v-composition'].forEach(id => document.getElementById(id).classList.remove('active'));
+        document.getElementById('v-' + v).classList.add('active');
+        loadData(); 
+    }
+
     window.addEventListener('resize', () => chart.resize());
+    loadData(); // Стартовая загрузка
 </script>
 </body>
 </html>
