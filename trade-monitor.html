@@ -2,98 +2,126 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <style>
-        :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; --font-main: 'Fira Mono', monospace; }
-        body { background-color: var(--bg); margin: 0; padding: 0; overflow: hidden; }
+        :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; --anthracite: #121212; }
+        body { background: var(--bg); margin: 0; font-family: 'Fira Mono', monospace; color: var(--accent); }
         
-        .tm-main-container {
-            width: 540px; height: 380px; 
-            background: var(--panel); border: 1px solid var(--accent); border-radius: 2px;
-            display: flex; flex-direction: column; margin-left: 145px;
+        .tm-container {
+            width: 540px; height: 380px; border: 1px solid var(--accent);
+            display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
         }
-
-        .tm-header { background: var(--accent); padding: 8px 12px; display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .tm-flag { width: 30px; height: auto; border: 1px solid #fff; }
-        .tm-header-text { color: var(--bg); font-size: 13px; font-weight: 700; text-transform: uppercase; font-family: var(--font-main); }
+        .tm-header { background: var(--accent); color: var(--bg); padding: 8px; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        #canvas { flex: 1; width: 100%; background: #fff; } /* Белый фон как в OEC для четкости графики */
         
-        /* КОНТЕЙНЕР ДЛЯ ОРИГИНАЛЬНОГО ПЛЕЕРА OEC */
-        .tm-viewport { flex: 1; background: #fff; position: relative; }
-        iframe { width: 100%; height: 100%; border: none; position: absolute; top: 0; left: 0; }
-
-        .tm-controls { background: var(--panel); padding: 10px 0; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--accent); }
-        .tm-btn-row { display: flex; gap: 6px; justify-content: center; }
-        .tm-btn { 
-            background: var(--panel); border: 1px solid var(--accent); color: var(--accent); 
-            padding: 6px 12px; font-family: var(--font-main); font-size: 9px; cursor: pointer; text-transform: uppercase; 
+        .tm-controls { padding: 10px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
+        .btn-group { display: flex; gap: 4px; justify-content: center; }
+        .btn { 
+            background: transparent; border: 1px solid var(--accent); color: var(--accent); 
+            padding: 4px 10px; font-size: 10px; cursor: pointer; text-transform: uppercase;
         }
-        .tm-btn.active { background: var(--accent); color: var(--bg); }
+        .btn.active { background: var(--accent); color: var(--bg); }
     </style>
 </head>
 <body>
 
-<div class="tm-main-container">
-    <div class="tm-header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flag_of_Uzbekistan.svg/1280px-Flag_of_Uzbekistan.svg.png" class="tm-flag">
-        <div class="tm-header-text">UZBEKISTAN: EXPORT-IMPORT</div>
-    </div>
-
-    <div class="tm-viewport">
-        <iframe id="oec-engine" src=""></iframe>
-    </div>
-
+<div class="tm-container">
+    <div class="tm-header" id="tm-title">UZBEKISTAN TRADE MONITOR</div>
+    <div id="canvas"></div>
     <div class="tm-controls">
-        <div class="tm-btn-row">
-            <button id="f-export" class="tm-btn active" onclick="setParam('flow', 'export')">ЭКСПОРТ</button>
-            <button id="f-import" class="tm-btn" onclick="setParam('flow', 'import')">ИМПОРТ</button>
+        <div class="btn-group">
+            <button id="f-export" class="btn active" onclick="setMode('export')">ЭКСПОРТ</button>
+            <button id="f-import" class="btn" onclick="setMode('import')">ИМПОРТ</button>
         </div>
-        <div class="tm-btn-row">
-            <button id="v-map" class="tm-btn" onclick="setParam('viz', 'geo_map')">КАРТА</button>
-            <button id="v-growth" class="tm-btn" onclick="setParam('viz', 'stacked')">РАЗВИТИЕ</button>
-            <button id="v-composition" class="tm-btn active" onclick="setParam('viz', 'tree_map')">СОСТАВ</button>
+        <div class="btn-group">
+            <button id="v-map" class="btn" onclick="setView('map')">КАРТА</button>
+            <button id="v-growth" class="btn" onclick="setView('growth')">РАЗВИТИЕ</button>
+            <button id="v-composition" class="btn active" onclick="setView('composition')">СОСТАВ</button>
         </div>
     </div>
 </div>
-    <script>
-    let state = {
-        flow: 'export',
-        viz: 'tree_map',
-        year: '2022'
+
+<script>
+    const chart = echarts.init(document.getElementById('canvas'));
+    let mode = 'export', view = 'composition';
+
+    // Цветовая схема OEC (ДНК бренда)
+    const OEC_COLORS = ['#ffcc00', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#1abc9c', '#34495e'];
+
+    const apis = {
+        'export-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
+        'import-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
+        'export-growth': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%3BExporter%20Country%3Aasuzb',
+        'import-growth': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2018%2C2019%2C2020%2C2021%2C2022%2C2023%2C2024%3BImporter%20Country%3Aasuzb',
+        'export-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CImporter%20Country&measures=Trade%20Value&parents=true&properties=Importer%20Country%20ISO%203&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
+        'import-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CExporter%20Country&measures=Trade%20Value&parents=true&properties=Exporter%20Country%20ISO%203&include=Year%3A2024%3BImporter%20Country%3Aasuzb'
     };
 
-    function buildUrl() {
-        // ВНИМАНИЕ: Мы меняем основной домен на эндпоинт визуализатора
-        // и добавляем параметр embed=true, который отключает проверку localStorage
-        const flow = state.flow;
-        const vizType = state.viz; // tree_map, stacked, network
+    async function load() {
+        chart.showLoading();
+        const res = await fetch(apis[`${mode}-${view}`]);
+        const json = await res.json();
+        const data = json.data;
         
-        // Формируем URL, который OEC отдает для встраивания (Legacy Embed Mode)
-        return `https://oec.world/en/visualize/embed/${vizType}/hs92/${flow}/uzb/all/show/${state.year}/?embed=true`;
+        if (view === 'composition') renderTreemap(data);
+        else if (view === 'growth') renderGrowth(data);
+        else renderMap(data);
+        
+        chart.hideLoading();
     }
 
-    function refresh() {
-        const frame = document.getElementById('oec-engine');
-        const finalUrl = buildUrl();
-        
-        // ПЕРЕД ЗАГРУЗКОЙ: очищаем iframe, чтобы сбросить ошибки React
-        frame.src = "about:blank"; 
-        
-        setTimeout(() => {
-            frame.src = finalUrl;
-        }, 10);
-
-        document.querySelectorAll('.tm-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`f-${state.flow}`).classList.add('active');
-        const vizId = state.viz === 'tree_map' ? 'composition' : (state.viz === 'stacked' ? 'growth' : 'map');
-        document.getElementById(`v-${vizId}`).classList.add('active');
+    function renderTreemap(data) {
+        const cleanData = data.sort((a,b) => b['Trade Value'] - a['Trade Value']).slice(0, 15);
+        chart.setOption({
+            color: OEC_COLORS,
+            tooltip: { trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' } },
+            series: [{
+                type: 'treemap',
+                data: cleanData.map(i => ({ name: i['HS4'], value: i['Trade Value'] })),
+                label: { show: true, formatter: '{b}\n{d}%', color: '#121212', fontWeight: 'bold' },
+                itemStyle: { borderColor: '#fff' }
+            }]
+        }, true);
     }
 
-    function setParam(key, val) {
-        state[key] = val;
-        refresh();
+    function renderGrowth(data) {
+        const years = [...new Set(data.map(d => d.Year))].sort();
+        const products = [...new Set(data.filter(d => d.Year == 2024).sort((a,b) => b['Trade Value'] - a['Trade Value']).map(d => d['HS4']))].slice(0, 5);
+        
+        const series = products.map((p, idx) => ({
+            name: p, type: 'line', stack: 'total', areaStyle: {}, color: OEC_COLORS[idx % OEC_COLORS.length],
+            data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || {})['Trade Value'] || 0)
+        }));
+
+        chart.setOption({
+            tooltip: { trigger: 'axis', backgroundColor: 'rgba(255,255,255,0.9)', textStyle: { color: '#121212' } },
+            xAxis: { type: 'category', data: years },
+            yAxis: { type: 'value' },
+            series: series
+        }, true);
     }
 
-    refresh();
+    async function renderMap(data) {
+        const geo = await (await fetch('https://raw.githubusercontent.com/apache/echarts/master/test/data/map/json/world.json')).json();
+        echarts.registerMap('world', geo);
+        const key = mode === 'export' ? 'Importer Country' : 'Exporter Country';
+        chart.setOption({
+            visualMap: { min: 0, max: 1e9, inRange: { color: ['#eeeeee', '#BFA46F'] }, show: false },
+            tooltip: { trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' } },
+            series: [{ type: 'map', map: 'world', data: data.map(i => ({ name: i[key], value: i['Trade Value'] })) }]
+        }, true);
+    }
+
+    function setMode(m) { mode = m; updateUI(); load(); }
+    function setView(v) { view = v; updateUI(); load(); }
+    function updateUI() {
+        document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(`f-${mode}`).classList.add('active');
+        const vId = view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map');
+        document.getElementById(vId).classList.add('active');
+    }
+
+    load();
 </script>
 </body>
 </html>
