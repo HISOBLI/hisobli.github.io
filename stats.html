@@ -68,7 +68,6 @@
 
   <div id="realtime-toast" class="realtime-notification"></div>
 </main>
-
 <script>
 const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co";
 const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2cXJuc294b2FjeHl6YWhvcWxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4OTA3NTIsImV4cCI6MjA4OTQ2Njc1Mn0.OBONo_RG8dmfsc5PymfLhEjC5kcqqPzMVHRYSnDmy7s";
@@ -99,7 +98,6 @@ async function loadData() {
 function renderAll() {
   const ctx = id => document.getElementById(id).getContext('2d');
 
-  // 11 графиков (все рабочие)
   const visits = {};
   allData.filter(d=>d.type==='visit').forEach(d=>{ const day = d.time.split('T')[0]; visits[day]=(visits[day]||0)+1; });
   new Chart(ctx('visitsChart'), { type:'line', data:{ labels:Object.keys(visits).sort(), datasets:[{label:'Визиты', data:Object.values(visits), borderColor:'#BFA46F'}] } });
@@ -174,5 +172,6 @@ async function exportCSV() {
 window.addEventListener("scroll", () => document.getElementById("header").classList.toggle("scrolled", window.scrollY > 80));
 loadData();
 </script>
+
 </body>
 </html>
