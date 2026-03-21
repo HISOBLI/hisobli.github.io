@@ -10,7 +10,11 @@
             width: 540px; height: 380px; border: 1px solid var(--accent);
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
         }
-        .tm-header { background: var(--accent); color: var(--bg); padding: 7px; text-align: center; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; }
+        .tm-header {
+            background: var(--panel); color: var(--accent); padding: 7px; text-align: center; font-weight: bold;
+            text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .tm-header img.flag { height: 28px; width: auto; }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
         .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
         .btn-group { display: flex; gap: 4px; justify-content: center; }
@@ -19,21 +23,37 @@
             padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
         }
         .btn.active { background: var(--accent); color: var(--bg); }
+        .tm-footer-row { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: var(--accent); padding: 0 10px; }
+        .powered, .hisobli { display: flex; align-items: center; gap: 6px; }
+        .powered img, .hisobli img { height: 20px; width: auto; }
     </style>
 </head>
 <body>
 <div class="tm-container">
-    <div class="tm-header" id="tm-title">UZBEKISTAN: EXPORT-IMPORT</div>
+    <div class="tm-header" id="tm-title">
+        <img class="flag" src="https://www.crossed-flag-pins.com/animated-flag-gif/flags-Uzbekistan.gif" alt="Uzbekistan waving flag">
+        UZBEKISTAN: EXPORT-IMPORT
+    </div>
     <div id="canvas"></div>
     <div class="tm-controls">
-        <div class="btn-group">
-            <button id="f-export" class="btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
-            <button id="f-import" class="btn" onclick="setMode('import')">IMPORT | ИМПОРТ</button>
+        <div class="tm-footer-row">
+            <div class="powered">
+                <img src="oec.svg" alt="OEC Logo">
+                POWERED BY The Observatory of Economic Complexity (OEC)
+            </div>
+            <div class="hisobli">
+                ESPECIALLY FOR A CONSULTING COMPANY "HISOBLI"
+                <img src="logo.png" alt="HISOBLI Logo">
+            </div>
         </div>
         <div class="btn-group">
-            <button id="v-map" class="btn" onclick="setView('map')">XARITASI | КАРТА</button>
-            <button id="v-growth" class="btn" onclick="setView('growth')">RIVOJI | РАЗВИТИЕ</button>
-            <button id="v-composition" class="btn active" onclick="setView('composition')">TARKIBI | СОСТАВ</button>
+            <button id="f-export" class="btn active" onclick="setMode('export')">EXPORT</button>
+            <button id="f-import" class="btn" onclick="setMode('import')">IMPORT</button>
+        </div>
+        <div class="btn-group">
+            <button id="v-map" class="btn" onclick="setView('map')">MAP</button>
+            <button id="v-growth" class="btn" onclick="setView('growth')">GROWTH</button>
+            <button id="v-composition" class="btn active" onclick="setView('composition')">COMPOSITION</button>
         </div>
     </div>
 </div>
@@ -88,7 +108,7 @@
        
         const series = top.map((p, idx) => ({
             name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.8 },
-            symbol: 'circle', symbolSize: 18,                    // ← единственное изменение (было 4)
+            symbol: 'circle', symbolSize: 18,
             lineStyle: { width: 0 },
             color: OEC_COLORS[idx % OEC_COLORS.length],
             data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || { 'Trade Value': 0 })['Trade Value'])
