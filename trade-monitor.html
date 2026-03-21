@@ -11,11 +11,14 @@
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
         }
         .tm-header { 
-            background: var(--panel); color: var(--accent); padding: 7px; text-align: center; font-weight: bold; 
-            text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; position: relative; 
+            background: var(--panel); color: var(--accent); 
+            padding: 12px 7px; /* увеличил высоту шапки */
+            text-align: center; font-weight: bold; 
+            text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; 
+            position: relative; 
         }
         .flag-orbit {
-            position: absolute; top: 6px; left: 10px; width: 48px; height: 48px;
+            position: absolute; top: 8px; left: 12px; width: 48px; height: 48px;
         }
         .flag-orbit .orbit {
             position: absolute; top: 0; left: 0; width: 66px; height: 66px; animation: rotate linear infinite;
@@ -29,17 +32,26 @@
             filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); 
         }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
-        .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
+        .tm-controls { 
+            padding: 4px 8px; /* уменьшил высоту футера */
+            display: flex; flex-direction: column; gap: 4px; border-top: 1px solid var(--accent); 
+        }
         .btn-group { display: flex; gap: 4px; justify-content: center; }
         .btn {
             background: transparent; border: 1px solid var(--accent); color: var(--accent);
             padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
         }
         .btn.active { background: var(--accent); color: var(--bg); }
-        .footer-row { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: var(--accent); }
-        .footer-left a { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent); }
-        .footer-left img { height: 22px; width: auto; }
-        .footer-right img { height: 22px; width: auto; }
+        .footer-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            font-size: 9px; color: var(--accent); 
+        }
+        .footer-left a { 
+            display: flex; align-items: center; gap: 6px; 
+            text-decoration: none; color: var(--accent); 
+        }
+        .footer-left img { height: 20px; width: auto; } /* чуть меньше, чтобы влезло */
+        .footer-right img { height: 20px; width: auto; }
     </style>
 </head>
 <body>
