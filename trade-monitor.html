@@ -71,23 +71,25 @@
             font-size: 9px;
             text-transform: uppercase;
             color: var(--accent);
-            margin-top: -15px;
+            margin-top: -5px; /* Скорректировано для баланса */
             position: relative;
             z-index: 1;
+            padding: 0 10px 4px 10px;
         }
         .footer-left, .footer-right {
             display: flex;
+            flex-direction: column; /* Стек: логотип над текстом */
             align-items: center;
-            gap: 6px;
+            gap: 2px;
+            margin-bottom: 2px;
         }
-        .footer-right {
-            transform: translateX(2px);
-        }
-        .footer-right span {
-            letter-spacing: -0.6px;
-        }
+        .footer-left { align-items: flex-start; } /* Выравнивание по левому краю */
+        .footer-right { align-items: flex-end; transform: translateX(2px); } /* По правому */
+
         .footer-logo {
-            height: 12px;
+            height: 24px; /* Увеличено в 2 раза с 12px */
+            width: auto;
+            margin-bottom: 2px; /* Отступ от текста под логотипом */
         }
         .btn {
             background: transparent; border: 1px solid var(--accent); color: var(--accent);
@@ -129,8 +131,8 @@
                 <span>POWERED BY</span>
             </div>
             <div class="footer-right">
-                <span>ESPECIALLY FOR</span>
                 <img src="logo.png" class="footer-logo">
+                <span>ESPECIALLY FOR</span>
             </div>
         </div>
     </div>
