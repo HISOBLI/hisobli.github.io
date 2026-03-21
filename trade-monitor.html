@@ -89,6 +89,7 @@
         const series = top.map((p, idx) => ({
             name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.8 },
             symbol: 'circle', symbolSize: 4,
+            lineStyle: { width: 0 },                    // ← единственное изменение
             color: OEC_COLORS[idx % OEC_COLORS.length],
             data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || { 'Trade Value': 0 })['Trade Value'])
         }));
