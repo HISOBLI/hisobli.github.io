@@ -6,100 +6,98 @@
     <style>
         :root { --bg: #121212; --panel: #171717; --accent: #BFA46F; }
         body { background: var(--bg); margin: 0; font-family: 'Fira Mono', monospace; overflow: hidden; }
-
         .tm-container {
             width: 540px; height: 380px; border: 1px solid var(--accent);
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
             position: relative;
         }
-
-        /* ШАГ №4 — увеличена высота шапки */
         .tm-header {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 14px 10px 10px 60px;
+            background: var(--panel);
+            color: var(--accent);
+            height: 48px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px 0 60px;
             text-align: left;
             font-weight: 900;
             text-transform: uppercase;
             font-size: 16px;
-            letter-spacing: 2px;
+            letter-spacing: 1.8px;
             position: relative;
+            box-sizing: border-box;
         }
-
-        /* Иконка */
         .tm-flag {
             position: absolute;
-            top: 4px;
+            top: 0px;
             left: 6px;
             width: 48px;
             height: 48px;
+            z-index: 5;
         }
-
         .orbit {
             fill: none;
-            stroke: var(--bg);
+            stroke: var(--accent);
             stroke-width: 1;
             opacity: 0.6;
         }
         .orbit1 { animation: spin1 6s linear infinite; }
+        .orbit2 { animation: spin2 9s linear infinite reverse; }
+        .orbit3 { animation: spin3 12s linear infinite; }
 
         @keyframes spin1 { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+        @keyframes spin2 { from { transform: rotate(0deg);} to { transform: rotate(-360deg);} }
+        @keyframes spin3 { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
 
         #canvas { flex: 1; width: 100%; background: #ffffff; }
-
         .tm-controls {
-            padding: 6px 8px 6px 8px;
+            padding: 5px 4px 4px 8px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
             border-top: 1px solid var(--accent);
             position: relative;
+            box-sizing: border-box;
         }
-
-        /* ШАГ №3 — кнопки вниз */
-        .btn-group { display: flex; gap: 4px; justify-content: center; }
-
-        .btn-group:first-child { margin-top: 8px; }
-        .btn-group:last-child { margin-bottom: 2px; }
-
-        .btn {
-            background: transparent; border: 1px solid var(--accent); color: var(--accent);
-            padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
+        .btn-group {
+            display: flex; gap: 4px; justify-content: center;
+            margin-bottom: 4px;
+            transform: translateX(-12px);
+            position: relative;
+            z-index: 10;
         }
-
-        .btn.active { background: var(--accent); color: var(--bg); }
-
-        /* Футер */
         .tm-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
             font-size: 9px;
             text-transform: uppercase;
             color: var(--accent);
-            margin-top: 2px;
+            margin-top: -15px;
+            position: relative;
+            z-index: 1;
         }
-
         .footer-left, .footer-right {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-
-        /* ШАГ №1 — сдвиг вправо */
         .footer-right {
-            margin-right: 14px;
+            transform: translateX(2px);
         }
-
+        .footer-right span {
+            letter-spacing: -0.6px;
+        }
         .footer-logo {
             height: 12px;
         }
-
+        .btn {
+            background: transparent; border: 1px solid var(--accent); color: var(--accent);
+            padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
+        }
+        .btn.active { background: var(--accent); color: var(--bg); }
     </style>
 </head>
 <body>
 <div class="tm-container">
-
     <div class="tm-header" id="tm-title">
         <div class="tm-flag">
             <svg class="orbit orbit1" viewBox="0 0 100 100">
@@ -107,13 +105,11 @@
                 <path d="M30 20 A30 30 0 0 1 70 80"/>
                 <path d="M50 10 A40 40 0 0 1 60 90"/>
             </svg>
-            <img src="flaguzb2.svg" style="width:26px;position:absolute;top:11px;left:11px;">
+            <img src="flaguzb2.svg" style="width:26px;z-index:3;position:absolute;top:11px;left:11px;filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
         </div>
-        UZBEKISTAN: EXPORT-IMPORT
+        <span>UZBEKISTAN: EXPORT-IMPORT</span>
     </div>
-
     <div id="canvas"></div>
-
     <div class="tm-controls">
         <div class="btn-group">
             <button id="f-export" class="btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
@@ -128,7 +124,7 @@
         <div class="tm-footer">
             <div class="footer-left">
                 <a href="https://oec.world/en/resources/about" target="_blank">
-                    <img src="oec.svg" class="footer-logo">
+                    <img src="oec.svg" class="footer-logo" style="filter:invert(77%) sepia(30%) saturate(450%) hue-rotate(5deg);">
                 </a>
                 <span>POWERED BY</span>
             </div>
@@ -137,15 +133,13 @@
                 <img src="logo.png" class="footer-logo">
             </div>
         </div>
-
     </div>
 </div>
-
 <script>
     const chart = echarts.init(document.getElementById('canvas'));
     let mode = 'export', view = 'composition';
     const OEC_COLORS = ['#ffcc00', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#1abc9c', '#34495e', '#d35400', '#7f8c8d'];
-  
+ 
     const apis = {
         'export-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
         'import-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
@@ -154,12 +148,10 @@
         'export-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CImporter%20Country&measures=Trade%20Value&parents=true&properties=Importer%20Country%20ISO%203&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
         'import-map': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CExporter%20Country&measures=Trade%20Value&parents=true&properties=Exporter%20Country%20ISO%203&include=Year%3A2024%3BImporter%20Country%3Aasuzb'
     };
-
     const formatVal = (v) => {
         if (!v || v === 0) return '0.00 $';
         return v >= 1e9 ? (v/1e9).toFixed(2) + ' $B' : (v/1e6).toFixed(2) + ' $M';
     };
-
     async function load() {
         chart.showLoading({ color: '#BFA46F', textColor: '#121212' });
         try {
@@ -171,11 +163,9 @@
         } catch(e) { console.error(e); }
         chart.hideLoading();
     }
-
     function renderTreemap(data) {
         const sorted = data.sort((a,b) => b['Trade Value'] - a['Trade Value']).slice(0, 20);
         const total = sorted.reduce((sum, i) => sum + i['Trade Value'], 0);
-
         chart.setOption({
             color: OEC_COLORS,
             tooltip: {
@@ -183,47 +173,24 @@
                 formatter: (p) => `<b style="color:#121212">${p.name}</b><br/><span style="color:#121212">${formatVal(p.value)}</span>`
             },
             series: [{
-                type: 'treemap',
-                width: '100%',
-                height: '100%',
-                data: sorted.map(i => ({
-                    name: i['HS4'],
-                    value: i['Trade Value'],
-                    percent: ((i['Trade Value']/total)*100).toFixed(1) + '%'
-                })),
-                label: {
-                    show: true,
-                    fontSize: 9,
-                    fontWeight: 'bold',
-                    color: '#121212',
-                    formatter: (p) => `${p.name}\n${p.data.percent}`
-                },
-                breadcrumb: { show: false },
-                itemStyle: { borderColor: '#fff', borderWidth: 1 }
+                type: 'treemap', width: '100%', height: '100%', left: 0, top: 0,
+                data: sorted.map(i => ({ name: i['HS4'], value: i['Trade Value'], percent: ((i['Trade Value']/total)*100).toFixed(1) + '%' })),
+                label: { show: true, fontSize: 9, fontWeight: 'bold', color: '#121212', formatter: (p) => `${p.name}\n${p.data.percent}` },
+                breadcrumb: { show: false }, itemStyle: { borderColor: '#fff', borderWidth: 1 }
             }]
         }, true);
     }
-
     function renderGrowth(data) {
         const years = [...new Set(data.map(d => d.Year))].sort();
-        const top = [...new Set(data.filter(d => d.Year == 2024)
-            .sort((a,b) => b['Trade Value'] - a['Trade Value'])
-            .map(d => d['HS4']))].slice(0, 8);
-
+        const top = [...new Set(data.filter(d => d.Year == 2024).sort((a,b) => b['Trade Value'] - a['Trade Value']).map(d => d['HS4']))].slice(0, 8);
+       
         const series = top.map((p, idx) => ({
-            name: p,
-            type: 'line',
-            stack: 'total',
-            areaStyle: { opacity: 0.8 },
-            symbol: 'circle',
-            symbolSize: 18,
+            name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.8 },
+            symbol: 'circle', symbolSize: 18,
             lineStyle: { width: 0 },
             color: OEC_COLORS[idx % OEC_COLORS.length],
-            data: years.map(y =>
-                (data.find(d => d.Year == y && d['HS4'] == p) || { 'Trade Value': 0 })['Trade Value']
-            )
+            data: years.map(y => (data.find(d => d.Year == y && d['HS4'] == p) || { 'Trade Value': 0 })['Trade Value'])
         }));
-
         chart.setOption({
             tooltip: {
                 trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' },
@@ -238,47 +205,32 @@
             series: series
         }, true);
     }
-
     async function renderMap(data) {
         const geoRes = await fetch('https://raw.githubusercontent.com/apache/echarts/master/test/data/map/json/world.json');
         const geoJson = await geoRes.json();
         echarts.registerMap('world', geoJson);
-
         const key = mode === 'export' ? 'Importer Country' : 'Exporter Country';
-
         chart.setOption({
             visualMap: { min: 0, max: 1e9, inRange: { color: ['#e0e0e0', '#BFA46F'] }, show: false },
             tooltip: {
                 trigger: 'item', backgroundColor: '#fff', textStyle: { color: '#121212' },
-                formatter: (p) => p.data
-                    ? `<b style="color:#121212">${p.name}</b><br/><span style="color:#121212">${formatVal(p.value)}</span>`
-                    : `<b>${p.name}</b><br/>No Data`
+                formatter: (p) => p.data ? `<b style="color:#121212">${p.name}</b><br/><span style="color:#121212">${formatVal(p.value)}</span>` : `<b>${p.name}</b><br/>No Data`
             },
             geo: {
-                map: 'world',
-                roam: true,
-                center: [65, 40],
-                zoom: 5,
+                map: 'world', roam: true, center: [65, 40], zoom: 5,
                 itemStyle: { areaColor: '#f5f5f5', borderColor: '#dcdcdc' },
                 emphasis: { itemStyle: { areaColor: '#ffcc00' }, label: { show: false } }
             },
-            series: [{
-                type: 'map',
-                geoIndex: 0,
-                data: data.map(i => ({ name: i[key], value: i['Trade Value'] }))
-            }]
+            series: [{ type: 'map', geoIndex: 0, data: data.map(i => ({ name: i[key], value: i['Trade Value'] })) }]
         }, true);
     }
-
     function setMode(m) { mode = m; updateUI(); load(); }
     function setView(v) { view = v; updateUI(); load(); }
-
     function updateUI() {
         document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
         document.getElementById(`f-${mode}`).classList.add('active');
         document.getElementById(view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map')).classList.add('active');
     }
-
     load();
 </script>
 </body>
