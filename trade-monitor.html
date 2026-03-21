@@ -9,14 +9,13 @@
         .tm-container {
             width: 540px; height: 380px; border: 1px solid var(--accent);
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
-            position: relative;
         }
         .tm-header { 
             background: var(--panel); color: var(--accent); padding: 7px; text-align: center; font-weight: bold; 
             text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; position: relative; 
         }
         .flag-orbit {
-            position: absolute; top: 6px; left: 10px; width: 48px; height: 48px; flex-shrink: 0;
+            position: absolute; top: 6px; left: 10px; width: 48px; height: 48px;
         }
         .flag-orbit .orbit {
             position: absolute; top: 0; left: 0; width: 66px; height: 66px; animation: rotate linear infinite;
@@ -26,7 +25,7 @@
         .flag-orbit .orbit3 { animation-duration: 25s; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .flag-orbit img { 
-            width: 26px; z-index: 3; position: absolute; top: 11px; left: 11px; 
+            width: 26px; position: absolute; top: 11px; left: 11px; 
             filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); 
         }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
@@ -39,8 +38,8 @@
         .btn.active { background: var(--accent); color: var(--bg); }
         .footer-row { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: var(--accent); }
         .footer-left a { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent); }
-        .footer-left img { height: 22px; width: auto; vertical-align: middle; }
-        .footer-right img { height: 22px; width: auto; vertical-align: middle; }
+        .footer-left img { height: 22px; width: auto; }
+        .footer-right img { height: 22px; width: auto; }
     </style>
 </head>
 <body>
