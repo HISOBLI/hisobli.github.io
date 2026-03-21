@@ -9,12 +9,24 @@
         .tm-container {
             width: 540px; height: 380px; border: 1px solid var(--accent);
             display: flex; flex-direction: column; background: var(--panel); margin-left: 145px;
+            position: relative;
         }
-        .tm-header {
-            background: var(--panel); color: var(--accent); padding: 7px; text-align: center; font-weight: bold;
-            text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; display: flex; align-items: center; justify-content: center; gap: 8px;
+        .tm-header { 
+            background: var(--accent); color: var(--bg); padding: 7px; text-align: center; font-weight: bold; 
+            text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; position: relative; 
         }
-        .tm-header img.flag { height: 28px; width: auto; }
+        .flag-orbit {
+            position: absolute; top: 4px; left: 8px; width: 48px; height: 48px; flex-shrink: 0;
+        }
+        .flag-orbit .orbit {
+            position: absolute; top: 0; left: 0; width: 66px; height: 66px; animation: rotate linear infinite;
+        }
+        .flag-orbit .orbit1 { animation-duration: 12s; }
+        .flag-orbit .orbit2 { animation-duration: 18s; animation-direction: reverse; }
+        .flag-orbit .orbit3 { animation-duration: 25s; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .flag-orbit img { width: 26px; z-index: 3; position: absolute; top: 11px; left: 11px; 
+                          filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
         .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
         .btn-group { display: flex; gap: 4px; justify-content: center; }
@@ -23,37 +35,53 @@
             padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
         }
         .btn.active { background: var(--accent); color: var(--bg); }
-        .tm-footer-row { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: var(--accent); padding: 0 10px; }
-        .powered, .hisobli { display: flex; align-items: center; gap: 6px; }
-        .powered img, .hisobli img { height: 20px; width: auto; }
+        .footer-left, .footer-right { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--accent); }
+        .footer-left a { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent); }
+        .footer-left img, .footer-right img { height: 22px; width: auto; vertical-align: middle; }
+        .tm-controls .content { display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
 <div class="tm-container">
     <div class="tm-header" id="tm-title">
-        <img class="flag" src="https://www.crossed-flag-pins.com/animated-flag-gif/flags-Uzbekistan.gif" alt="Uzbekistan waving flag">
+        <div class="flag-orbit">
+            <svg class="orbit orbit1" viewBox="0 0 100 100">
+                <path d="M20 50 A30 30 0 0 1 80 50"/>
+                <path d="M30 20 A30 30 0 0 1 70 80"/>
+                <path d="M50 10 A40 40 0 0 1 60 90"/>
+            </svg>
+            <svg class="orbit orbit2" viewBox="0 0 100 100">
+                <path d="M15 50 A35 35 0 0 1 85 50"/>
+            </svg>
+            <svg class="orbit orbit3" viewBox="0 0 100 100">
+                <path d="M25 25 A25 25 0 0 1 75 75"/>
+            </svg>
+            <img src="flaguzb2.svg">
+        </div>
         UZBEKISTAN: EXPORT-IMPORT
     </div>
     <div id="canvas"></div>
     <div class="tm-controls">
-        <div class="tm-footer-row">
-            <div class="powered">
-                <img src="oec.svg" alt="OEC Logo">
-                POWERED BY The Observatory of Economic Complexity (OEC)
+        <div class="content">
+            <div class="footer-left">
+                <a href="https://oec.world/en/resources/about">
+                    <img src="oec.svg" alt="OEC">
+                    POWERED BY
+                </a>
             </div>
-            <div class="hisobli">
-                ESPECIALLY FOR A CONSULTING COMPANY "HISOBLI"
-                <img src="logo.png" alt="HISOBLI Logo">
+            <div class="btn-group">
+                <button id="f-export" class="btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
+                <button id="f-import" class="btn" onclick="setMode('import')">IMPORT | ИМПОРТ</button>
             </div>
-        </div>
-        <div class="btn-group">
-            <button id="f-export" class="btn active" onclick="setMode('export')">EXPORT</button>
-            <button id="f-import" class="btn" onclick="setMode('import')">IMPORT</button>
-        </div>
-        <div class="btn-group">
-            <button id="v-map" class="btn" onclick="setView('map')">MAP</button>
-            <button id="v-growth" class="btn" onclick="setView('growth')">GROWTH</button>
-            <button id="v-composition" class="btn active" onclick="setView('composition')">COMPOSITION</button>
+            <div class="btn-group">
+                <button id="v-map" class="btn" onclick="setView('map')">XARITASI | КАРТА</button>
+                <button id="v-growth" class="btn" onclick="setView('growth')">RIVOJI | РАЗВИТИЕ</button>
+                <button id="v-composition" class="btn active" onclick="setView('composition')">TARKIBI | СОСТАВ</button>
+            </div>
+            <div class="footer-right">
+                ESPECIALLY FOR
+                <img src="logo.png" alt="HISOBLI">
+            </div>
         </div>
     </div>
 </div>
@@ -61,7 +89,7 @@
     const chart = echarts.init(document.getElementById('canvas'));
     let mode = 'export', view = 'composition';
     const OEC_COLORS = ['#ffcc00', '#2ecc71', '#3498db', '#9b59b6', '#e67e22', '#e74c3c', '#1abc9c', '#34495e', '#d35400', '#7f8c8d'];
-   
+  
     const apis = {
         'export-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BExporter%20Country%3Aasuzb',
         'import-composition': 'https://api-v2.oec.world/tesseract/data.jsonrecords?cube=trade_i_baci_a_17&drilldowns=Year%2CHS4&measures=Trade%20Value&parents=true&include=Year%3A2024%3BImporter%20Country%3Aasuzb',
@@ -105,7 +133,7 @@
     function renderGrowth(data) {
         const years = [...new Set(data.map(d => d.Year))].sort();
         const top = [...new Set(data.filter(d => d.Year == 2024).sort((a,b) => b['Trade Value'] - a['Trade Value']).map(d => d['HS4']))].slice(0, 8);
-       
+      
         const series = top.map((p, idx) => ({
             name: p, type: 'line', stack: 'total', areaStyle: { opacity: 0.8 },
             symbol: 'circle', symbolSize: 18,
