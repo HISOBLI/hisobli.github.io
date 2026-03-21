@@ -16,7 +16,7 @@
             text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; position: relative; 
         }
         .flag-orbit {
-            position: absolute; top: 4px; left: 8px; width: 48px; height: 48px; flex-shrink: 0;
+            position: absolute; top: 6px; left: 10px; width: 48px; height: 48px; flex-shrink: 0;
         }
         .flag-orbit .orbit {
             position: absolute; top: 0; left: 0; width: 66px; height: 66px; animation: rotate linear infinite;
@@ -25,8 +25,10 @@
         .flag-orbit .orbit2 { animation-duration: 18s; animation-direction: reverse; }
         .flag-orbit .orbit3 { animation-duration: 25s; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .flag-orbit img { width: 26px; z-index: 3; position: absolute; top: 11px; left: 11px; 
-                          filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); }
+        .flag-orbit img { 
+            width: 26px; z-index: 3; position: absolute; top: 11px; left: 11px; 
+            filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); 
+        }
         #canvas { flex: 1; width: 100%; background: #ffffff; }
         .tm-controls { padding: 8px; display: flex; flex-direction: column; gap: 5px; border-top: 1px solid var(--accent); }
         .btn-group { display: flex; gap: 4px; justify-content: center; }
@@ -35,10 +37,12 @@
             padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
         }
         .btn.active { background: var(--accent); color: var(--bg); }
-        .footer-left, .footer-right { display: flex; align-items: center; gap: 6px; font-size: 9px; color: var(--accent); }
+        .footer-row { display: flex; justify-content: space-between; align-items: center; font-size: 9px; color: var(--accent); }
         .footer-left a { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--accent); }
-        .footer-left img, .footer-right img { height: 22px; width: auto; vertical-align: middle; }
-        .tm-controls .content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-left img, .footer-right img { 
+            height: 22px; width: auto; vertical-align: middle; 
+            filter: brightness(0) saturate(100%) invert(60%) sepia(80%) saturate(800%) hue-rotate(25deg) brightness(90%); 
+        }
     </style>
 </head>
 <body>
@@ -62,26 +66,26 @@
     </div>
     <div id="canvas"></div>
     <div class="tm-controls">
-        <div class="content">
+        <div class="footer-row">
             <div class="footer-left">
                 <a href="https://oec.world/en/resources/about">
                     <img src="oec.svg" alt="OEC">
                     POWERED BY
                 </a>
             </div>
-            <div class="btn-group">
-                <button id="f-export" class="btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
-                <button id="f-import" class="btn" onclick="setMode('import')">IMPORT | ИМПОРТ</button>
-            </div>
-            <div class="btn-group">
-                <button id="v-map" class="btn" onclick="setView('map')">XARITASI | КАРТА</button>
-                <button id="v-growth" class="btn" onclick="setView('growth')">RIVOJI | РАЗВИТИЕ</button>
-                <button id="v-composition" class="btn active" onclick="setView('composition')">TARKIBI | СОСТАВ</button>
-            </div>
             <div class="footer-right">
                 ESPECIALLY FOR
                 <img src="logo.png" alt="HISOBLI">
             </div>
+        </div>
+        <div class="btn-group">
+            <button id="f-export" class="btn active" onclick="setMode('export')">EKSPORT | ЭКСПОРТ</button>
+            <button id="f-import" class="btn" onclick="setMode('import')">IMPORT | ИМПОРТ</button>
+        </div>
+        <div class="btn-group">
+            <button id="v-map" class="btn" onclick="setView('map')">XARITASI | КАРТА</button>
+            <button id="v-growth" class="btn" onclick="setView('growth')">RIVOJI | РАЗВИТИЕ</button>
+            <button id="v-composition" class="btn active" onclick="setView('composition')">TARKIBI | СОСТАВ</button>
         </div>
     </div>
 </div>
