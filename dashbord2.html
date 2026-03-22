@@ -1011,10 +1011,22 @@ setInterval(getGlobalMarketData, 600000);
     margin-bottom: 2px;
 }
 .trade-monitor-widget .btn {
-    background: transparent; border: 1px solid var(--accent); color: var(--accent);
-    padding: 4px 10px; font-size: 9px; cursor: pointer; text-transform: uppercase;
+    background: transparent; 
+    border: 1px solid var(--accent); 
+    color: var(--accent);
+    padding: 4px 10px; 
+    font-size: 9px; 
+    cursor: pointer; 
+    text-transform: uppercase;
+    font-weight: normal;          /* обычный текст */
+    white-space: nowrap;          /* чтобы | не переносился */
 }
-.trade-monitor-widget .btn.active { background: var(--accent); color: var(--bg); }
+
+.trade-monitor-widget .btn.active {
+    background: var(--accent) !important; 
+    color: var(--bg) !important; 
+    font-weight: bold !important;       /* жирный шрифт для ВСЕГО текста кнопки */
+}
     </style>
     <div class="tm-container">
     <div class="tm-header" id="tm-title">
@@ -1146,17 +1158,17 @@ setInterval(getGlobalMarketData, 600000);
     }
     function setMode(m) { mode = m; updateUI(); load(); }
     function setView(v) { view = v; updateUI(); load(); }
-    function updateUI() {
-           document.querySelectorAll('.trade-monitor-widget .btn').forEach(b => b.classList.remove('active'));
-           document.getElementById(`f-${mode}`).classList.add('active');
-           document.getElementById(view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map')).classList.add('active');
-    }
+        function updateUI() {
+          document.querySelectorAll('.trade-monitor-widget .btn').forEach(b => b.classList.remove('active'));
+          document.getElementById(`f-${mode}`).classList.add('active');
+          document.getElementById(view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map')).classList.add('active');
+        }
 
-    window.setMode = setMode;
-    window.setView = setView;
+        window.setMode = setMode;
+        window.setView = setView;
 
-    load();
-})();
+        load();
+      })();
 </script>
 </div>
 <!-- === КОНЕЦ ИНТЕГРИРОВАННОГО ВИДЖЕТА === -->
