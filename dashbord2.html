@@ -922,18 +922,12 @@ setInterval(getGlobalMarketData, 600000);
   </div>
 </div>
 
-<!-- === TRADINGVIEW TOP NEWS (СТРОГО ПОД PUBLIC CHANNELS) === -->
-<div class="tv-news-widget">
+<!-- === TRADINGVIEW TOP NEWS (ЖЁСТКАЯ ПОЗИЦИЯ) === -->
+<div style="position:absolute; top:363px; left:0px; width:350px; z-index:10;">
 
 <style>
-.tv-news-widget {
+.tv-container {
     width: 350px;
-    margin-top: 16px;
-}
-
-/* контейнер в стиле сайта */
-.tv-news-widget .tv-container {
-    width: 100%;
     height: 380px;
     border: 1px solid var(--accent);
     background: var(--panel);
@@ -941,27 +935,23 @@ setInterval(getGlobalMarketData, 600000);
     flex-direction: column;
 }
 
-/* шапка */
-.tv-news-widget .tv-header {
+.tv-header {
     height: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--accent);
     font-weight: 700;
-    text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 1.5px;
     border-bottom: 1px solid rgba(191,164,111,0.3);
 }
 
-/* тело */
-.tv-news-widget .tv-body {
+.tv-body {
     flex: 1;
 }
 
-/* футер */
-.tv-news-widget .tv-footer {
+.tv-footer {
     border-top: 1px solid rgba(191,164,111,0.3);
     text-align: center;
     font-size: 9px;
@@ -977,7 +967,6 @@ setInterval(getGlobalMarketData, 600000);
     </div>
 
     <div class="tv-body">
-        <!-- TradingView Widget BEGIN -->
         <div class="tradingview-widget-container" style="width:100%; height:100%;">
           <div class="tradingview-widget-container__widget"></div>
           <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
@@ -992,7 +981,6 @@ setInterval(getGlobalMarketData, 600000);
         }
           </script>
         </div>
-        <!-- TradingView Widget END -->
     </div>
 
     <div class="tv-footer">
@@ -1001,7 +989,7 @@ setInterval(getGlobalMarketData, 600000);
 
 </div>
 </div>
-<!-- === END TRADINGVIEW TOP NEWS === -->
+<!-- === END === -->
 
 <!-- === НАЧАЛО ИНТЕГРИРОВАННОГО ВИДЖЕТА (защищённый, точно по плану) === -->
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
