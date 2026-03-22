@@ -1147,10 +1147,14 @@ setInterval(getGlobalMarketData, 600000);
     function setMode(m) { mode = m; updateUI(); load(); }
     function setView(v) { view = v; updateUI(); load(); }
     function updateUI() {
-        document.querySelectorAll('.trade-monitor-widget .btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`f-${mode}`).classList.add('active');
-        document.getElementById(view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map')).classList.add('active');
+           document.querySelectorAll('.trade-monitor-widget .btn').forEach(b => b.classList.remove('active'));
+           document.getElementById(`f-${mode}`).classList.add('active');
+           document.getElementById(view === 'composition' ? 'v-composition' : (view === 'growth' ? 'v-growth' : 'v-map')).classList.add('active');
     }
+
+    window.setMode = setMode;
+    window.setView = setView;
+
     load();
 })();
 </script>
