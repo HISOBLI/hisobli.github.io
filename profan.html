@@ -1,130 +1,78 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HISOBLI | Институциональный инжиниринг</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HISOBLI | Институциональный инжиниринг</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('consent', 'default', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-647Y51PYZ2', { debug_mode: true });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-53LXLGG5');</script>
+
+  <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Бухгалтерский аутсорсинг, юридическое сопровождение учёта, регламентированные процессы без управленческих решений. Ташкент, Узбекистан.">
+  <meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, бухгалтерский аутсорсинг Узбекистан, юридическое сопровождение бизнеса, финансово-правовой контур, регламентированный учёт, удалённый юрисконсульт Узбекистан">
+
+  <meta name="description" lang="uz" content="HISOBLI — biznesning standartlashtirilgan moliyaviy-yuridik konturi. Buxgalteriya autsorsing, hisob yuritish bo‘yicha yuridik hamrohlik, reglamentlangan jarayonlar. Toshkent, O‘zbekiston.">
+  <meta name="keywords" lang="uz" content="HISOBLI, buxgalteriya Toshkent, buxgalteriya autsorsing O‘zbekiston, yuridik hamrohlik, moliyaviy-yuridik kontur, hisob jarayonlari">
+  <meta name="description" content="ХИСОБЛИ бухгалтерия Ташкент, ХИСОБЛИ аутсорсинг, ХИСОБЛИ юридик Узбекистан, хисобдор">
+  <meta name="keywords" content="хисобли, хисобдор, hisobdor.uz, buxgalter tashkent, hisob uz">
+
+  <meta name="robots" content="index, follow">
+  <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
+  <link rel="canonical" href="https://hisob.li/profan.html">
+  <link rel="alternate" hreflang="uz" href="https://hisobdor.uz/" />
+
+  <meta property="og:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
+  <meta property="og:description" content="Мы внедряем и сопровождаем регламентированные процессы учёта. Без управленческих решений и обещаний результата.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hisob.li/profan.html">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="uz_UZ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicons/site.webmanifest" />
+  <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
+	
     <style>
-        /* БАЗОВЫЕ НАСТРОЙКИ И ЦВЕТА */
         :root {
             --bg-ivory: #F9F8F6;
-            --bg-dark: #0A1426; /* Глубокий синий (Navy) */
+            --bg-dark: #0A1426;
             --gold: #D4AF37;
             --gold-light: #F3E5AB;
             --text-dark: #1A2530;
             --text-light: #E2E8F0;
             --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            --font-header: 'Georgia', serif; /* Для ощущения дороговизны */
+            --font-header: 'Georgia', serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-main); background-color: var(--bg-ivory); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
 
-        body {
-            font-family: var(--font-main);
-            background-color: var(--bg-ivory);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ЭТНО-ФУТУРИСТИЧНЫЙ ПАТТЕРН (ГИРИХ + СЕТКА) НА ФОНЕ */
-        .ethno-pattern {
-            background-image: radial-gradient(var(--gold) 1px, transparent 1px), radial-gradient(var(--gold) 1px, transparent 1px);
-            background-size: 40px 40px;
-            background-position: 0 0, 20px 20px;
-            opacity: 0.05;
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ХЕДЕР */
-        header {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 2px solid var(--gold);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-section img {
-            height: 50px;
-            width: auto;
-        }
-
-        .company-name {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gold-light);
-            max-width: 450px;
-            line-height: 1.3;
-        }
-
-        .lang-switch {
-            display: flex;
-            gap: 10px;
-            font-weight: bold;
-        }
-
-        .lang-switch span {
-            cursor: pointer;
-            padding: 5px 10px;
-            border: 1px solid var(--gold);
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
-        .lang-switch .active {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-        }
-
-        /* ОБЩИЕ ЗАГОЛОВКИ */
-        h1, h2, h3 {
-            font-family: var(--font-header);
-            font-weight: normal;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* СЕКТОР 1: HERO (АКСИОМА) */
+        /* ЭТНО-ФУТУРИЗМ: ФОНЫ */
         .hero {
             background-color: var(--bg-dark);
             color: var(--text-light);
@@ -132,259 +80,113 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            /* Клип-пат для создания скошенного низа (параллелограмм) */
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            color: var(--gold);
+        /* "Дышащий" Хан-атлас */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(212,175,55,0.08) 0%, transparent 50%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><path d="M0 100 Q 50 50 100 100 T 200 100" fill="none" stroke="%23D4AF37" stroke-width="0.5" opacity="0.2"/></svg>');
+            background-size: cover, 400px 400px;
+            animation: fabricSway 15s infinite alternate ease-in-out;
+            z-index: 1;
         }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-            color: var(--text-light);
+        @keyframes fabricSway {
+            0% { background-position: 0% 0%, 0px 0px; }
+            100% { background-position: 5% 5%, 40px 40px; }
         }
 
-        .btn-gold {
-            display: inline-block;
+        /* Разделитель Икат (Реальный SVG паттерн) */
+        .divider-ikat {
+            height: 80px;
             background-color: var(--gold);
-            color: var(--bg-dark);
-            padding: 15px 35px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--gold);
-        }
-
-        .btn-gold:hover {
-            background-color: transparent;
-            color: var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-        }
-
-        /* СЕКТОР 2 & 3: ГЕОМЕТРИЯ И ФАБРИКА */
-        .info-section {
-            padding: 80px 0;
+            clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+            margin: -40px 0;
             position: relative;
+            z-index: 10;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"><path d="M30 0 L60 30 L30 60 L0 30 Z" fill="none" stroke="white" stroke-width="0.5" opacity="0.3"/></svg>');
+            background-size: 30px 30px;
         }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+
+        /* HEADER */
+        header { background-color: var(--bg-dark); color: var(--text-light); padding: 15px 0; position: sticky; top: 0; z-index: 100; border-bottom: 2px solid var(--gold); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo-section { display: flex; align-items: center; gap: 15px; }
+        .logo-section img { height: 50px; width: auto; }
+        .company-name { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--gold-light); max-width: 450px; line-height: 1.3; }
+        .lang-switch span { cursor: pointer; padding: 5px 10px; border: 1px solid var(--gold); border-radius: 4px; transition: 0.3s; margin-left: 5px;}
+        .lang-switch .active { background-color: var(--gold); color: var(--bg-dark); }
+
+        /* ЗАГОЛОВКИ И МАРКЕРЫ */
+        h1, h2, h3 { font-family: var(--font-header); font-weight: normal; }
+        .section-title { text-align: center; font-size: 2.5rem; color: var(--gold); margin: 60px 0 40px; text-transform: uppercase; letter-spacing: 2px; }
+
+        .m-sep {
+            display: inline-block;
+            height: 1.1em;
+            width: 1.1em;
+            background-color: var(--gold);
+            -webkit-mask: url("marker_firm.svg") no-repeat center / contain;
+            mask: url("marker_firm.svg") no-repeat center / contain;
+            vertical-align: middle;
+            margin: 0 6px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .info-card {
-            background: #fff;
-            padding: 30px;
-            border-left: 4px solid var(--gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            /* Легкий скос для карточек */
-            transform: skew(-2deg);
+        .product-card:hover .m-sep { transform: rotate(90deg) scale(1.2); }
+
+        .title-text { font-weight: 700; line-height: 1.2; font-size: 1.1rem; color: var(--gold-light); text-transform: uppercase; }
+        .oked-inline { color: var(--gold); font-size: 0.75em; margin-left: 8px; opacity: 0.8; }
+
+        /* КАРТОЧКИ */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .product-card { 
+            background-color: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(212, 175, 55, 0.2); 
+            padding: 25px; 
+            transition: 0.3s; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
         }
+        .product-card:hover { border-color: var(--gold); background-color: rgba(255, 255, 255, 0.05); transform: translateY(-5px); }
+        .product-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--gold); }
+
+        /* Аккордеон */
+        .product-details { max-height: 0; overflow: hidden; transition: 0.4s ease-out; font-size: 0.9rem; color: #CBD5E1; }
+        .product-card.active .product-details { max-height: 600px; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .expand-btn { color: var(--gold); font-size: 0.7rem; text-transform: uppercase; margin-top: 15px; display: block; letter-spacing: 1px; }
+
+        /* Остальные стили (Инфо, Манифест, Футер) - сохранены из твоей версии */
+        .info-section { padding: 80px 0; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .info-card { background: #fff; padding: 30px; border-left: 4px solid var(--gold); transform: skew(-2deg); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .info-card > * { transform: skew(2deg); }
+        .custom-list { list-style: none; margin-top: 20px; }
+        .custom-list li { position: relative; padding-left: 35px; margin-bottom: 15px; }
+        .custom-list li::before { content: ''; position: absolute; left: 0; top: 4px; width: 18px; height: 18px; background: url('marker_firm.svg') no-repeat center / contain; }
+
+        .manifest-box { background: #fff; border: 2px solid var(--bg-dark); padding: 40px; position: relative; }
+        .manifest-box::after { content: ''; position: absolute; bottom: -10px; right: -10px; width: 100%; height: 100%; border: 2px solid var(--gold); z-index: -1; }
+
+        footer { background: var(--bg-dark); color: var(--text-light); padding: 60px 0 30px; border-top: 4px solid var(--gold); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-links a { color: var(--gold-light); text-decoration: none; display: block; margin-bottom: 8px; font-size: 0.9rem; }
         
-        .info-card > * {
-            transform: skew(2deg); /* Возвращаем текст ровно */
-        }
-
-        .custom-list {
-            list-style: none;
-            margin-top: 20px;
-        }
-
-        .custom-list li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        .custom-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 2px;
-            width: 20px;
-            height: 20px;
-            background-image: url('marker_firm.svg');
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-
-        /* СЕКТОР 4: ПРОДУКТЫ (BUYURI§%) */
-        .products-section {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding: 100px 0;
-            /* Параллелограмм */
-            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
-            position: relative;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 25px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 4px; height: 100%;
-            background-color: var(--gold);
-        }
-
-        .oked-badge {
-            display: inline-block;
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            padding: 4px 10px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .product-title {
-            font-size: 1.4rem;
-            color: var(--gold-light);
-            margin-bottom: 15px;
-            font-family: var(--font-main);
-            font-weight: 600;
-        }
-
-        .product-desc {
-            font-size: 0.95rem;
-            color: #A0AAB2;
-            margin-bottom: 15px;
-        }
-
-        /* Аккордеон (Скрытая часть карточки) */
-        .product-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            font-size: 0.9rem;
-            color: #CBD5E1;
-        }
-
-        .product-card.active .product-details {
-            max-height: 500px; /* Достаточно для раскрытия */
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .detail-item { margin-bottom: 10px; }
-        .detail-item strong { color: var(--gold); }
-
-        .expand-btn {
-            color: var(--gold);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 10px;
-            display: block;
-        }
-
-        /* СЕКТОР 5: ПРОТОКОЛ ЗАЩИТЫ */
-        .protocol-section {
-            padding: 80px 0 100px 0;
-            background-color: var(--bg-ivory);
-        }
-
-        .manifest-box {
-            background-color: #fff;
-            border: 2px solid var(--bg-dark);
-            padding: 40px;
-            position: relative;
-        }
-
-        .manifest-box::after {
-            content: '';
-            position: absolute;
-            bottom: -10px; right: -10px;
-            width: 100%; height: 100%;
-            border: 2px solid var(--gold);
-            z-index: -1;
-        }
-
-        .manifest-title {
-            color: var(--bg-dark);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        /* ФУТЕР И КОНТАКТЫ */
-        footer {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            padding: 60px 0 30px 0;
-            border-top: 4px solid var(--gold);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-
-        .footer-links a {
-            color: var(--gold-light);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 10px;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-            padding-left: 5px;
-        }
-
-        .copyright {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #718096;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 20px;
-        }
-
-        /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
-            .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); padding: 80px 20px 100px 20px; }
-            .products-section { clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%); }
-            .company-name { display: none; /* Прячем длинное название на мобилках ради логотипа */ }
             .hero h1 { font-size: 2.2rem; }
-            .manifest-box { padding: 20px; }
+            .section-title { font-size: 1.8rem; }
+            .company-name { display: none; }
         }
     </style>
 </head>
@@ -393,11 +195,8 @@
     <header>
         <div class="container header-content">
             <div class="logo-section">
-                <img src="logo.png" alt="HISOBLI Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'><rect width=\'50\' height=\'50\' fill=\'%23D4AF37\'/><text x=\'5\' y=\'30\' fill=\'%230A1426\' font-family=\'Arial\' font-size=\'12\' font-weight=\'bold\'>LOGO</text></svg>'">
-                <div class="company-name">
-                    Консалтинговая компания "HISOBLI"<br>
-                    Архитектор бизнес-процессов и стандартизированных контуров
-                </div>
+                <img src="logo.png" alt="HISOBLI Logo">
+                <div class="company-name">Консалтинговая компания "HISOBLI"<br>Архитектор бизнес-процессов</div>
             </div>
             <div class="lang-switch">
                 <span class="active">RU</span>
@@ -407,145 +206,121 @@
     </header>
 
     <section class="hero">
-        <div class="ethno-pattern"></div>
         <div class="container">
             <h1>Институциональный Инжиниринг</h1>
-            <p>Мы охраняем не «бумаги». Мы охраняем границы Вашей воли. Стерильный капитал и детерминированный порядок для дисциплинированных лидеров бизнеса.</p>
-            <a href="#products" class="btn-gold">Активировать контур</a>
+            <p>Мы охраняем границы Вашей воли. Стерильный капитал и детерминированный порядок для лидеров бизнеса.</p>
+            <a href="#products" style="margin-top: 30px; display: inline-block; padding: 15px 35px; background: var(--gold); color: var(--bg-dark); text-decoration: none; font-weight: bold; text-transform: uppercase;">Активировать контур</a>
         </div>
     </section>
 
+    <div class="divider-ikat"></div>
+
     <section class="info-section">
         <div class="container">
-            <h2 class="section-title" style="color: var(--bg-dark);">Архитектура Покоя</h2>
+            <h2 class="section-title" style="color: var(--bg-dark); margin-top: 0;">Архитектура Покоя</h2>
             <div class="info-grid">
                 <div class="info-card">
                     <h3>Ликвидация Шума</h3>
                     <ul class="custom-list">
-                        <li>Элиминация хаоса в первичной документации</li>
+                        <li>Элиминация хаоса в документации</li>
                         <li>Технологическая чистота учета</li>
-                        <li>Абсолютная прозрачность для регуляторов</li>
+                        <li>Прозрачность для регуляторов</li>
                     </ul>
                 </div>
                 <div class="info-card">
                     <h3>Механика Безупречности</h3>
                     <ul class="custom-list">
-                        <li>Функционирование по жестким регламентам</li>
-                        <li>Непрерывный мониторинг статистической нагрузки</li>
-                        <li>Интеграция с государственными ИС (E-Ijara, E-Contract)</li>
+                        <li>Жесткие регламенты процессов</li>
+                        <li>Мониторинг статистической нагрузки</li>
+                        <li>Интеграция с ГИС (E-Ijara, E-Contract)</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="products" class="products-section">
-        <div class="ethno-pattern" style="opacity: 0.1;"></div>
+    <section id="products" style="background: var(--bg-dark); padding: 100px 0; clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);">
         <div class="container">
             <h2 class="section-title">Протоколы BUYURI§%</h2>
             <div class="product-grid">
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 64.20.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Capital Control</div>
-                    <div class="product-desc">Контур администрирования активов и защиты от субсидиарной ответственности холдинговых структур.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Capital Control <span class="oked-inline">[64.20.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Контур администрирования активов и защиты холдинговых структур.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Учёт дивидендов, займов, переоценка валютных статей.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Мониторинг стат-нагрузки: 1-invest, FDI, 4-moliya.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает корпоративные споры и оценку бизнеса.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Холдинги, SPV, Owner-Companies.</div>
+                        <p><strong>Входит:</strong> Учёт дивидендов, займов, переоценка валютных статей.</p>
+                        <p><strong>Рамка:</strong> Мониторинг стат-нагрузки: 1-invest, FDI, 4-moliya.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 62.01.0, 62.02.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Digital Export</div>
-                    <div class="product-desc">Валютный контроль и автоматизированное применение налоговых преференций IT-сектора.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Digital Export <span class="oked-inline">[62.01.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Валютный контроль и преференции IT-сектора.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Интеграция валюты, E-Contract (ЕЭИСВО), инсталляция нулевой ставки НДС.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Комплаенс критериев IT-Park. Стат-формы: 1-korxona (tif), 4-mehnat.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает поиск контрагентов.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Резиденты IT-Park, EdTech.</div>
+                        <p><strong>Входит:</strong> Валюта, E-Contract, нулевой НДС IT-Park.</p>
+                        <p><strong>Рамка:</strong> Комплаенс критериев IT-Park. Стат-формы: 1-korxona.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 82.99.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Public Interface</div>
-                    <div class="product-desc">Комплаенс-контур административных регламентов операторов государственных функций.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Public Interface <span class="oked-inline">[82.99.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Регламенты операторов государственных функций.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Учёт целевых сборов, генерация ЭСФ, фиксация цифровых доказательств.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Мониторинг ГИС по формам 1-korxona и 1-akt.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает представительство в проверках.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Операторы госфункций, ЦОД.</div>
+                        <p><strong>Входит:</strong> Учёт целевых сборов, ЭСФ, цифровые доказательства.</p>
+                        <p><strong>Рамка:</strong> Мониторинг ГИС (1-korxona, 1-akt).</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 68.20.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ RentFlow</div>
-                    <div class="product-desc">Автоматизированное управление рентными потоками коммерческой недвижимости.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> RentFlow <span class="oked-inline">[68.20.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Управление рентными потоками недвижимости.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Интеграция с E-Ijara, защита от переквалификации платежей (ст. 243 НК РУз).</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Формирование финансовой статистики 4-moliya и 1-moliya.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает согласование условий аренды.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Владельцы БЦ и складов.</div>
+                        <p><strong>Входит:</strong> E-Ijara, защита от переквалификации платежей.</p>
+                        <p><strong>Рамка:</strong> Финансовая статистика 4-moliya и 1-moliya.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 77.40.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Franchise Box</div>
-                    <div class="product-desc">Стандартизация сетевых систем (договор комплексной лицензии ст. 866-868 ГК РУз).</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Franchise Box <span class="oked-inline">[77.40.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Стандартизация сетевых систем и лицензий.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Унификация учета по точкам, контроль роялти, консолидация маркетплейсов.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Абсолютная идентичность процедур. Отчёт 1-korxona (розница).</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает разработку бизнес-моделей.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Франшизы и сетевые проекты.</div>
+                        <p><strong>Входит:</strong> Унификация точек, контроль роялти, маркетплейсы.</p>
+                        <p><strong>Рамка:</strong> Идентичность процедур. Отчёт 1-korxona.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 71.11.0, 71.12.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Project Control</div>
-                    <div class="product-desc">Пообъектный инжиниринг затрат и защита прав интеллектуальной собственности (ст. 1031 ГК РУз).</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Project Control <span class="oked-inline">[71.12.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Инжиниринг затрат и защита прав ИС.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Отражение этапов ПСД, учёт изысканий, акты по ст. 703 ГК РУз.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Работа в границах проектной архитектуры. Стат-формы 1-korxona, 4-moliya.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает операционное управление.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Проектные и инженерные бюро.</div>
+                        <p><strong>Входит:</strong> Этапы ПСД, учёт изысканий, акты ст. 703 ГК.</p>
+                        <p><strong>Рамка:</strong> Границы проектной архитектуры. 4-moliya.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">ОКЭД 94.99.0</span>
-                    <div class="product-title">BUYURI§% Ⱒ Reg. Compliance</div>
-                    <div class="product-desc">Абсолютная методологическая прозрачность операционной деятельности ННО и фондов.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Reg. Compliance <span class="oked-inline">[94.99.0]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Методологическая прозрачность ННО и фондов.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Учёт грантов и взносов, кадровая дисциплина (ст. 460 ТК РУз).</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Генерация и трансляция отчетности 1-nnt в Минюст.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает участие в управлении.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Некоммерческие организации и фонды.</div>
+                        <p><strong>Входит:</strong> Учёт грантов, кадровая дисциплина ст. 460 ТК.</p>
+                        <p><strong>Рамка:</strong> Отчетность 1-nnt в Министерство Юстиции.</p>
                     </div>
                 </div>
 
                 <div class="product-card" onclick="toggleCard(this)">
-                    <span class="oked-badge">Типовой МСБ</span>
-                    <div class="product-title">BUYURI§% Ⱒ Base</div>
-                    <div class="product-desc">Фундаментальный контур операционного порядка для субъектов МСБ.</div>
-                    <span class="expand-btn">Развернуть спецификацию ▼</span>
+                    <div class="title-text">BUYURI§% <span class="m-sep"></span> Base <span class="oked-inline">[МСБ]</span></div>
+                    <div style="font-size: 0.9rem; color: #A0AAB2; margin-top: 10px;">Фундаментальный контур порядка для МСБ.</div>
+                    <span class="expand-btn">Спецификация ▼</span>
                     <div class="product-details">
-                        <div class="detail-item"><strong>В контур входит:</strong> Стандартный учёт, фискальная отчётность, интеграция с ГИС.</div>
-                        <div class="detail-item"><strong>Процессная рамка:</strong> Функционирование на базе алгоритмов HISOBLI без девиаций.</div>
-                        <div class="detail-item"><strong>Граница:</strong> Исключает нестандартные задачи.</div>
-                        <div class="detail-item"><strong>Профиль:</strong> Компании с типовой моделью.</div>
+                        <p><strong>Входит:</strong> Стандартный учёт, фискальная отчётность.</p>
+                        <p><strong>Рамка:</strong> Алгоритмы HISOBLI без девиаций.</p>
                     </div>
                 </div>
 
@@ -553,18 +328,15 @@
         </div>
     </section>
 
-    <section class="protocol-section container">
-        <h2 class="section-title" style="color: var(--bg-dark);">Протокол Защиты Ⱒ</h2>
+    <section class="container" style="padding: 100px 0;">
         <div class="manifest-box">
-            <h3 class="manifest-title">Манифест Отказа</h3>
-            <p style="margin-bottom: 20px; font-size: 1.1rem;">Мы разделили миры. HISOBLI — оператор процесса. Вы — Архитектор воли. Протокол блокирует трансформацию Контура в «реактивный архив ошибок» или «сервис по вызову». HISOBLI принципиально:</p>
+            <h3 style="border-bottom: 2px solid var(--gold); display: inline-block; margin-bottom: 20px; text-transform: uppercase;">Манифест Отказа</h3>
+            <p>HISOBLI — оператор процесса. Вы — Архитектор воли. Протокол блокирует деградацию Контура. Мы принципиально:</p>
             <ul class="custom-list">
-                <li>Не дублирует управленческие функции и не принимает за Вас решения.</li>
-                <li>Отражает документы в режиме «as is» (как есть) без верификации достоверности.</li>
-                <li>Исключает генерацию «налоговых чудес» или пустых экономических гарантий.</li>
-                <li>Не заменяет Ваших сотрудников и не участвует в спорах с контрагентами.</li>
+                <li>Не принимаем управленческие решения за Вас.</li>
+                <li>Отражаем документы в режиме «as is» без верификации.</li>
+                <li>Не генерируем «налоговые чудеса».</li>
             </ul>
-            <p style="margin-top: 20px; font-weight: bold; color: var(--gold);">Мы — инженеры Вашей институциональной устойчивости, а не адвокаты Ваших управленческих недочетов.</p>
         </div>
     </section>
 
@@ -573,52 +345,106 @@
             <div class="footer-grid">
                 <div>
                     <h3 style="color: var(--gold); margin-bottom: 15px;">HISOBLI</h3>
-                    <p style="font-size: 0.9rem; color: #A0AAB2; margin-bottom: 20px;">
-                        Архитектор бизнес-процессов и патентованных стандартизированных финансово-правовых контуров.
-                    </p>
+                    <p style="font-size: 0.8rem; color: #A0AAB2;">Архитектор бизнес-процессов и патентованных финансово-правовых контуров.</p>
                 </div>
                 <div class="footer-links">
-                    <h4 style="margin-bottom: 15px;">Контакты</h4>
-                    <a href="http://www.hisob.li" target="_blank">🌐 www.hisob.li</a>
                     <a href="mailto:info@hisob.li">✉️ info@hisob.li</a>
-                    <a href="https://wa.me/p/34356703400641221/998959525939" target="_blank">💬 WhatsApp Каталог</a>
-                </div>
-                <div class="footer-links">
-                    <h4 style="margin-bottom: 15px;">Социальные сети</h4>
-                    <a href="https://t.me/hiso6li" target="_blank">✈️ Telegram Профиль</a>
-                    <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank">📢 Telegram Канал</a>
-                    <a href="http://www.instagram.com/hisobli" target="_blank">📸 Instagram</a>
-                    <a href="https://bit.ly/Hisobli-FB" target="_blank">📘 Facebook</a>
-                    <a href="http://www.youtube.com/@HISOBLI" target="_blank">🎥 YouTube</a>
+                    <a href="https://t.me/hiso6li">✈️ Telegram</a>
+                    <a href="https://wa.me/998959525939">💬 WhatsApp</a>
                 </div>
             </div>
-            <div class="copyright">
-                © 2024 Консалтинговая компания "HISOBLI". Все права на контуры защищены.
+            <div style="text-align: center; margin-top: 40px; font-size: 0.8rem; color: #718096; border-top: 1px solid #222; padding-top: 20px;">
+                2026 © HISOBLI Mas’uliyati çeklangan jamiyati.
             </div>
         </div>
     </footer>
 
     <script>
-        // Раскрытие карточек (Сектор 4)
-        function toggleCard(element) {
-            element.classList.toggle('active');
-            const btn = element.querySelector('.expand-btn');
-            if (element.classList.contains('active')) {
-                btn.textContent = 'Свернуть спецификацию ▲';
-            } else {
-                btn.textContent = 'Развернуть спецификацию ▼';
-            }
+        function toggleCard(el) {
+            el.classList.toggle('active');
+            const btn = el.querySelector('.expand-btn');
+            btn.textContent = el.classList.contains('active') ? 'Свернуть ▲' : 'Спецификация ▼';
         }
-
-        // Переключатель языков (Визуальная заглушка)
-        const langSpans = document.querySelectorAll('.lang-switch span');
-        langSpans.forEach(span => {
-            span.addEventListener('click', function() {
-                langSpans.forEach(s => s.classList.remove('active'));
-                this.classList.add('active');
-                // В будущем здесь будет функция подгрузки узбекского текста
-            });
-        });
     </script>
+    
+<script>
+// SUPABASE КЛЮЧИ
+const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co/rest/v1/analytics";
+const ANON_KEY = "sb_publishable_NidwWr2DtCtSxbbmx-dmtg_CTG0eTAM";
+
+function getFingerprint() {
+  return btoa(navigator.userAgent + navigator.language + screen.width + screen.height + Intl.DateTimeFormat().resolvedOptions().timeZone).slice(0,16);
+}
+
+async function sendData(payload) {
+  try {
+    await fetch(SUPABASE_URL, {
+      method: "POST",
+      headers: {
+        "apikey": ANON_KEY,
+        "Authorization": `Bearer ${ANON_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+}
+
+// ВИЗИТ
+const visitPayload = {
+  type: "visit",
+  url: location.href,
+  referrer: document.referrer || null,
+  time: new Date().toISOString(),
+  fp: getFingerprint(),
+  session: Math.random().toString(36).slice(2),
+  ua: navigator.userAgent,
+  lang: navigator.language,
+  screen: `${screen.width}x${screen.height}`,
+  tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  platform: navigator.platform,
+  online: navigator.onLine
+};
+sendData(visitPayload);
+
+// КЛИКИ
+document.addEventListener("click", e => {
+  const target = e.target.closest("a, .circle, #lang-ru, #lang-uz, .master-block, .block, .panel, details");
+  if (!target) return;
+  let label = "unknown";
+  if (target.id) label = target.id;
+  else if (target.href) label = target.href.split("/").pop();
+  else if (target.textContent) label = target.textContent.trim().slice(0,40);
+  sendData({ type: "click", label: label, url: location.href, time: new Date().toISOString(), fp: getFingerprint() });
+});
+
+// ПРОСМОТР БЛОКОВ
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sendData({ type: "view", section: entry.target.classList[0] || "unknown", url: location.href, time: new Date().toISOString() });
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll(".top-panels, main, footer, .panel, .block").forEach(el => observer.observe(el));
+
+// СКРОЛЛ
+let lastDepth = 0;
+window.addEventListener("scroll", () => {
+  const depth = Math.floor((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+  if (depth >= lastDepth + 25) {
+    lastDepth = depth;
+    sendData({ type: "scroll", depth: depth + "%", url: location.href, time: new Date().toISOString() });
+  }
+});
+
+// КОНЕЦ СЕССИИ
+let startTime = Date.now();
+window.addEventListener("beforeunload", () => {
+  const duration = Math.round((Date.now() - startTime) / 1000);
+  sendData({ type: "session_end", duration: duration + "s", url: location.href, fp: getFingerprint() });
+});
+</script>
 </body>
 </html>
