@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HISOBLI Products</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('consent', 'default', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-647Y51PYZ2', { debug_mode: true });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-53LXLGG5');</script>
+
+  <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Бухгалтерский аутсорсинг, юридическое сопровождение учёта, регламентированные процессы без управленческих решений. Ташкент, Узбекистан.">
+  <meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, бухгалтерский аутсорсинг Узбекистан, юридическое сопровождение бизнеса, финансово-правовой контур, регламентированный учёт, удалённый юрисконсульт Узбекистан">
+
+  <meta name="description" lang="uz" content="HISOBLI — biznesning standartlashtirilgan moliyaviy-yuridik konturi. Buxgalteriya autsorsing, hisob yuritish bo‘yicha yuridik hamrohlik, reglamentlangan jarayonlar. Toshkent, O‘zbekiston.">
+  <meta name="keywords" lang="uz" content="HISOBLI, buxgalteriya Toshkent, buxgalteriya autsorsing O‘zbekiston, yuridik hamrohlik, moliyaviy-yuridik kontur, hisob jarayonlari">
+  <meta name="description" content="ХИСОБЛИ бухгалтерия Ташкент, ХИСОБЛИ аутсорсинг, ХИСОБЛИ юридик Узбекистан, хисобдор">
+  <meta name="keywords" content="хисобли, хисобдор, hisobdor.uz, buxgalter tashkent, hisob uz">
+
+  <meta name="robots" content="index, follow">
+  <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
+  <link rel="canonical" href="https://hisob.li/">
+  <link rel="alternate" hreflang="uz" href="https://hisobdor.uz/" />
+
+  <meta property="og:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
+  <meta property="og:description" content="Мы внедряем и сопровождаем регламентированные процессы учёта. Без управленческих решений и обещаний результата.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hisob.li/">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="uz_UZ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicons/site.webmanifest" />
+  <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
+
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    .lang-switcher {
+        position: absolute;
+        right: 80px; 
+        top: 25px;
+        z-index: 1000;
+        display: flex;
+        border: 2px solid #BFA46F;
+        border-radius: 4px;
+        overflow: hidden;
+        font-family: 'Fira Mono', monospace;
+    }
+    @media (min-width: 992px) { .lang-switcher { right: 50px; top: 35px; } }
+    .lang-btn {
+        padding: 2px 15px;
+        cursor: pointer;
+        font-weight: 700;
+        color: #BFA46F;
+        background: transparent;
+        transition: 0.3s;
+        border: none;
+        font-size: 14px;
+    }
+    .lang-btn.active { background: #BFA46F; color: #383E42; }
+    [lang-data="uz"] { display: none; }
+
+    /* ЮРИДИЧЕСКИЙ АККОРДЕОН (ОБЛЕГЧЕННЫЙ ДЛЯ ФУТЕРА) */
+    .legal-accordion {
+        border-top: 1px solid rgba(191, 164, 111, 0.2);
+        margin-top: 20px;
+        background: transparent;
+    }
+    .accordion-header-custom {
+        padding: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+    .legal-title {
+        font-family: 'Fira Mono', monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: rgba(191, 164, 111, 0.8);
+        margin: 0;
+        text-transform: uppercase;
+    }
+    .tarozi-icon {
+        height: 22px;
+        filter: invert(74%) sepia(18%) saturate(738%) hue-rotate(7deg) brightness(89%) contrast(89%);
+    }
+    .accordion-body-custom {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+    .accordion-body-custom.show { max-height: 1000px; }
+    .legal-content {
+        padding: 20px 30px;
+        font-family: 'Fira Mono', monospace;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: justify;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .footer p, .footer a { color: rgba(255,255,255,0.6) !important; }
+    .footer a.border-bottom { border-color: #BFA46F !important; color: #BFA46F !important; text-decoration: none; }
+    .footer h1.display-4 { color: #ffffff !important; }
+
+    .welcome-screen-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #383E42;
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    .welcome-content {
+        text-align: center;
+        max-width: 600px;
+        padding: 20px;
+    }
+    .welcome-logo {
+        max-width: 250px !important;
+        height: auto;
+        margin-bottom: 30px;
+        filter: drop-shadow(0 0 10px rgba(191, 164, 111, 0.2));
+    }
+    .welcome-text-block p {
+        font-family: 'Fira Mono', monospace;
+        margin: 5px 0;
+    }
+    .welcome-text {
+        font-size: 1.2rem;
+        color: #ffffff;
+        font-weight: 500;
+    }
+    .welcome-subtext {
+        font-size: 0.9rem;
+        color: #BFA46F;
+        opacity: 0.8;
+    }
+    .welcome-loader {
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(191, 164, 111, 0.2);
+        border-top: 2px solid #BFA46F;
+        border-radius: 50%;
+        margin: 25px auto 0;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .welcome-hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-lg-5">
+        <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+            <img src="img/logo.png" alt="HISOBLI" style="height: 85px;">
+        </a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('ru')">РУ</button>
+            <button class="lang-btn" onclick="switchLang('uz')">ÖZ</button>
+        </div>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">HISOBLI</a>
+                <a href="about.html" class="nav-item nav-link">
+                    <span lang-data="ru">Аксиома</span><span lang-data="uz">Aksioma</span>
+                </a>
+                <a href="service.html" class="nav-item nav-link">
+                    <span lang-data="ru">Процесс</span><span lang-data="uz">Jarayon</span>
+                </a>
+                <a href="team.html" class="nav-item nav-link">
+                    <span lang-data="ru">Продукты</span><span lang-data="uz">Mahsulotlar</span>
+                </a>
+                <a href="contact.html" class="nav-item nav-link active">
+                    <span lang-data="ru">Связаться</span><span lang-data="uz">Boğlaniş</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header pb-5">
+        <div class="container text-center py-5">
+            <h1 class="display-4 text-uppercase mb-3 animated slideInDown">
+                <span lang-data="ru">Продукты HISOBLI</span>
+                <span lang-data="uz">HISOBLI Mahsulotlari</span>
+            </h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center text-uppercase mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="index.html">HISOBLI</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="service.html"><span lang-data="ru">Процесс</span><span lang-data="uz">Jarayon</span></a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page"><span lang-data="ru">Продукты</span><span lang-data="uz">Mahsulotlar</span></a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+    <!-- Header End -->
+
+
+    <!-- Products Start -->
+	    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center">
+                <div id="architecture" class="title wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="title-center">
+                        <div lang-data="ru"><h5>BUYURI§%</h5></div>
+                        <div lang-data="ru"><h1>ЛИНИЯ ПРОДУКТОВ</h1></div>
+						<div lang-data="uz"><h5>BUYURI§%</h5></div>
+                        <div lang-data="uz"><h1>MAHSULOTLAR LINIYASI</h1></div>
+                    </div>
+                </div>
+            </div>
+					<div lang-data="ru">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Каждый продукт — это отдельный стандартизированный контур. Не пакет услуг. Не набор опций. <br>Контур — это:</p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Har bir mahsulot — bu alohida standartlaştirilgan kontur. Bu xizmatlar paketi emas. Opsiyalar tõplami ham emas. <br>Kontur — bu:</p>
+                        </div>
+
+<div lang-data="ru">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- заранее определённый состав операций;</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- фиксированные алгоритмы учёта;</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- понятные границы ответственности;</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- предсказуемая процессная нагрузка.</span>
+        </li>
+    </ul>
+</div>
+
+<div lang-data="uz">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- oldindan belgilangan operatsiyalar tarkibi;</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- fiksatsiyalangan hisob algoritmlari;</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- tushunarli mas’uliyat çegaralari;</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- oldindan ma’lum bõlgan jarayon yuklamasi.</span>
+        </li>
+    </ul>
+</div>
+		<div lang-data="ru"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Патентованный стандартизированный финансово-правовой Контур ООО «HISOBLI» применяется не как универсальная модель “под любой бизнес”, а через фиксированные режимы функционирования, соответствующие характеру финансовых потоков и структуре деятельности. <br>Режим/продукт определяет не перечень действий, а способ интерпретации и сопровождения операций в рамках контура. <br>Выбор продукта не является предметом произвольного обсуждения и осуществляется исходя из объективной структуры деятельности, через коды ОКЕД, например. <br>ООО «HISOBLI» не адаптирует контур под каждую отдельную задачу. <br>Режим/продукт задаёт рамки, внутри которых формируется согласованная и воспроизводимая система работы.</p></div>
+        <div lang-data="uz"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">«HISOBLI» MÇJning patentlangan standartlaştirilgan moliyaviy-huquqiy konturi şunçaki "har qanday biznes" uçun universal model emas, balki faoliyat tarkibi va moliyaviy oqimlar xarakteriga mos keluvçi qat'iy iş rejimlari orqali tatbiq etiladi. <br>Rejim yoki mahsulot harakatlar rõyxatini emas, balki kontur doirasidagi operatsiyalarni talqin qiliş va kuzatib boriş uslubini belgilaydi. <br>Mahsulotni tanlaş ixtiyoriy muhokama predmeti hisoblanmaydi hamda faoliyatning ob'ektiv tuzilmasidan kelib çiqib, masalan, IFUT kodlari orqali amalga oşiriladi. <br>«HISOBLI» MÇJ konturni har bir alohida vazifaga moslaştirib õtirmaydi. <br>Rejim yoki mahsulot iş tizimining muvofiqlaştirilgan va barqaror takrorlanuvçi çegaralarini belgilab beradi.</p></div>
+  <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-7.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">Торговая марка - BUYURI§%</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">BUYURI§% - savdo belgisi</h3></div>
+                            <div lang-data="ru"><p class="mb-4">В торговом наименовании запечатлен интеллектуальный ребус: <br><strong>BU</strong>-хгалтерия + <strong>YUR</strong>-иридик + I§% (иш), <br>где буква S художественно заменена знаком § — символом юридического делопроизводства, а буква H заменена знаком % — символом учёта. <br>В собранном виде это маркетинговый императив «Закажи!» <br>и девиз: <strong>BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</strong>.</p></div>
+							<div lang-data="uz"><p class="mb-4">Savdo nomining zamirida õziga xos intellektual rebus mujassam: <br><strong>BU</strong>-xgalteriya + <strong>YUR</strong>-idik + I§% (iş), <br> bu yerda S harfi õrnini yuridik iş yuritiş ramzi bõlgan § belgisi, H harfi õrnini esa hisob-kitob ramzi — % belgisi egallagan. <br> Yaxlit holatda esa bu ham marketing çorlovi — «Buyuriş!», <br>ham asosiy şior hisoblanadi: <strong>BUXGALTERIYA IŞLARI ≡ YURIDIK IŞLAR</strong>.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>			
+ <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-9.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> CAPITAL CONTROL</h3>
+							<div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 64.20.0)</strong>
+<br><strong><em>«Капитал любит тишину и точность»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот контур для управления движением капитала, владения активами и защиты от субсидиарной ответственности.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Учёт дивидендных выплат, займов, переоценка валютных статей баланса и оформление учётных последствий корпоративных операций.
+<br><strong>Процессная рамка</strong>: Контур функционирует строго на основании решений участников. В рамках сопровождения мы обеспечиваем мониторинг специфической статистической нагрузки: 1-invest (основной), FDI и 4-moliya, исключая оценку экономической целесообразности решений.
+<br><strong>Граница контура</strong>: Не включает корпоративные споры, оценку бизнеса и сопровождение сделок.
+<br><strong>Профиль</strong>: Холдинги, SPV и Owner-Companies.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 64.20.0 kodi uçun maxsus)</strong>
+<br><strong><em>«Sarmoya tinçlik va aniq hisob-kitobni xuş kõrar»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu tizimni kapital harakatini boşqariş, aktivlarga egalik qiliş va subsidiar javobgarlikdan himoyalaniş uçun joriy qiladi.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Dividend tõlovlari va qarzlar hisobi, balansning valyuta moddalarini qayta baholaş hamda korporativ operatsiyalarning hisobdagi oqibatlarini rasmiylaştiriş.
+<br><strong>Iş doirasi</strong>: Tizim qat’iy ravişda ta’sisçilar qarorlari asosida işlaydi. Kuzatuv doirasida biz õziga xos statistik yuklamalarni nazorat qilamiz: 1-invest (asosiy), FDI va 4-moliya. Qarorlarning iqtisodiy jihatdan qançalik maqsadga muvofiqligini baholaş bizning vazifamizga kirmaydi.
+<br><strong>Çegaralar</strong>: Korporativ nizolar, biznesni baholaş va bitimlarni kuzatib borişni õz içiga olmaydi.
+<br><strong>Profil</strong>: Holdinglar, SPV va Owner-kompaniyalar.</p></div>
+                    </div>
+                </div>
+            </div>
+			</div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-10.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> DIGITAL EXPORT</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 62.01.0, 62.02.0)</strong>
+<br><strong><em>«Экспорт услуг без бухгалтерского шума»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот Процессный контур для IT-сектора и консалтинга, сфокусированный на валютном контроле и применении налоговых преференций.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Учёт валютных поступлений, регистрация инвойс-контрактов в системе E-Contract (ЕЭИСВО), подтверждение нулевой ставки налога и свод оплат от нерезидентов.
+<br><strong>Процессная рамка</strong>: Работа ведётся в пределах действующего валютного регулирования. Мы обеспечиваем мониторинг критериев льгот IT-Park и сопровождение по формам 1-korxona (tif) и 4-mehnat.
+<br><strong>Граница контура</strong>: Не включает поиск контрагентов и договорные переговоры.
+<br><strong>Профиль</strong>: Резиденты IT-Park, EdTech и цифровые агентства.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>( OKED 62.01.0, 62.02.0 kodlari uçun maxsus)</strong>
+<br><strong><em>«Xizmatlar eksporti — buxgalteriya maşmaşalarisiz»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu işçi tizimni IT-sektori va konsalting uçun joriy qiladi. Asosiy e’tibor valyuta nazorati va soliq imtiyozlarini tõğri qõllaşga qaratilgan.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Valyuta tuşumlari hisobi, invoys-kontraktlarni E-Contract (YAIATV) tizimida rõyxatdan õtkaziş, nol darajali soliq stavkasini tasdiqlaş va nerezidentlardan kelgan tõlovlar monitoringi.
+<br><strong>Iş doirasi</strong>: Işlar amaldagi valyuta tartibga soliş qoidalari doirasida olib boriladi. Biz IT-Park imtiyozlari mezonlarini kuzatib boramiz hamda 1-korxona (tif) va 4-mehnat şakllari bõyiça hisobotlarni topşiramiz.
+<br><strong>Çegaralar</strong>: Kontragentlarni qidiriş va şartnoma bõyiça muzokaralar olib borişni õz içiga olmaydi.
+<br><strong>Profil</strong>: IT-Park rezidentlari, EdTech va raqamli agentliklar.
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-11.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> PUBLIC INTERFACE</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 82.99.0)</strong>
+<br><strong><em>«Цифры на стыке бизнеса и государства»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот Контур для операторов государственных функций, обеспечивающий строгий комплаенс в рамках административных регламентов и тарифов.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Учёт целевых сборов по гостарифам, массовая выписка ЭСФ и фиксация цифровых доказательств выполнения функций.
+<br><strong>Процессная рамка</strong>: Контур функционирует строго в пределах утверждённых регламентов. Техническое наполнение отчётности включает мониторинг по формам 1-korxona и 1-akt (использование ИКТ).
+<br><strong>Граница контура</strong>: Не включает представительство в проверках и спорах.
+<br><strong>Профиль</strong>: Частные операторы госфункций и ЦОД.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 82.99.0 kodi uçun maxsus)</strong>
+<br><strong><em>«Biznes va davlat tutaşgan nuqtadagi raqamlar»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu tizimni davlat funksiyalarini bajaruvçi operatorlar uçun joriy qiladi. Bu ma’muriy reglamentlar va tariflar doirasida qat’iy tartibni ta’minlaydi.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Davlat tariflari bõyiça maqsadli yiğimlar hisobi, ommaviy elektron hisob-faktura (EHF) çiqariş va funksiyalar bajarilganligini raqamli tasdiqlaş.
+<br><strong>Iş doirasi</strong>: Tizim qat’iy ravişda tasdiqlangan reglamentlar doirasida işlaydi. Hisobotlarning texnik qismi 1-korxona va 1-akt (AKTdan foydalaniş) şakllari bõyiça monitoringni õz içiga oladi.
+<br><strong>Çegaralar</strong>: Tekşiruvlar va nizolarda vakillik qilişni õz içiga olmaydi.
+<br><strong>Profil</strong>: Davlat funksiyalarining xususiy operatorlari va ma’lumotlar markazlari.
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-12.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> RENTFLOW</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 68.20.0)</strong>
+<br><strong><em>«Аренда, которая отчитается сама»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет данный финансово-правовой контур для владельцев недвижимости, интегрированный с системой E-Ijara и нормами ст. 243 НК РУз.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Администрирование данных в E-Ijara, контроль возмещения эксплуатационных расходов и защита от переквалификации коммунальных платежей в доход.
+<br><strong>Процессная рамка</strong>: Контур работает на основании действующих договоров аренды. Сопровождение включает формирование финансовой статистики по формам 4-moliya и 1-moliya.
+<br><strong>Граница контура</strong>: Не включает согласование условий аренды и переговоры с арендаторами.
+<br><strong>Профиль</strong>: Владельцы БЦ и складских комплексов.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 68.20.0 kodi uçun maxsus)</strong>
+<br><strong><em>«Õzi uçun õzi hisobot beradigan ijara»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu moliyaviy-huquqiy tizimni kõçmas mulk egalari uçun joriy qiladi. U E-Ijara tizimi va Soliq kodeksining 243-moddasi talablariga tõliq moslaştirilgan.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: E-Ijara tizimini boşqariş, kommunal xarajatlar qoplanişini nazorat qiliş va uşbu tõlovlarning asossiz ravişda daromadga çiqib ketişidan himoyalaş.
+<br><strong>Iş doirasi</strong>: Tizim amaldagi ijara şartnomalari asosida işlaydi. Xizmat tarkibiga 4-moliya va 1-moliya şakllari bõyiça statistikani şakllantiriş kiradi.
+<br><strong>Çegaralar</strong>: Ijara şartlarini kelişiş va ijaraçilar bilan muzokaralar olib borişni õz içiga olmaydi.
+<br><strong>Profil</strong>: Biznes markazlari va omborxona majmualari egalari.
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			 <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-13.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> FRANCHISE BOX</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 77.40.0)</strong>
+<br><strong><em>«Один шаблон — несколько бизнес единиц»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот Контур стандартизации учёта для сетевых структур в рамках договора комплексной предпринимательской лицензии (ст. 866-868 ГК РУз).
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Унифицированный учёт по точкам, контроль выплаты роялти и консолидация («схлопывание») отчётов маркетплейсов в единые проводки.
+<br><strong>Процессная рамка</strong>: Контур ориентирован на абсолютную идентичность процедур. Статистическая нагрузка включает отчёт 1-korxona с приложениями по розничному обороту.
+<br><strong>Граница контура</strong>: Не включает разработку бизнес-модели и стратегическое управление.
+<br><strong>Профиль</strong>: Франшизы и сетевые проекты, за исключением предприятий общепита.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 77.40.0 kodi uçun maxsus)</strong>
+<br><strong><em>«Bitta qolip — butun boşli tarmoq»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu hisobni standartlaştiriş tizimini tarmoqli tuzilmalar (FK 866-868-moddalari, franşiza şartnomalari) uçun joriy qiladi.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Nuqtalar bõyiça bir xillaştirilgan hisob, royalti tõlovlarini nazorat qiliş va marketpleys hisobotlarini yagona tizimga birlaştiriş.
+<br><strong>Iş doirasi</strong>: Tizim barça jarayonlarning aynan bir xil bõlişiga qaratilgan. Statistik yuklama 1-korxona hisoboti va çakana savdo bõyiça ilovalarni õz içiga oladi.
+<br><strong>Çegaralar</strong>: Biznes-modelni işlab çiqiş va strategik boşqaruvni õz içiga olmaydi.
+<br><strong>Profil</strong>: Franşizalar va tarmoqli loyihalar (umumiy ovqatlaniş korxonalari bundan mustasno).
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-14.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> PROJECT CONTROL</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 71.11.0, 71.12.0)</strong>
+<br><strong><em>«Минимум документов. Максимум смысла»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот контур для Пообъектного учёта затрат для проектных бюро и защита интеллектуальных прав по ст. 1031 ГК РУз.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Отражение этапов работ по ПСД, учёт специфических расходов на изыскания и оформление актов по ст. 703 ГК.
+<br><strong>Процессная рамка</strong>: Контур работает в пределах заранее определённой структуры проекта. Мониторинг включает подачу статистических форм 1-korxona и 4-moliya.
+<br><strong>Граница контура</strong>: Не включает управление проектами и контроль исполнения.
+<br><strong>Профиль</strong>: Проектные и инженерные бюро.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 71.11.0, 71.12.0 kodlari uçun maxsus)</strong>
+<br><strong><em>«Kamroq qoğoz — kõproq ma’no»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu tizimni loyiha byurolari uçun xarajatlarni har bir ob’ekt bõyiça alohida hisoblaş hamda intellektual huquqlarni himoya qiliş (FK 1031-modda) uçun joriy qiladi.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Loyiha-smeta hujjatlari bõyiça iş bosqiçlarini aks ettiriş, qidiruv işlari xarajatlari hisobi va FK 703-moddasi bõyiça dalolatnomalarni tayyorlaş.
+<br><strong>Iş doirasi</strong>: Tizim loyihaning oldindan belgilangan tuzilmasi doirasida işlaydi. Monitoring 1-korxona va 4-moliya statistik şakllarini topşirişni õz içiga oladi.
+<br><strong>Çegaralar</strong>: Loyihalarni boşqariş va ijro nazoratini õz içiga olmaydi.
+<br><strong>Profil</strong>: Loyihalaş va muhandislik byurolari.
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-15.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> REGULATORY COMPLIANCE</h3>
+                            <div lang-data="ru"><p class="mb-4"><strong>(Специально для кода ОКЭД 94.99.0)</strong>
+<br><strong><em>«Отчётность ради закона, а не ради прибыли»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот Контур обеспечения методологической прозрачности деятельности ННО и фондов перед Минюстом и ГНК.
+<br><strong>В контур входит</strong>: Весь стандартный пакет бухгалтерских услуг + услуги удалённого юрисконсульта предприятия (без права представительства в судах), а также: Учёт грантов и членских взносов, контроль целевого использования средств и кадровая дисциплина по ст. 460 ТК РУз.
+<br><strong>Процессная рамка</strong>: Обеспечение прозрачности процессов через сдачу специфической отчётности по форме 1-nnt в органы юстиции.
+<br><strong>Граница контура</strong>: Только техническое сопровождение процесса без участия в управлении организацией.
+<br><strong>Профиль</strong>: Некоммерческие организации и фонды.</p></div>
+							<div lang-data="uz"><p class="mb-4"><strong>(OKED 94.99.0 kodi uçun maxsus)</strong>
+<br><strong><em>«Hisobot foyda uçun emas, qonun uçun»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu tizimni NNT va jamğarmalarning Adliya vazirligi hamda Soliq organlari oldidagi şaffofligini ta’minlaş uçun joriy qiladi.
+<br><strong>Tizim tarkibi</strong>: Buxgalteriya xizmatlarining tõliq paketi + korxonaning masofaviy yurist-konsultanti xizmati (sudlarda vakillik qilişdan taşqari), şuningdek: Grantlar va a’zolik badallari hisobi, mablağlardan maqsadli foydalanişni nazorat qiliş va kadrlar intizomi (MK 460-modda).
+<br><strong>Iş doirasi</strong>: Adliya organlariga 1-nnt şakli bõyiça maxsus hisobotlarni topşiriş orqali jarayonlar oçiqligini ta’minlaş.
+<br><strong>Çegaralar</strong>: Taşkilotni boşqarişda qatnaşmagan holda faqat texnik kuzatuv.
+<br><strong>Profil</strong>: Notijorat taşkilotlar va jamğarmalar.
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+    <div class="row g-0 align-items-center">
+        <div class="col-md-5 order-md-1 text-md-end">
+            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <img class="img-fluid rounded-circle" src="img/team-16.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> BASE</h3>
+                <div lang-data="ru"><p class="mb-4"><strong>(Специально для типового МСБ)</strong>
+<br><strong><em>«Учёт как порядок. Порядок как защита»</em></strong> 
+<br><br><strong>Описание</strong>: Консалтинговая компания HISOBLI внедряет этот Базовый контур для малого и среднего бизнеса с типовой операционной деятельностью исключительно на УСН.
+<br><strong>В контур входит</strong>: Стандартный бухгалтерский учёт, обязательная отчётность, юридически корректное делопроизводство и взаимодействие с госсистемами.
+<br><strong>Процессная рамка</strong>: Контур функционирует по утверждённым регламентам HISOBLI без индивидуальной настройки и оптимизации.
+<br><strong>Граница контура</strong>: Не включает консультации и нестандартные задачи.
+<br><strong>Профиль</strong>: Компании с типовой торговой или сервисной моделью.</p></div>
+                <div lang-data="uz"><p class="mb-4"><strong>(Aynan namunaviy kiçik va õrta biznes uçun)</strong>
+<br><strong><em>«Hisob — tartib demakdir, tartib esa — himoya»</em></strong> 
+<br><br><strong>Tavsif</strong>: HISOBLI konsalting kompaniyasi uşbu Baza tizimini namunaviy faoliyat bilan şuğullanuvçi va faqat soddalaştirilgan tartibda ("uproşçenka") işlovçi kiçik va õrta biznes uçun joriy qiladi.
+<br><strong>Tizim tarkibi</strong>: Standart buxgalteriya hisobi, majburiy hisobotlar, yuridik jihatdan tõğri iş yuritiş va davlat tizimlari bilan hamkorlik.
+<br><strong>Iş doirasi</strong>: Tizim HISOBLI tomonidan tasdiqlangan reglamentlar asosida işlaydi, individual sozlaş va optimizatsiya kõzda tutilmagan.
+<br><strong>Çegaralar</strong>: Alohida konsultatsiyalar va nostandart vazifalar kirmaydi.
+<br><strong>Profil</strong>: Oddiy savdo yoki xizmat kõrsatiş modelidagi kompaniyalar.
+</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+    <div class="container-fluid bg-secondary">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-7 pb-0 pb-lg-5 py-5">
+                    <div class="pb-0 pb-lg-5 py-5">
+                        <div class="title wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="title-left">
+                                <div lang-data="ru"><h5>Итак, выше</h5></div>
+                                <div lang-data="ru"><h1>Продукты HISOBLI</h1></div>
+								<div lang-data="uz"><h5>Demak, yuqorida</h5></div>
+                                <div lang-data="uz"><h1>HISOBLI Mahsulotlari</h1></div>
+                            </div>
+                        </div>
+                        <div lang-data="ru">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>Патентованный стандартизированный финансово-правовой Контур ООО «HISOBLI»</strong> применяется не как универсальная модель “под любой бизнес”, а через фиксированные режимы функционирования, соответствующие характеру финансовых потоков и структуре деятельности. <br>Режим/продукт определяет не перечень действий, а способ интерпретации и сопровождения операций в рамках контура. <br>Выбор продукта не является предметом произвольного обсуждения и осуществляется исходя из объективной структуры деятельности, через коды ОКЕД, например. <br>ООО «HISOBLI» не адаптирует контур под каждую отдельную задачу. <br>Режим/продукт задаёт рамки, внутри которых формируется согласованная и воспроизводимая система работы.</p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>«HISOBLI» MÇJning patentlangan standartlaştirilgan moliyaviy-huquqiy konturi</strong> şunçaki "har qanday biznes" uçun universal model emas, balki faoliyat tarkibi va moliyaviy oqimlar xarakteriga mos keluvçi qat'iy iş rejimlari orqali tatbiq etiladi. <br>Rejim yoki mahsulot harakatlar rõyxatini emas, balki kontur doirasidagi operatsiyalarni talqin qiliş va kuzatib boriş uslubini belgilaydi. <br>Mahsulotni tanlaş ixtiyoriy muhokama predmeti hisoblanmaydi hamda faoliyatning ob'ektiv tuzilmasidan kelib çiqib, masalan, IFUT kodlari orqali amalga oşiriladi. <br>«HISOBLI» MÇJ konturni har bir alohida vazifaga moslaştirib õtirmaydi. <br>Rejim yoki mahsulot iş tizimining muvofiqlaştirilgan va barqaror takrorlanuvçi çegaralarini belgilab beradi.</p>
+                        </div>
+
+<div lang-data="ru">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>Базовая стоимость эксплуатации контура — 7000000 сўм ежемесячно.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>В честь светлого праздника «Закрытия без Сторно» для первых 10 заказчиков фиксируется персональная привилегия: минус 1000000 сўм от базовой ставки.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>Аванс 50% в начале каждого месяца, остальное по Акту выполненных работ. Любая задержка платежа ведет к автоматической деактивации системы.</span>
+        </li>
+    </ul>
+</div>
+
+<div lang-data="uz">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>Konturdan foydalanişning tayanç narhi — oyiga 7000000 sõm.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>«Stornosiz yopiliş» hayajonli şodiyonasi şarafiga ilk 10 nafar buyurtmaçi uçun alohida imtiyoz belgilanadi: tayanç narhdan minus 1000000 sõm.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>Har oy boşida 50% avans, qolgan qismi Bajarilgan işlar Dalolatnomasi asosida. Tõlovning har qanday keçikişi tizimning avtomatik deaktivatsiyasiga sabab bõladi.</span>
+        </li>
+    </ul>
+</div>
+                        <div lang-data="ru">
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.4s">Демонстрируемые здесь Продукты предусмотрены только для налогоплательщиков УСН, при внедрении контура в предприятиях с ОСН - стоимость удваивается.</p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.4s">Bu yerda namoyiş etilgan mahsulotlar faqat SST tõlovçilari uçun. Kontur UST korxonalarida joriy etilsa — narx ikki barobar ortadi.</p>
+                        </div>
+                        
+                        <div class="row wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="col-6">
+                                <div lang-data="ru">
+                                    <a href="service.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Узнать про процесс</a>
+                                </div>
+                                <div lang-data="uz">
+                                    <a href="service.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Jarayon bilan tanişiş</a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+    <div lang-data="ru">
+        <a href="contact.html" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-primary py-3 w-100">
+           Нужны контакты?
+        </a>
+    </div>
+
+    <div lang-data="uz">
+        <a href="team.html" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-primary py-3 w-100">
+           Boğlanişni istaysizmi?
+        </a>
+    </div>
+</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.6s">
+                    <img class="img-fluid" src="img/teams.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Products End -->
+
+
+<div class="container-fluid bg-dark text-light footer py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center py-5">
+        <a href="index.html">
+            <h1 class="display-4 mb-3 text-white text-uppercase">
+                <span lang-data="ru">АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ</span>
+                <span lang-data="uz">BIZNES-JARAYONLAR ME'MORI</span>
+            </h1>
+        </a>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="social-icon-custom"><img src="img/youtube.svg"></a>
+            <a href="https://www.instagram.com/hisobli" target="_blank" class="social-icon-custom"><img src="img/instagram.svg"></a>
+            <a href="https://bit.ly/Hisobli-FB" target="_blank" class="social-icon-custom"><img src="img/facebook.svg"></a>
+            <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="social-icon-custom"><img src="img/telegram.svg"></a>
+            <a href="https://x.com/hisobli" target="_blank" class="social-icon-custom"><img src="img/twitter.svg"></a>
+            <a href="https://www.threads.com/@hisobli" target="_blank" class="social-icon-custom"><img src="img/threads.svg"></a>
+            <a href="https://m.me/hisobli" target="_blank" class="social-icon-custom"><img src="img/messenger.svg"></a>
+            <a href="https://wa.me/p/34356703400641221/998959525939" class="social-icon-custom"><img src="img/whatsapp.svg"></a>
+            <a href="mailto:info@hisob.li" class="social-icon-custom"><img src="img/email.svg"></a>
+            <a href="https://t.me/hiso6li" target="_blank" class="social-icon-custom"><img src="img/phone.svg"></a>
+        </div>
+        <p>&copy; <a class="border-bottom" href="#">2026 HISOBLI Mas’uliyati çeklangan jamiyati</a>. All Right Reserved.</p>
+        
+        <div class="legal-accordion" id="legalAccordion">
+            <div class="accordion-header-custom" onclick="toggleLegal()">
+                <img src="img/tarozi.svg" class="tarozi-icon" alt="Scale">
+                <p class="legal-title">
+                    <span lang-data="ru">ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ</span>
+                    <span lang-data="uz">YURIDIK OGOHLANTIRIŞ</span>
+                </p>
+            </div>
+            <div class="accordion-body-custom" id="legalBody">
+                <div class="legal-content">
+                    <div lang-data="ru">
+                        Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
+                    </div>
+                    <div lang-data="uz">
+                        Uşbu saytda joylaştirilgan barça matnli ifodalar, mahsulotlar arxitekturasi, metodologiya, biznes-mantiq va qõllab-quvvatlaş ta’minoti algoritmlari «HISOBLI» MÇJning intellektual mulk obyektlari hisoblanadi. Himoya qilinadigan obyektlar qatoriga nafaqat matnlar, balki noyob tuşunçalar apparati (şu jumladan, moliya-huquqiy hamrohlik kontekstidagi „Kontur“ atamasi) va HISOBLI reglamentlarini tuziş mantiği ham kiradi. Kõrsatilgan obyektlar Õzbekiston Respublikasining «Mualliflik huquqi va turdoş huquqlar tõğrisida»gi Qonuni, şuningdek Õzbekiston Respublikasi Fuqarolik kodeksining 60 va 64-boblari bilan qõriqlanadi. Huquq egasining yozma roziligisiz kõrsatilgan materiallarni (şu jumladan metodologiyani) tõliq yoki qisman nusxalaş, kõpaytiriş, tirajlaş yoki ulardan foydalaniş taqiqlanadi va yuridik oqibatlarga sabab bõladi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="back-to-top" style="position: fixed; right: 30px; bottom: 30px; display: none; z-index: 99; cursor: pointer; transition: 0.3s;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+        <svg width="40" height="20" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 15L20 5L35 15" stroke="#BFA46F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <img src="img/marker_firm.svg" style="width: 45px; filter: invert(74%) sepia(18%) saturate(738%) hue-rotate(7deg) brightness(89%) contrast(89%);">
+    </div>
+</a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+<script>
+    function switchLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => 
+            (lang === 'ru' && b.innerText.includes('РУ')) || (lang === 'uz' && b.innerText.includes('ÖZ'))
+        );
+        if(activeBtn) activeBtn.classList.add('active');
+
+        document.querySelectorAll('[lang-data]').forEach(el => {
+            if (el.getAttribute('lang-data') === lang) {
+                el.style.setProperty('display', (el.tagName === 'SPAN' ? 'inline' : 'block'), 'important');
+            } else {
+                el.style.setProperty('display', 'none', 'important');
+            }
+        });
+        localStorage.setItem('hisobli_lang', lang);
+    }
+
+    function toggleLegal() {
+        document.getElementById('legalBody').classList.toggle('show');
+    }
+</script>
+<script>
+// ==========================================
+// ПОЛНАЯ ЗАЩИТА КОНТЕНТА
+// ==========================================
+
+// 1. Запрет контекстного меню
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 2. Запрет выделения текста
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 3. Запрет копирования, вырезания
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    return false;
+});
+document.addEventListener('cut', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 4. Запрет перетаскивания изображений
+document.querySelectorAll('img').forEach(function(img) {
+    img.setAttribute('draggable', 'false');
+    img.style.userSelect = 'none';
+    img.style.webkitUserDrag = 'none';
+});
+
+// 5. Запрет горячих клавиш
+document.addEventListener('keydown', function(e) {
+    // F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, Ctrl+P
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p'))) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 6. Защита от перетаскивания ссылок и изображений
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 7. Защита от печати (предупреждение)
+window.onbeforeprint = function() {
+    alert('🔒 Сохранение страницы в PDF запрещено');
+    return false;
+};
+
+// 8. Обнаружение DevTools (просто предупреждение)
+(function() {
+    const devtools = /./;
+    devtools.toString = function() {
+        console.log('🔒 Инструменты разработчика');
+        return '';
+    };
+    console.log(devtools);
+})();
+
+</script>
+</body>
+</html>

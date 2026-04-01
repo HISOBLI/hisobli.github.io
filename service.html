@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HISOBLI Service</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('consent', 'default', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+
+    gtag('js', new Date());
+    gtag('config', 'G-647Y51PYZ2', { debug_mode: true });
+  </script>
+
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-53LXLGG5');</script>
+
+  <meta name="description" content="HISOBLI — стандартизированный финансово-правовой контур бизнеса. Бухгалтерский аутсорсинг, юридическое сопровождение учёта, регламентированные процессы без управленческих решений. Ташкент, Узбекистан.">
+  <meta name="keywords" content="HISOBLI, бухгалтерия Ташкент, бухгалтерский аутсорсинг Узбекистан, юридическое сопровождение бизнеса, финансово-правовой контур, регламентированный учёт, удалённый юрисконсульт Узбекистан">
+
+  <meta name="description" lang="uz" content="HISOBLI — biznesning standartlashtirilgan moliyaviy-yuridik konturi. Buxgalteriya autsorsing, hisob yuritish bo‘yicha yuridik hamrohlik, reglamentlangan jarayonlar. Toshkent, O‘zbekiston.">
+  <meta name="keywords" lang="uz" content="HISOBLI, buxgalteriya Toshkent, buxgalteriya autsorsing O‘zbekiston, yuridik hamrohlik, moliyaviy-yuridik kontur, hisob jarayonlari">
+  <meta name="description" content="ХИСОБЛИ бухгалтерия Ташкент, ХИСОБЛИ аутсорсинг, ХИСОБЛИ юридик Узбекистан, хисобдор">
+  <meta name="keywords" content="хисобли, хисобдор, hisobdor.uz, buxgalter tashkent, hisob uz">
+
+  <meta name="robots" content="index, follow">
+  <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
+  <link rel="canonical" href="https://hisob.li/">
+  <link rel="alternate" hreflang="uz" href="https://hisobdor.uz/" />
+
+  <meta property="og:title" content="HISOBLI — Стандартизированный финансово-правовой контур бизнеса">
+  <meta property="og:description" content="Мы внедряем и сопровождаем регламентированные процессы учёта. Без управленческих решений и обещаний результата.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hisob.li/">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="uz_UZ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+  <link rel="shortcut icon" href="/favicons/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/favicons/site.webmanifest" />
+  <link rel="icon" href="/favicons/favicon.ico" type="image/x-icon">
+
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    .lang-switcher {
+        position: absolute;
+        right: 80px; 
+        top: 25px;
+        z-index: 1000;
+        display: flex;
+        border: 2px solid #BFA46F;
+        border-radius: 4px;
+        overflow: hidden;
+        font-family: 'Fira Mono', monospace;
+    }
+    @media (min-width: 992px) { .lang-switcher { right: 50px; top: 35px; } }
+    .lang-btn {
+        padding: 2px 15px;
+        cursor: pointer;
+        font-weight: 700;
+        color: #BFA46F;
+        background: transparent;
+        transition: 0.3s;
+        border: none;
+        font-size: 14px;
+    }
+    .lang-btn.active { background: #BFA46F; color: #383E42; }
+    [lang-data="uz"] { display: none; }
+
+    /* ЮРИДИЧЕСКИЙ АККОРДЕОН (ОБЛЕГЧЕННЫЙ ДЛЯ ФУТЕРА) */
+    .legal-accordion {
+        border-top: 1px solid rgba(191, 164, 111, 0.2);
+        margin-top: 20px;
+        background: transparent;
+    }
+    .accordion-header-custom {
+        padding: 15px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+    }
+    .legal-title {
+        font-family: 'Fira Mono', monospace;
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: rgba(191, 164, 111, 0.8);
+        margin: 0;
+        text-transform: uppercase;
+    }
+    .tarozi-icon {
+        height: 22px;
+        filter: invert(74%) sepia(18%) saturate(738%) hue-rotate(7deg) brightness(89%) contrast(89%);
+    }
+    .accordion-body-custom {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+    .accordion-body-custom.show { max-height: 1000px; }
+    .legal-content {
+        padding: 20px 30px;
+        font-family: 'Fira Mono', monospace;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-align: justify;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .footer p, .footer a { color: rgba(255,255,255,0.6) !important; }
+    .footer a.border-bottom { border-color: #BFA46F !important; color: #BFA46F !important; text-decoration: none; }
+    .footer h1.display-4 { color: #ffffff !important; }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    .welcome-hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+	    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* Соотношение сторон 16:9 */
+        height: 0;
+        overflow: hidden;
+    }
+    .video-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark px-lg-5">
+        <a href="index.html" class="navbar-brand ms-4 ms-lg-0">
+            <img src="img/logo.png" alt="HISOBLI" style="height: 85px;">
+        </a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="switchLang('ru')">РУ</button>
+            <button class="lang-btn" onclick="switchLang('uz')">ÖZ</button>
+        </div>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav mx-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">HISOBLI</a>
+                <a href="about.html" class="nav-item nav-link">
+                    <span lang-data="ru">Аксиома</span><span lang-data="uz">Aksioma</span>
+                </a>
+                <a href="service.html" class="nav-item nav-link">
+                    <span lang-data="ru">Процесс</span><span lang-data="uz">Jarayon</span>
+                </a>
+                <a href="team.html" class="nav-item nav-link">
+                    <span lang-data="ru">Продукты</span><span lang-data="uz">Mahsulotlar</span>
+                </a>
+                <a href="contact.html" class="nav-item nav-link active">
+                    <span lang-data="ru">Связаться</span><span lang-data="uz">Boğlaniş</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header pb-5">
+        <div class="container text-center py-5">
+            <h1 class="display-4 text-uppercase mb-3 animated slideInDown">
+                <span lang-data="ru">Процесс HISOBLI</span>
+                <span lang-data="uz">HISOBLI Jarayoni</span>
+            </h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center text-uppercase mb-0">
+                    <li class="breadcrumb-item"><a class="text-white" href="index.html">HISOBLI</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="team.html"><span lang-data="ru">Продукты</span><span lang-data="uz">Mahsulotlar</span></a></li>
+                    <li class="breadcrumb-item text-primary active" aria-current="page"><span lang-data="ru">Процесс</span><span lang-data="uz">Jarayon</span></a></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+</div>
+    <!-- Header End -->
+
+
+    <!-- Service Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="text-center">
+                <div id="architecture" class="title wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="title-center">
+                        <div lang-data="ru"><h5>Процесс</h5></div>
+                        <div lang-data="ru"><h1>Как работает контур HISOBLI</h1></div>
+						<div lang-data="uz"><h5>Jarayon</h5></div>
+                        <div lang-data="uz"><h1>HISOBLI konturi qanday işlaydi</h1></div>
+                    </div>
+                </div>
+            </div>
+
+ <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-5.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">ЧТО ТАКОЕ "КОНТУР"?</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">"KONTUR" NIMA?</h3></div>
+                            <div lang-data="ru"><p class="mb-4">В IT и безопасности часто говорят «контур информационной безопасности». Это значит — некая закрытая зона, внутри которой действуют свои жесткие правила, и куда нельзя просто так попасть снаружи.
+
+<br>Что для HISOBLI означает слово «Контур»?
+
+<br><strong>Замкнутость</strong>: Контур — это закрытая система. Это закрытый механизм.
+<br><strong>Четкие границы</strong>: У контура всегда есть граница.
+<br><strong>Автоматизм</strong>: Слово «контур» ассоциируется с работой машины или схемы (как электрическая цепь).
+<br>Итог: В нашем понимании «контур» означает «стандартизированный, замкнутый процесс с четкими границами ответственности, работающий как отлаженный механизм».</p></div>
+                            <div lang-data="uz"><p class="mb-4">Ma’lumki, IT va xavfsizlik sohasida tez-tez «axborot xavfsizligi konturi» iborasi işlatiladi. Bu — içkarisida õz qat’iy qoidalari amal qiladigan va taşqaridan şunçaki kirib bõlmaydigan õziga xos yopiq hudud demakdir.
+
+<br>HISOBLI uçun «Kontur» sõzi nimani anglatadi?
+
+<br><strong>Yopiqlik</strong>: Kontur — bu yopiq tizim. Bu yopiq mexanizm.
+<br><strong>Aniq çegaralar</strong>: Konturning doimo õz çegarasi mavjud.
+<br><strong>Avtomatizm</strong>: «Kontur» sõzi maşina yoki sxemaning (masalan, elektr zanjirining) işlaşi bilan boğliq tasavvurni uyğotadi.
+<br>Xulosa: Bizning tuşunçamizda «kontur» — bu mas’uliyat çegaralari aniq belgilangan, xuddi aniq sozlangan mexanizm kabi işlaydigan, standartlaştirilgan va yopiq jarayondir.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-22.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">ГЕОМЕТРИЯ КОНТУРА</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">KONTUR GEOMETRIYASI</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Абсолютная ликвидация финансового шума. <br>Мы внедрили жёсткую структурную изоляцию обязательств в режиме реального времени. <br>Консалтинговая компания HISOBLI — это бесперебойная «Процессная Фабрика». <br>Каждая транзакция проходит автоматическую сепарацию на входе. <br>Алгоритм мгновенной очистки филигранно отделяет активы от регуляторной нагрузки по ст. 90 НК РУз.</p></div>
+							<div lang-data="uz"><p class="mb-4">Moliyaviy şovqinni mutlaq bartaraf etiş. <br>Biz majburiyatlarning real vaqtdagi qat’iy tarkibiy izolyatsiyasini joriy etdik. <br>HISOBLI konsalting kompaniyasi — bu uzluksiz işlovçi «Jarayonlar fabrikasi»dir. <br>Har bir tranzaksiya kiriş qismida avtomatik separatsiyadan õtadi. <br>Lahzali tozalaş algoritmi aktivlarni ÕzR SK 90-moddasi bõyiça regulyator yuklamadan zargarlik aniqligida ajratib beradi.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-23.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">НАШ КОНВЕЙЕР ВКЛЮЧАЕТ:</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">BIZNING KONVEYER QUYIDAGILARNI ÕZ IÇIGA OLADI:</h3></div>
+                            <div lang-data="ru"><p class="mb-4"><ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Синхронную фискальную очистку ресурсов (превентивно исключает риски по ст. 388 НК РУз, гарантируя удержание в «Зеленой зоне»).</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Динамический мониторинг пороговых значений (защищает от смены режима по ст. 462 НК РУз).</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Методологическую верификацию номенклатуры (нивелирует вероятность санкций по ст. 223-1 НК РУз).</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- А также многое другое конфиденциальное.</span>
+        </li>
+    </ul></p></div>
+							<div lang-data="uz"><p class="mb-4"><ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Resurslarni sinxron fiskal tozalaş (ÕzR SK 388-moddasi bõyiça xatarlarni preventiv tarzda istisno etadi va reytingning «Yaşil zonasi»da qolişni kafolatlaydi).</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Çegaraviy kõrsatkiçlarning dinamik monitoringi (mijozni ÕzR SK 462-moddasi bõyiça soliq rejimining majburiy õzgarişidan himoya qiladi).</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Nomenklaturani metodologik verifikatsiya qiliş (ÕzR SK 223-1-moddasi bõyiça sanksiyalar ehtimolini nolga tuşiradi).</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Hamda boşqa kõplab konfidentsial eçimlar.</span>
+        </li>
+    </ul>
+</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-24.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">МОНИТОРИНГ ЖИЗНЕСПОСОБНОСТИ</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">HAYOTÇANLIK MONITORINGI</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Мы внедряем глубокий мониторинг (согласно НСБУ №1 и №5), системно предотвращая скрытое «проедание» капитала Клиента через алгоритмы резервирования. <br>Деятельность HISOBLI носит исключительно процессный характер (ст. 707 ГК РУз) и не гарантирует достижения субъективных результатов. <br>Ваш баланс в Контуре — это стерильный капитал без латентных долгов.</p></div>
+							<div lang-data="uz"><p class="mb-4">Biz çuqur monitoringni (1 va 5-sonli BHMSga muvofiq) joriy etamiz va rezerv qiliş algoritmlari orqali Mijoz kapitalining yaşirinça «yeb bitirilişi»ning tizimli ravişda oldini olamiz. <br>HISOBLI faoliyati mutlaqo jarayoniy/protsessli xarakterga ega (ÕzR FK 707-moddasi) va subyektiv natijalarga erişişni kafolatlamaydi. <br>Konturdagi balansingiz — bu yaşirin qarzlardan xoli bõlgan steril kapitaldir.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			 <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-25.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">ПРОЦЕССНАЯ ФАБРИКА</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">JARAYONLAR FABRIKASI</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Фабрика процессов от HISOBLI — это структурная изоляция рисков и ликвидация финансовой неопределенности. <br>Мы внедряем методы, обеспечивающие автоматическую фискальную сепарацию потоков. <br>Это позволяет железно защитить Клиента от вероятных санкций по ст. 90 НК РУз (нарушение очерёдности платежей) и обеспечить абсолютную неприкосновенность «налогового иммунитета».</p></div>
+							<div lang-data="uz"><p class="mb-4">HISOBLI jarayonlar fabrikasi — bu xatarlarning tarkibiy izolyatsiyasi va moliyaviy noaniqlikni bartaraf etişdir. <br>Biz oqimlarning avtomatik fiskal separatsiyasini ta’minlovçi usullarni qõllaymiz. <br>Bu Mijozni ÕzR SK 90-moddasi bõyiça ehtimoliy sanksiyalardan (tõlov navbatining buzilişi) qat’iy himoya qiliş va «soliq immuniteti» daxlsizligini ta’minlaş imkonini beradi.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-26.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">АЛГОРИТМЫ И СТОП-КРАН</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">ALGORITMLAR VA STOP-KRAN</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Конвейер включает алгоритмы верификации номенклатуры, системно исключающие риск начисления штрафов по ст. 223-1 НК РУз (до 1% от стоимости реализации за некорректный ИКПУ). <br>Внедрённый режим «Стоп-кран» превентивно защищает Клиента от возможной принудительной смены налогового режима строго по ст. 462 НК РУз. <br>Мы гарантируем стерильность самого процесса.</p></div>
+							<div lang-data="uz"><p class="mb-4">Konveyer nomenklaturani verifikatsiya qiliş algoritmlarini õz içiga oladi, bu ÕzR SK 223-1-moddasi bõyiça jarimalar qõllaniliş xatarini (notõğri MXIK uçun realizatsiya qiymatidan 1% gaça) tizimli ravişda istisno etadi. <br>Joriy etilgan «Stop-kran» rejimi Mijozni ÕzR SK 462-moddasi bõyiça soliq rejimining majburiy õzgarişidan preventiv himoya qiladi. <br>Biz jarayonning õzi sterilligini kafolatlaymiz.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-27.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">ЦИФРОВАЯ КОНСТАНТА И ЗАЩИТА</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">RAQAMLI KONSTANTA VA HIMOYA</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Каждая операция в Контуре получает уникальную цифровую константу, что превращает Ваш архив в полноценные доказательства по ст. 76 и 193 ЭПК РУз. <br>ПРОТОКОЛ ЗАЩИТЫ: <br>Мы охраняем не «бумаги», мы охраняем границы Вашей воли. <br>Контур — это Ваша архитектурная броня, если Вы внутри регламента. <br>И Ваша полная изоляция, если Вы находитесь вне его.</p></div>
+							<div lang-data="uz"><p class="mb-4">Konturdagi har bir operatsiya noyob raqamli konstantaga ega bõladi, bu esa sizning arxivni ÕzR IPK 76 va 193-moddalari bõyiça tõliq qimmatli dalillarga aylantiradi. <br>HIMOYA PROTOKOLI: <br>Biz «qoğozlarni» emas, irodangiz çegaralarini qõriqlaymiz. <br>Agar reglament içida bõlsangiz, Kontur — sizning arxitekturaviy zirhingizdir. <br>Undan taşqarida bõlsangiz — tõliq izolyatsiyangizdir.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+    <div class="row g-0 align-items-center">
+        <div class="col-md-5 order-md-1 text-md-end">
+            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <img class="img-fluid rounded-circle" src="img/service-28.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                <div lang-data="ru"><h3 class="text-uppercase">ДЕМАРКАЦИЯ: ПРОЦЕСС VS РЕШЕНИЕ</h3></div>
+				<div lang-data="uz"><h3 class="text-uppercase">DEMARKATSIYA: JARAYON VS QAROR</h3></div>
+                <div lang-data="ru"><p class="mb-4">Мы жёстко разделили “миры”. <br>HISOBLI — это хладнокровный оператор процесса. <br>Вы — суверенный архитектор воли. <br>Мы всецело отвечаем за безупречность исполнения алгоритма и технологическую чистоту учёта. <br>Вы — за экономический смысл, деловую цель и последствия Ваших приказов. <br>Процесс и решение — это абсолютно разные уровни реальности и ответственности. <br>Мы принципиально не заходим на Вашу территорию принятия решений. <br>Не позволяйте хаосу и неопределенности заходить на нашу.</p></div>
+                <div lang-data="uz"><p class="mb-4">Biz “dunyo”larn i õzaro qat’iy ajratdik. <br>HISOBLI — jarayonning sovuqqon operatori. <br>Siz — irodaning suveren me’morisiz. <br>Biz algoritmning benuqson bajarilişi va hisobning texnologik tozaligi uçun tõliq javobgarmiz. <br>Siz esa — iqtisodiy mazmun, işbilarmonlik maqsadi va buyruqlaringizning oqibatlari uçun javobgarsiz. <br>Jarayon va qaror — bular voqelik va javobgarlikning mutlaqo turli darajalaridir. <br>Biz prinsipial ravişda sizning qaror qabul qiliş hududingizga kirmaymiz. <br>Tartibsizlik va noaniqlikning bizning hududga kirişiga yõl qõymang.</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-29.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">МАНИФЕСТ ОТКАЗА</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">RAD ETIŞ MANIFESTI</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Протокол защиты намертво блокирует любые попытки превратить отлаженный Контур в банальный «сервис по вызову» или реактивный «архив ошибок». <br>Система защищает себя, чтобы бесперебойно защищать Вас. <br> Архитектура HISOBLI предусматривает добровольное страхование профессиональной ответственности бухгалтеров как стандарт финансовой защиты контура.</p></div>
+							<div lang-data="uz"><p class="mb-4">Himoya protokoli sozlangan Konturni oddiy «çaqiruv bõyiça servis»ga yoki reaktiv «xatolar arxivi»ga aylantirişga bõlgan har qanday urinişni butkul bloklaydi. <br>Tizim sizni uzluksiz himoya qiliş uçun avvalo õzini himoya qiladi. <br> HISOBLI arxitekturasi konturning moliyaviy himoya standarti sifatida buxgalterlarning kasbiy javobgarligini ixtiyoriy suğurtalaşni nazarda tutadi.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+    <div class="row g-0 align-items-center">
+        <div class="col-md-5 order-md-1 text-md-end">
+            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <img class="img-fluid rounded-circle" src="img/service-30.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                <div lang-data="ru"><h3 class="text-uppercase">ЧЕГО МЫ НЕ ДЕЛАЕМ?</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">BIZ NIMA BILAN ŞUĞULLANMAYMIZ?</h3></div>
+                            <div lang-data="ru">
+							<p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>HISOBLI принципиально:</strong></p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>HISOBLI prinsipial ravişda:</strong></p>
+                        </div>
+<div lang-data="ru">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Не управляет вашим бизнесом и не принимает за Вас решения.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Не проверяет достоверность переданных вами документов (отражаем «как есть» - as is).</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Не даёт «налоговых чудес» или пустых экономических гарантий.</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Не заменяет ваших сотрудников и не участвует в спорах с контрагентами.</span>
+        </li>
+    </ul>
+</div>
+<div lang-data="uz">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Biznesingizni boşqarmaydi va siz uçun qarorlar qabul qilmaydi.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Siz tarafdan taqdim etilgan Hujjatlarning işonçliligini tekşirmaydi — biz ularni «asl holiça» (as is) aks ettiramiz.</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- «Soliq mõjizalari»ni yaratmaydi yoki quruq iqtisodiy kafolatlar bermaydi.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Xodimlaringiz õrnini bosmaydi va kontragentlar bilan nizolaringizda iştirok etmaydi.</span>
+        </li>
+    </ul>
+</div>
+<div lang-data="ru">
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.4s">Мы — инженеры институциональной устойчивости, а не адвокаты.</p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-5 wow fadeInUp" data-wow-delay="0.4s">Biz advokatlar emas, institutsional barqarorlik muhandislarimiz.</p>
+                        </div>
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-32.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">НАМ КАТЕГОРИЧЕСКИ НЕ ПО ПУТИ,</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">AGAR SIZ QUYIDAGI HOLATDA BÕLSANGIZ,</h3></div>
+                            <p class="mb-4"><div lang-data="ru">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>ЕСЛИ ВЫ:</strong></p>
+                        </div>
+                        <div lang-data="uz">
+                            <p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>BIZ SIZGA YÕLDOŞ EMAS:</strong></p>
+                        </div>
+						<div lang-data="ru">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Ищете «решалу», а не отлаженный и прозрачный процесс учёта.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Ждёте индивидуальных советов / обхода правил вместо соблюдения регламентов.</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Делегируете нам ответственность за последствия Ваших решений.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Воспринимаете бухгалтерию как творческий беспорядок и сервис «по запросу», а не строгую архитектуру.</span>
+        </li>
+    </ul>
+</div>
+
+<div lang-data="uz">
+    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Sozlangan va şaffof hisob jarayonini emas, «muammolarni yopib beruvçi» şaxsni qidirayotgan bõlsangiz.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Qat’iy reglamentlarga rioya qiliş õrniga, individual maslahatlar va qoidalarni aylanib õtişni kutayotgan bõlsangiz.</span>
+        </li>
+		<li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Õz qarorlaringiz oqibatlari uçun javobgarlikni bizga yuklamoqçi bõlsangiz.</span>
+        </li>
+        <li class="list-group-item custom-list-item">
+            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+            <span>- Buxgalteriyani qat’iy arxitektura emas, balki «sõrov bõyiça» servis va ijodiy tartibsizlik deb bilsangiz.</span>
+        </li>
+    </ul>
+</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="service-item service-item-right">
+    <div class="row g-0 align-items-center">
+        <div class="col-md-5 order-md-1 text-md-end">
+            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                <img class="img-fluid rounded-circle" src="img/service-31.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                <div lang-data="ru"><h3 class="text-uppercase">УЛЬТИМАТИВНЫЙ ФИЛЬТР</h3></div>
+				<div lang-data="uz"><h3 class="text-uppercase">ULTIMATIV FILTR</h3></div>
+                <div lang-data="ru"><p class="mb-4">Мы — не адвокаты Ваших управленческих недочётов. <br>Кому мы не подходим: <br>HISOBLI — это высокотехнологичная производственная линия исключительно для дисциплинированных капитанов бизнеса. <br>Наша архитектура требует неукоснительного порядка. <br>Контур работает как швейцарские часы только тогда, когда клиент соблюдает правила игры.</p></div>
+                <div lang-data="uz"><p class="mb-4">Biz boşqaruvdagi xatolaringizni oqlovçi advokatlar emasmiz. <br>Kimlarga mos kelmaymiz: <br>HISOBLI — bu faqat intizomli biznes sardorlari uçun mõljallangan yuqori texnologik işlab çiqariş liniyasidir. <br>Bizning arxitektura sõzsiz tartibni talab qiladi. <br>Kontur faqat mijoz õyin qoidalariga rioya qilgandagina şveytsariya soatidek aniq işlaydi.</p></div>
+            </div>
+        </div>
+    </div>
+</div>
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/service-33.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <div lang-data="ru"><h3 class="text-uppercase">ПРАВИЛА И ГРАНИЦЫ</h3></div>
+							<div lang-data="uz"><h3 class="text-uppercase">QOIDALAR VA ÇEGARALAR</h3></div>
+                            <div lang-data="ru"><p class="mb-4">Контур защищает только те активы, владельцы которых безоговорочно уважают его внутренние правила и установленные границы. <br>Мы обеспечиваем бесперебойное функционирование системы и идеальную чистоту процессуального учёта. <br>Ваш успех — это результат Ваших решений, опирающихся на нашу железобетонную процессную инфраструктуру.</p></div>
+							<div lang-data="uz"><p class="mb-4">Kontur faqat uning içki qoidalari va õrnatilgan çegaralarini sõzsiz hurmat qiladigan aktivlarni himoya qiladi. <br>Biz tizimning uzluksiz işlaşini va protsessual hisobning ideal tozaligini ta’minlaymiz. <br>Sizning muvaffaqiyatingiz — bu bizning mustahkam jarayonlar infratuzilmamizga tayanadigan õz qarorlaringiz natijasidir.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-secondary">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-7 pb-0 pb-lg-5 py-5">
+                    <div class="pb-0 pb-lg-5 py-5">
+                        <div class="title wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="title-left">
+                                <div lang-data="ru"><h5>Прочитано, но не понято?</h5></div>
+                                <div lang-data="ru"><h1>Тогда посмотрите!</h1></div>
+								<div lang-data="uz"><h5>Õqildi-yu tuşunilmadimi?</h5></div>
+                                <div lang-data="uz"><h1>Unda tomoşa qiling!</h1></div>
+                            </div>
+                        </div>
+                        <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
+    
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <iframe 
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/WnAloIvGWmk" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    referrerpolicy="strict-origin-when-cross-origin" 
+    allowfullscreen>
+</iframe>
+    </div>
+</div>
+    <div class="row wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="col-6">
+                                <div lang-data="ru">
+                                    <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Выберите Продукт!</a>
+                                </div>
+                                <div lang-data="uz">
+                                    <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Mahsulotni tanlang!</a>
+                                </div>
+                            </div>
+                            <div class="col-6">
+    <div lang-data="ru">
+        <a href="contact.html" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-primary py-3 w-100">
+           Нужны контакты?
+        </a>
+    </div>
+
+    <div lang-data="uz">
+        <a href="team.html" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="btn btn-primary py-3 w-100">
+           Boğlanişni istaysizmi?
+        </a>
+    </div>
+</div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Service End -->
+
+
+<div class="container-fluid bg-dark text-light footer py-5 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container text-center py-5">
+        <a href="index.html">
+            <h1 class="display-4 mb-3 text-white text-uppercase">
+                <span lang-data="ru">АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ</span>
+                <span lang-data="uz">BIZNES-JARAYONLAR ME'MORI</span>
+            </h1>
+        </a>
+        <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
+            <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="social-icon-custom"><img src="img/youtube.svg"></a>
+            <a href="https://www.instagram.com/hisobli" target="_blank" class="social-icon-custom"><img src="img/instagram.svg"></a>
+            <a href="https://bit.ly/Hisobli-FB" target="_blank" class="social-icon-custom"><img src="img/facebook.svg"></a>
+            <a href="https://bit.ly/HISOBLI-TG-kanal" target="_blank" class="social-icon-custom"><img src="img/telegram.svg"></a>
+            <a href="https://x.com/hisobli" target="_blank" class="social-icon-custom"><img src="img/twitter.svg"></a>
+            <a href="https://www.threads.com/@hisobli" target="_blank" class="social-icon-custom"><img src="img/threads.svg"></a>
+            <a href="https://m.me/hisobli" target="_blank" class="social-icon-custom"><img src="img/messenger.svg"></a>
+            <a href="https://wa.me/p/34356703400641221/998959525939" class="social-icon-custom"><img src="img/whatsapp.svg"></a>
+            <a href="mailto:info@hisob.li" class="social-icon-custom"><img src="img/email.svg"></a>
+            <a href="https://t.me/hiso6li" target="_blank" class="social-icon-custom"><img src="img/phone.svg"></a>
+        </div>
+        <p>&copy; <a class="border-bottom" href="#">2026 HISOBLI Mas’uliyati çeklangan jamiyati</a>. All Right Reserved.</p>
+        
+        <div class="legal-accordion" id="legalAccordion">
+            <div class="accordion-header-custom" onclick="toggleLegal()">
+                <img src="img/tarozi.svg" class="tarozi-icon" alt="Scale">
+                <p class="legal-title">
+                    <span lang-data="ru">ЮРИДИЧЕСКОЕ ПРЕДОСТОРОЖЕНИЕ</span>
+                    <span lang-data="uz">YURIDIK OGOHLANTIRIŞ</span>
+                </p>
+            </div>
+            <div class="accordion-body-custom" id="legalBody">
+                <div class="legal-content">
+                    <div lang-data="ru">
+                        Все текстовые формулировки, архитектура продуктов, методология, бизнес-логика и алгоритмы сопровождения, размещённые на данном сайте, являются объектами интеллектуальной собственности ООО «HISOBLI». Защите подлежат не только тексты, но и уникальный понятийный аппарат (включая термин „Контур“ в контексте финансово-правового сопровождения) и логика построения регламентов HISOBLI. Указанные объекты охраняются Законом Республики Узбекистан «Об авторском праве и смежных правах», а также главами 60 и 64 Гражданского кодекса Республики Узбекистан. Любое копирование, воспроизведение, тиражирование или использование указанных материалов (включая заимствование методологии) полностью или частично без письменного согласия правообладателя запрещено и влечет юридические последствия.
+                    </div>
+                    <div lang-data="uz">
+                        Uşbu saytda joylaştirilgan barça matnli ifodalar, mahsulotlar arxitekturasi, metodologiya, biznes-mantiq va qõllab-quvvatlaş ta’minoti algoritmlari «HISOBLI» MÇJning intellektual mulk obyektlari hisoblanadi. Himoya qilinadigan obyektlar qatoriga nafaqat matnlar, balki noyob tuşunçalar apparati (şu jumladan, moliya-huquqiy hamrohlik kontekstidagi „Kontur“ atamasi) va HISOBLI reglamentlarini tuziş mantiği ham kiradi. Kõrsatilgan obyektlar Õzbekiston Respublikasining «Mualliflik huquqi va turdoş huquqlar tõğrisida»gi Qonuni, şuningdek Õzbekiston Respublikasi Fuqarolik kodeksining 60 va 64-boblari bilan qõriqlanadi. Huquq egasining yozma roziligisiz kõrsatilgan materiallarni (şu jumladan metodologiyani) tõliq yoki qisman nusxalaş, kõpaytiriş, tirajlaş yoki ulardan foydalaniş taqiqlanadi va yuridik oqibatlarga sabab bõladi.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="back-to-top" style="position: fixed; right: 30px; bottom: 30px; display: none; z-index: 99; cursor: pointer; transition: 0.3s;">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 2px;">
+        <svg width="40" height="20" viewBox="0 0 40 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 15L20 5L35 15" stroke="#BFA46F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <img src="img/marker_firm.svg" style="width: 45px; filter: invert(74%) sepia(18%) saturate(738%) hue-rotate(7deg) brightness(89%) contrast(89%);">
+    </div>
+</a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+<script>
+    function switchLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        const activeBtn = Array.from(document.querySelectorAll('.lang-btn')).find(b => 
+            (lang === 'ru' && b.innerText.includes('РУ')) || (lang === 'uz' && b.innerText.includes('ÖZ'))
+        );
+        if(activeBtn) activeBtn.classList.add('active');
+
+        document.querySelectorAll('[lang-data]').forEach(el => {
+            if (el.getAttribute('lang-data') === lang) {
+                el.style.setProperty('display', (el.tagName === 'SPAN' ? 'inline' : 'block'), 'important');
+            } else {
+                el.style.setProperty('display', 'none', 'important');
+            }
+        });
+        localStorage.setItem('hisobli_lang', lang);
+    }
+
+    function toggleLegal() {
+        document.getElementById('legalBody').classList.toggle('show');
+    }
+</script>
+<script>
+// ==========================================
+// ПОЛНАЯ ЗАЩИТА КОНТЕНТА
+// ==========================================
+
+// 1. Запрет контекстного меню
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 2. Запрет выделения текста
+document.addEventListener('selectstart', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 3. Запрет копирования, вырезания
+document.addEventListener('copy', function(e) {
+    e.preventDefault();
+    return false;
+});
+document.addEventListener('cut', function(e) {
+    e.preventDefault();
+    return false;
+});
+
+// 4. Запрет перетаскивания изображений
+document.querySelectorAll('img').forEach(function(img) {
+    img.setAttribute('draggable', 'false');
+    img.style.userSelect = 'none';
+    img.style.webkitUserDrag = 'none';
+});
+
+// 5. Запрет горячих клавиш
+document.addEventListener('keydown', function(e) {
+    // F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, Ctrl+P
+    if (e.key === 'F12' || 
+        (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'p'))) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 6. Защита от перетаскивания ссылок и изображений
+document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.tagName === 'A') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// 7. Защита от печати (предупреждение)
+window.onbeforeprint = function() {
+    alert('🔒 Сохранение страницы в PDF запрещено');
+    return false;
+};
+
+// 8. Обнаружение DevTools (просто предупреждение)
+(function() {
+    const devtools = /./;
+    devtools.toString = function() {
+        console.log('🔒 Инструменты разработчика');
+        return '';
+    };
+    console.log(devtools);
+})();
+
+</script>
+</body>
+</html>
