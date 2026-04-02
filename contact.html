@@ -650,7 +650,91 @@ window.onbeforeprint = function() {
     };
     console.log(devtools);
 })();
+</script>
+<script>
+// SUPABASE КЛЮЧИ
+const SUPABASE_URL = "https://ivqrnsoxoacxyzahoqld.supabase.co/rest/v1/analytics";
+const ANON_KEY = "sb_publishable_NidwWr2DtCtSxbbmx-dmtg_CTG0eTAM";
 
+function getFingerprint() {
+  return btoa(navigator.userAgent + navigator.language + screen.width + screen.height + Intl.DateTimeFormat().resolvedOptions().timeZone).slice(0,16);
+}
+
+async function sendData(payload) {
+  try {
+    await fetch(SUPABASE_URL, {
+      method: "POST",
+      headers: {
+        "apikey": ANON_KEY,
+        "Authorization": `Bearer ${ANON_KEY}`,
+        "Content-Type": "application/json",
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) {}
+}
+
+// ВИЗИТ
+const visitPayload = {
+  type: "visit",
+  url: location.href,
+  referrer: document.referrer || null,
+  time: new Date().toISOString(),
+  fp: getFingerprint(),
+  session: Math.random().toString(36).slice(2),
+  ua: navigator.userAgent,
+  lang: navigator.language,
+  screen: `${screen.width}x${screen.height}`,
+  tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
+  platform: navigator.platform,
+  online: navigator.onLine
+};
+sendData(visitPayload);
+
+// КЛИКИ
+document.addEventListener("click", e => {
+  const target = e.target.closest("a, .circle, #lang-ru, #lang-uz, .master-block, .block, .panel, details");
+  if (!target) return;
+  let label = "unknown";
+  if (target.id) label = target.id;
+  else if (target.href) label = target.href.split("/").pop();
+  else if (target.textContent) label = target.textContent.trim().slice(0,40);
+  sendData({ type: "click", label: label, url: location.href, time: new Date().toISOString(), fp: getFingerprint() });
+});
+
+// ПРОСМОТР БЛОКОВ
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      sendData({ type: "view", section: entry.target.classList[0] || "unknown", url: location.href, time: new Date().toISOString() });
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll(".top-panels, main, footer, .panel, .block").forEach(el => observer.observe(el));
+
+// СКРОЛЛ
+let lastDepth = 0;
+window.addEventListener("scroll", () => {
+  const depth = Math.floor((window.scrollY + window.innerHeight) / document.body.scrollHeight * 100);
+  if (depth >= lastDepth + 25) {
+    lastDepth = depth;
+    sendData({ type: "scroll", depth: depth + "%", url: location.href, time: new Date().toISOString() });
+  }
+});
+
+// КОНЕЦ СЕССИИ
+let startTime = Date.now();
+window.addEventListener("beforeunload", () => {
+  const duration = Math.round((Date.now() - startTime) / 1000);
+  sendData({ type: "session_end", duration: duration + "s", url: location.href, fp: getFingerprint() });
+});
+</script>	
+<script>
+(function(w,d,u){
+var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
+var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
+})(window,document,'https://cdn-ru.bitrix24.ru/b37264340/crm/tag/call.tracker.js');
 </script>
 </body>
 </html>
