@@ -31,16 +31,14 @@
 .contact-icon-svg:hover img {
     filter: invert(74%) sepia(18%) saturate(738%) hue-rotate(7deg) brightness(89%) contrast(89%);
 }
-    .lang-switcher {
-        position: absolute;
-        right: 80px; 
-        top: 25px;
-        z-index: 1000;
-        display: flex;
-        border: 2px solid #BFA46F;
-        border-radius: 4px;
-        overflow: hidden;
-        font-family: 'Fira Mono', monospace;
+.lang-switcher {
+    display: flex;
+    border: 2px solid #BFA46F;
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: 'Fira Mono', monospace;
+    margin-left: auto;
+}
     }
     @media (min-width: 992px) { .lang-switcher { right: 50px; top: 35px; } }
     .lang-btn {
@@ -232,6 +230,10 @@
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
+}
+.navbar .container {
+    display: flex;
+    align-items: center;
 }
 
 
