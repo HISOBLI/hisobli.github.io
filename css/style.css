@@ -710,3 +710,14 @@ iframe:hover {
         z-index: 999999 !important;
     }
 }
+@media (max-width: 991.98px) {
+    .lang-switcher {
+        order: 2;
+        margin-left: 10px;
+    }
+
+    .navbar-toggler {
+        order: 3;
+        margin-left: 10px;
+    }
+}
