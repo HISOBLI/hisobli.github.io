@@ -710,3 +710,11 @@ iframe:hover {
         z-index: 999999 !important;
     }
 }
+/* --- ТОЧЕЧНАЯ ХИРУРГИЯ: Мобильный текст по левому краю --- */
+@media (max-width: 768px) {
+    p, li, .legal-content, .about-text {
+        text-align: left !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+}
