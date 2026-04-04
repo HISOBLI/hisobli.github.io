@@ -485,15 +485,6 @@ document.getElementById('smartAddBtn').addEventListener('click', function () {
     // 2. АВТО-РАЗБИВКА: Режем строку по 75 символов с пробелом в начале (требование Android)
     const chunks = rawBase64.match(/.{1,75}/g);
     const formattedPhoto = chunks ? chunks.join("\r\n ") : "";
-  if (photoBase64) {
-          const base64Data = photoBase64.replace(/^data:image\/(jpeg|png|jpg);base64,/, '');
-          const maxLineLength = 75;
-          for (let i = 0; i < base64Data.length; i += maxLineLength) {
-            formattedPhoto += base64Data.substring(i, i + maxLineLength) + "\r\n ";
-          }
-          // Удаление пробела в конце, чтобы парсер не поглотил тег END:VCARD
-          formattedPhoto = formattedPhoto.trimEnd(); 
-        }
 
     // 3. СБОРКА VCARD: VERSION:3.0 и ENCODING=b обязательны
     const vCardData = [
