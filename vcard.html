@@ -485,6 +485,15 @@ document.getElementById('smartAddBtn').addEventListener('click', function () {
     // 2. АВТО-РАЗБИВКА: Режем строку по 75 символов с пробелом в начале (требование Android)
     const chunks = rawBase64.match(/.{1,75}/g);
     const formattedPhoto = chunks ? chunks.join("\r\n ") : "";
+  if (photoBase64) {
+          const base64Data = photoBase64.replace(/^data:image\/(jpeg|png|jpg);base64,/, '');
+          const maxLineLength = 75;
+          for (let i = 0; i < base64Data.length; i += maxLineLength) {
+            formattedPhoto += base64Data.substring(i, i + maxLineLength) + "\r\n ";
+          }
+          // Удаление пробела в конце, чтобы парсер не поглотил тег END:VCARD
+          formattedPhoto = formattedPhoto.trimEnd(); 
+        }
 
     // 3. СБОРКА VCARD: VERSION:3.0 и ENCODING=b обязательны
     const vCardData = [
@@ -497,7 +506,7 @@ document.getElementById('smartAddBtn').addEventListener('click', function () {
         "TEL;TYPE=WORK,VOICE:+998959525939",
         "TEL;TYPE=CELL,VOICE:+998959525939",
         "EMAIL;TYPE=INTERNET,WORK:info@hisob.li",
-        "URL;TYPE=САЙТ:https://hisob.li",
+        "URL;TYPE=SAYT:https://hisob.li",
         "URL;TYPE=Telegram:https://t.me/hiso6li",
         "URL;TYPE=YouTube:https://www.youtube.com/@HISOBLI",
         "URL;TYPE=WhatsApp:https://wa.me/p/34356703400641221/998959525939",
@@ -506,7 +515,7 @@ document.getElementById('smartAddBtn').addEventListener('click', function () {
         "URL;TYPE=Threads:https://threads.net/@hisobli",
         "URL;TYPE=Xwitter:https://x.com/hisobli",
         "ADR;TYPE=WORK:;;24/7, Бухгалтерия, Консалтинг;Ташкент;;;Узбекистан",
-        "NOTE:📌 ПАТЕНТОВАННЫЕ СТАНДАРТИЗИРОВАННЫЕ ФИНАНСОВО-ПРАВОВЫЕ КОНТУРЫ:\n📚 «HISOBLI» MÇJ konsalting kompaniyasi (asosiy faoliyat turi - IFUT kodi: 70.22.0) biznes faoliyatining standartlaştirilgan moliyaviy-huquqiy konturlarini şakllantiradi va tizimli boşqaradi.\n💎 Для ИП и ООО на упрощёнке (без НДС)\n🚀 Полностью дистанционно | Ташкент и Узбекистан\n🏆 Интеграция с my3.soliq.uz + 1С\n🎯 Юридическое делопроизводство встроено в учёт\n\n💰 БАЗОВЫЙ ПАКЕТ: 6 000 000 сум/мес (со скидкой | всё включено)\n⏱️ РЕЖИМ РАБОТЫ: ПН–ПТ 09:00–18:00",
+        "NOTE:📌 ПАТЕНТОВАННЫЕ СТАНДАРТИЗИРОВАННЫЕ ФИНАНСОВО-ПРАВОВЫЕ КОНТУРЫ:\\n📚 «HISOBLI» MÇJ konsalting kompaniyasi (asosiy faoliyat turi - IFUT kodi: 70.22.0) biznes faoliyatining standartlaştirilgan moliyaviy-huquqiy konturlarini şakllantiradi va tizimli boşqaradi.\\n💎 Для ИП и ООО на упрощёнке (без НДС)\\n🚀 Полностью дистанционно | Ташкент и Узбекистан\\n🏆 Интеграция с my3.soliq.uz + 1С\\n🎯 Юридическое делопроизводство встроено в учёт\\n💰 БАЗОВЫЙ ПАКЕТ: 6 000 000 сум/мес (со скидкой | всё включено)\\n⏱️ РЕЖИМ РАБОТЫ: ПН–ПТ 09:00–18:00",
         "PHOTO;ENCODING=b;TYPE=JPEG:" + formattedPhoto,
         "END:VCARD"
     ].join("\r\n");
