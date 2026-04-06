@@ -711,6 +711,49 @@ iframe:hover {
     }
 }
 /* --- Демонстрация Перезказ Договора в отдельной странице по стилю FAQ --- */
+  .product {
+    border-top: 1px solid #222;      /* НЕ ТРОГАЕМ — запрет */
+    padding: 16px 0 12px;            /* было 20/16 → меньше */
+    cursor: pointer;
+  }
+
+  .product-cover {
+    background: var(--panel);
+    padding: 20px 24px;              /* было 24/28 → компактнее */
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
+    margin-bottom: 12px;             /* было 20px */
+    transition: all 0.35s ease;
+    cursor: pointer;
+  }
+
+  .product:hover .product-cover {
+    box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+    transform: translateY(-3px);
+  }
+
+  .product-slogan {
+    font-style: italic;
+    font-weight: bold;
+    color: var(--gold);
+    font-size: 0.96em;
+    line-height: 1.4;
+    margin-top: 6px;                 /* было 10px */
+    opacity: 0.95;
+  }
+
+  .product-title {
+    margin-bottom: 6px;              /* было 8px */
+  }
+
+  .product-content {
+    display: none;
+    margin-top: 10px;                /* было 16px */
+  }
+
+  .product.active .product-content { display: block; }
+
    .faq-item {
       border-top: 1px solid #222;
       padding: 16px 0 12px;
