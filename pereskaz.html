@@ -357,22 +357,22 @@
     }
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const products = document.querySelectorAll('.product');
+    const items = document.querySelectorAll('.product');
 
-    products.forEach(item => {
-        item.addEventListener('click', function(e) {
-            // Проверяем, открыт ли этот блок прямо сейчас
-            const isOpen = this.classList.contains('active');
+    items.forEach(item => {
+        const header = item.querySelector('.product-header');
 
-            // 1. Сначала закрываем ВООБЩЕ ВСЕ блоки без исключения
-            products.forEach(el => {
-                el.classList.remove('active');
-            });
+        header.addEventListener('click', function(e) {
+            e.stopPropagation(); // чтобы не было цирка
 
-            // 2. Если тот, на который нажали, БЫЛ ЗАКРЫТ — открываем его
-            // Если он БЫЛ ОТКРЫТ — он останется закрытым (благодаря шагу 1)
+            const isOpen = item.classList.contains('active');
+
+            // закрываем все
+            items.forEach(el => el.classList.remove('active'));
+
+            // открываем нужный
             if (!isOpen) {
-                this.classList.add('active');
+                item.classList.add('active');
             }
         });
     });
