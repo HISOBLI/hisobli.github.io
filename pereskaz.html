@@ -366,12 +366,17 @@
     }
 </script>
 <script>
-  // Аккордеон для FAQ
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('active');
+    function attachAccordion() {
+    // Удаляем старые слушатели, чтобы не плодить дубли
+    document.querySelectorAll(".product").forEach(el => {
+      el.removeEventListener("click", toggleActive); // на всякий случай
+      el.addEventListener("click", toggleActive);
     });
-  });
+  }
+
+  function toggleActive() {
+    this.classList.toggle("active");
+	   attachAccordion();              // первый раз привязываем аккордеон
 </script>
 <script>
 // ==========================================
