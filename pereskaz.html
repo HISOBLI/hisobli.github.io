@@ -328,15 +328,18 @@
         document.getElementById('legalBody').classList.toggle('show');
     }
 </script>
-<script>
+	<script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Выбираем все элементы с классом .product
     const products = document.querySelectorAll('.product');
 
     products.forEach(item => {
-        // Вешаем событие клика на весь контейнер или только на обложку
         item.addEventListener('click', function() {
-            // Переключаем класс active
+            // Если хочешь закрывать остальные при открытии этого:
+            /*
+            products.forEach(el => {
+                if (el !== this) el.classList.remove('active');
+            });
+            */
             this.classList.toggle('active');
         });
     });
