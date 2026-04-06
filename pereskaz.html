@@ -354,30 +354,20 @@
 
     function toggleLegal() {
         document.getElementById('legalBody').classList.toggle('show');
+    }document.addEventListener('click', function(e) {
+    const product = e.target.closest('.product');
+    if (!product) return;
+
+    const all = document.querySelectorAll('.product');
+
+    const isOpen = product.classList.contains('active');
+
+    all.forEach(el => el.classList.remove('active'));
+
+    if (!isOpen) {
+        product.classList.add('active');
     }
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const items = document.querySelectorAll('.product');
-
-    items.forEach(item => {
-        const header = item.querySelector('.product-header');
-
-        header.addEventListener('click', function(e) {
-            e.stopPropagation(); // чтобы не было цирка
-
-            const isOpen = item.classList.contains('active');
-
-            // закрываем все
-            items.forEach(el => el.classList.remove('active'));
-
-            // открываем нужный
-            if (!isOpen) {
-                item.classList.add('active');
-            }
-        });
-    });
 });
-</script>
 <script>
 // ==========================================
 // ПОЛНАЯ ЗАЩИТА КОНТЕНТА
