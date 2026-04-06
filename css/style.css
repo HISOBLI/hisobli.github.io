@@ -710,63 +710,59 @@ iframe:hover {
         z-index: 999999 !important;
     }
 }
-/* --- Демонстрация Перезказ Договора в отдельной странице по стилю FAQ --- */
-:root {
-    --gold: #BFA46F;
-    --panel: #1a1a1a; /* Цвет фона панели, если не задан в переменных */
-    --text: #ffffff;
-}
 
-.product {
+/* --- Обновленный Аккордеон: Пересказ Договора --- */
+  .product {
     border-top: 1px solid #222;
-    padding: 10px 0;
+    padding: 16px 0 12px;
     cursor: pointer;
     width: 100%;
-}
+  }
 
-.product-cover {
+  .product-cover {
     background: var(--panel);
-    padding: 18px 24px;
+    padding: 20px 24px;
     border: 2px solid var(--gold);
     border-radius: 6px;
-    box-shadow: 0 0 15px rgba(191, 164, 111, 0.2);
+    box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
+    margin-bottom: 12px;
     transition: all 0.35s ease;
-    text-align: left; /* Выравнивание заголовка по левому краю */
-}
+    text-align: left; /* Заголовок слева */
+  }
 
-/* Эффект золотого напыления при наведении */
-.product:hover .product-cover {
-    box-shadow: 0 0 30px rgba(191, 164, 111, 0.5);
-    transform: translateY(-2px);
-    border-color: #d4bc8a;
-}
+  /* Напыление при наведении */
+  .product:hover .product-cover {
+    box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+    transform: translateY(-3px);
+  }
 
-.product-title {
+  .product-title {
     color: var(--gold);
+    font-size: 1.15rem; /* Чуть крупнее основного текста */
     font-weight: 700;
-    font-size: 1.25rem; /* Чуть больше основного текста, но меньше H3 */
-    margin: 0;
     text-transform: uppercase;
-}
+    margin: 0;
+  }
 
-.product-content {
+  .product-content {
     display: none;
-    padding: 20px 24px;
-    color: var(--text);
-    text-align: left; /* Адаптивный текст по левому краю */
+    margin-top: 10px;
+    padding: 0 10px;
+    text-align: left;   /* Текст внутри слева */
+    font-weight: 400;   /* СТРОГИЙ СБРОС ЖИРНОСТИ для обычных букв */
     line-height: 1.6;
-}
+  }
 
-/* Окрашивание жирного текста внутри аккордеона */
-.product-content strong {
+  /* Золотой акцент для выделенных слов */
+  .product-content strong {
     color: var(--gold);
     font-weight: 700;
-}
+  }
 
-/* Активное состояние */
-.product.active .product-content {
-    display: block;
-}
+  /* Открытие аккордеона */
+  .product.active .product-content { 
+    display: block; 
+  }
 
 .product.active .product-cover {
     background: rgba(191, 164, 111, 0.1); /* Легкий подсвет при открытии */
