@@ -354,21 +354,8 @@
 
     function toggleLegal() {
         document.getElementById('legalBody').classList.toggle('show');
-    }document.addEventListener('click', function(e) {
-    const product = e.target.closest('.product');
-    if (!product) return;
-
-    const all = document.querySelectorAll('.product');
-
-    const isOpen = product.classList.contains('active');
-
-    all.forEach(el => el.classList.remove('active'));
-
-    if (!isOpen) {
-        product.classList.add('active');
     }
-});
-<script>
+</script>
 // ==========================================
 // ПОЛНАЯ ЗАЩИТА КОНТЕНТА
 // ==========================================
@@ -522,6 +509,22 @@ window.addEventListener("beforeunload", () => {
 var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/60000|0);
 var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
 })(window,document,'https://cdn-ru.bitrix24.ru/b37264340/crm/tag/call.tracker.js');
+</script>
+	<script>
+document.addEventListener('click', function(e) {
+    const product = e.target.closest('.product');
+    if (!product) return;
+
+    const all = document.querySelectorAll('.product');
+
+    const isOpen = product.classList.contains('active');
+
+    all.forEach(el => el.classList.remove('active'));
+
+    if (!isOpen) {
+        product.classList.add('active');
+    }
+});
 </script>
 </body>
 </html>
