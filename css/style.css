@@ -712,6 +712,11 @@ iframe:hover {
 }
 
 /* --- Обновленный Аккордеон: Пересказ Договора --- */
+:root {
+    --gold: #BFA46F;
+    --panel: #1a1a1a; /* Цвет фона панели, если не задан в переменных */
+    --text: #ffffff;
+
   .product {
     border-top: 1px solid #222;
     padding: 16px 0 12px;
