@@ -355,19 +355,23 @@
     function toggleLegal() {
         document.getElementById('legalBody').classList.toggle('show');
     }
-</script>
-	<script>
+<script>
 document.addEventListener('DOMContentLoaded', function() {
     const products = document.querySelectorAll('.product');
 
     products.forEach(item => {
         item.addEventListener('click', function() {
-            // Если хочешь закрывать остальные при открытии этого:
-            /*
+            // ЛОГИКА ЗАКРЫТИЯ ДРУГИХ:
+            // Проходим по всем аккордеонам и, если это не тот, на который нажали,
+            // убираем у него класс 'active', тем самым закрывая его.
             products.forEach(el => {
-                if (el !== this) el.classList.remove('active');
+                if (el !== this) {
+                    el.classList.remove('active');
+                }
             });
-            */
+
+            // ПЕРЕКЛЮЧЕНИЕ ТЕКУЩЕГО:
+            // Если он был закрыт — откроется. Если открыт — закроется.
             this.classList.toggle('active');
         });
     });
