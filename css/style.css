@@ -710,6 +710,32 @@ iframe:hover {
         z-index: 999999 !important;
     }
 }
+/* --- Демонстрация Перезказ Договора в отдельной странице по стилю FAQ --- */
+   .faq-item {
+      border-top: 1px solid #222;
+      padding: 16px 0 12px;
+      cursor: pointer;
+    }
+    .faq-question {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-answer {
+      display: none;
+      margin-top: 12px;
+      color: var(--text);
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+html {
+    scroll-behavior: smooth;
+}
+
 /* --- ТОЧЕЧНАЯ ХИРУРГИЯ: Мобильный текст по левому краю --- */
 @media (max-width: 768px) {
     p, li, .legal-content, .about-text {
