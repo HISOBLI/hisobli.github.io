@@ -1606,48 +1606,38 @@ var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);
 })(window,document,'https://cdn-ru.bitrix24.ru/b37264340/crm/tag/call.tracker.js');
 </script>
 	<script>
-document.addEventListener('click', function(e) {
-    const product = e.target.closest('.product');
-    if (!product) return;
-
-    const all = document.querySelectorAll('.product');
-
-    const isOpen = product.classList.contains('active');
-
-    all.forEach(el => el.classList.remove('active'));
-
-    if (!isOpen) {
-        product.classList.add('active');
-    }
-});
-</script>
-
-<script>
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. ЛОГИКА ИЕРАРХИЧЕСКИХ АККОРДЕОНОВ
+    // 1. ИЕРАРХИЧЕСКИЕ АККОРДЕОНЫ С АВТО-СКРОЛЛОМ
     document.addEventListener('click', function(e) {
-        // Ищем клик по обложке (cover)
         const cover = e.target.closest('[class$="-cover"]');
         if (!cover) return;
 
-        // Находим родительский элемент (сам аккордеон: mega, kilo или product)
         const item = cover.parentElement;
-        
-        // Определяем селектор текущего уровня (чтобы не закрыть соседей другого уровня)
         const selector = '.' + Array.from(item.classList).find(cls => cls.includes('-product'));
         const parent = item.parentElement;
 
-        // Закрываем соседей ТОЛЬКО ТАКОГО ЖЕ УРОВНЯ внутри этого же родителя
+        // Закрываем соседей ТОЛЬКО ТАКОГО ЖЕ УРОВНЯ
         parent.querySelectorAll(`:scope > ${selector}`).forEach(el => {
             if (el !== item) el.classList.remove('active');
         });
 
-        // Открываем/Закрываем тот, по которому кликнули
+        // Проверяем, открываем мы блок или закрываем
+        const isOpening = !item.classList.contains('active');
+        
+        // Переключаем текущий
         item.classList.toggle('active');
+
+        // АВТО-СКРОЛЛ (НОУ-ХАУ)
+        if (isOpening) {
+            // Даем браузеру 300мс на отрисовку display:block, затем плавно скроллим
+            setTimeout(() => {
+                cover.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        }
     });
 
-    // 2. ЛОГИКА ПРОГРЕСС-БАРА
+    // 2. БРОНИРОВАННЫЙ ПРОГРЕСС-БАР
     window.addEventListener('scroll', function() {
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const docHeight = Math.max(
@@ -1657,16 +1647,13 @@ document.addEventListener('DOMContentLoaded', function() {
         );
         const winHeight = window.innerHeight || document.documentElement.clientHeight;
         
-        // Высчитываем реальный процент
         const scrollPercent = scrollTop / (docHeight - winHeight);
         let progress = Math.round(scrollPercent * 100);
         
-        // Защита от выхода за пределы
         if (progress > 100) progress = 100;
         if (progress < 0) progress = 0;
 
         document.getElementById('reading-progress').style.width = progress + '%';
-        // Умная мультиязычность для прогресс-бара (если нужно, можешь оставить один язык)
         document.getElementById('progress-text').innerText = 'Õqib qõydingiz | Прочитано: ' + progress + '%';
     });
 
