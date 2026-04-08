@@ -844,3 +844,15 @@ iframe:hover {
         padding-right: 15px !important;
     }
 }
+/* ГЛОБАЛЬНОЕ ЗОЛОТОЕ ВЫДЕЛЕНИЕ (HISOBLI STANDART) */
+strong, b {
+    color: #BFA46F !important; /* Прямое указание цвета для надежности */
+    font-weight: 700;
+}
+
+/* Совместимость с аккордеонами: 
+   Гарантируем, что внутри аккордеонов цвет останется таким же */
+[class$="-content"] strong, 
+[class$="-content"] b {
+    color: #BFA46F !important;
+}
