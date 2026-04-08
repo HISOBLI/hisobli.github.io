@@ -711,70 +711,129 @@ iframe:hover {
     }
 }
 
-/* --- Обновленный Аккордеон: Пересказ Договора --- */
+/* =========================================
+   ИЕРАРХИЧЕСКИЕ АККОРДЕОНЫ HISOBLI
+========================================= */
 :root {
     --gold: #BFA46F;
-    --panel: #1a1a1a; /* Цвет фона панели, если не задан в переменных */
+    --panel: #1a1a1a;
     --text: #ffffff;
 }
-  .product {
+
+/* Базовый контейнер для всех уровней */
+.product, .kilo-product, .mega-product, .giga-product {
     border-top: 1px solid #222;
-    padding: 16px 0 12px;
+    padding: 12px 0;
     cursor: pointer;
     width: 100%;
-  }
-
-  .product-cover {
-    background: var(--panel);
-    padding: 20px 24px;
-    border: 2px solid var(--gold);
-    border-radius: 6px;
-    box-shadow: 0 0 20px rgba(191, 164, 111, 0.35);
-    margin-bottom: 12px;
-    transition: all 0.35s ease;
-    text-align: left; /* Заголовок слева */
-  }
-
-  /* Напыление при наведении */
-  .product:hover .product-cover {
-    box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
-    transform: translateY(-3px);
-  }
-
-  .product-title {
-    color: var(--gold);
-    font-size: 1.15rem; /* Чуть крупнее основного текста */
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-  }
-
-  .product-content {
-    display: none;
-    margin-top: 10px;
-    padding: 0 10px;
-    text-align: left;   /* Текст внутри слева */
-    font-weight: 400;   /* СТРОГИЙ СБРОС ЖИРНОСТИ для обычных букв */
-    line-height: 1.6;
-  }
-
-  /* Золотой акцент для выделенных слов */
-  .product-content strong {
-    color: var(--gold);
-    font-weight: 700;
-  }
-
-  /* Открытие аккордеона */
-  .product.active .product-content { 
-    display: block; 
-  }
-
-.product.active .product-cover {
-    background: rgba(191, 164, 111, 0.1); /* Легкий подсвет при открытии */
 }
 
-html {
-    scroll-behavior: smooth;
+/* Общие стили для всех обложек (Cover) */
+.product-cover, .kilo-product-cover, .mega-product-cover, .giga-product-cover {
+    background: var(--panel);
+    border: solid var(--gold); /* Толщина задается ниже по иерархии */
+    border-radius: 6px;
+    margin-bottom: 12px;
+    transition: all 0.35s ease;
+    text-align: left;
+    position: relative; /* Для позиционирования стрелки */
+    padding: 16px 45px 16px 20px; /* Отступ справа под стрелку */
+}
+
+/* НОУ-ХАУ: Вращающаяся стрелка индикатор для всех обложек */
+.product-cover::after, .kilo-product-cover::after, .mega-product-cover::after, .giga-product-cover::after {
+    content: '▼';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Переворот стрелки при активном классе у родителя */
+.active > [class$="-cover"]::after {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* ИЕРАРХИЯ: Разные размеры для разных уровней */
+.mega-product-cover { border-width: 3px; box-shadow: 0 0 25px rgba(191, 164, 111, 0.4); }
+.mega-product-cover .text-uppercase { font-size: 1.3rem; font-weight: 800; color: var(--gold); }
+
+.kilo-product-cover { border-width: 2px; box-shadow: 0 0 15px rgba(191, 164, 111, 0.2); }
+.kilo-product-cover .text-uppercase { font-size: 1.2rem; font-weight: 700; color: var(--text); }
+
+.product-cover { border-width: 1px; box-shadow: none; }
+.product-cover .text-uppercase { font-size: 1.1rem; font-weight: 600; color: #ccc; }
+
+/* Ховер-эффект */
+[class$="-product"]:hover > [class$="-cover"] {
+    box-shadow: 0 0 35px rgba(191, 164, 111, 0.65);
+    transform: translateY(-2px);
+}
+
+/* Контент: скрыт по умолчанию */
+.product-content, .kilo-product-content, .mega-product-content, .giga-product-content {
+    display: none;
+    margin-top: 10px;
+    padding: 0 10px 10px 20px;
+    text-align: left;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text);
+    border-left: 2px solid #333; /* Линия, показывающая вложенность */
+}
+
+/* СТРОГИЙ КОНТРОЛЬ: Открываем только ПРЯМОЙ контент (знак >), чтобы не взорвать вложенные */
+.active > .product-content,
+.active > .kilo-product-content,
+.active > .mega-product-content,
+.active > .giga-product-content {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out; /* Плавное появление текста */
+}
+
+/* Подсветка открытой обложки */
+.active > [class$="-cover"] {
+    background: rgba(191, 164, 111, 0.1);
+}
+
+.product-content strong, [class$="-content"] strong {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   ПРОГРЕСС-БАР ЧТЕНИЯ (PREMIUM)
+========================================= */
+#progress-container {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(5px);
+    text-align: center;
+    border-bottom: 1px solid #333;
+}
+#reading-progress {
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, #BFA46F, #e5d3a1);
+    transition: width 0.15s ease-out;
+}
+#progress-text {
+    font-size: 0.8rem;
+    color: var(--gold);
+    padding: 3px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 /* --- ТОЧЕЧНАЯ ХИРУРГИЯ: Мобильный текст по левому краю --- */
