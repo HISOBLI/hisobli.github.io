@@ -251,6 +251,24 @@
     border-top-right-radius: 250px;
     border-bottom-right-radius: 250px;
 }
+/* Отменяем обрезание контента для всего блока услуги */
+.service-item {
+    overflow: visible !important;
+    position: relative;
+}
+
+/* Выводим текстовый блок на передний план, чтобы фон под него не подлезал */
+.service-item .col-md-7 {
+    position: relative;
+    z-index: 5 !important;
+    background: transparent !important;
+}
+
+/* Если у .service-text внутри был свой фон, делаем его прозрачным, 
+   чтобы он не конфликтовал с основным фоном сайта */
+.service-text {
+    background: transparent !important;
+}
   </style>
 </head>
 
