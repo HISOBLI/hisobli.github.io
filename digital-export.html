@@ -269,6 +269,29 @@
 .service-text {
     background: transparent !important;
 }
+/* Стабилизируем контейнер картинки, чтобы его не плющило от высоты соседнего текста */
+.service-img {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Принудительно возвращаем картинкам форму идеального круга, предотвращая сжатие */
+.service-img img.img-fluid.rounded-circle {
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    width: 100%;
+    max-width: 400px; /* Ограничиваем максимальный размер, чтобы круг не разносило на огромных мониторах */
+}
+
+/* Нейтрализуем старые фоновые псевдоэлементы шаблона, которые ломали верстку при длинном тексте */
+.service-item::before, 
+.service-item::after {
+    display: none !important;
+}
   </style>
 </head>
 
