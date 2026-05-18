@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>
-BUYURI§% DIGITAL EXPORT — экспорт IT-услуг без налогового шума | HISOBLI
-</title>
+<title>BUYURI§% DIGITAL EXPORT — экспорт IT-услуг без налогового шума | HISOBLI</title>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-647Y51PYZ2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -237,6 +235,22 @@ BUYURI§% DIGITAL EXPORT — экспорт IT-услуг без налогов�
         opacity: 0;
         visibility: hidden;
     }
+	
+	/* Если полуовал должен быть с левой стороны */
+.service-item-left {
+    /* Вместо border-radius: 50% или 50vw используем фиксированный эллиптический радиус */
+    border-top-left-radius: 250px;
+    border-bottom-left-radius: 250px;
+    
+    /* Для полной независимости от высоты можно использовать фиксированное значение по горизонтали и 100% по вертикали: */
+    /* border-radius: 300px 0 0 300px / 100% 0 0 100%; */
+}
+
+/* Если закругление идет с правой стороны */
+.service-item-right {
+    border-top-right-radius: 250px;
+    border-bottom-right-radius: 250px;
+}
   </style>
 </head>
 
@@ -500,71 +514,71 @@ BUYURI§% DIGITAL EXPORT — экспорт IT-услуг без налогов�
         </div>
     </div>
 </div>
-            <div class="service-item service-item-left">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-5">
-                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                            <img class="img-fluid rounded-circle" src="img/team-21.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
-                            <div lang-data="ru"><h2 class="text-uppercase">НАМ КАТЕГОРИЧЕСКИ НЕ ПО ПУТИ:</h2></div>
-							<div lang-data="uz"><h2 class="text-uppercase">BIZ SIZGA MUTLAQO YÕLDOŞ EMAS:</h2></div>
-                        </div>
-						<div lang-data="ru">
-    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Если вам нужен “решала”, а не регламент.</span>
-        </li>
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Если вы ищете способы скрыть выручку или обойти валютный контроль.</span>
-        </li>
-		<li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Если бухгалтерия воспринимается как декоративный архив после совершённых действий.</span>
-        </li>
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Если вы систематически нарушаете платёжную дисциплину.</span>
-        </li>
-		<li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Если вы ожидаете от консалтинга “гарантий отсутствия проблем”.</span>
-        </li>
-    </ul>
-</div>
-
-<div lang-data="uz">
-<ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Agar sizga reglament emas, muammolarni şaxsiy yõllar bilan "hal qilib beruvçi" odam kerak bõlsa.</span>
-        </li>
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Agar siz tuşumni yaşiriş yoki valyuta nazoratini aylanib õtiş yõllarini qidirayotgan bõlsangiz.</span>
-        </li>
-		<li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Agar buxgalteriya siz uçun amalga oşirilgan işlardan keyingi şunçaki dekorativ arxiv sifatida kõrilsa.</span>
-        </li>
-        <li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Agar siz tõlov intizomini muntazam ravişda buzayotgan bõlsangiz.</span>
-        </li>
-		<li class="list-group-item custom-list-item">
-            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
-            <span>- Agar siz konsaltingdan “muammolar mutlaqo bõlmasligi haqida kafolat” kutayotgan bõlsangiz.</span>
-        </li>
-    </ul>
-</div>
-<div lang-data="ru"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Контур <strong>BUYURI§%</strong> не устраняет последствия хаоса. Он предотвращает их появление через дисциплину процессов.</p></div>
-<div lang-data="uz"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>BUYURI§%</strong> konturi tartibsizlik oqibatlarini bartaraf etmaydi. U jarayonlar intizomi orqali ularning yuzaga kelişining oldini oladi.</p></div>
+<div class="service-item service-item-left">
+    <div class="row g-0 align-items-center">
+        <div class="col-md-5">
+            <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                <img class="img-fluid rounded-circle" src="img/team-21.jpg" alt="">
             </div>
         </div>
+        <div class="col-md-7">
+            <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                <div lang-data="ru"><h2 class="text-uppercase">НАМ КАТЕГОРИЧЕСКИ НЕ ПО ПУТИ:</h2></div>
+                <div lang-data="uz"><h2 class="text-uppercase">BIZ SIZGA MUTLAQO YÕLDOŞ EMAS:</h2></div>
+                
+                <div lang-data="ru">
+                    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Если вам нужен “решала”, а не регламент.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Если вы ищете способы скрыть выручку или обойти валютный контроль.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Если бухгалтерия воспринимается как декоративный архив после совершённых действий.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Если вы систематически нарушаете платёжную дисциплину.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Если вы ожидаете от консалтинга “гарантий отсутствия проблем”.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div lang-data="uz">
+                    <ul class="list-group list-group-flush mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Agar sizga reglament emas, muammolarni şaxsiy yõllar bilan "hal qilib beruvçi" odam kerak bõlsa.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Agar siz tuşumni yaşiriş yoki valyuta nazoratini aylanib õtiş yõllarini qidirayotgan bõlsangiz.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Agar buxgalteriya siz uçun amalga oşirilgan işlardan keyingi şunçaki dekorativ arxiv sifatida kõrilsa.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Agar siz tõlov intizomini muntazam ravişda buzayotgan bõlsangiz.</span>
+                        </li>
+                        <li class="list-group-item custom-list-item">
+                            <img src="img/marker_firm.svg" class="m-sep-img" alt="">
+                            <span>- Agar siz konsaltingdan “muammolar mutlaqo bõlmasligi haqida kafolat” kutayotgan bõlsangiz.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div lang-data="ru"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Контур <strong>BUYURI§%</strong> не устраняет последствия хаоса. Он предотвращает их появление через дисциплину процессов.</p></div>
+                <div lang-data="uz"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>BUYURI§%</strong> konturi tartibsizlik oqibatlarini bartaraf etmaydi. U jarayonlar intizomi orqali ularning yuzaga kelişining oldini oladi.</p></div>
+            </div> </div>
     </div>
 </div>
 <div class="service-item service-item-right">
@@ -619,15 +633,16 @@ BUYURI§% DIGITAL EXPORT — экспорт IT-услуг без налогов�
                         </div>
                         <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
     
-        <div class="video-wrapper" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
+    <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
         <iframe  
-    src="https://www.youtube.com/embed/WnAloIvGWmk" 
-    title="YouTube video player" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerpolicy="strict-origin-when-cross-origin" 
-    allowfullscreen>
-</iframe>
+            src="https://www.youtube.com/embed/WnAloIvGWmk" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
     </div>
 </div>
     <div class="row wow fadeInUp" data-wow-delay="0.5s">
