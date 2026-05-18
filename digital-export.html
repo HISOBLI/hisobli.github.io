@@ -77,17 +77,7 @@
    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.hisob.li/digital-export.html" }
  }
  </script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "Как работает аутсорсинг бухгалтерии от HISOBLI",
-  "description": "В видео подробно разбирается бизнес-модель компании HISOBLI, которая предлагает аутсорсинг бухгалтерии не как набор стандартных услуг, а как готовый продукт. Ключевые принципы модели: понятие «Контура» — защищенная, стандартизированная система с четкими границами и автоматизированными алгоритмами. Процесс вместо услуг — HISOBLI не продает часы консультаций, а гарантирует выполнение повторяемого алгоритма. Примеры реализации: контур для экспортных операций IT-бизнеса и контур для арендных обязательств. Разделение ответственности — компания берет на себя только корректность технических процессов. Модель ориентирована на бизнес, который ценит предсказуемость и системность.",
-  "thumbnailUrl": "https://img.youtube.com/vi/WnAloIvGWmk/maxresdefault.jpg",
-  "uploadDate": "2026-02-12",
-  "embedUrl": "https://www.youtube.com/embed/WnAloIvGWmk"
-}
-</script>
+
   
   <meta name="yandex-verification" content="EdD8dkmdNLlxREi2LkhJjYOH2kyQbJqM3cBKT5fX">
  <!-- Yandex.Metrika counter -->
@@ -245,63 +235,6 @@
         opacity: 0;
         visibility: hidden;
     }
-	
-	/* Если полуовал должен быть с левой стороны */
-.service-item-left {
-    /* Вместо border-radius: 50% или 50vw используем фиксированный эллиптический радиус */
-    border-top-left-radius: 250px;
-    border-bottom-left-radius: 250px;
-    
-    /* Для полной независимости от высоты можно использовать фиксированное значение по горизонтали и 100% по вертикали: */
-    /* border-radius: 300px 0 0 300px / 100% 0 0 100%; */
-}
-
-/* Если закругление идет с правой стороны */
-.service-item-right {
-    border-top-right-radius: 250px;
-    border-bottom-right-radius: 250px;
-}
-/* Отменяем обрезание контента для всего блока услуги */
-.service-item {
-    overflow: visible !important;
-    position: relative;
-}
-
-/* Выводим текстовый блок на передний план, чтобы фон под него не подлезал */
-.service-item .col-md-7 {
-    position: relative;
-    z-index: 5 !important;
-    background: transparent !important;
-}
-
-/* Если у .service-text внутри был свой фон, делаем его прозрачным, 
-   чтобы он не конфликтовал с основным фоном сайта */
-.service-text {
-    background: transparent !important;
-}
-/* Стабилизируем контейнер картинки, чтобы его не плющило от высоты соседнего текста */
-.service-img {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
-/* Принудительно возвращаем картинкам форму идеального круга, предотвращая сжатие */
-.service-img img.img-fluid.rounded-circle {
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    width: 100%;
-    max-width: 400px; /* Ограничиваем максимальный размер, чтобы круг не разносило на огромных мониторах */
-}
-
-/* Нейтрализуем старые фоновые псевдоэлементы шаблона, которые ломали верстку при длинном тексте */
-.service-item::before, 
-.service-item::after {
-    display: none !important;
-}
 
   </style>
 </head>
@@ -434,17 +367,20 @@
                     </div>
                 </div>
             </div>			
-<div class="service-item service-item-left">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5">
-            <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-17.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
-                <h3 class="text-uppercase">BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> DIGITAL EXPORT</h3>
-                <div lang-data="ru">
+ <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-17.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+                            <h3 class="text-uppercase">
+    <span lang-data="ru">ПРОДУКТ «BUYURI§%<img src="img/marker_firm.svg" class="team-marker-img" alt="">DIGITAL EXPORT»</span>
+    <span lang-data="uz">«BUYURI§%<img src="img/marker_firm.svg" class="team-marker-img" alt="">DIGITAL EXPORT» MAHSULOTI</span>
+</h3>           
+				<div lang-data="ru">
                     <h2 class="mb-4"><strong>Финансово-правовой контур для экспортёров IT-услуг в Узбекистане</strong></h2>
                     <p class="mb-4"><strong>Специально для компаний с кодами ОКЭД 62.01.0 и 62.02.0:</strong>
                         <br>разработка программного обеспечения, IT-аутсорсинг, SaaS, дизайн, EdTech, цифровые услуги и дистанционный экспорт интеллектуального труда.</p>
@@ -455,20 +391,20 @@
                     <p class="mb-4"><strong>Aynan IFUT (OKED) kodlari 62.01.0 va 62.02.0 bõlgan kompaniyalar uçun:</strong>
                         <br>dasturiy ta’minot işlab çiqiş, IT-autsorsing, SaaS, dizayn, EdTech, raqamli xizmatlar hamda intellektual mehnatning masofaviy eksporti.</p>
                     <p class="mb-4"><strong>Xizmatlar eksporti</strong> xaos va tartibsizlikni kõtarmaydi. Valyuta nazorati, MDXYAT (EEISVO), nol darajali stavka, invoyslar, soliq hisoboti va IT Park talablari “şunçaki kayfiyatga qarab yuritiladigan buxgalteriya”ni emas, balki <strong>determinatsiyalaşgan jarayonlar arxitekturasi</strong>ni talab etadi.</p>
+                </div>	
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-<div class="service-item service-item-right">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5 order-md-1 text-md-end">
-            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-18.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-18.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
                 <div lang-data="ru">
                     <h2 class="text-uppercase"><strong>ДЕКЛАРАЦИЯ РЕАЛЬНОСТИ</strong></h2>
                     <p class="mb-4"><strong>ООО «HISOBLI»</strong> не продаёт иллюзии “идеального удалённого бухгалтера” и не занимается творческой импровизацией вокруг валютного законодательства Республики Узбекистан.</p>
@@ -477,25 +413,25 @@
                     <p class="mb-4">Наша задача — внедрить регламентированную инфраструктуру учёта, внутри которой экспортная деятельность фиксируется, классифицируется, документируется и сопровождается без латентного правового шума.</p>
                 </div>
                 <div lang-data="uz">
-  <h2 class="text-uppercase"><strong>VOQELIK DEKLARATSIYASI</strong></h2>
+					<h2 class="text-uppercase"><strong>VOQELIK DEKLARATSIYASI</strong></h2>
                     <p class="mb-4"><strong>«HISOBLI» MÇJ</strong> “ideal masofaviy buxgalter” haqidagi xomxayollarni sotmaydi hamda Õzbekiston Respublikasining valyuta qonunçiligi atrofida ijodiy improvizatsiya bilan şuğullanmaydi.</p>
                     <p class="mb-4"><strong>BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> DIGITAL EXPORT</strong> — bu eksklyuziv ravişda tartib-intizomli raqamli xizmatlar eksportçilari uçun mõljallangan, standartlaştirilgan moliyaviy-huquqiy konturdir.</p>
                     <p class="mb-4">Biz biznes egasining õrniga boşqaruv qarorlarini qabul qilmaymiz. Siz uçun mijoz qidirmaymiz. Xorijiy buyurtmaçilar bilan muzokaralarda iştirok etmaymiz. Biz şubhali “sxemalar” yaratmaymiz.</p>
                     <p class="mb-4">Bizning vazifamiz — reglamentlangan hisob infratuzilmasini joriy etişdan iborat bõlib, uning içida eksport faoliyati heç qanday yaşirin huquqiy şovqinlarsiz qayd etiladi, klassifikatsiyalanadi, hujjatlaştiriladi va kuzatib boriladi.</p>
                 </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="service-item service-item-left">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5">
-            <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-19.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+            <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-19.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
                 <div lang-data="ru">
                     <h2 class="mb-4"><strong>ПРОЦЕССНАЯ ФАБРИКА BUYURI§%</strong></h2>
                     <h3 class="mb-3"><strong>Валютный контроль и ЕЭИСВО (E-Contract)</strong></h3>
@@ -525,24 +461,23 @@
 					<h3 class="mb-3"><strong>MXIK va raqamli xizmatlar klassifikatsiyasi</strong></h3>
 					<p class="mb-4">Xizmatlarni notõğri klassifikatsiyalaş va MXIK kodlarini xato qayd etiş korxonaning amaldagi faoliyati hamda soliq tõlovçining raqamli profili õrtasida tizimli tafovutlarni keltirib çiqarişi mumkin.</p>
 					<p class="mb-4">Kontur xizmatlar nomenklaturasini reglamentlangan tarzda verifikatsiya qilişni hamda şartnomalar, invoyslar, bank tuşumlari va soliq hisobi õrtasidagi tarkibiy muvofiqlikni saqlaşni kõzda tutadi.</p>
-
+                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="service-item service-item-right">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5 order-md-1 text-md-end">
-            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-20.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-20.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
                 <div lang-data="ru">
                     <h2 class="text-uppercase"><strong>ЛИМИТЫ И СТЕРИЛЬНОСТЬ СИСТЕМЫ</strong></h2>
-                    <p class="mb-4">Контур <strong>BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> DIGITAL EXPORT</strong> ориентирован на микроструктуры и малые экспортные команды, функционирующие в рамках упрощённой налоговой модели без НДС.</p>
+                    <p class="mb-4">Контур <strong>BUYURI§%<img src="img/marker_firm.svg" class="team-marker-img" alt="">DIGITAL EXPORT</strong> ориентирован на микроструктуры и малые экспортные команды, функционирующие в рамках упрощённой налоговой модели без НДС.</p>
                     <p class="mb-4">Внутренняя архитектура <strong>HISOBLI</strong> принципиально не ориентирована на массовый поток клиентов. Мы сознательно ограничиваем масштаб операционной среды для сохранения управляемости, процедурной точности и персональной ответственности.</p>
                     <p class="mb-4"><strong>Базовая стоимость</strong> эксплуатации контура: <strong>6 000 000 сўмов ежемесячно</strong> (согласно Договору комплексного консультирования в сфере коммерческой деятельности и управления по внедрению, конфигурации и поддержанию патентованного стандартизированного финансово-правового контура <strong>BUYURI§%</strong>, включая методологический мониторинг бухгалтерского и юридического документооборота).</p>
 					<p class="mb-4"><strong>Условия:</strong> Только безналичный расчёт. Оплата 50% в начале месяца (аванс до 3-го числа), остаток — по Акту выполненных работ в ЭДО. Любая задержка платежа ведёт к автоматической деактивации системы.</p>
@@ -551,28 +486,27 @@
                 </div>
                 <div lang-data="uz">
                     <h2 class="text-uppercase"><strong>TIZIMNING ÇEKLOVLARI VA STERILLIGI</strong></h2>
-                    <p class="mb-4"><strong>BUYURI§% <img src="img/marker_firm.svg" class="team-marker-img" alt=""> DIGITAL EXPORT</strong> konturi QQSsiz soddalaştirilgan soliq modeli doirasida faoliyat kõrsatuvçi mikrotuzilmalar va kiçik eksport jamoalariga mõljallangan.</p>
+                    <p class="mb-4"><strong>BUYURI§%<img src="img/marker_firm.svg" class="team-marker-img" alt="">DIGITAL EXPORT</strong> konturi QQSsiz soddalaştirilgan soliq modeli doirasida faoliyat kõrsatuvçi mikrotuzilmalar va kiçik eksport jamoalariga mõljallangan.</p>
                     <p class="mb-4"><strong>HISOBLI</strong> içki arxitekturasi prinsipial jihatdan mijozlarning ommaviy oqimiga qaratilmagan. Biz boşqaruvçanlikni, protsedura aniqligini va şaxsiy mas’uliyatni saqlab qoliş uçun operatsion muhit kõlamini ongli ravişda çeklaymiz.</p>
                     <p class="mb-4">Konturdan foydalanişning <strong>bazaviy qiymati</strong>: <strong>har oyda 6 000 000 sõm</strong> (Tijorat faoliyati va boşqaruv sohasida patentlangan BUYURI§% standartlaştirilgan moliyaviy-huquqiy konturni joriy etiş, konfiguratsiya qiliş va qõllab-quvvatlaş, şuningdek, buxgalteriya va yuridik hujjat aylanişining metodologik monitoringini õz içiga olgan kompleks maslahat beriş şartnomasiga muvofiq).</p>
 					<p class="mb-4"><strong>Şartlar:</strong> Faqat naqd pulsiz hisob-kitob. Oy boşida 50% oldindan tõlov (3-sanagaça avans), qolgan qismi — EHFT (EDO) dagi bajarilgan işlar dalolatnomasiga muvofiq. Tõlovning har qanday keçiktirilişi tizimning avtomatik ravişda deaktivatsiya qilinişiga olib keladi.</p>
                     <p class="mb-4"><strong>Kiriş filtri:</strong> Biz eksklyuziv ravişda qonuniy litsenziya maydonida, 1C:Predpriyatiye 8.3 muhitida sizning resurslaringizda (SaaS/Freş/RDP) işlaymiz. Baza tarifi bazada 3 (uç) nafargaça xodim hisobini õz içiga oladi, undan oşganda qat’iy kalkulyatsiya bõyiça qõşimça haq tõlanadi.</p>
                     <p class="mb-4">Agar biznes muntazam ravişda reglamentni buzsa, hujjat aylanişi talablarini e’tiborsiz qoldirsa yoki konturdan taşqari operatsiyalarni amalga oşirsa, konturning ma’nosi qolmaydi.</p>
-
+                </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="service-item service-item-left">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5">
-            <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-21.jpg" alt="">
-            </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
-                <div lang-data="ru"><h2 class="text-uppercase">НАМ КАТЕГОРИЧЕСКИ НЕ ПО ПУТИ:</h2></div>
+			 <div class="service-item service-item-left">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5">
+                        <div class="service-img p-5 wow fadeInRight" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-21.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 wow fadeInRight" data-wow-delay="0.5s">
+<div lang-data="ru"><h2 class="text-uppercase">НАМ КАТЕГОРИЧЕСКИ НЕ ПО ПУТИ:</h2></div>
                 <div lang-data="uz"><h2 class="text-uppercase">BIZ SIZGA MUTLAQO YÕLDOŞ EMAS:</h2></div>
                 
                 <div lang-data="ru">
@@ -624,22 +558,22 @@
                         </li>
                     </ul>
                 </div>
-                
-                <div lang-data="ru"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Контур <strong>BUYURI§%</strong> не устраняет последствия хаоса. Он предотвращает их появление через дисциплину процессов.</p></div>
+				<div lang-data="ru"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s">Контур <strong>BUYURI§%</strong> не устраняет последствия хаоса. Он предотвращает их появление через дисциплину процессов.</p></div>
                 <div lang-data="uz"><p class="mb-4 wow fadeInUp" data-wow-delay="0.2s"><strong>BUYURI§%</strong> konturi tartibsizlik oqibatlarini bartaraf etmaydi. U jarayonlar intizomi orqali ularning yuzaga kelişining oldini oladi.</p></div>
-            </div> </div>
-    </div>
-</div>
-<div class="service-item service-item-right">
-    <div class="row g-0 align-items-center">
-        <div class="col-md-5 order-md-1 text-md-end">
-            <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
-                <img class="img-fluid rounded-circle" src="img/team-22.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-7">
-            <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
-                <div lang-data="ru">
+            <div class="service-item service-item-right">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-5 order-md-1 text-md-end">
+                        <div class="service-img p-5 wow fadeInLeft" data-wow-delay="0.2s">
+                            <img class="img-fluid rounded-circle" src="img/team-22.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="service-text px-5 px-md-0 py-md-5 text-md-end wow fadeInLeft" data-wow-delay="0.5s">
+                                            <div lang-data="ru">
                     <h2 class="text-uppercase"><strong>КВАЛИФИКАЦИОННЫЙ ШЛЮЗ</strong></h2>
                     <p class="mb-4">Если ваша деятельность действительно связана с экспортом цифровых услуг, вы понимаете пределы ответственности сторон и готовы функционировать внутри жёсткого регламентированного контура — вы можете инициировать процедуру квалификации.</p>
                     <p class="mb-4">После первичного контакта через Telegram предоставляется доступ к закрытым материалам <strong>ООО HISOBLI</strong>:
@@ -659,6 +593,10 @@
 </p>
                     <p class="mb-4"><strong>HISOBLI</strong> ommaviy servis hisoblanmaydi. Bu yerda mijozlarni hissiyotlar emas, balki tizim bilan muvofiqlik darajasi belgilaydi.</p>
 				</div>
+                        </div>
+                    </div>
+                </div>
+            </div>				
                 </div>
             </div>
         </div>
@@ -680,8 +618,7 @@
                                 <div lang-data="uz"><h1>Unda tomoşa qiling!</h1></div>
                             </div>
                         </div>
-                        <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
-    
+                            
         <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
     <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
         <iframe  
@@ -833,10 +770,10 @@
 <div class="container-fluid bg-dark text-light footer py-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container text-center py-5">
         <a href="/">
-            <h1 class="display-4 mb-3 text-white text-uppercase">
+            <h2 class="display-4 mb-3 text-white text-uppercase">
                 <span lang-data="ru">АРХИТЕКТОР БИЗНЕС-ПРОЦЕССОВ</span>
                 <span lang-data="uz">BIZNES-JARAYONLAR ME'MORI</span>
-            </h1>
+            </h2>
         </a>
         <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
             <a href="https://www.youtube.com/@HISOBLI" target="_blank" class="social-icon-custom"><img src="img/youtube.svg"></a>
