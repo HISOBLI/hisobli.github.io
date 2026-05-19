@@ -236,7 +236,60 @@
         opacity: 0;
         visibility: hidden;
     }
+.widget-2gis iframe {
+    border: 0;
+    display: block;
+}
 
+.title-left h1,
+.title-left h5 {
+    margin-bottom: 0;
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+
+    .title {
+        align-items: flex-start !important;
+    }
+
+    .widget-2gis {
+        margin-top: 10px;
+    }
+
+/* Десктопная версия: привязка к правой стороне заголовка */
+@media (min-width: 768px) {
+    .title.position-relative {
+        padding-right: 170px; /* Освобождаем место под виджет справа */
+        display: inline-block !important;
+        width: auto;
+    }
+    .widget-2gis-container {
+        position: absolute !important;
+        right: 0 !important;
+        bottom: -2px !important; /* Выравнивание ровно по нижней линии h2 */
+        width: 150px !important;
+        height: 50px !important;
+        z-index: 10;
+    }
+}
+
+/* Мобильная версия: строго под текстом по центру */
+@media (max-width: 767px) {
+    .title.position-relative {
+        text-align: center !important;
+        margin-bottom: 70px !important; /* Место под виджет снизу */
+    }
+    .widget-2gis-container {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Центровка по экрану */
+        bottom: -60px !important;
+        width: 150px !important;
+        height: 50px !important;
+        z-index: 10;
+    }
+}
   </style>
 </head>
 
@@ -612,25 +665,25 @@
             <div class="col-lg-7 pb-0 pb-lg-5 py-5">
                 <div class="pb-0 pb-lg-5 py-5">
                     
-                    <div class="title wow fadeInUp" style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 15px;" data-wow-delay="0.1s">
+                    <div class="title wow fadeInUp position-relative d-block" style="margin-bottom: 40px;" data-wow-delay="0.1s">
                         
-                        <div class="title-left" style="margin-bottom: 0;">
+                        <div class="title-left text-center text-md-start d-block" style="width: 100%; max-width: 100%;">
                             <div lang-data="ru">
-                                <h5 style="margin-bottom: 5px;">Прочитано, но не понято?</h5>
-                                <h2 style="margin-bottom: 0; display: inline-block;">Тогда посмотрите!</h2>
+                                <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
+                                <h2 class="mb-0 m-0" style="margin: 0 !important; display: inline-block;">Тогда посмотрите!</h2>
                             </div>
                             <div lang-data="uz">
-                                <h5 style="margin-bottom: 5px;">Õqildi-yu tuşunilmadimi?</h5>
-                                <h2 style="margin-bottom: 0; display: inline-block;">Unda tomoşa qiling!</h2>
+                                <h5 class="mb-1" style="margin-bottom: 4px !important;">Õqildi-yu tuşunilmadimi?</h5>
+                                <h2 class="mb-0 m-0" style="margin: 0 !important; display: inline-block;">Unda tomoşa qiling!</h2>
                             </div>
                         </div>
 
-                        <div class="widget-2gis" style="display: block; position: static; margin-bottom: 3px;">
+                        <div class="widget-2gis-container">
                             <iframe
                                 frameborder="0"
                                 width="150"
                                 height="50"
-                                style="display: block;"
+                                style="display: block !important;"
                                 src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
                             </iframe>
                         </div>
