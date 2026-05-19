@@ -236,7 +236,28 @@
         opacity: 0;
         visibility: hidden;
     }
+.widget-2gis iframe {
+    border: 0;
+    display: block;
+}
 
+.title-left h1,
+.title-left h5 {
+    margin-bottom: 0;
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+
+    .title {
+        align-items: flex-start !important;
+    }
+
+    .widget-2gis {
+        margin-top: 10px;
+    }
+
+}
   </style>
 </head>
 
@@ -611,22 +632,44 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-7 pb-0 pb-lg-5 py-5">
                 <div class="pb-0 pb-lg-5 py-5">
-                    <div class="title wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="title-left">
-                            <div lang-data="ru"><h5>Прочитано, но не понято?</h5></div>
-                            <div lang-data="uz"><h5>Õqildi-yu tuşunilmadimi?</h5></div>
+                    <div class="title wow fadeInUp d-flex flex-column flex-md-row align-items-start gap-3"
+     data-wow-delay="0.1s">
 
-                            <!-- Flex-контейнер. Заменили <h1> на <h2> с классом "h1" для сохранения размера -->
-                            <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center gap-3 mb-4">
-                                <div>
-                                    <div lang-data="ru"><h2 class="mb-0 h1">Тогда посмотрите!</h2></div>
-                                    <div lang-data="uz"><h2 class="mb-0 h1">Unda tomoşa qiling!</h2></div>
-                                </div>
-                                <!-- Виджет -->
-                                <div>
-                                    <iframe frameborder="0" width="150px" height="50px" src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark"></iframe>
-                                </div>
-                            </div>
+    <!-- ТЕКСТ -->
+    <div class="title-left">
+
+        <div lang-data="ru">
+            <h5>Прочитано, но не понято?</h5>
+        </div>
+
+        <div lang-data="ru">
+            <h2>Тогда посмотрите!</h2>
+        </div>
+
+        <div lang-data="uz">
+            <h5>Õqildi-yu tuşunilmadimi?</h5>
+        </div>
+
+        <div lang-data="uz">
+            <h2>Unda tomoşa qiling!</h2>
+        </div>
+
+    </div>
+
+    <!-- ВИДЖЕТ -->
+    <div class="widget-2gis">
+
+        <iframe
+            frameborder="0"
+            width="150"
+            height="50"
+            src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
+        </iframe>
+
+    </div>
+
+</div>
+
                         </div>
                     </div>
                         
