@@ -236,59 +236,54 @@
         opacity: 0;
         visibility: hidden;
     }
-.widget-2gis iframe {
-    border: 0;
-    display: block;
-}
-
-.title-left h2,
-.title-left h5 {
-    margin-bottom: 0;
-}
-
-/* MOBILE */
-@media (max-width: 767px) {
-
-    .title {
-        align-items: flex-start !important;
-    }
-
-    .widget-2gis {
-        margin-top: 10px;
-    }
-
-/* Десктопная версия: привязка к правой стороне заголовка */
+/* ДЕСКТОП (и планшеты шире 767px) */
 @media (min-width: 768px) {
-    .title.position-relative {
-        padding-right: 170px; /* Освобождаем место под виджет справа */
-        display: inline-block !important;
-        width: auto;
-    }
-    .widget-2gis-container {
-        position: absolute !important;
-        right: 0 !important;
-        bottom: -2px !important; /* Выравнивание ровно по нижней линии h2 */
-        width: 150px !important;
-        height: 50px !important;
-        z-index: 10;
-    }
+  .title-desktop-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .title-left {
+    flex: 1;
+  }
+
+  .widget-2gis-container {
+    flex-shrink: 0;
+  }
+
+  /* прячем мобильную версию виджета */
+  .widget-2gis-mobile {
+    display: none;
+  }
 }
 
-/* Мобильная версия: строго под текстом по центру */
+/* МОБИЛЬНАЯ (до 767px) */
 @media (max-width: 767px) {
-    .title.position-relative {
-        text-align: center !important;
-        margin-bottom: 70px !important; /* Место под виджет снизу */
-    }
-    .widget-2gis-container {
-        position: absolute !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important; /* Центровка по экрану */
-        bottom: -60px !important;
-        width: 150px !important;
-        height: 50px !important;
-        z-index: 10;
-    }
+  .title-desktop-layout {
+    display: block;
+    text-align: center;
+  }
+
+  .title-left {
+    text-align: center;
+  }
+
+  .widget-2gis-container {
+    display: none; /* убираем десктопный вариант */
+  }
+
+  .widget-2gis-mobile {
+    display: block;
+    margin-top: 16px;
+    width: 100%;
+  }
+
+  .widget-2gis-mobile iframe {
+    margin: 0 auto;
+  }
 }
   </style>
 </head>
@@ -659,36 +654,43 @@
 
         </div>
     	
-<div class="container-fluid bg-secondary">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-7 pb-0 pb-lg-5 py-5">
-                <div class="pb-0 pb-lg-5 py-5">
-                    
-                    <div class="title wow fadeInUp position-relative d-block" style="margin-bottom: 40px;" data-wow-delay="0.1s">
-                        
-                        <div class="title-left text-center text-md-start d-block" style="width: 100%; max-width: 100%;">
-                            <div lang-data="ru">
-                                <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
-                                <h2 class="mb-0 m-0" style="margin: 0 !important; display: inline-block;">Тогда посмотрите!</h2>
-                            </div>
-                            <div lang-data="uz">
-                                <h5 class="mb-1" style="margin-bottom: 4px !important;">Õqildi-yu tuşunilmadimi?</h5>
-                                <h2 class="mb-0 m-0" style="margin: 0 !important; display: inline-block;">Unda tomoşa qiling!</h2>
-                            </div>
-                        </div>
+<div class="title wow fadeInUp" style="margin-bottom: 40px;" data-wow-delay="0.1s">
+  
+  <!-- Десктоп: заголовок и виджет в одной строке -->
+  <div class="title-desktop-layout">
+    <div class="title-left">
+      <div lang-data="ru">
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">Тогда посмотрите!</h2>
+      </div>
+      <div lang-data="uz">
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">Õqildi-yu tuşunilmadimi?</h5>
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">Unda tomoşa qiling!</h2>
+      </div>
+    </div>
 
-                        <div class="widget-2gis-container">
-                            <iframe
-                                frameborder="0"
-                                width="150"
-                                height="50"
-                                style="display: block !important;"
-                                src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
-                            </iframe>
-                        </div>
-                        
-                    </div>
+    <div class="widget-2gis-container">
+      <iframe
+        frameborder="0"
+        width="150"
+        height="50"
+        style="display: block !important;"
+        src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Мобильный виджет (изначально скрыт, показывается только на мобилках) -->
+  <div class="widget-2gis-mobile">
+    <iframe
+      frameborder="0"
+      width="150"
+      height="50"
+      style="display: block !important; margin: 0 auto;"
+      src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
+    </iframe>
+  </div>
+</div>
                     
                     <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
                         <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
