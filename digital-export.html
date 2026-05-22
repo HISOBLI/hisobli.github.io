@@ -47,7 +47,7 @@
    "@id": "https://hisob.li/digital-export.html#service",
    "name": "BUYURI§% DIGITAL EXPORT",
    "alternateName": "Экспорт услуг без бухгалтерского шума",
-   "description": "Финансово-правовой контур для экспортёров IT-услуг в Узбекистане. ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.",
+   "description": "Финансово-правовой контур для экспортёров IT-услуг в Узбекистане, бухгалтерия для экспортёров IT-услуг в Узбекистане, ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.",
    "url": "https://hisob.li/digital-export.html",
    "provider": { "@id": "https://hisob.li/#organization" },
    "areaServed": { "@type": "Country", "name": "Uzbekistan" },
@@ -112,7 +112,7 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 
-  <style>
+<style>
 .lang-switcher {
     display: flex;
     border: 2px solid #BFA46F;
@@ -121,7 +121,6 @@
     font-family: 'Fira Mono', monospace;
     margin-left: auto;
 }
-    }
     @media (min-width: 992px) { .lang-switcher { right: 50px; top: 35px; } }
     .lang-btn {
         padding: 2px 15px;
@@ -236,6 +235,7 @@
         opacity: 0;
         visibility: hidden;
     }
+
 /* ДЕСКТОП (и планшеты шире 767px) */
 @media (min-width: 768px) {
   .title-desktop-layout {
@@ -285,6 +285,8 @@
     margin: 0 auto;
   }
 }
+
+/* ГОРРИЗОНТАЛЬНАЯ ЛИНЕЙКА ДЛЯ СВЯЗКИ ВИДЖЕТОВ (ЯНДЕКС + 2ГИС) */
 .reviews-row {
   display: flex;
   align-items: center;
@@ -295,6 +297,13 @@
 .reviews-row iframe {
   display: block;
   border: none;
+}
+
+/* Центрирование виджетов на мобилках внутри твоего брейкпоинта */
+@media (max-width: 767px) {
+  .widget-2gis-mobile.reviews-row {
+    justify-content: center;
+  }
 }
   </style>
 </head>
@@ -667,35 +676,21 @@
     	
 <div class="title wow fadeInUp" style="margin-bottom: 40px;" data-wow-delay="0.1s">
   
-  <!-- Десктоп -->
   <div class="title-desktop-layout">
 
     <div class="title-left">
       <div lang-data="ru">
-        <h5 class="mb-1" style="margin-bottom: 4px !important;">
-          Прочитано, но не понято?
-        </h5>
-
-        <h2 class="mb-0 m-0" style="margin: 0 !important;">
-          Тогда посмотрите!
-        </h2>
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">Тогда посмотрите!</h2>
       </div>
 
       <div lang-data="uz">
-        <h5 class="mb-1" style="margin-bottom: 4px !important;">
-          Õqildi-yu tuşunilmadimi?
-        </h5>
-
-        <h2 class="mb-0 m-0" style="margin: 0 !important;">
-          Unda tomoşa qiling!
-        </h2>
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">Õqildi-yu tuşunilmadimi?</h5>
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">Unda tomoşa qiling!</h2>
       </div>
     </div>
 
-    <!-- Виджеты -->
     <div class="widget-2gis-container reviews-row">
-
-      <!-- Yandex -->
       <iframe
         src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
         width="150"
@@ -705,7 +700,6 @@
         referrerpolicy="strict-origin-when-cross-origin">
       </iframe>
 
-      <!-- 2GIS -->
       <iframe
         frameborder="0"
         width="150"
@@ -714,14 +708,11 @@
         referrerpolicy="strict-origin-when-cross-origin"
         src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
       </iframe>
-
     </div>
+
   </div>
 
-  <!-- Мобильная версия -->
   <div class="widget-2gis-mobile reviews-row">
-
-    <!-- Yandex -->
     <iframe
       src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
       width="150"
@@ -731,7 +722,6 @@
       referrerpolicy="strict-origin-when-cross-origin">
     </iframe>
 
-    <!-- 2GIS -->
     <iframe
       frameborder="0"
       width="150"
@@ -740,44 +730,38 @@
       referrerpolicy="strict-origin-when-cross-origin"
       src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
     </iframe>
-
   </div>
+
 </div>
-                    
-                    <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
-                        <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
-                            <iframe  
-                                src="https://www.youtube.com/embed/WnAloIvGWmk" 
-                                title="YouTube video player" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                referrerpolicy="strict-origin-when-cross-origin" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
 
-                    <div class="row wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="col-6">
-                            <div lang-data="ru">
-                                <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Выберите Продукт!</a>
-                            </div>
-                            <div lang-data="uz">
-                                <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Mahsulotni tanlang!</a>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div lang-data="ru">
-                                <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary py-3 w-100">Нужны контакты?</a>
-                            </div>
-                            <div lang-data="uz">
-                                <a href="team.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary py-3 w-100">Boğlanişni istaysizmi?</a>
-                            </div>
-                        </div>
-                    </div>
+<div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
+    <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
+        <iframe  
+            src="https://www.youtube.com/embed/WnAloIvGWmk" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
 
-                </div>
-            </div>
+<div class="row wow fadeInUp" data-wow-delay="0.5s">
+    <div class="col-6">
+        <div lang-data="ru">
+             <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Выберите Продукт!</a>
+        </div>
+        <div lang-data="uz">
+             <a href="team.html" target="_blank" class="btn btn-outline-primary border-2 py-3 w-100">Mahsulotni tanlang!</a>
+        </div>
+    </div>
+    <div class="col-6">
+        <div lang-data="ru">
+            <a href="contact.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary py-3 w-100">Нужны контакты?</a>
+        </div>
+        <div lang-data="uz">
+            <a href="team.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary py-3 w-100">Boğlanişni istaysizmi?</a>
         </div>
     </div>
 </div>
