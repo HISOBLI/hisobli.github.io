@@ -26,9 +26,9 @@
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-53LXLGG5');</script>
-<meta name="description" content="Финансово-правовой контур для экспортёров IT-услуг в Узбекистане. ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.">
+<meta name="description" content="Финансово-правовой контур для экспортёров IT-услуг в Узбекистане, бухгалтерия для экспортёров IT-услуг в Узбекистане, ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.">
 
-<meta name="keywords" content="экспорт IT услуг Узбекистан, ЕЭИСВО, E-Contract Узбекистан, валютный контроль Узбекистан, IT Park бухгалтерия, бухгалтерия IT компании Ташкент, ОКЭД 62.01.0, ОКЭД 62.02.0, нулевая ставка экспорт услуг, экспорт SaaS Узбекистан, экспорт программирования Узбекистан, BUYURI§% DIGITAL EXPORT, HISOBLI">
+<meta name="keywords" content="экспорт IT услуг Узбекистан, бухгалтерия экспорта IT услуг Узбекистан, ЕЭИСВО, E-Contract Узбекистан, валютный контроль Узбекистан, IT Park бухгалтерия, бухгалтерия IT компании Ташкент, ОКЭД 62.01.0, ОКЭД 62.02.0, нулевая ставка экспорт услуг, экспорт SaaS Узбекистан, экспорт программирования Узбекистан, BUYURI§% DIGITAL EXPORT, HISOBLI">
 
 <link rel="canonical" href="https://hisob.li/digital-export.html">
 
@@ -47,7 +47,7 @@
    "@id": "https://hisob.li/digital-export.html#service",
    "name": "BUYURI§% DIGITAL EXPORT",
    "alternateName": "Экспорт услуг без бухгалтерского шума",
-   "description": "Финансово-правовой контур для экспортёров IT-услуг в Узбекистане, бухгалтерия для экспортёров IT-услуг в Узбекистане, ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.",
+   "description": "Финансово-правовой контур для экспортёров IT-услуг в Узбекистане. ЕЭИСВО, валютный контроль, IT Park, инвойсы, нулевая ставка, ОКЭД 62.01.0 и 62.02.0.",
    "url": "https://hisob.li/digital-export.html",
    "provider": { "@id": "https://hisob.li/#organization" },
    "areaServed": { "@type": "Country", "name": "Uzbekistan" },
@@ -236,73 +236,27 @@
         visibility: hidden;
     }
 
-/* ДЕСКТОП (и планшеты шире 767px) */
-@media (min-width: 768px) {
-  .title-desktop-layout {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .title-left {
-    flex: 1;
-  }
-
-  .widget-2gis-container {
-    flex-shrink: 0;
-  }
-
-  /* прячем мобильную версию виджета */
-  .widget-2gis-mobile {
-    display: none;
-  }
-}
-
-/* МОБИЛЬНАЯ (до 767px) */
-@media (max-width: 767px) {
-  .title-desktop-layout {
-    display: block;
-    text-align: center;
-  }
-
-  .title-left {
-    text-align: center;
-  }
-
-  .widget-2gis-container {
-    display: none; /* убираем десктопный вариант */
-  }
-
-  .widget-2gis-mobile {
-    display: block;
-    margin-top: 16px;
-    width: 100%;
-  }
-
-  .widget-2gis-mobile iframe {
-    margin: 0 auto;
-  }
-}
-
-/* ГОРРИЗОНТАЛЬНАЯ ЛИНЕЙКА ДЛЯ СВЯЗКИ ВИДЖЕТОВ (ЯНДЕКС + 2ГИС) */
-.reviews-row {
+/* Единый контейнер виджетов */
+.reviews-row-unified {
   display: flex;
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  flex-shrink: 0;
 }
 
-.reviews-row iframe {
+.reviews-row-unified iframe {
   display: block;
   border: none;
 }
 
-/* Центрирование виджетов на мобилках внутри твоего брейкпоинта */
+/* Правило для мобилок: когда макетtitle сбрасывается в display: block, 
+   виджеты центрируются по горизонтали и получают отступ сверху */
 @media (max-width: 767px) {
-  .widget-2gis-mobile.reviews-row {
+  .reviews-row-unified {
     justify-content: center;
+    margin-top: 16px;
+    width: 100%;
   }
 }
   </style>
@@ -690,7 +644,7 @@
       </div>
     </div>
 
-    <div class="widget-2gis-container reviews-row">
+    <div class="reviews-row-unified">
       <iframe
         src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
         width="150"
@@ -710,26 +664,6 @@
       </iframe>
     </div>
 
-  </div>
-
-  <div class="widget-2gis-mobile reviews-row">
-    <iframe
-      src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
-      width="150"
-      height="50"
-      frameborder="0"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin">
-    </iframe>
-
-    <iframe
-      frameborder="0"
-      width="150"
-      height="50"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
-    </iframe>
   </div>
 
 </div>
