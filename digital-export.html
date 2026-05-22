@@ -630,13 +630,10 @@
         </div>
     </div>
 </div>
-
-        </div>
+</div>
     	
 <div class="title wow fadeInUp" style="margin-bottom: 40px;" data-wow-delay="0.1s">
-  
   <div class="title-desktop-layout">
-
     <div class="title-left">
       <div lang-data="ru">
         <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
@@ -649,96 +646,90 @@
       </div>
     </div>
 
-    <div class="reviews-row-unified">
+    <div class="reviews-row-unified" style="display: flex; gap: 10px;">
+      
       <a href="https://www.trustpilot.com/review/hisob.li" 
          target="_blank" 
          rel="noopener" 
          id="tp-dynamic-widget"
-         style="display: inline-block; width: 150px; height: 50px; vertical-align: top; background: #111111; border-radius: 4px; border: 1px solid #222222; text-decoration: none; padding: 6px 8px; box-sizing: border-box; font-family: Arial, sans-serif;">
+         style="display: inline-block; width: 150px; height: 50px; vertical-align: top; background: #1e2022; border-radius: 6px; border: 1px solid #2f3235; text-decoration: none; padding: 6px 10px; box-sizing: border-box; font-family: Arial, sans-serif; transition: background 0.2s;">
         <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <span style="color: #00b67a; font-size: 14px; font-weight: bold; letter-spacing: -0.5px;">★ Trustpilot</span>
+            <span style="color: #00b67a; font-size: 13px; font-weight: bold; letter-spacing: -0.5px;">★ Trustpilot</span>
             <span id="tp-rating-value" style="color: #ffffff; font-size: 13px; font-weight: bold;">...</span>
           </div>
-          <div id="tp-stars-container" style="color: #333333; font-size: 13px; letter-spacing: 2px; line-height: 1;">
+          <div id="tp-stars-container" style="color: #3f4245; font-size: 12px; letter-spacing: 2px; line-height: 1;">
             ★★★★★
           </div>
         </div>
       </a>
 
-      <iframe
-        src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
-        width="150"
-        height="50"
-        frameborder="0"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin">
-      </iframe>
+      <a href="https://yandex.uz/maps/org/24499169273" 
+         target="_blank" 
+         rel="noopener" 
+         style="display: inline-block; width: 150px; height: 50px; vertical-align: top; background: #1e2022; border-radius: 6px; border: 1px solid #2f3235; text-decoration: none; padding: 6px 10px; box-sizing: border-box; font-family: Arial, sans-serif;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="color: #ff3333; font-size: 13px; font-weight: bold;">     
+              <span style="margin-right:2px;">📍</span>Яндекс Бизнес
+            </span>
+            <span style="color: #ffffff; font-size: 13px; font-weight: bold;">3.4</span>
+          </div>
+          <div style="color: #ff3333; font-size: 12px; letter-spacing: 2px; line-height: 1;">
+            ★★★<span style="color: #3f4245;">★★</span>
+          </div>
+        </div>
+      </a>
 
-      <iframe
-        frameborder="0"
-        width="150"
-        height="50"
-        loading="lazy"
-        referrerpolicy="strict-origin-when-cross-origin"
-        src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
-      </iframe>
+      <a href="https://2gis.uz/tashkent/firm/70000001114330363" 
+         target="_blank" 
+         rel="noopener" 
+         style="display: inline-block; width: 150px; height: 50px; vertical-align: top; background: #1e2022; border-radius: 6px; border: 1px solid #2f3235; text-decoration: none; padding: 6px 10px; box-sizing: border-box; font-family: Arial, sans-serif;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="color: #24b200; font-size: 13px; font-weight: bold;">
+              <span style="margin-right:2px;">🌐</span>2ГИС Карта
+            </span>
+            <span style="color: #ffffff; font-size: 13px; font-weight: bold;">5.0</span>
+          </div>
+          <div style="color: #24b200; font-size: 12px; letter-spacing: 2px; line-height: 1;">
+            ★★★★★
+          </div>
+        </div>
+      </a>
     </div>
-
   </div>
-
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    // Используем бесплатный CORS-прокси, так как гитхаб не пустит прямой запрос к чужому домену
     const url = 'https://api.allorigins.win/get?url=' + encodeURIComponent('https://www.trustpilot.com/review/hisob.li');
-    
     fetch(url)
-        .then(response => {
-            if (response.ok) return response.json();
-            throw new Error('Network response error');
-        })
+        .then(response => { if (response.ok) return response.json(); throw new Error(); })
         .then(data => {
-            // Создаем виртуальный парсер для поиска в HTML-коде Трастпайлота
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.contents, 'text/html');
-            
-            // Ищем элемент, где Трастпайлот хранит точную оценку (их внутренний класс рейтинга)
             const ratingElement = doc.querySelector('.typography_header-3__9bZ9V, [data-rating-typography="true"]');
-            
             if (ratingElement) {
                 const rating = parseFloat(ratingElement.textContent.trim().replace(',', '.'));
                 if (!isNaN(rating)) {
-                    // 1. Выводим живую цифру на экран
                     document.getElementById('tp-rating-value').textContent = rating.toFixed(1);
-                    
-                    // 2. Генерируем динамические зеленые звезды в зависимости от округления
                     const roundedRating = Math.round(rating);
                     let starsHtml = '';
                     for (let i = 1; i <= 5; i++) {
-                        if (i <= roundedRating) {
-                            starsHtml += '<span style="color: #00b67a;">★</span>';
-                        } else {
-                            starsHtml += '<span style="color: #333333;">★</span>';
-                        }
+                        starsHtml += (i <= roundedRating) ? '<span style="color: #00b67a;">★</span>' : '<span style="color: #3f4245;">★</span>';
                     }
                     document.getElementById('tp-stars-container').innerHTML = starsHtml;
                 }
-            } else {
-                // Если парсинг не удался (изменились классы), оставляем безопасную среднюю базу
-                document.getElementById('tp-rating-value').textContent = '3.8';
-                document.getElementById('tp-stars-container').innerHTML = '<span style="color: #00b67a;">★★★★</span><span style="color: #333333;">★</span>';
-            }
-        })
-        .catch(err => {
-            // В случае падения сети или прокси — жестко держим стабильный дефолт
-            document.getElementById('tp-rating-value').textContent = '3.8';
-            document.getElementById('tp-stars-container').innerHTML = '<span style="color: #00b67a;">★★★★</span><span style="color: #333333;">★</span>';
-        });
+            } else { fallback(); }
+        }).catch(() => { fallback(); });
+
+    function fallback() {
+        document.getElementById('tp-rating-value').textContent = '3.8';
+        document.getElementById('tp-stars-container').innerHTML = '<span style="color: #00b67a;">★★★★</span><span style="color: #3f4245;">★</span>';
+    }
 });
 </script>
-
 <div class="hisobli-video-section" style="max-width: 850px; margin: 40px auto; text-align: center;">
     <div class="video-wrapper ratio ratio-16x9" style="border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;">
         <iframe  
