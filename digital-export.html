@@ -285,6 +285,17 @@
     margin: 0 auto;
   }
 }
+.reviews-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.reviews-row iframe {
+  display: block;
+  border: none;
+}
   </style>
 </head>
 
@@ -656,39 +667,80 @@
     	
 <div class="title wow fadeInUp" style="margin-bottom: 40px;" data-wow-delay="0.1s">
   
-  <!-- Десктоп: заголовок и виджет в одной строке -->
+  <!-- Десктоп -->
   <div class="title-desktop-layout">
+
     <div class="title-left">
       <div lang-data="ru">
-        <h5 class="mb-1" style="margin-bottom: 4px !important;">Прочитано, но не понято?</h5>
-        <h2 class="mb-0 m-0" style="margin: 0 !important;">Тогда посмотрите!</h2>
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">
+          Прочитано, но не понято?
+        </h5>
+
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">
+          Тогда посмотрите!
+        </h2>
       </div>
+
       <div lang-data="uz">
-        <h5 class="mb-1" style="margin-bottom: 4px !important;">Õqildi-yu tuşunilmadimi?</h5>
-        <h2 class="mb-0 m-0" style="margin: 0 !important;">Unda tomoşa qiling!</h2>
+        <h5 class="mb-1" style="margin-bottom: 4px !important;">
+          Õqildi-yu tuşunilmadimi?
+        </h5>
+
+        <h2 class="mb-0 m-0" style="margin: 0 !important;">
+          Unda tomoşa qiling!
+        </h2>
       </div>
     </div>
 
-    <div class="widget-2gis-container">
+    <!-- Виджеты -->
+    <div class="widget-2gis-container reviews-row">
+
+      <!-- Yandex -->
+      <iframe
+        src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
+        width="150"
+        height="50"
+        frameborder="0"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+
+      <!-- 2GIS -->
       <iframe
         frameborder="0"
         width="150"
         height="50"
-        style="display: block !important;"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
         src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
       </iframe>
+
     </div>
   </div>
 
-  <!-- Мобильный виджет (изначально скрыт, показывается только на мобилках) -->
-  <div class="widget-2gis-mobile">
+  <!-- Мобильная версия -->
+  <div class="widget-2gis-mobile reviews-row">
+
+    <!-- Yandex -->
+    <iframe
+      src="https://yandex.ru/sprav/widget/rating-badge/24499169273?type=rating&theme=dark"
+      width="150"
+      height="50"
+      frameborder="0"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+
+    <!-- 2GIS -->
     <iframe
       frameborder="0"
       width="150"
       height="50"
-      style="display: block !important; margin: 0 auto;"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
       src="https://widget.2gis.ru/api/widget?org_id=70000001114330363&amp;branch_id=70000001114330370&amp;size=medium&amp;theme=dark">
     </iframe>
+
   </div>
 </div>
                     
